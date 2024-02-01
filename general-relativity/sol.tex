@@ -1,0 +1,190 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\spec}{\text{spec}}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{Ch 1}
+
+\subsection*{Ex 1.1}
+We have that 
+\[
+	p + \mathbf{v}_{pq} + \mathbf{v}_{qr} = q + \mathbf{v}_{qr} = r = p + \mathbf{v}_{pr},
+\]
+so by A3, we see that $\mathbf{v}_{pq} + \mathbf{v}_{qr} = \mathbf{v}_{pr}$.
+
+
+\subsection*{Ex 1.2}
+
+We have that 
+\begin{align*}
+	\phi \circ \phi^{-1} (u, v)
+	&=
+	\phi\left(
+		\frac{2u}{u^{2} + v^{2} + 1},
+		\frac{2v}{u^{2} + v^{2} + 1},
+		\frac{u^{2} + v^{2} - 1}{u^{2} + v^{2} + 1}
+	\right) \\
+	&=
+	\frac{u^{2} + v^{2} + 1}{u^{2} + v^{2} + 1 -u^{2} - v^{2} + 1}
+	\left(
+		\frac{2u}{u^{2} + v^{2} + 1},
+		\frac{2v}{u^{2} + v^{2} + 1}
+	\right) \\
+	&=
+	\frac{1}{2}
+	\left(
+		2u,
+		2v
+	\right)  \\
+	&=
+	(u, v),
+\end{align*}
+and since $\phi$ is bijective, we have that $\phi^{-1}$ is its two sided
+inverse.
+
+\subsection*{Ex 1.3}
+
+$x \mapsto x^{3}$ is bijective on $\mathbb{R}$, and it follows that it induces
+a chart on $\mathbb{R}$.
+
+\subsection*{Ex 1.4}
+$\phi_{x+}$ is injective since $x$ is determined by $y$ up to sign, after which
+it's fully determined by the requirement $x > 0$ on the codomain. Moreover, its
+image is open since it's $(-1, 1) \times \R$. The other set and function pairs
+are charts by analogous arguments, and it's easy to see that their union is
+$C$.
+
+\subsection*{Ex 1.5}
+A1 was shown in Ex 1.4. For A2, note that $U_{x+} \cap U_{x-} = \emptyset$, and
+that $\phi_{x+}(U_{x+} \cap U_{y+}) = (0, 1) \times \R$ and similarly for the
+other combinations. For A3 we have
+\[
+	\phi_{x+} \circ \phi_{y+}^{-1} (x, z)
+	=
+	\phi_{x+} \left(x, \sqrt{1 - x^{2}}, z\right)
+	=
+	\left(\sqrt{1 - x^{2}}, z\right)
+\]
+which is infinitely differentiable in both variables on the domain $(0, 1)
+\times \R$. Similar arguments shows smoothness for the other combinations.
+
+\subsection*{Ex 1.7}
+
+Suppose that $\mathcal{A}_{1}, \mathcal{A}_{2}, \mathcal{A}_{3}$ are atlases.
+Then $\mathcal{A}_i$ is compatible with itself, since any new chart transition
+maps are identities. It's easy to see that the relation of being compatible is
+symmetric, since the order of listing has no effect. Moreover, suppose that
+$\mathcal{A}_1, \mathcal{A}_2$ and $\mathcal{A}_2, \mathcal{A}_3$ are
+compatible, and consider $U_i \in \mathcal{A}_1, V_j \in \mathcal{A}_3$. Then
+for any $W_k \in \mathcal{A}_3$ we have that $\phi_i \circ \phi_k^{-1}, \phi_k
+\circ \phi_j^{-1}$ are both infinitely smooth on $\phi_k(W_k \cap U_i),
+\phi_j(V_j \cap W_k)$ respectively. We can restrict these domains further to
+obtain infinite smoothness on $\phi_k(V_j \cap W_k \cap U_i), \phi_j(V_j \cap
+W_k \cap U_i)$, and since $\phi_k \circ \phi_j^{-1}(\phi_j(V_j \cap W_k \cap
+U_i)) = \phi_k(V_j \cap W_k \cap U_i)$, we see that the composition of the two
+functions $\phi_i \circ \phi_j^{-1}$ is infinitely smooth at $\phi_{j}(V_j \cap
+W_k \cap U_i)$ as well. Since $\mathcal{A}_2$ covers $M$, we see that $\phi_i
+\circ \phi_j^{-1}$ is infinitely smooth on all of $\phi_J(V_j \cap U_i)$ and we
+are done.
+
+
+\end{document}
