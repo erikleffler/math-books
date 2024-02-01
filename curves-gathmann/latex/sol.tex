@@ -1,0 +1,314 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\Kxy}{\K[x, y]}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\spec}{\text{spec}}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\lcm}{\text{lcm}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+\begin{document}
+
+\section*{Ch 1}
+
+\subsection*{Ex 1.8}
+Suppose towards a contradiction that $F = y^{2} + x - x^{3}$ was reducible via
+$F = GH$ with $\deg(G), \deg(H) > 0$. Then $\deg(F) = \deg(G) + \deg(H)$ and as
+neither of these are constant a unit, we can assume $\deg(G) = 2, \deg(H) = 1$.
+Thus we can write
+\[
+	G = x^{2} + a_1 xy + a_2 y^{2} + a_3 x + a_4 y + a_5,\ 
+	H = x + b_1 y + b_2,
+\] 
+and by multiplying the two together and comparing to the coefficients of $F$ we get
+\begin{align*}
+	b_1 + a_1 &= 0 \\
+	a_1 b_1 + a_2 &= 0, \\
+	a_2 b_1 &= 0,
+\end{align*}
+so either $a_2$ or $b_1$ is zero. If it's $a_2$ we need $a_1b_1 = 0$ by the
+second equation, whence $b_1 = a_1 = 0$ by the first equation. If it's $b_1$,
+we get $a_1=0$ by the first equation and $a_2 = 0$ by the second equation.
+Hence $a_1 = a_2 = b_1 = 0$ and
+\[
+	G = x^{2} + a_3 x + a_4 y + a_5,\ 
+	H = x + b_2.
+\] 
+But then $GH$ can't possibly be $F$, since $GH$ doesn't contain the term
+$y^{2}$, a contradiction.
+
+\subsection*{Ex 1.16}
+\subsubsection*{(a)}
+
+We have that $L = y - tx - t$ and $F$ intersect at the points where
+$0 = (tx + t)^{2} + x^{2} - 1$
+which after moving things around gives
+\[
+	x^{2} + \frac{2t^{2}}{t^{2} + 1}x + \frac{t^{2} - 1}{t^{2} + 1} = 0
+\] 
+This quadratic has the solutions 
+\[
+	x_1 
+	= 
+	\frac{-t^{2}}{t^{2} + 1} + \sqrt{\frac{t^{4}}{(t^{2} + 1)^{2}} + \frac{1 - t^{2}}{t^{2} + 1}} 
+	= 
+	\frac{-t^{2}}{t^{2} + 1} + \sqrt{\frac{1}{(t^{2} + 1)^{2}}}
+	= 
+	\frac{1 - t^{2}}{t^{2} + 1}
+\] 
+and
+\[
+	x_2 
+	= 
+	-\frac{1 + t^{2}}{t^{2} + 1}
+	=
+	-1
+\] 
+Solving for $y = tx + t$ gives
+\[
+	y_1 
+	= 
+	\frac{t - t^{3}}{t^{2} + 1} + t
+	= 
+	\frac{t - t^{3} + t^{3} + t}{t^{2} + 1}
+	=
+	\frac{2t}{t^{2} + 1},
+\] 
+and $y_2 = 0$. As $t$ goes from $-\infty$ to $\infty$, it sweeps the circle,
+and we see that all points on the circle lie in the set
+\[
+	V(F) 
+	= 
+	\{0, 1\} 
+	\cup 
+	\left\{
+		\left(
+			\frac{1 - t^{2}}{t^{2} + 1}, 
+			\frac{2t}{t^{2} + 1},
+		\right)
+		:
+		t \in K, 1 + t^{2} \not = 0
+	\right\}
+\]
+
+\subsubsection*{(b)}
+$(a, b, c)$ is a Pythagorean triple exactly when $(a/c, b/c) \in F$ where $K = \Q$. We
+can write $t = u/v$ with $u, v \in \Z$ whence
+\begin{align*}
+	V(F) 
+	&= 
+	\{0, 1\} 
+	\cup 
+	\left\{
+		\left(
+			\frac{1 - (u/v)^{2}}{(u/v)^{2} + 1}, 
+			\frac{2(u/v)}{(u/v)^{2} + 1},
+		\right)
+		:
+		u, v \in \Z
+	\right\} \\
+	&=
+	\{0, 1\}  
+	\cup 
+	\left\{
+		\left(
+			\frac{u^{2} - u^{2}}{u^{2} + v^{2}}, 
+			\frac{2uv}{u^{2} + v^{2}},
+		\right)
+		:
+		u, v \in \Z
+	\right\}
+\end{align*}
+and the statement follows.
+
+
+\subsection*{Ex 2.6}
+
+\subsubsection*{(a)}
+
+By Prop 1.12 (a), we have some $\hat{p}(x) \in (F, G)$, which since both $F, G$
+vanish at the origin, we can write $\hat{p}(x) = x^{n_x} p(x)$ for some $n_x \geq
+1$ and $p(0) \not = 0$. Then in $\mathcal{O}_{0}$,
+\[
+	x^{n_x} = \frac{x^{n_x}p(x)}{p(x)} = \frac{\hat{p}(x)}{p(x)} \in (F, G)\mathcal{O}_0,
+\] 
+and it follows that $x^{n_x} = 0 \in \mathcal{O}_{0}/ (F, G)$. Picking $n =
+\lcm(n_x, n_y)$ yields $x^{n} = y^{n} = 0$.
+
+\subsubsection*{(b)}
+
+Let 
+\[
+	\frac{1}{\hat{g}} 
+	\in 
+	\mathcal{O}_0(F, G),
+\] 
+and write $g = 1 - \frac{\hat{g}}{\hat{g}(0)}$. Note that $\hat{g}(0) \not = 0$
+by the definition of our local ring. Then $g$ doesn't have a constant term, and
+therefore, $g^{2n} = 0$, since all terms in $g^{2n}$ has degree at least $2n$,
+and must contain either $x^{n}$ or $y^{n}$ which are equal to $0$ by part (a)
+Let $k \in \N$ be the smallest natural number such that $g^{k + 1} = 0$. Then
+\[
+\frac{1}{1 - \hat{g}(0)g} \sum_{i = 0}^{k} \left(\hat{g}(0)g\right)^{k} = 1,
+\] 
+and
+\[
+	\left(\frac{1}{\hat{g}}\right)^{-1} 
+	= 
+	\left(\frac{1}{1 - \hat{g}(0)g}\right) 
+	= 
+	\sum_{i=0}^{k} \left(\hat{g}(0)g\right)^{k}
+\]
+is a polynomial representative.
+
+\subsubsection*{(c)}
+
+By (a) and (b), every element in $\mathcal{O}_{(0, 0)}/(F, G)$ is a linear
+combination of terms $x^{i}y^{j}$ with $i, j \leq n$. This is a finite set and
+it follows that $\mu_{0}(F, G) \in \N$.
+
+\subsection*{Ex 2.7}
+
+\subsubsection*{(a)}
+
+Suppose towards a contradiction that the powers $F^{i}$ are linearly dependent
+(over $\K$) in $\mathcal{O}_0 / (G)$. Then let $\pi : \mathcal{O}_0/(G) \to
+\mathcal{O}_0/(F, G)$ be the canonical projection. Then $\ker(\pi) =
+(F)\mathcal{O}_0/(G)$ is generated by the powers $F^{i}$ as a $\K$-vector
+space, hence finite dimensional by hypothesis. The Nullity-Rank Theorem now
+yields 
+\[
+	\dim \left(\mathcal{O}_0 / (G)\right) 
+	= 
+	\dim \left((F)\mathcal{O}_0/(G)\right) 
+	+ 
+	\dim \left(\mathcal{O}_0/(F, G)\right),
+\] 
+but the two terms on the RHS are finite, whilst $\mathcal{O}_0 / (G)$ is
+infinite dimensional by the following lemma. 
+
+
+\begin{lemma}
+	Let $F$ be a curve. Then $\dim \left(\mathcal{O}_0 / (F)\right) = \infty$
+\end{lemma} 
+\begin{proof}
+
+	We have either $(F) \cap \K[x] = \emptyset$ or $(F) \cap \K[y] = \emptyset$
+	since $\K \in \K[x] \cap \K[y]$ and $\K \cap (F) = \emptyset$. Assume $(F)
+	\cap \K[y] = \emptyset$. Then the powers of $y$ are linearly independent in
+	$\Kxy / (G)$. Indeed, a linear combination of powers in $y$ over $\K$ is
+	the same thing as a polynomial $p(y) \in \K[y]$, and no such polynomial
+	lies in $(G)$. Moreover, if $a(x, y) \in \Kxy$ is such that $a(x, y)p(y)
+	\in (G)$, then $G | ap$, but $G$ and $p$ are coprime, so $G | a$ and $a(x,
+	y) = 0$ in $\Kxy/(G)$. Hence $p$ gets sent to a non-zero element when
+	localizing at $0$ by bullet point 2) in the text after Prop 3.1 in
+	Atiyah-Macdonald, and the powers $y$ remain linearly independent in
+	$\mathcal{O}_0/(G)$. 
+
+\end{proof}
+
+
+
+\subsubsection*{(b)}
+
+Let $H$ be the common component. Then $(F, G) \subseteq (H)$, so
+\[
+	\dim \left(\mathcal{O}_0/(H)\right) \leq \dim \left(\mathcal{O}_0/(F, G)\right),
+\] 
+and we showed in part (a) that $\mathcal{O}_0/(H)$ is infinite-dimensional for
+any curve $H$.
+
+\end{document}
