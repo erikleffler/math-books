@@ -1,0 +1,2037 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Oh}{\mathcal{O}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\A}{\mathbb{A}}
+
+\newcommand{\varfont}{\texttt}
+\newcommand{\typefont}{\texttt\textbf}
+
+\algnewcommand\Var[1]{\varfont{#1}}
+\algnewcommand\Type[1]{\texttt{\textbf{#1}}}
+
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\spec}{\text{spec}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+
+
+\newcommand{\pc}{\circ}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{Ch 1}
+\subsection*{Ex 1.1}
+Let $n \in \Z$ be such that $x^n = 0$. Now consider repeating the conjugate
+rule according to, $(1 - x)(1 + x) = 1 - x^2$, $(1 - x)(1 + x)(1 + x^2) = 1 -
+	x^4$, and on until we get $$ (1 + x)(1 - x)\prod_{k = 1}^{n}(1 + x^{2^{k}}) = 1
+	- x^{2^{n + 1}} = 1 - 0 \cdot x^{2^{n + 1} - n} = 1 $$ so $1 + x$ is a unit. \\
+
+The same proof for an arbitrary unit $u$ yields $$ (u + x)(u - x)\prod_{k =
+		1}^{n}(u + x^{2^{k}}) = u^{2^{n+1}} - x^{2^{n + 1}} = u^{2^{n+1}}, $$ which is
+also whence $u + x$ is.
+
+\subsection*{Ex 1.2}
+\subsubsection*{i)}
+
+For the $\Leftarrow$ direction, let $k$ be an integer such that all $a_i^k = 0$
+for $i > 0$. Then every term in every coefficient $(f - a_0)^{kn}$ must contain
+at least $k$ factors of some $\not = a_0$ coefficient of $f$. Hence $(f -
+	a_0)^{kn} = 0$ and $f - a_0$ is nilpotent. But $a_0$ is a unit, so $f$ is a
+unit by Ex 1.1. \\
+
+For the $\Rightarrow$ direction, we assume that $f$ is a unit and prove the
+given statement using induction.The case when $r = 0$ follow directly from the
+fact that the leading coefficient of the product is the product of the leading
+coefficients of the terms. \\
+
+Now assume that $a^{r + 1}_n b_{m - r}$ is true for all $r < k$, and consider
+the $n + m - k$-th coefficient, $c_{n + m - k}$, of $g = a_{n}^k f f^{-1}$.
+It's given as $$ c_{n + m - k} = a_{n}^k \sum_{i + j = n + m - k} a_i b_j, $$
+but all terms with $j > m - k$ are $0$ since then $a_{n}^k b_j = 0$, so the
+only term which remains is $a_{n}^{k + 1} b_{n - k} = 0$, and $a^{r + 1}_n b_{m
+			- r}$ is true for all $r \in [0..m]$. \\
+
+But then it must be that $a^{m + 1}_n = 0$ since $b_0$ is a unit, so $a_n$ is
+nilpotent. Then we also have that $a_n x^n$ is nilpotent, and $f - a_n x^n$ is
+a unit by Ex 1.1. Continuing reduction of $f$ like this, term by term this way
+until we get to the constant term proves the desired result.
+
+\subsubsection*{ii)}
+
+The $\Leftarrow$ direction is analogous to the previous subproblem, just that
+we don't need to subtract by $a_0$. \\
+
+For the $\Rightarrow$ direction, we know that $f + 1$ is a unit by Ex 1.1,
+which in turn leads to all $a_i$ for $i > 0$ being nilpotent. Now, since
+nilpotent elements form an ideal, $a_i x^i$ is nilpotent for every $i > 0$, and
+we can subtract them all from $f$ and remain in the nilradical, hence $a_0$ is
+nilpotent as well.
+
+\subsubsection*{iii)}
+Let $g = b_0 + \ldots + b_m x^m$ be a non-zero polynomial of minimal degree $m$ which annihilates $f$. Then $a_n b_m = 0$. But $a_n g$ annihilates $f$ as well, and $\deg(a_n g) < m$, so $a_n g = 0$. Now we have $(f - a_nx^n)g = 0$ as well, so $a_{n-1}b_m = 0$ and $a_{n-1}g = 0$. This process can be continued all the way down, showing that $b_m f = 0$.
+
+\subsubsection*{iv)}
+First, $(c_1, \ldots, c_l) \subseteq (a_1, \ldots, a_n)$ which immediately gives us the $\Rightarrow$ direction. \\
+
+For the $\Leftarrow$ direction, let $A_i$ be a solution to $\sum a_i A_i = 1$,
+and $B_i$ similarly. Then we have
+\begin{align*}
+	1
+	 & = \left(\sum a_i A_i \right)  \left(\sum b_i B_i \right)                \\
+	 & = \sum_{a_i} \sum_{b_i} a_i A_i b_i B_i                                 \\
+	 & = \sum_{k = 0}^{n + m} \sum_{i = 0}^{n + m} a_i A_i b_{k - i} B_{k - i} \\
+	 & = \sum_{k = 0}^{n + m} \sum_{c_k} \sum_{i = 0}^{n + m} A_i B_{k - i},
+\end{align*}
+and we are done.
+
+\subsection*{Ex 1.3}
+\subsubsection*{i)}
+The $\Leftarrow$ direction of Ex 1.2.i) made no assumptions on the dimension of the polynomials. \\
+
+For the other direction, assume that the statement is true for $n < k$ and
+consider $A[x_1, \ldots, x_k]$. This ring can be considered as single variable
+polynomial ring with scalars in $A[x_1, \ldots, x_{k - 1}]$. By Ex 1.2.i), we
+then have $f$ nilpotent $\Rightarrow$ $c_i(f)$ nilpotent for $i > 0$ and a unit
+for $i = 0$. This immediately yields all coefficients for terms with factors of
+$x_n$ being nilpotent. The remainder of the polynomial is a unit and the
+statements regarding these coefficients follows by induction.
+
+\subsubsection*{ii)}
+Again, we get the $\Leftarrow$ direction from Ex 1.2.ii).
+
+We'll use the same induction as above for the $\Rightarrow$ direction. By Ex
+1.2.i), we then have $f \in A[x_1, \ldots, x_{k - 1}][x_k]$ nilpotent
+$\Rightarrow$ $c_i(f)$ nilpotent for all $i$, and the coefficients are
+polynomials of degree $k - 1$ so their coefficients are nilpotent by induction.
+
+\subsubsection*{iii)}
+
+Ex 1.3.iii) made no assumptions of degree on the polynomial ring. Replace
+$\deg$ with total degree, and $x^n$ with $\lm(f)$.
+
+\subsubsection*{iv)}
+Again, if we organise terms by total degree, we get the same proof as in Ex 1.2.iv).
+
+\subsection*{Ex 1.4}
+Let $f$ be in the Jacobson radical. Then $1 - fg$ is a unit for all $g \in
+	A[x]$. We will show that $f$ is nilpotent. We can pick $g = x$, and $h = 1 -
+	fx$ is a unit by Ex 1.1. Then all coefficients of non-constant terms of $h$ are
+nilpotent by Ex 1.2.i). But these are precisely the coefficients of $f$, so $f$
+is nilpotent by Ex 1.2.ii)
+
+\subsection*{Ex 1.6}
+
+\begin{lemma}
+	The Jacobson radical does not contain any non-zero idempotents.
+\end{lemma}
+\begin{proof}
+	Let $e$ be in the Jacobson radical such that $ee = e$. Then $1 - e$ and $1 + e$
+	are both units by Prop 1.7 (?). Let their inverses be named $u, u'$. Then $uu'$
+	is the inverse of the product $(1 - e)(1 + e) = 1 - e^2 = 1 - e$. We have
+	$uu'(1 - e) = 1$, but we also have $u(1 - e) = 1$, so $u' = 1$, $1 - e = 1$ and
+	$e = 0$.
+\end{proof}
+
+\subsection*{Ex 1.7}
+Let $P$ be a prime ideal, and consider $x + P \in A / P$. Then $x^n + P = x +
+	P$ and $x^n - x + P = P$, so $(x^{n-1} - 1 + P)(x + P) = P$. But $A/P$ is a
+domain, so either $x + P = P$ or $x^{n-1} - 1 + P = P$. Ignoring the trivial
+case, we get that $x^{n-1} + P = 1 + P$, so $x + P$ has the inverse $x^{n - 2}
+	+ P$, and $A/P$ is a field, whence $P$ is maximal.
+
+\subsection*{Ex 1.8}
+Let $P$ be the set of prime ideals in $A$, and consider a chain $C$
+\[
+	\mathfrak{p}_{0} \supseteq  
+	\mathfrak{p}_{1} \supseteq  
+	\ldots
+\] 
+of ideals $\mathfrak{p}_{i} \in P$. We claim that $\mathfrak{p} =
+\bigcap_{\mathfrak{p}_i \in C} \mathfrak{p}_i$ is a prime ideal. Indeed, given
+$ab \in \mathfrak{p}$ we have that $ab \in \mathfrak{p}_i$ for all
+$\mathfrak{p}_i \in C$, and if there is some $n \in \N$ such that $a \not \in
+\mathfrak{p}_n$, then $n \not \in \mathfrak{p}_i$ for all $i \geq n$ since $i
+\geq n \Rightarrow \mathfrak{p}_i \subseteq \mathfrak{p}_{n}$. It follows that
+$b \in \mathfrak{p}_i$ for all $i \geq n$. Then $b \in \mathfrak{p}_i$ for all
+$\mathfrak{p}_i \in C$, as otherwise, the argument above could be repeated with
+$b$ instead, leading to a contradiction. It follows that $\mathfrak{p} \in P$,
+and $\mathfrak{p}$ is an upper bound to $C$, whence $P$ admits minimal elements
+by Zorn's lemma.
+
+
+\subsection*{Ex 1.9}
+The $\Rightarrow$ direction is immediate from Prop 1.14. \\
+
+Let $I$ be an ideal which is the intersection of prime ideals in $A$, and let
+$x^n \in I$ for some $x \in A, n \in \Z$. Any prime ideal which contains $x^n$
+necessarily contains $x$, so all prime ideals which intersect to $I$ contain
+$x$, whence $I$ do as well.
+
+\subsection*{Ex 1.10}
+i) $\Rightarrow$ ii) Given i), Prop 1.8 tells us that $\nr(A)$ is prime. Let $x
+	\in A$ be a non-unit. Let $I$ be the maximal ideal containing $x$ by Cor 1.5.
+Maximal ideals are prime, so $I$ is prime. Thus $I = \nr(A)$ and $x \in
+	\nr(A)$, whence $x$ is nilpotent. \\
+
+ii) $\Rightarrow$ iii) follows from the fact that all nilpotent elements are
+factored out (Prop 1.7) and only units remain in $A/\nr(A)$. \\
+
+iii) $\Rightarrow$ i) Given iii), we know that $\nr(A)$ is maximal, but it's
+also the intersection of all prime ideals. Thus all prime ideals equal
+$\nr(A)$.
+
+\subsection*{Ex 1.12}
+
+The only unit which is idempotent is $1$, since if $e, e' \in A$ such that $ee
+	= e,\ ee' = 1$, then $1 = ee' = eee' = e$. \\
+
+Let $A, m$ be a local ring and suppose towards a contradiction that $e \in A$
+is an idempotent not equal to $0, 1$. Then $e \in m$ by Cor 1.5, and since $m$
+is the only maximal ideal, it's the Jacobson radical, which by Prop 1.9 means
+that $1 - ge$ is a unit for all $g \in A$. In particular, $1 - e$ is a unit,
+but it's also a zero divisor since $e(1 - e) = 0$, a contradiction.
+
+\subsection*{Ex 1.13}
+We show that $\mathfrak{a} \not = (1)$. First, if $|\Sigma| = 1$ and $f$ is the
+sole member of $\Sigma$, we have that $\deg(f) > 0$ since $f$ is irreducible,
+so $\mathfrak{a} = (f)$ doesn't contain the constants. \\
+
+Now assume that $|\Sigma| > 1$, and let $f, g \in \Sigma$. Then $f(x_g) \not
+\in \Sigma$ since $k[x_g] \cap \Sigma = (g(x_g)) \not \ni f(x_g)$ since $f \not
+= g$ and $f$ is irreducible. \\
+
+\subsection*{Ex 1.14}
+We will show that $\Sigma$ admits maximal elements by an application of Zorn's
+lemma, and to do this, all we need to do is verify that if 
+\[
+\mathfrak{a}_0 \subseteq \mathfrak{a}_1 \subseteq \dots
+\] 
+is a chain in $\Sigma$, then $\mathfrak{a} = \bigcup \mathfrak{a}_i$ is an
+ideal. Let $a, b \in \mathfrak{a}, r \in A$. Then $a \in \mathfrak{a}_i$ for
+some $i$ and $ra \in \mathfrak{a}_i \subseteq \mathfrak{a}$. Even more, since
+$i < j \Rightarrow \mathfrak{a}_i \subseteq \mathfrak{a}_j$, then $a \in
+\mathfrak{a}_j$ for all $j > i$. It follows that there is some $\mathfrak{a}_k$
+which contains both $a, b$, whence it contains $a + b$, and we see that $a + b
+\in \mathfrak{a}$. \\
+
+Now, let $\mathfrak{p} \in \Sigma$ be a maximal element, and consider $a, b \in
+A$ such that $ab \in \mathfrak{p}$. Then $ab$ is a zero divisor and $abc = 0$
+for some $c \in A$. But then $a, b$ are both zero divisors as well and $(a),
+(b) \in \Sigma$. Now assume towards a contradiction that $a, b \not \in
+\mathfrak{p}$. It follows that $(a) + \mathfrak{p} = (b) + \mathfrak{p} (1)$
+since $\mathfrak{p}$ is maximal and $(a) + \mathfrak{p}, (b) + \mathfrak{p}$
+both consist soleley of zero divisors. Multiplying the two ideal sums yields
+\[
+	(1) 
+	= 
+	(1)^{2} 
+	= 
+	((a) + \mathfrak{p})((b) + \mathfrak{p}) 
+	= 
+	(ab) + (a)\mathfrak{p} + (b)\mathfrak{p} + \mathfrak{p}^{2}
+	\subseteq
+	\mathfrak{p}
+\] 
+which contradicts $\mathfrak{p}$ being a proper ideal.
+
+\subsection*{Ex 1.15}
+\subsubsection*{i)}
+Since any ideal which contains $E$ is required to contain $a$ and vice verca,
+we have $V(a) = V(E)$. Moreover, if $P \supset a$ is a prime ideal, then
+$\nr(a) \subset P$ and $V(a) \subseteq V(r(a))$. The other inclusion is
+immediate.
+
+\subsubsection*{ii)}
+Any ideal contains $0$ so $V(0)$ is the set of prime ideals. Only $(1)$
+contains $1$ so $V(1) = \emptyset$.
+
+\subsubsection*{iii)}
+$x \in V(\bigcup E_i)$ means that $x$ is a prime ideal which contain all $E_i$.
+In other words, $x \in V(E_i)$ for all $E_i$, so $ x \in \bigcap V(E_i)$. \\
+
+$y \in \bigcap V(E_i)$ means that $y$ is a prime ideal which contain some $E_i$
+all $V(E_i)$, and just like above, we see that this is a simple rewording. \\
+
+\subsubsection*{iv)}
+By and Ex 1.1.13 i) we have
+$$
+	V(a \cap b) = V(r(a \cap b)) = V(r(ab)) = V(ab),
+$$
+Now, if $x \in V(ab)$ then $x$ is a prime ideal which contains $ab$. With the
+following lemma, this means that $x$ contains either $a$ or $b$, whence $x \in
+V(a) \cup V(b)$.
+
+\begin{lemma}
+	Let $P$ be a prime ideal such that $IJ \in P$ for two ideals $I, J$. Then
+	either $I \in P$ or $J \in P$.
+\end{lemma}
+\begin{proof}
+	Assume that $J \not \in P$. Then there is some $x \in J \setminus P$. For all
+	$i \in I$ we have $xi \in P$, and since $P$ is a prime ideal, $i \in P$.
+\end{proof}
+
+\subsection*{Ex 1.17}
+
+Let $U$ be open in $X$. Then $U=V(E)^c$ for some $E \subset A$. Now, $$ U =
+	V(E)^c = \left(V\left(\bigcup_{f \in E}f\right)\right)^c = \left(\bigcap_{f \in
+		E} V(f)\right)^c = \bigcup_{f \in E} V(f)^c = \bigcup_{f \in E} X_f. $$
+
+\subsubsection*{i)}
+We have that any $a \in X_f \cap X_g$ is a prime ideal which doesn't contain $f$, nor $g$. Such an ideal can't contain $fg$ by the lemma in 1.15.iv) so $x \in X_{fg}$. Likewise, $b \in X_{fg}$ means that $b$ is a prime ideal which doesn't contain $fg$, whence it clearly can't contain either $f$ or $g$.
+
+\subsubsection*{ii)}
+$X_f = \emptyset \Leftrightarrow V(f) = X$ which means that $f$ is in all prime ideals, so $f \in \nr(A)$.
+
+\subsubsection*{iii)}
+Every non-unit is contained in a maximal ideal, which is prime, so if $X_f = X$, then $f$ must be a unit.
+
+\subsubsection*{iv)}
+$X_f = X_g \Leftrightarrow V(f) = V(g) \Leftrightarrow V(r(f)) = V(r(g))$ by Ex 1.15.i)
+
+\subsection*{Ex 1.18}
+
+\begin{lemma}
+	Every proper ideal $I$ is contained in some maximal ideal.
+\end{lemma}
+\begin{proof}
+	Let $I$ be a proper ideal. Let $\Sigma_I$ be the set of ideals which contain
+	$I$. Then $\Sigma_I$ contains $I$ and is not empty. Order $\Sigma_I$ by
+	inclusion and apply Zorn's lemma like in the proof of Theorem 1.3 to show that
+	$\Sigma_I$ contains a maximal element.
+\end{proof}
+
+\subsubsection*{i)}
+If $x$ is a closed point, then $x = V(E)$ for some $E \subset A$, which means that $p_x$ is the only prime ideal which covers $E$. Since $E \subset p_x$, we know there is some maximal ideal which covers $E$, which in turn would be prime, so it must be $p_x$. \\
+
+If $p_x$ is maximal, then $V(x) = \{p_x\}$.
+
+\subsubsection*{ii)}
+$\overline{\{x\}}$ is the intersection of all closed sets containing $x$, which by Ex 1.15 is
+$$
+	\bigcap_{E : x \in V(E)} V(E) = V \left( \bigcup_{E : x \in V(E)} E \right).
+$$
+Now, $E$ is such that $x \in V(E)$ precisely when $x$ contains $E$, so $\bigcup_{E : x \in V(E)} E = x$ and $\overline{\{x\}} = V(x) = V(p_x)$
+
+\subsubsection*{iii)}
+Let $y \in \overline{\{x\}}$. By ii) we then have $y \in V(p_x)$ which by definition means that $x \subseteq y$. \\
+
+Let $x \subseteq y$. By definition we have $y \in V(p_x)$ which by ii) means
+that $y \in \overline{\{x\}}$.
+
+\subsubsection*{iv)}
+Let $x \not = y$. Then we must have either $x \not \subset y$ or $y \not \subset x$. Assume $x \not \subset y$. Then $y \not \in V(p_x)$, but $x \in V(p_x)$.
+
+\subsection*{Ex 1.19}
+Let $a, b\in A \setminus \nr(A)$. Then $X_a, X_b \not = \emptyset$ since if
+$V(a) = \spec(A)$, we'd have $a$ in every prime ideal, and therefore $a$ in the
+nilradical. If $\spec(A)$ is irreducible, we now get that $X_a \cap X_b$ is
+non-empty. Since $X_f$ is the set of prime ideals which doesn't contain $f$,
+$X_a \cap X_b \not = \emptyset$ means that there is some prime ideal $p$ which
+contains neither $a$ nor $b$. Then $p$ can't contain $ab$ on account of being
+prime. Since the nilradical is the intersection of all prime ideals, it can't
+contain $ab$ either. \\
+
+Now let $A$ be a ring with prime nilradical. Let $a, b \in A$ be such that
+$X_a, X_b$ are non-empty. Then neither $a, b$ can be in the nilradical, which
+in turn means that $ab$ isn't either and $X_{ab}$ is non-empty. I.e there is
+some prime ideal $p$ which doesn't contain $ab$, but then $p$ doesn't contain
+$a$ nor $b$, whence $p \in X_a \cap X_b$. Since the $X_f$ form a basis, and we
+just showed that any two non-empty basis elements intersect, we conclude that
+$\spec(A)$ is irreducible.
+
+\subsection*{Ex 1.20}
+\subsubsection*{i)}
+
+Let $U, V$ be two open sets in $\overline{Y}$. Since $U$ is the neighbourhood
+of some $x \in Y$, we have that $U \cap Y \not = \emptyset$, and the same for
+$V$. But $U \cap Y$, $V \cap Y$ are open in $Y$ and must therefore intersect by
+the hypothesis. Thus $U, V$ intersects as well and $\overline{Y}$ is
+irreducible.
+
+\subsubsection*{ii)}
+Let $Y$ be an irreducible subspace and $\Sigma$ be the set of irreducible subspaces of $X$ which contain $Y$. Let
+$$
+	Y_1 \subset Y_2 \subset Y_3 \subset \ldots
+$$
+be some chain in $\Sigma$, and denote their union $M = \bigcup Y_i$. Then $M$ is an open set, and given $U, V \in M$, there must be some least $Y_i$ which contains both, so $U \cap V \not = \emptyset$. Hence the chain has a maximal element, whence $\sigma$ does as well by Zorn's lemma.
+
+\subsubsection*{iii)}
+They are clearly closed by i). They cover $X$ since for any $y \in X$ we have that the subspace $\{y\}$ is irreducible. If the space is Hausdorff, then these are precisely the irreducible components of $X$, since if $Z$ is a subspace of $X$ and $x, y \in Z$, then we have $U_x, U_y \in X$ which don't intersect, and $U_x \cap U_y \cap Z$ is empty as well.
+
+\subsubsection*{iv)}
+Let $p_x$ be a prime ideal, and $Y = V(p_x)$ be given the subspace topology. Consider two non-empty basis elements $X_a \cap Y, X_b \cap Y$. If $X_a \cap Y = (V(a))^c \cap Y$ is non empty, this means that there is some ideal in $V(p_x)$ which doesn't contain $a \in Y$. Let $J_a, J_b$ be those ideals. Both $a, b$ contain $p_x$ since they lie in $Y = V(p_x)$. So we have two ideals $J_a \in X_a \cap Y$, $J_a \in X_a \cap Y$, and neither of them contain $p_x$, so the two basis elements intersect and $V(p_x)$ is irreducible. \\
+
+Now let $V(E)$ be some closed irreducible set which contains $V(p_x)$ for a
+minimal prime ideal $p_x$. We have $p_x \in V(p_x) \subseteq V(E)$. Since
+$V(E)$ is irreducible, $x$ is dense in $V(E)$, and by Ex 1.18.ii),
+$\overline{\{x\}} = V(p_x)$ so $V(E) = V(p_x)$ is an irreducible component.
+
+\subsection*{Ex 1.21}
+
+\subsubsection*{i)}
+To be explicit, $X_f$ is the set of prime ideals in $A$ which don't contain $f$. The map $\phi^{*-1}$ sends ideals in $A$ to ideals in $B$ which contain $\ker \phi$ by Prop 1.1. Any ideal $p$ in $A$ which doesn't contain $f$ must clearly be mapped to an ideal $\phi(p)$ which doesn't contain $\phi(f)$, so $\phi^{*-1}(X_f) \subset Y_{\phi(f)}$ (Note that if $p \in X_f$ is such that $\phi(p)$ isn't prime, then $\phi^*$ doesn't map anything to $X_f$ and $\phi^{*-1}(X_f) = \emptyset$). If $p \in Y_{\phi(f)}$, then $\phi^*(p)$ is a prime ideal in $X$ and clearly $f \not \pi \phi^*(p)$, so $\phi^{*-1}(X_f) = Y_{\phi(f)}$.
+
+\subsubsection*{ii)}
+Let $b \in \phi^{*-1}(V(a))$. Then $b$ is a prime ideal in $B$ such that $\phi^{-1}(b)$ is a prime ideal in $A$ containing $a$. Then $\phi \phi^{-1} b = b$ contains $\phi a$. But if $b$ is a prime ideal containing $\phi(a)$, then it necessarily contains $a^e$, the smallest ideal generated by $\phi(a)$, so $b \in V(a^e)$. \\
+
+Let $b \in V(a^e)$. Then $b$ is a prime ideal containing the extension $a^e$ of
+$\phi(a)$. Since $a^e \supseteq \phi(a)$ we have $\phi^{-1}(b) \supseteq
+	\phi^{-1}(a^e) \supseteq \phi^{-1}(\phi(a)) = a$ so $b \in \phi^{*-1}(V(a))$.
+\\
+
+\subsection*{Ex 1.28}
+It's shown in the exercise statement that any regular function $\phi : X \to Y$ can be
+used to induce a map $\overline{\phi} : P(Y) \to P(X)$. We first show that this map
+is a $K$-algebra homomorphism. \\
+
+Let $f, g \in P(Y),\ a, b \in K$. Then
+\begin{align*}
+	&\phi(af + bg) = (af + bg) \circ \phi = a (f \circ \phi) + b (g \circ \phi)
+	= a\overline{\phi}(f) + b \overline{\phi}(g) \\
+	&\phi(fg) = fg \circ \phi = (f \circ \phi) (g \circ \phi) =
+	\overline{\phi}(f)\overline{\phi}(g),
+\end{align*}
+and the constant polynomial functions on $P(Y)$ ignore their arguments, whence
+$\overline{\phi}$ restricts to the identity on $K$. \\
+
+To see that the correspondence is injective, let $\phi, \psi : X \to Y$ be two
+regular maps such that $\overline{\phi} = \overline{\psi}$. Let $x \in X$ be an
+arbitrary point on the variety, and write $a = \phi(x), b = \psi(x)$. Then $a,
+b \in Y$. Since $\overline{\phi} = \overline{\psi}$, we have that for all $g
+\in P(Y)$, $g(a) = g(b)$, which in implies that $a = b$, whence $\phi(x) =
+\psi(x)$ for all $x \in X$, and finally $\phi = \psi$. \\
+
+We now show that it is surjective. Let $\mu : P(Y) \to P(X)$ be a $K$-algebra
+homomorphism. Let $\xi_i \in P(Y)$ be the $i$-th coordinate function in
+$P(Y)$ and $\hat{\xi}_i = \mu(\xi_i) \in P(X)$, and pick arbitrary
+representatives $f_i \in \hat{\xi}_i$ for every $i$. We claim that $\phi =
+\restr{(f_1, f_2, \ldots f_n)}{X}$ is such that $\overline{\phi} = \mu$. \\ 
+
+We begin with showing that $\phi$ is a regular map $X \to k^{m}$. Let $x \in X$.
+Then 
+\begin{align*}
+	\phi(x) 
+	&= 
+	(f_1(x), f_2(x), \ldots f_n(x)) \\
+	&= 
+	(\mu(\xi_1)(x), \mu(\xi_2)(x), \ldots, \mu(\xi_n)(x)) \in k^{m}.
+\end{align*}
+It follows from arguments in previous parts of the exercise that
+$\overline{\phi}$ is a $K$-algebra homomorphism $X \to k[t_1, t_2, \ldots t_n]$. To see that $\overline{\phi} =
+\mu$, note that in $P(X)$ we have
+\[
+\overline{\phi}(\xi_i) = \xi_i \circ \phi = f_i = \hat{\xi}_i = \mu(\xi_i),
+\] 
+and any homomorphism is determined by where it maps generators. It follows that
+$\im(\phi) = \im(\mu) \subseteq Y$ and $\phi$ can be identified with a regular map $X \to
+Y$.
+
+
+\section*{Ch 2}
+
+\subsection*{Ex 1}
+Let $a \otimes b \in \Z_m \otimes_{\Z} \Z_n$. Then as $m, n$ are co-prime, we have $a \in (m, n) = \Z$, and
+there exist $k_1, k_2 \in \N$ where $a = k_1 m + k_1 n$. It follows that 
+\[
+a \otimes b 
+= 
+(k_1 m + k_1 n) \otimes b
+= 
+k_1 m \otimes b + k_1 n \otimes b
+= 
+k_1 n \otimes b
+= 
+k_1 \otimes (n b)
+= 
+0.
+\] 
+
+\subsection*{Ex 2}
+We follow the given advise and tensor the exact sequence
+\[
+	\begin{tikzcd}
+		\mathfrak{a} \arrow[r] & 
+		A \arrow[r] & 
+		A / \mathfrak{a} \arrow[r] & 
+		0
+	\end{tikzcd}
+\] 
+with $M$ to get the sequence
+\[
+	\begin{tikzcd}
+		M \otimes \mathfrak{a} \arrow[r] & 
+		M \otimes A \arrow[r] & 
+		M \otimes A / \mathfrak{a} \arrow[r] & 
+		0,
+	\end{tikzcd}
+\]
+which is also exact by Prop 2.18. Now consider the map $f: M \otimes A \to M/\mathfrak{a}M$ given by
+$m \otimes a \to am + \mathfrak{a}M$. This map has kernel $M \otimes \mathfrak{a}$, so the sequence
+\[
+	\begin{tikzcd}
+		M \otimes \mathfrak{a} \arrow[r] & 
+		M \otimes A \arrow{r}{f} & 
+		M / \mathfrak{a}M \arrow[r] & 
+		0,
+	\end{tikzcd}
+\]
+is exact as well, and the two modules are isomorphic.
+
+\subsection*{Ex 3}
+Let $m$ be the maximal ideal in $A$, $k = A/m$, and  let $M_k = k \otimes M$ be
+the $k$-module obtained by extension of scalars. By Ex 2, we have $M_k \cong
+M/mM$. If we had $M_k = 0$, we'd have $M = 0$, since $M / mM = M_k = 0
+\Rightarrow M = mM$ whence $M = 0$ follows by Nakayama. The same is true of
+$N_k$. \\
+
+We've shown that it's enough to prove the statement with $M_k, N_k$, since
+that would yield the following chain of implications
+\[
+	M \otimes_{A} N = 0 
+	\Rightarrow
+	M_k \otimes_{k} N_k = 0 
+	\xRightarrow{\text{remains to prove}}
+	N_k = 0 \lor M_k = 0 
+	\Rightarrow
+	N = 0 \lor M = 0.
+\]
+
+Now, $M_k, N_k$ are $k$-vector spaces, and given two non-zero vector spaces, we
+can pick one basis element in each $e_m, e_n$, and define the non-zero bilinear
+map $(m, n) = (m \cdot e_m)(n \cdot e_n)$. So their tensor product must be
+non-zero by the universal property.
+
+
+\subsection*{Ex 4}
+
+First assume that $M$ is flat, and consider two $A$-modules $N', N$ and an
+injective map $f : N' \to N$. Since $M$ is flat, we have that $1_M \otimes f$
+is injective. It follows that the restriction $1_{M'} \otimes f$ must be
+injective as well, and $M_i$ is flat by Prop 2.19. \\
+
+For the other direction, we need two lemmas. 
+
+\begin{lemma}
+	Let $M_i$ be a set of $A$-modules indexed by the (potentially infinite) 
+	set $J$, and $N$ another $A$-module. Then
+	\[
+		N 
+		\otimes 
+		\left(
+			\bigoplus_{i \in J} M_i
+		\right)
+		\cong
+		\bigoplus_{i \in J} 
+		N 
+		\otimes 
+		M_i
+	\] 
+\end{lemma}
+\begin{proof}
+	Let 	
+	\[
+		f : 
+		N 
+		\times 
+		\left(
+			\bigoplus_{i \in J} M_i
+		\right)
+		\to
+		\bigoplus_{i \in J} 
+		N 
+		\otimes 
+		M_i
+	\]
+	be given by $f\left(n, \sum_{i \in S} m_i\right) = \sum_{i \in S}
+	\left(n \otimes m_i\right)$. This map is $A$-bilinear and as such,
+	induces an $A$-linear map
+	\[
+		f' : 
+		N 
+		\otimes 
+		\left(
+			\bigoplus_{i \in J} M_i
+		\right)
+		\to
+		\bigoplus_{i \in J} 
+		N 
+		\otimes 
+		M_i
+	\]
+	where $f'\left(n \otimes \sum_{i \in S} m_i\right) = \sum_{i \in S} \left(n
+	\otimes m_i\right)$. \\
+
+	Now define $g_i : N \times M_i \to N \otimes M $ by $g_i(n, m_i) = n
+	\otimes m_i$ Then $g_i$ is $A$-bilinear and induces an $A$-linear map $g_i'
+	: N \otimes M_i \to N \otimes M$. Now define the map 
+	\[
+		h :
+		\bigoplus_{i \in J} 
+		N 
+		\otimes 
+		M_i
+		\to
+		N 
+		\otimes 
+		\left(
+			\bigoplus_{i \in J} M_i
+		\right)
+	\] 
+	where
+	\[
+		f'\left(\sum_{i \in S} \left(n \otimes m_i\right)\right) 
+		= 
+		\sum_{i \in S} 
+		g_i'\left(n \otimes m_i\right)
+		= 
+		\sum_{i \in S} 
+		n \otimes m_i
+		= 
+		n \otimes
+		\left(
+		\sum_{i \in S} 
+		m_i
+		\right).
+	\]
+	This function is well-defined, as $S$ always is a finite set. The two maps
+	$f', h$ are inverse each other, and the two modules are isomorphic.
+\end{proof}
+
+The second lemma is given as follows
+
+\begin{lemma}
+	Let $J$ be a potentially infinite indexing set, and 
+	\[
+		\begin{tikzcd}
+			\ldots \arrow{r} &
+			M'_{i} \arrow{r}{f_i} &
+			M_{i} \arrow{r}{h_i} &
+			M''_{i} \arrow{r} &
+			\ldots
+		\end{tikzcd}, \ \ i \in J
+	\] 
+	be a set of exact sequences. Then
+	\[
+		\begin{tikzcd}
+			\ldots \arrow{r} &
+			M' \arrow{r}{f} &
+			M \arrow{r}{h} &
+			M'' \arrow{r} &
+			\ldots
+		\end{tikzcd}
+	\] 
+	is exact where $M = \bigoplus_{i \in J} M_{i}$, and $M', M''$ are defined
+	analogously.
+\end{lemma}
+\begin{proof}
+	Let $m \in \ker(h)$. Then we can write $m$ as a finite sum $m = \sum_{i \in
+	S} m_i$, and its image is given as $0 = \sum_{i \in S} h(m_i)$. But since
+	$h$ is defined as the sum of $h_i$ on the relevant coordinates, we have $0
+	= \sum_{i \in S} h_i(m_i)$, and each $h_i(m_i) \in M''_i$ so if their sum is
+	zero we must have that for every $i \in S$, $h_i(m_i) = 0$ and we have that
+	$m_i \in \ker f_i = \im(f_i)$ whence $m \in \im(f)$. \\
+
+	The other inclusion can be shown analogously. 
+\end{proof}
+
+Now, as every $M_i$ is flat, we can direct sum all the corresponding tensored
+exact sequences, and use distributivity in reverse to yield an exact sequence
+of $M$ tensored with the module $N$.
+
+\subsection*{Ex 5}
+
+First of, $A$ is a flat $A$-module since $A \otimes_{A} M \cong M$. Moreover,
+$A[x]$ is the direct sum of the $A$-modules, $(x^i) : i \in \N$, and each such
+$(x^i)$ is generated by one element and therefore isomorphic to $A$. Since all
+of the direct summands of $A[x]$ are flat, it follows that $A[x]$ itself is
+flat.
+
+
+\subsection*{Ex 6}
+Let $\hat{f} : A[x] \times M \to M[x]$ be given by $\hat{f}(a(x), m) = a(x)m$.
+This is a $A$-bilinear mapping, and as such introduces a $A$-linear map $f :
+A[x] \otimes M \to M[x]$ given by $f(a(x) \otimes m) = a(x)m$. Even more, this
+map is $A[x]$-linear since $a_1(x)f(a_2(x) \otimes m) = a_1(x)a_2(x)m =
+f(a_1(x)a_2(x) \otimes m)$. \\
+
+Now consider the map $g : M[x] \to A[x] \otimes M$ given by the $A$-linear
+extension of $g(mx^i) = x^i \otimes m$. This map is also $A[x]$ linear since 
+$g(a(x)mx^i) = a(x)x^i \otimes m$. \\
+
+We have that $g \circ f = \id$ and the two modules are isomorphic.
+
+\subsection*{Ex 7}
+$\mathfrak{p}[x]$ being prime is equivalent to $A[x]/\mathfrak{p}[x]$ not
+having zero divisors. To show this, we will first show that
+$A[x]/\mathfrak{p}[x] \cong (A / \mathfrak{p})[x]$. To see this, consider the
+map $f(ax^i + \mathfrak{p}[x]) = (a + \mathfrak{p})x^i$, which we extend
+by the ring axioms to all of $A[x]/\mathfrak{p}[x]$. First note that
+it's well-defined on the elements above, as if $ax^i - bx^i \in
+\mathfrak{p}[x]$, then $a - b \in \mathfrak{p}$, and $f(ax^i + \mathfrak{p}[x])
+= f(bx^i + \mathfrak{p}[x])$. It's also easy to see that we can extend $f$
+to a ring homomorphism. Moreover, it's injective since if $a(x) \in \ker(f)$
+only when every coefficient of $a$ lies in $\mathfrak{p}$, whence $a(x) \in
+\mathfrak{p}[x]$. It's surjective since the $(a + \mathfrak{p})x^i$ generate
+the image for all $i \in \N, a \in A$. \\
+
+It's easy to see that $(A/\mathfrak{p})[x]$ is an integral domain, since the
+lowest degree term in any product $f(x)g(x)$ is the product of the lowest
+degree terms in $f(x), g(x)$. It follows that $A[x]/\mathfrak{p}[x]$ is 
+an integral domain and we are done. \\
+
+For the second question, the answer is no. Let $n \not \in \mathfrak{m}$, then
+$nx \not \in \mathfrak{m}[x]$ so $nx + \mathfrak{m}[x]$ is a non-trivial
+element in $A[x]/\mathfrak{m}[x]$ without an inverse. Indeed we could not have
+$f(x)nx = 1 + m(x)$ for some $m(x) \in \mathfrak{m}[x]$, since $f(x)nx$ doesn't
+have a constant term, and $m(x)$ can't have $-1$ as a constant term since $-1
+\not \in \mathfrak{m}$.
+
+\subsection*{Ex 8}
+\subsubsection*{i)}
+Given some exact sequence
+\[
+\begin{tikzcd}
+	0 \arrow{r} &
+	W' \arrow{r} &
+	W \arrow{r} &
+	W'' \arrow{r} &
+	0,
+\end{tikzcd}
+\] 
+we have that 
+\[
+\begin{tikzcd}
+	0 \arrow{r} &
+	M \otimes W' \arrow{r} &
+	M \otimes W \arrow{r} &
+	M \otimes W'' \arrow{r} &
+	0,
+\end{tikzcd}
+\] 
+is exact, after which it follows that 
+\[
+\begin{tikzcd}
+	0 \arrow{r} &
+	N \otimes (M \otimes W') \arrow{r} &
+	N \otimes (M \otimes W) \arrow{r} &
+	N \otimes (M \otimes W'') \arrow{r} &
+	0,
+\end{tikzcd}
+\] 
+is exact, and our desired result follows from Prop 2.14.
+\subsubsection*{ii)}
+First of, by Prop 2.14 we have that $N \cong B \otimes_B N$, and given some
+$A$-module $M$, Prop 2.15 yields $M \otimes_A (B \otimes_B N) \cong (M
+\otimes_A B) \otimes_B N$, after which $A$-flatness follows by $A$-flatness of
+$B$ followed by $B$-flatness of $N$, just like in the previous sub-exercise.
+
+\subsection*{Ex 9}
+
+Let $m'_i$ finitely generate $M'$ and $m''_i$ finitely generate $M''$. Then let
+$M_i = g^{-1}(m''_i)$. For each $M_i$ pick one representative $m_i \in M_i$.
+Now, we have that $\im(f) = \ker(g)$ is finitely generated as well, and we let
+$n_i$ be a finite generating set for $\ker(g)$. Our claim is that the $m_i$ and
+$n_i$ together generate $M$. \\
+
+To see this, consider any element $m \in M$. Then we can write $g(m) = \sum_{i
+\in I} m''_i a_i$ for some finite index set $I$ and a set of scalars $a_i \in
+A$. It follows that 
+\[
+g(m) = g\left(\sum_{i \in I} a_i m_i\right),
+\] 
+and $m - \sum_{i \in I} a_i m_i \in \ker(g)$. We can then write
+
+\[
+	m - \sum_{i \in I} a_i m_i = \sum_{i \in J} b_i n_i,
+\] 
+and finally,
+\[
+	m = \sum_{i \in I} a_i m_i + \sum_{i \in J} b_i n_i.
+\] 
+
+\subsection*{Ex 10}
+
+If the induced homomorphism is surjective, we have that for every $n \in N$,
+there is some $m \in M$ such that $n - u(m) \in \mathfrak{a}N$. In other words,
+$u(M) + \mathfrak{a}N = N$, and we have $u(M) = N$ by Corollary 2.7.
+
+\subsection*{Ex 14}
+I couldn't find a quetion in the exercise description.
+
+\subsection*{Ex 15}
+For the first statement, let $m \in M$. Then $m = \mu(m')$ for some $M' \in C$.
+Since $C$ is the direct sum of $M_i$ we have
+\[
+	m' = \sum_{i \in J} a_i m_i
+\] 
+where $m_i \in M_i,\ a_i \in A$ and $J \subseteq I$ is a finte index set. It follows
+that 
+\[
+	m 
+	= 
+	\mu\left(\sum_{i \in J} a_i m_i\right)
+	= 
+	\sum_{i \in J} \mu(a_i m_i)
+	= 
+	\sum_{i \in J} \mu_i(a_i m_i).
+\] 
+Since $J$ is finite, we can inductively invoke the defining property of a
+directed set to conclude that there exist some $k \in I$ such that $i \leq k$
+for all $i \in J$. By the defining relations of $M$, we have that 
+\[
+	\sum_{i \in J} \mu_i(a_i m_i) 
+	=
+	\sum_{i \in J} \mu_k( \mu_{ik}(a_i m_i) )
+	=
+	\mu_k\left(\sum_{i \in J}  \mu_{ik}(a_i m_i) \right),
+\] 
+and we see that $m = \mu_k(m_k)$ where $m_k = \sum_{i \in J}  \mu_{ik}(a_i
+m_i)$ \\
+
+For the second part of the question, note that $\mu_i(m_i) = 0$ implies that
+$m_i \in D$ (since $\mu_i$ can be factored as an injection followed by a
+quotient of $D$), but we also have $m_i - \mu_{ij}(m_i) \in D$ for all $j \geq
+i$. It follows that $\mu_{ij}(m_i) \in D$ which means that $\mu_{ij}(m_i) = 0$
+in $M$ and $M_j$ for all $j \geq i$ (and there is always at least one such $j$
+with $j = i$). 
+
+
+\subsection*{Ex 16}
+We begin by showing that the direct limit exhibits the given property. Let
+$N, \alpha_{i}$ be given as in the exercise description. Then let $\alpha : M
+\to N$ be given as $\alpha(m) = \alpha_{i}(m_i)$ where $i \in I,\ m_i \in M_i$
+are such that $m = \mu_i(m_i)$. We begin by showing that this map is well
+definied. If $\mu_j(m_j) = \mu_i(m_i)$, then there exists $k \in I$ where $i
+\leq k,\ j \leq k$. Using this $k$ we get $\mu_j(m_j) = \mu_k(\mu_{jk}(m_j))$ and
+$\mu_i(m_i) = \mu_k(\mu_{ik}(m_i))$, so $\mu_k(\mu_{ik}(m_i) - \mu_{jk}(m_j)) =
+0$, and by Ex 2.15, there exist $l \in I, l \geq k$ such that
+$\mu_{kl}(\mu_{ik}(m_i) - \mu_{jk}(m_j)) = 0$. We now have
+\begin{align*}
+	\alpha_i(m_i)
+	&=
+	\alpha_k(\mu_{ik}(m_i)) \\
+	&=
+	\alpha_l(\mu_{kl}(\mu_{ik}(m_i))) \\
+	&=
+	\alpha_l(\mu_{kl}(\mu_{jk}(m_j))) \\
+	&=
+	\alpha_k(\mu_{jk}(m_j)) \\
+	&=
+	\alpha_j(m_j),
+\end{align*} 
+which shows that $\alpha$ is well defined. It's clear that $\alpha_i = \alpha
+\circ \mu_i$, To see that $\alpha$ is a homomorphism, let $m, m \in m$, where
+$m = \mu_i(m_i),\ n = \mu_j(n_j)$, and let $k \geq i, j$, $m_k = \mu_{ik}(m_i),
+n_k = \mu_{jk}(n_k)$. Then $\alpha(m) = \alpha_i(m_i) = \alpha_k(\mu_{ik}(m_i))
+= \alpha_k(m_k)$, and similarly $\alpha(n) = \alpha_k(n_k)$, whence
+homomorphism properties of $\alpha$ follows by homomorphism properties from
+$\alpha_k$. Finaly, to see that the homomorphism is unique, let $\beta : M \to
+N$ be an arbitrary map which factors the $\alpha_i$. Then for any $m \in M$ we
+have that ther exist $i \in I, m_i \in M_i$ such that $m = \mu_i(m_i)$ and we
+see that
+\[
+	\beta(m)
+	=
+	\beta(\mu_i(m_i))
+	=
+	\alpha_i(m_i)
+	=
+	\alpha(\mu_i(m_i))
+	=
+	\alpha(m)
+\] 
+so $\beta = \alpha$. \\
+
+We now show that the universal property uniquely determines the direct limit up
+to isomorphism. Let $M, \mu_i$, and $M', \mu'_i$ be two modules and families of
+homomorphisms which exhibit the universal property. Then both modules can take
+the place of $N$ in the definition of the universal property, and invoking the
+universal property for each module, we see that there exists two homomorphisms
+\begin{align*}
+	\alpha : M \to M', &\ \mu'_i = \alpha \circ \mu_i, \\
+	\alpha' : M' \to M, &\ \mu_i = \alpha' \circ \mu'_i.
+\end{align*}
+But then $\phi = \alpha' \circ \alpha$ is a homorphism $M \to M$
+such that $\phi \circ \mu_i = \mu_i$, and by the universal property, 
+there can only be one such map. We conlcude that $\phi$ is the identity map 
+and $M \cong M'$.
+
+
+\section*{Ch 3}
+
+\subsection*{Ex 1}
+Let $s \in S$ be such that $sm = 0$ for all $m \in M$. Then $(m, 1) = (0, 1)$
+since $s(m - 0) = 0$, and it follows that $S^{-1}M = 0$.
+
+For the other direction, let $M$ be an $A$-module finitely generated by $x_i$,
+and $S$ be such that $S^{-1}M = 0$. We know that for every $m/s \in S^{-1}M$
+there is $u \in S$ such that $um = 0$, in particular, let $u_i \in S$ be such
+that $u_ix_i = 0$. Then the product of all $u_i$ annihilates all generators,
+and therefor all of $M$.
+
+\subsection*{Ex 2}
+
+For any $a \in \mathfrak{a}$, $x \in A$, we have that $-ax \in \mathfrak{a}$
+so $1 - ax \in S$ is a unit in $S^{-1}A$, which in turn means $a$ is 
+in the Jacobson radical of $S^{-1}A$. \\
+
+Now let $M$ be a finitely generated $A$-module and $\mathfrak{a} \subseteq A$
+be an ideal such that $\mathfrak{a}M = M$. Now let $S$ be as above. We have
+that $(S^{-1}\mathfrak{a})(S^{-1}A) = S^{-1}(\mathfrak{a}A) = S^{-1}A$. Now we
+can apply Nakayama's lemma in and see that $S^{-1}A = 0$. But by the previous
+exercise, this happens only when there is $s \in S$ s.t $sA = 0$, and it's true
+for any $s \in S$ that $s \equiv 1 \mod \mathfrak{a}$, whence we are done.
+
+\subsection*{Ex 3}
+
+Let $f : A \to S^{-1}A,\ g : S^{-1}A \to U^{-1}(S^{-1}A)$ be the canonical maps
+and consider $g \circ f$. Then if $st \in ST$, we have
+\[
+	g(f(st)) 
+	= 
+	g(uf(s))
+	= 
+	g(u)g(f(s))
+\]
+a unit since $g(u), f(s)$ are units. Moreover, $g(f(a)) = 0$ implies that there exists
+$u \in U$ s.t. $uf(a) = 0$. But then $0 = uf(a) = f(t)f(a) = f(at)$ so there exists 
+$s \in S$ s.t $sta = 0$. Finally, every element in $U^{-1}(S^{-1}A)$ is of the form
+\begin{align*}
+g(f(a)f^{-1}(s))g(u)^{-1}
+&=
+g(f(a)f^{-1}(s))g(f(t))^{-1} \\
+&=
+g(f(a))g(f(s))^{-1}g(f(t))^{-1} \\
+&=
+g(f(a))g(f(st))^{-1},
+\end{align*} 
+and Corollary 3.2 delivers our desired result.
+
+
+\subsection*{Ex 4}
+
+We first give an account of how these modules are defined. We have that $A$
+acts on $B$ via $ab = f(a)b$, $a \in A, b \in B$. Similarly, $s \in S$ acts on
+$B$ via $f$, and $S^{-1}A$ acts on $B$ also via $f$. So, the elements in
+$S^{-1}B$ are of the form $b/f(s)$, just like the elements in $T^{-1}B$ which
+are all of the form $b/t = b/f(s)$. It's immediate that the two modules are
+isomorphic, they are the same module!
+
+
+\subsection*{Ex 5}
+Let $A$ be such that for each prime ideal $\mathfrak{p} \subseteq A$, we have
+that $A_{\mathfrak{p}}$ has no nilpotents. Assume towards a contradiction that
+$A$ has some nilpotent element $a^r = 0$. Then the map $e_r : A \to A^r$ has a
+non-trivial kernel $a \in \ker(e_r)$. It follows from Proposition 3.9 that
+there must be some prime ideal $\mathfrak{p} \subseteq A$ such that
+$(e_r)_\mathfrak{p}$ has non-trivial kernel, but this is contradiction to our
+hypothesis, so $A$ must have an empty radical. \\
+
+For the second question, the answer is no. Let $k$ be a field and consider the
+ring $R = k \times k$. This is not a domain since it has the zero divisors $(1,
+0) \cdot (0, 1) = 0$. $R$ admits only two ideals, $((1, 0)), ((0, 1))$. Let $I
+= ((1, 0))$ and consider $R_I$.  We have that $(a, b)/(c, d) = (1, 0)(a, b)/(c,
+0) = (b, 0)/(c, 0) = (bc^{-1}, 0)/(1, 0)$ for all $a, b, c, d \in k$, so 
+in other words $R_I \cong R$, and $R_I$ is a field, and a domain in particular.
+
+\subsection*{Ex 7}
+\subsubsection*{i)}
+
+\textbf{$\Rightarrow$ direction}:
+
+First of all, we show that if $a \in A - S$, then $(a/1)$ is a non-trivial
+ideal in $S^{-1}A$. To see this, first note that all units lie in $S$
+by virtue of $S$ beeing saturated and containing $1$. So $a$ is 
+not a unit in $A$. If $a/1$ were a unit in $S^{-1}A$, then we'd have 
+$b/c$ such that $(a/1)(b/c) = (ab)/c = 1/1$, which in turn means that
+$(ab - c)s = 0$ for some $s \in S$. But since $c \in S$,
+this would mean that $ab \in S$, which is imposible since $S$ is saturated 
+and doesn't contain $a$. \\
+
+Let $\mathfrak{p}_{a} = \mathfrak{m}_{a/1}^{c}$ where $\mathfrak{m}_{a/1}$ is
+the maximal ideal in $S^{-1}A$ containing the principal ideal $(a/1)$. Such 
+exist by Corollary 1.3 and our argument in the previous paragraph. It
+now follows from Prop 3.11 iv) that $\mathfrak{p}_{a}$ is prime. Moreover it
+contains $a$ since $f(a)$ is contained in $\mathfrak{m}_{a/1}$. Then $A - S =
+\bigcup_{a \in A - s} \mathfrak{m}_a$, and we see that $A - S$ is a union of
+prime ideals. \\
+
+\textbf{$\Leftarrow$ direction}:
+Let $S$ be a subset of $A$ such that $A - S$ is a union of  ideals $A - S
+= \bigcup_{\mathfrak{a}_{i}, i \in J} \mathfrak{a}_{i}$. Consider two elements $a,
+b \in A$ such that $ab \in S$. Then $ab$ doesn't lie in any $\mathfrak{a}_{i}$.
+But then neither $a$ nor $b$ can lie in any $\mathfrak{a}_{i}$ since that would
+imply $ab \in \mathfrak{a}_{i}$.
+
+\subsubsection*{ii)}
+Let $\overline{S}$ be the intersection of all saturated multiplicative subsets
+containing $S$. Then $\overline{S} = \{a \in A : \exists b \in A, ab \in S \}$,
+since if $ab \in A$ then $a$ must be contained in any saturated multiplicative
+set containing $a$, and if $ab \in \overline{A}$, then $abc = a(bc) = b(ac) \in
+A$ for some $c \in A$, whence it follows that $a, b \in \overline{A}$. \\
+
+From i) we know that $\overline{S}$ is a union of prime ideals which don't meet
+$\overline{S} \supseteq S$. It remains to show that any prime ideal which
+doesn't meet $S$ also won't meet $\overline{S}$. To do so, consider a prime
+ideal $\mathfrak{p}$ which meets $\overline{S}$ then it must meet $S$, since if
+$a \in \mathfrak{p} \cap \overline{S}$, then either $a \in S$, or $a \not \in
+S$, whence there must be some $b \in A$ such that $ab \in S$ (by our
+constructive definition of $\overline{S}$), but $ab \in \mathfrak{p}$ as well. \\
+
+For the second quetion, let $\mathfrak{p}$ be prime ideal which dosen't meet $1
++ \mathfrak{a}$. Then $\mathfrak{p} + \mathfrak{a}$ is a non-trivial ideal, as
+otherwise we'd be able to write $1 = xp + ya$, whence $xp = 1 - ya \in 1 +
+\mathfrak{a}$. It follows that there exist some maximal ideal $\mathfrak{m}$
+which contains $\mathfrak{p} + \mathfrak{a}$, so every ideal which doesn't meet
+$1 + \mathfrak{a}$ is contained in a maximal ideal containing $\mathfrak{a}$.
+As no proper ideal containing $\overline{a}$ can meet $\overline{a} + 1$, we
+deduce that $\overline{1 + \mathfrak{a}}$ is the union of all maximal ideals
+containing $\overline{a}$.
+
+\subsection*{Ex 8}
+
+\textbf{i) $\Rightarrow$ ii):}
+$\phi$ bijective means we can construct its inverse $\psi = \phi^{-1}$, and as
+$t/1$ is a unit in $T^{-1}(A)$, we see that $\psi(t/1) = t/1$ is a unit in
+$S^{-1}A$. \\
+
+\textbf{ii) $\Rightarrow$ iii):}
+Let $u/1$ be the inverse of $t/1$, then $ut/1 \in S$ \\
+
+\textbf{iii) $\Rightarrow$ iv):}
+Let $xt \in S$, then $x, t \in \overline{S}$ by definition. \\
+
+\textbf{iv) $\Rightarrow$ v):}
+we have that $S \subseteq T$ and $T \subseteq \overline{S}$, so $\overline{T} =
+\overline{S}$. The saturation of a multiplicatively closed set is the
+complement of all prime ideals not meeting the set (Ex 7.ii)), so if
+$\mathfrak{p} \cap S = 0$, then $\mathfrak{p} \subseteq \overline{S}^{c} =
+\overline{T}^{c} \Rightarrow \mathfrak{p} \cap T = 0$. The other implication
+follows analogously. \\
+
+\textbf{v) $\Rightarrow$ i):}
+Let $a/s \in S^{-1}A$ be such that $a/s = 0$ as an element in $T$. Then there
+exists some $t \in T$ such that $ta = 0$. But then since $t$ is a unit in
+$T^{-1}A$, we either have $T^{-1}A = 0$, or $a = 0$. Now, every prime ideal
+which meets $S$ also meets $T$, so if $S^{-1}A$ contains non-trivial prime
+ideals, then so does $T^{-1}A$ by Prop 3.11.iv), and since the only rings which
+don't contain prime ideals are either the zero ring or fields, we see that
+$T^{-1}A = 0$ exactly when $S^{-1}A = 0$. It follows that $\phi$ is bijective.
+
+
+
+\subsection*{Ex 21}
+
+Just to recap, $\spec(A)$ is the set of all prime ideals in $A$, and the closed
+sets are of the form $V(E)$ for arbitrary $E \subseteq A$ where $V(E)$ is the
+set of all prime ideals containing $E$. $V(E) = V(r(\mathfrak{q}))$ where
+$\mathfrak{a}$ is the smallest ideal containing $E$. The basic open sets are of
+the form $X_f$, where $X_f$ is the complement of $V(f)$, I.e the set of all
+prime ideals not containing $f$.
+
+
+\subsubsection*{i)}
+
+Let $X = \spec(A), Y = \spec(S^{-1}A)$. Let $f \in A$ and $\mathfrak{p} \in
+\phi^{*-1}(X_f)$. Then $\mathfrak{p}$ is a prime ideal in $S^{-1}B$, and
+$\phi(f) \not \in \mathfrak{p}$, since otherwise we'd have $f \in
+\phi^{-1}(\mathfrak{p}) = \phi^*(\mathfrak{p}) \in X_f$. Hence $Y_{\phi(f)}
+\supseteq \phi^{*-1}(X_f)$. For the other inclusion, suppose $\mathfrak{p}$
+is a prime ideal in $Y$ not containing $\phi(f)$. Then $\phi^{-1}(\mathfrak{p})
+= \phi^{*}(\mathfrak{p})$ doesn't contain $\phi^{-1}(\phi(f)) = f$. We've shown
+that $\phi^{*}$ is continuous. It's immediate from Prop 3.11.iv) that
+$\phi^{*}$ is injective, so $\phi^{*}$ is a homomorphism onto its image.
+
+
+\subsubsection*{ii)}
+
+We draw the setup in diagrams. First, we have homomorphisms between the rings as follows
+\[ 
+	\begin{tikzcd}
+		A \arrow{r}{f} \arrow[swap]{d}{s_a} & B \arrow{d}{s_b} \\
+		S^{-1}A \arrow{r}{S^{-1}f}& S^{-1}B,
+	\end{tikzcd}
+\]
+where we define $S^{-1}f$ so the diagram commutes $a/s \mapsto f(a)/f(s)$.
+This induces the following diagram on the respective spectra
+\[ 
+	\begin{tikzcd}
+		S^{-1}Y \arrow{r}{S^{-1}f^{*}} \arrow[swap]{d}{i_y} & S^{-1}X \arrow{d}{i_x} \\
+		Y \arrow{r}{f^{*}}& X,
+	\end{tikzcd}
+\]
+and our task is to show that the diagram commutes, I.e that $S^{-1}f^{*}$ is
+the restriction of $f^{*}$, and that $f^{*-1}(S^{-1}X) = S^{-1}Y$. We will
+show that $\spec$ is a contravariant functor, from which it will follow that
+the diagram commutes. We showed in i) that $\spec$ maps morphisms $f$ in the
+$\CRing^{\op}$ to morphisms $f^{*}$ in $\Top$. Now let $f, g$ be two composable
+ring homomorphisms. Then $(f \circ g)^{*} = (f \circ g)^{-1} = g^{-1} \circ
+f^{-1} = g^{*} \circ f^{*}$, so the functor preserves composition in a
+contravariant we've shown the first statement. \\
+
+Our setup differs slightly from that in the exercise in the sense that we've
+not identified the spectra of the fraction rings with their inclusions in to
+the spectra of the original rings. So, when the exercise asks us to show that
+$f^{*-1}(S^{-1}X) = S^{-1}Y$, in our setup, this translates to showing that
+$f^{*-1}(i_x(S^{-1}X)) = i_y(S^{-1}Y)$. \\
+
+Let $\mathfrak{p} \in f^{*-1}(i_x(S^{-1}X))$. Then $f^{*}(\mathfrak{p})
+\subseteq i_x(S^{-1}X)$. In the original rings, $i_x$ corresponds to
+contracting ideals from $S^{-1}A$ back to $A$, so $f^{*}(\mathfrak{p})$ is a
+prime ideal in $A$ which doesn't touch $S$. Moreover, $\mathfrak{p}$ is a prime
+ideal in $B$ since it lies in the inverse image of $f^{*}$, and it doesn't meet
+$f(S)$ since $f^{*}(\mathfrak{p}) = f^{-1}(\mathfrak{p})$ doesn't meet $S$.
+It follows that $\mathfrak{p} \in i_y(S^{-1}Y)$ and we are done (the other
+inclusion is trivial).
+
+\subsubsection*{iii)}
+We have a commutative diagram
+\[ 
+	\begin{tikzcd}
+		A \arrow{r}{f} \arrow[swap]{d}{q_a} & B \arrow{d}{q_b} \\
+		A/\mathfrak{a} \arrow{r}{\overline{f}}& B/\mathfrak{b},
+	\end{tikzcd}
+\]
+and the $\spec$ functor induces the following commutative diagram
+\[ 
+	\begin{tikzcd}
+		\spec(B/\mathfrak{b}) \arrow{r}{\overline{f}^{*}} \arrow[swap]{d}{i_y} & \spec(A/\mathfrak{a}) \arrow{d}{i_x} \\
+		Y \arrow{r}{f^{*}}& X,
+	\end{tikzcd}
+\]
+which since $i_y, i_x$ are injections, tells us that $\overline{f}^{*}$ is the
+restriction of $f^{*}$ to $V(\mathfrak{b}) = i_x(\spec(B/\mathfrak{b}))$. \\
+
+(the following is not part of iii), but used in iv)) Just like in i), we also
+show that $f^{*-1}(i_x(\spec(A/\mathfrak{a}))) = i_y(\spec(B/\mathfrak{b}))$.
+Let $\mathfrak{p} = f^{*-1}(i_x(\spec(A/\mathfrak{a})))$. Then
+$f^{*}(\mathfrak{p}) \in i_x(\spec(A/\mathfrak{a}))$, so $f^{*}(\mathfrak{p})$
+is an ideal in $A$ which contains $\mathfrak{a}$. Moreover, $\mathfrak{p}$ is a
+prime ideal in $B$ since it lies in the inverse image of $f^{*}$, and it
+doesn't meet $\mathfrak{b} = \mathfrak{a}^{e}$ since $f^{*}(\mathfrak{p}) =
+f^{-1}(\mathfrak{p})$ doesnt meet $\mathfrak{a} = f^{-1}(\mathfrak{a}^{e})$.
+It follows that $\mathfrak{p} \in i_y(\spec(B/\mathfrak{b}))$.
+
+
+\subsubsection*{iv)}
+
+We first draw two diagrams of our situation. We
+have the following diagram of rings
+\[ 
+	\begin{tikzcd}
+		A \arrow{r}{f} \arrow[swap]{d}{l_a} & 
+		B \arrow{d}{l_b} \\
+		A_{\mathfrak{p}} \arrow{r}{\overline{\overline{f}}} \arrow[swap]{d}{q_a} &
+		(f(A) - \mathfrak{p})^{-1} B \arrow[swap]{d}{q_a} \\
+		k(\mathfrak{p}) \arrow{r}{\overline{f}} &
+		(f(A) - \mathfrak{p})^{-1} B / (\mathfrak{p}B),
+	\end{tikzcd}
+\]
+which after passing through $\spec$ turns into
+\[ 
+	\begin{tikzcd}
+		X & 
+		Y 
+			\arrow{l}{f^{*}} \\
+		\spec(A_{\mathfrak{p}}) \arrow[hookrightarrow, u, "i_a"] &
+		\spec((f(A) - \mathfrak{p})^{-1} B) 
+			\arrow[hookrightarrow, u, "i_b"] 
+			\arrow{l}{\overline{\overline{f^{*}}}} \\
+		\spec(k(\mathfrak{p})) 
+			\arrow[hookrightarrow, u, "i_a'"] &
+		\spec((f(A) - \mathfrak{p})^{-1} B)/(\mathfrak{p}B) 
+			\arrow[hookrightarrow, u, "i_b'"] 
+			\arrow{l}{\overline{f^{*}}}.
+	\end{tikzcd}
+\]
+We have that $\spec(k(\mathfrak{p})) = \{(0)\}$, and after the two inclusions $i_a', i_a$, the
+zero ideal in $\spec(k(\mathfrak{p}))$ is mapped to  $\mathfrak{p}$ in $A$. From ii) and iii) it
+also follows that $f^{*-1}(i_a(i_a'(\spec(k(\mathfrak{p}))))) =
+i_b(i_b'(\spec((f(A) - \mathfrak{p})^{-1} B/(\mathfrak{p}B))))$. Combining these two facts tells 
+us that $f^{*-1}(\mathfrak{p}) = i_b(i_b'(\spec((f(A) - \mathfrak{p})^{-1}
+B/(\mathfrak{p}B))))$, so the two spaces are homeomorphic in a natural way. \\
+
+It remains to show that $\spec((f(A) - \mathfrak{p})^{-1} B/(\mathfrak{p}B)) =
+\spec(k(\mathfrak{p}) \otimes_{A} B)$. We will show that the corresponding
+rings are isomorphic. To see this, let 
+\[
+	\phi : (f(A) - f(\mathfrak{p}))^{-1}B \to k(\mathfrak{p}) \otimes_{A} B
+\] 
+be given by $\phi(b/f(a)) = \frac{1 + \mathfrak{p}}{a + \mathfrak{p}} \otimes_{A} b$.
+Then $\phi$ is well-defined, since if $b_1/f(a_1) = b_2/f(a_2)$, then there exists
+$s \in A - \mathfrak{p}$ such that $f(s)(b_1f(a_2) - b_2f(a_1)) = 0$, whence 
+\begin{align*}
+	\phi(b_1/f(a_1)) - \phi(b_2/f(a_2))
+	&=
+	\frac{1 + \mathfrak{p}}{a_1 + \mathfrak{p}} \otimes_A b_1
+	-
+	\frac{1 + \mathfrak{p}}{a_2 + \mathfrak{p}} \otimes_A b_2 \\
+	&=
+	\frac{sa_2 + \mathfrak{p}}{sa_1a_2 + \mathfrak{p}} \otimes_A b_1
+	-
+	\frac{sa_1 + \mathfrak{p}}{sa_1a_2 + \mathfrak{p}} \otimes_A b_2 \\
+	&=
+	\frac{1 \mathfrak{p}}{sa_1a_2 + \mathfrak{p}} \otimes_A f(s)f(a_2)b_1
+	-
+	\frac{1 + \mathfrak{p}}{sa_1a_2 + \mathfrak{p}} \otimes_A f(s)f(a_1)b_2 \\
+	&=
+	\frac{1 + \mathfrak{p}}{sa_1a_2 + \mathfrak{p}} \otimes_A f(s)(f(a_2)b_1 - f(a_1)b_2) \\
+	&=
+	0.
+\end{align*}
+Moreover, $\phi$ is surjective since for any $\frac{a_1 + \mathfrak{p}}{a_2 + \mathfrak{p}} \otimes_A b$,
+we have 
+\[
+\frac{a_1 + \mathfrak{p}}{a_2 + \mathfrak{p}} \otimes_A b
+=
+\frac{1 + \mathfrak{p}}{a_2 + \mathfrak{p}} \otimes_A f(a_1)b
+=
+f(f(a_1)b/f(a_2)).
+\] 
+Finally, the kernel of $\phi$ are all $b/f(a)$ such that $b$ can be written as
+$b = b'f(a')$ where $a' \in \mathfrak{p}$, in other words, $\ker(\phi) = (f(A)
+- \mathfrak{p})^{-1}Bf(\mathfrak{p})$, and the isomorphism follows from the
+First Homomorphism Theorem.
+
+
+\section*{Ch 4}
+
+
+\subsection*{Ex 4}
+To see that $\mathfrak{m}$ is maximal, note that $\mathbb{Z}[t]/\mathfrak{m}
+\cong \mathbb{Z}/2\mathbb{Z}$ is a field. To see that $\mathfrak{q}$ is
+$\mathfrak{m}$-primary, note that $2 \in r(\mathfrak{q})$ and $t \in
+r(\mathfrak{q})$, and since $\mathfrak{m}$ is maximal $r(\mathfrak{q}) =
+\mathfrak{m}$. Also, $t \not \in \mathfrak{m}^{k}$ when $k > 1$, and $2 \not
+\in \mathfrak{q}$, so $\mathfrak{m}^k \not = \mathfrak{q}$ for any $k \geq 1$.
+
+\subsection*{Ex 5}
+
+$\mathfrak{p}_1 \cap \mathfrak{p}_2 \cap \mathfrak{m}^{2}$ is a primary
+decomposition since all of the ideals being intersected are primary
+($\mathfrak{m}^{2}$ is so by Prop 4.2, and the others since they're prime). \\
+
+To see that it's reduced, the first criterion is satisfied since the two prime
+ideals and $r(\mathfrak{m}^{2}) = \mathfrak{m}$ are all pairwise distinct, and 
+the second criterion is fulfilled since
+\begin{align*}
+	z^{2} &\in \mathfrak{p}_2 \cap \mathfrak{m}^{2} \setminus \mathfrak{p}_1, \\
+	y^{2} &\in \mathfrak{p}_1 \cap \mathfrak{m}^{2} \setminus \mathfrak{p}_2, \\
+	x &\in \mathfrak{m}^{2} \cap \mathfrak{p}_{1} \setminus \mathfrak{p}_2.
+\end{align*}
+To see that the decomposition is equal to $\mathfrak{a}$, note that 
+\begin{align*}
+	\mathfrak{p}_1 \cap \mathfrak{p}_2 \cap \mathfrak{m}^{2}
+	&=
+	(x, y) \cap (x, z) \cap (x, y, z)^{2} \\
+	&=
+	(x, yz) \cap (x^{2}, xy, xz, y^{2}, yz, z^{2}) \\
+	&=
+	(x^{2}, xy, xz, yz) \\
+	&=
+	(x, y) (x, z) \\
+	&=
+	\mathfrak{a}.
+\end{align*} 
+We have that $\mathfrak{p_1}, \mathfrak{p_2}$ are minimal since they are both
+contained in $\mathfrak{m}$, but don't contain each other. $\mathfrak{m}$ is
+embedded. \\
+
+\subsection*{Ex 7}
+\subsubsection*{i)}
+
+Let $f \in \mathfrak{a}^{e}$. Then we can write 
+\[
+	f = \sum_{i = 0}^{n} h_i(x) a_i
+\] 
+for some set of elements $a_i \in \mathfrak{a}$ and polynomials $h_i(x) \in
+A[x]$. But we have $h_i(x) a_i \in \mathfrak{a}[x]$ for each $i$, so 
+$f \in \mathfrak{a}[x]$. \\
+
+For the other inclusion, note that the monomials $a x^k, a \in
+\mathfrak{a}, k \in \N$ generate $\mathfrak{a}[x]$ as an $A$-module, and
+each $a x^k \in \mathfrak{a}^{e}$ for each $a \in \mathfrak{a}, k \in \N$,
+so $\mathfrak{a}[x] \subseteq \mathfrak{a}^{e}$.
+
+\subsubsection*{ii)}
+
+Let $\phi : A[x] \to (A/\mathfrak{p})[x]$ be the homorphism which sends $a_n
+x^n + \ldots + a_1 x + a_0$ to $\overline{a_n}x^n + \ldots + \overline{a_1} x +
+\overline{a_0}$ where $\overline{a} = a + \mathfrak{p}$. Then it's easy to see
+that $\ker(\phi) = \mathfrak{p}[x]$, so $A[x]/\mathfrak{p}[x] \cong
+(A/\mathfrak{p})[x]$. The fact that $\mathfrak{p}[x]$ is prime now follows from
+the fact that the polynomial ring over an integral domain is an integral domain
+(seen easily by looking at degree $0$ terms during polynomial multiplication). 
+
+\subsubsection*{iii)}
+
+That $r(\mathfrak{q}[x]) = \mathfrak{p}[x]$ follows from the following lemma. 
+\begin{lemma}
+	Let $\mathfrak{a}$ be an ideal in $A$. Then $r(\mathfrak{a}[x]) = (r(\mathfrak{a}))[x]$.
+\end{lemma}
+\begin{proof}
+	Since $\mathfrak{a} \subset \mathfrak{a}[x]$, we have $r(\mathfrak{a})
+	\subset r(\mathfrak{a}[x])$, and as $(r(\mathfrak{a}))[x]$ is the extension
+	of $r(\mathfrak{a})$ (hence the minimal ideal of $A[x]$ containing
+	$r(\mathfrak{a}$), we have $(r(\mathfrak{a}))[x] \subseteq
+	r(\mathfrak{a}[x])$. \\
+
+	For the other inclusion, let $g \in A[x]$ be a polynomial of degree $d$
+	such that $g^k \in \mathfrak{a}[x]$. Let $a_i$ be the $i$-th coefficient 
+	of $g$ and $b_i$ be the $i$-th coefficient of $g^k$. Then
+	\[
+		b_{ik}
+		=
+		a_{i}^{k} + H
+	\] 
+	where $H$ is a sum of terms each having a factor of some $a_j$ for $j < i$.
+	Since $b_0 = a_0^k$ we have that $a_0 \in r(\mathfrak{a})$, and it now
+	follows from induction that $a_i \in r(\mathfrak{a})$ for all $i \leq d$.
+	We see that $g \in (r(\mathfrak{a}))[x]$ and we are done.
+\end{proof}
+
+It remains to show that $\mathfrak{q}[x]$ is a primary ideal. This is
+equivalent to $A[x]/\mathfrak{q}[x] \cong (A/\mathfrak{q})[x]$ beeing non-zero,
+and having all zero-divisors being nilpotent. We know it's non-zero since $a
+\not \in \mathfrak{a} \Rightarrow a \not \in \mathfrak{q}[x]$. \\
+
+Let $f \in (A/\mathfrak{q})[x]$ be a zero divisor. By Ex 1.2 iii), there exists
+some $a \in A/\mathfrak{q}$ such that $af = 0$. But then every coefficient of
+$f$ must be a zero-divisor. Since $\mathfrak{q}$ is primary, and the
+coefficients lie in $A/\mathfrak{q}$, they must then all be nilpotent. Ex 1.2
+ii) now tells us that $f$ is nilpotent.
+
+\subsubsection*{iv)}
+
+It follows from iii) that the primary decomposition of $\mathfrak{q}[x]$ is as
+given. \\
+
+Non-containment follows from $q \in \left(\bigcap_{j \not = i} \mathfrak{q}_j\right)
+\setminus \mathfrak{q}_i \Rightarrow qx \in \left(\bigcap_{j \not = i}
+\mathfrak{q}_j[x]\right) \setminus \mathfrak{q}_i[x]$. \\
+
+Similarly, we have that the prime ideals $\mathfrak{p}_i[x]$ belonging to the
+$\mathfrak{q}_i[x]$ are all different from one another by virtue of the
+$\mathfrak{p}_i$ being different from one another.
+
+\subsubsection*{v)}
+
+We have that the minimal prime ideals belonging to $\mathfrak{a}[x]$ are the
+minimal elements among the set of prime ideals containing $\mathfrak{a}[x]$. \\
+
+It follows from ii) that a minimal prime ideal $\mathfrak{p}$ belonging to
+$\mathfrak{a}$ extends to a prime ideal $\mathfrak{p}[x]$ containing
+$\mathfrak{a}[x]$. We are done if we can show that all prime ideals containing
+$\mathfrak{a}[x]$ are extensions of prime ideals containing $\mathfrak{a}$. \\
+
+Let $\mathfrak{b}$ be a prime ideal containing $\mathfrak{a}[x]$. Then
+$\mathfrak{b}^{c} = \mathfrak{b}/(x)$ is a prime ideal in $A$ containing
+$\mathfrak{a}$. We also have $\mathfrak{b} \supseteq \mathfrak{b}^{ce} =
+(\mathfrak{b}/(x))[x]$. But clearly, $(\mathfrak{b}/(x))[x] \supseteq
+\mathfrak{b}$, so $\mathfrak{b}$ is an extension of a prime ideal in $A$ which
+contains $\mathfrak{a}$.
+
+\subsection*{Ex 8}
+
+First note that $\mathfrak{p}_i$ is maximal in $A_i = k[x_1, x_2, \ldots, x_i]$
+since $A_i/\mathfrak{p}_i \cong A$ is a field. It follows that the powers of
+$\mathfrak{p}_i$ are $\mathfrak{p}_i$-primary. Ex 7 tells us that
+$\mathfrak{p}_i$ is prime in $A_{i + 1}$, and that it's powers are
+$\mathfrak{p}_i$-primary in $A_{i + 1}$. Repeating this argument inductively
+shows that this holds for all $A_j, j \geq i$.
+
+\subsection*{Ex 9}
+
+Let $x \in A$ be a zero divisor such that $xa = 0$ for some $a \not = 0$. Then
+$x \in (0:a)$, so any prime ideal which contains $(0:a)$ must also contain $x$.
+There is at least one prime ideal containing $(0:a)$ since $1 \cdot a \not = 0$
+and any non-trivial ideal is contained in a maximal ideal, whence there is a
+minimal prime ideal which contains $(0:a) \supseteq \{x\}$. \\
+
+For the other inclusion, let $x \in \mathfrak{p} \in D(A)$. Then there is some
+$a \in A$ such that $\mathfrak{p}$ is minimal among the set of prime ideals
+which contain $(0:a)$. Note that all elements in $(0:a)$ are zero divisors, so
+the set $\mathfrak{p}' = \mathfrak{p} \cap D$ where $D$ are the zero divisors
+in $A$, contains $(0:a)$ as well. Moreover, it's an ideal since $D$ is an
+ideal. We will show that it's prime as well. If $bc \in \mathfrak{p}'$ then
+either $b$ or $c$ is in $\mathfrak{p}$. Say that $b \in \mathfrak{p}$, we also
+have that $b$ is a zero divisor, since $bc$ is, so $b \in D$ also. By
+minimality of $\mathfrak{p}$, it follows that $\mathfrak{p'} = \mathfrak{p}$
+and all elements in $\mathfrak{p}$ are zero divisors. \\
+
+For the second part of the question, let $\mathfrak{p} \in D(S^{-1}A)$. Then
+$\mathfrak{p} \in \spec(S^{-1}A)$ by definition. Let $a/s \in S^{-1}A$ be such
+that $\mathfrak{p}$ is a minimal prime ideal containing $(0:a/s) = (0:a/1)$.
+Then Prop 3.11 iv) tells us that $\mathfrak{p}^{c}$ is a prime ideal. Since
+function inverses preserve inclusion, we have that $\mathfrak{p}^{c}$ contains
+$(0:a/1)^{c} = (0:a)^{ec} \supseteq (0:a)$. Even more, if $\mathfrak{q}$ is a
+prime ideal such that $(0:a) \subseteq \mathfrak{q} \subseteq
+\mathfrak{p}^{c}$, then $(0:a/1) \subseteq \mathfrak{q}^{e} \subseteq
+\mathfrak{p}^{ce} = \mathfrak{p}$, and $\mathfrak{q}^{e}$ is prime by Prop 3.11
+iv). But since $\mathfrak{p}$ is the minimal prime ideal containing, we have
+that $\mathfrak{q}^{e} = \mathfrak{p}$ whence we see that $\mathfrak{p}^{c}$ is
+a minimal ideal containing $(0:a)$. In summary $\mathfrak{p}^{c} \in D(A) \cap
+\spec(S^{-1}A)$. \\
+
+For the other inclusion, let $\mathfrak{p} \in D(A) \cap \spec(S^{-1}A)$. Then
+$\mathfrak{p}$ is a prime ideal in $A$, which doesn't meet $S$, and is a
+minimal prime ideal containing some $(0:a)$. Then clearly, $\mathfrak{p}^{e}$
+is a minimal prime ideal containing $(0:a)^{e} = (0:a/1)$ whence
+$\mathfrak{p}^{e} \in D(S^{-1}A)$. \\
+
+For the third part of the question, Prop 4.5 tells us that each
+$\mathfrak{p}_i$ are the prime ideals occuring in the set $r(0:a)$ for some $a
+\in A$. Furthermore, any prime ideal containing $(0:a)$ must also contain
+$r(0:a)$, so if $\mathfrak{p}_i = r(0:a)$ is prime, then $\mathfrak{p}_i$ is
+minimal among the prime ideals containing $(0:a)$. Also, if $r(0:a)$, let
+$\mathfrak{p}$ be the minimal prime ideal containing $r(0:a)$. The proof of
+Prop 4.5 tells us that $r(0:a) = \bigcap \mathfrak{p}_i$, and thus
+$\mathfrak{p} \supseteq \bigcap \mathfrak{p}_i$, whence Prop 1.11 tells us that
+$\mathfrak{p}$ contains some $\mathfrak{p}_j$, but $\mathfrak{p}_j \supset
+(0:a)$, so $\mathfrak{p} = \mathfrak{p}_j$ by minimality of $\mathfrak{p}$.
+
+\subsection*{Ex 10}
+\subsubsection*{i)}
+
+Let $x \in S_{\mathfrak{p}}(0)$. Then there exists $a \in A - \mathfrak{p}$
+such that $xa = 0$, so $x$ is a zero divisor, and $x \in \mathfrak{p}$ since $0
+\in \mathfrak{p}$ but $a \not \in \mathfrak{p}$.
+
+\subsubsection*{ii)}
+
+We have the following chain of equivalences
+\begin{align*}
+	\text{$\mathfrak{p}$ is a minimal prime ideal}
+	&\xLeftrightarrow{\text{Cor 3.13}}
+	\text{$A_{\mathfrak{p}}$ is a ring with only one prime ideal} \\
+	&\xLeftrightarrow{\text{Prop 1.8}}
+	\mathfrak{p}^{e} = \nr(A_{\mathfrak{p}}) \\
+	&\Leftrightarrow
+	\mathfrak{p} = r(S_{\mathfrak{p}}(0))
+\end{align*}
+
+\subsubsection*{iii)}
+
+Let $x \in S_{\mathfrak{p}}(0)$. Then there exists $a \in A - \mathfrak{p}$
+such that $xa = 0$. But then $a \in A - \mathfrak{p}' \supseteq A -
+\mathfrak{p}$, so $x \in S_{\mathfrak{p'}}(0)$.
+
+\subsubsection*{iv)}
+
+Let $x \in \bigcap_{\mathfrak{p} \in D(A)} S_{\mathfrak{p}}(0)$. Then there
+exists an $a_{\mathfrak{p}} \in A - \mathfrak{p}$ for all $\mathfrak{p} \in
+D(A)$ such that $xa_{\mathfrak{p}} = 0$. In other words, the anihilator of $x$
+is not contained in any of the $\mathfrak{p} \in D(A)$. But any non-trivial
+ideal is contained in some prime ideal, so any non-trivial annihilator is
+contained in some ideal in $D(A)$. It follows that $(0:x) = (1)$ and $x = 0$.
+
+\subsection*{Ex 13}
+
+\subsubsection*{i)}
+
+First we show that $r(\mathfrak{p}^{(n)}) = \mathfrak{p}$. Let $x^m \in
+\mathfrak{p}^{(n)}$. Then there exists some $a \in A - \mathfrak{p}$ and $p \in
+\mathfrak{p}^{n}$ such $a(x^{m} - p) = 0 \Leftrightarrow ax^{m} = ap$. As
+$ax^{m} = ap \in \mathfrak{p}$, but $a \not \in \mathfrak{p}$, we get $x \in
+\mathfrak{p}$. \\
+
+Now we show that the ideal is primary, we have the following chain of
+equalities $(\mathfrak{p}^{(n)})^{e} = (\mathfrak{p}^{n})^{ece} =
+(\mathfrak{p}^{n})^{e} = (\mathfrak{p}^{e})^{n}$, which shows that
+$(\mathfrak{p}^{(n)})^{e}$ is $\mathfrak{p}^{e}$-primary in $A_{p}$, since it's
+a power of a maximal ideal. We can now use Prop 4.8 ii) to conclude that
+$\mathfrak{p}^{(n)}$ is primary. 
+
+
+\subsubsection*{ii)}
+
+Let $\mathfrak{a}$ be the smallest $\mathfrak{p}$-primary ideal containing
+$\mathfrak{p}^{n}$.
+
+Let $\mathfrak{p}^n = \bigcap \mathfrak{q}_i$ be a minimal primary composition.
+Then 
+
+\section*{Ch 5}
+
+\subsection*{Ex 1}
+
+Let $V(E) \in \spec(B)$ be a closed set, and $I$ be the radical ideal $I =
+\bigcap_{\mathfrak{p} \in V(E)}$ such that $V(E) = V(I)$. We will show that
+$f^{*}(V(E)) = f^{*}(V(I)) = V(f^{-1}(I))$. It's immedieate that $f^{*}(V(I))
+\subseteq V(f^{-1}(I)) $ since every prime ideal in $f^{*}(V(I))$ will contain
+$f^{-1}(I)$. \\
+
+For the other inclusion, let $\mathfrak{p} \in V(f^{-1}(I))$ be a prime ideal
+in $A$. Then $f(\mathfrak{p})$ is a prime ideal in $f(A)$, and Theorem 5.10
+tells us that there exists some prime ideal $\mathfrak{q}$ in $B$ such that
+$f(\mathfrak{p}) = \mathfrak{q} \cap f(A)$. By applying $f^{-1}$ we see that
+$f^{-1}(f(\mathfrak{p})) = f^{*}(\mathfrak{q})$. Now we claim that
+$\mathfrak{p} = f^{-1}(f(\mathfrak{p}))$. To see this, note that if $a \in A$
+is such that $f(a) = f(p)$ for some $p \in \mathfrak{p}$, then $a - p \in
+\ker(f)$, but $\mathfrak{p}$ contains $\ker(f)$ since $\mathfrak{p}$ contains
+$f^{-1}(I)$. It follows that $a \in \mathfrak{p}$ and $\mathfrak{p} =
+f^{-1}(f(\mathfrak{p})) = f^{*}(\mathfrak{q}) \in f^{*}(V(I))$.
+
+
+\subsection*{Ex 8}
+
+\subsubsection*{i)}
+
+The hint gives the whole solution, but we write it out in full anyway. Let
+$\overline{K}$ be the algebraic closure of the field of fractions of $B$. Then
+we can factor $f, g$ in $\overline{K}[x]$ as
+\begin{align*}
+	f &= \prod (x - \chi_i), \\
+	g &= \prod (x - \eta_i).
+\end{align*}
+Then the $\chi_i, \eta_i$ are roots of $fg$ (which is monic since $f, g$ are),
+and they are all integral over $C$. $C$ is integrally closed, so the $\chi_i,
+\eta_i$ all lie in $C$, whence the coefficients of the polynomials $f, g$ do as
+well, so $f, g \in C[x]$.
+
+\subsubsection*{ii)}
+
+We no longer have a full field of fractions, and we can't construct a field
+which contains $B$. What we can do, is to create a bigger ring $B^{+} \supset
+B$, such that the polynomials $f, g$ factor into linear factors over $B^{+}$,
+after which the remainder of the proof would come along just like above. \\
+
+Let $y_1$ be a new formal indeterminate, and consider $B_1 = B[y_1]/f(y_1)$. In
+this ring, we have that $f(y_1) = 0$, so $x - y_1$ is a factor of $f = (x -
+y_1)f_1$ (since the polynomials are monic, the division algorithm still works
+in the non-field $B$). Now repeat this process starting with $B_1, f_1$, and
+continue this way until $f$ is completely factored into linear factors, and
+then do the same for $g$. The final result is a ring $B^{+}$ containing $B$,
+where $f, g$ splits into linear factors, from which we may proceed like in part
+i).
+
+
+\subsection*{Ex 9}
+
+We proceed as advised by the hint. Let $f(x) \in B[x]$ be integral over $A[x]$ such that 
+\[
+	f^{n} + f^{n - 1}g_{n-1} + \ldots g_{0} = 0.
+\] 
+A small side-step, note that we can't apply Ex 8.ii) to 
+\[
+	f(f^{n - 1} + f^{n - 2}g_{n - 1} + \ldots g_1) = -g_0 \in A[x],
+\] 
+since the polynomials $f, (f^{n - 1} + f^{n - 2}g_{n - 1} + \ldots g_1)$ need
+not be monic. To circumvent this issue, let $f_1 = f - x^{r}$ for some $r \geq
+\max(n, \deg(g_i), \deg(f))$. Then $f_1$ is monic and
+\[
+	(f_1 + x^{r})^{n} + (f + x^{r})^{n - 1}g_{n-1} + \ldots g_{0} = 0.
+\] 
+Expanding the expression above yields
+\[
+	f_1^{n} + f_1^{n - 1}h_{n-1} + \ldots h_{0} = 0.
+\] 
+where $h_0 = \sum_{i = 0}^{n} x^{nr - ir}g_{n - i} \in A[x]$ with $g_n = 1$. We
+can now apply Ex 8.ii) to
+\[
+	f_1 (f_1^{n-1} + f_1^{n - 2}h_{n-1} + \ldots h_{1}) = -h_0 \in A[x],
+\] 
+since $f_1$ is monic, and $(f_1^{n-1} + f_1^{n - 2}h_{n-1} + \ldots h_{1})$ is
+monic as well since we picked $r$ large enough. It follows that $f_1 \in C[x]$,
+so $f \in C[x]$ as well and we are done.
+
+\subsection*{Ex 16}
+
+We pick up from the following task in the exercise text: "Show that $x_n$ is
+integral over the ring $A' = k[x_1', x_2', \ldots, x_{n-1}']$." \\
+
+It follows from the construction of the $\lambda_i, x'_i$ that $f(x_1' +
+\lambda_1 x_n, x_2' + \lambda_2 x_n, \ldots, x_{n-1}' + \lambda_{n-1} x_n, x_n)
+= 0$. Moreover, this polynomial has a leading coefficient $\lambda =
+H(\lambda_1, \lambda_2, \ldots \lambda_{n-1}, 1) \not = 0 \in k$ when
+considered as a polynomial in $k[x_1', x_2', \ldots, x_{n-1'}][x_n]$,
+and can therefore easily be made monic, whence $x_n$ is algebraic over 
+$k[x_1', x_2', \ldots x_{n-1}']$.
+
+\subsection*{Ex 17}
+
+By reverse inclusion, maximal ideals correspond to minimal varieties, and by
+the proof in the exercise text, any proper ideals correspond to non-empty
+varieties. So maximal (proper by definition) correspond to minimal non-empty
+varieties. Points are non-empty minimal sets, and they are all varieties since
+they induce ideals of the form given in the text. It follows that all maximal
+ideals are of the given form as well.
+
+\subsection*{Ex 31}
+Let $R = \{x \in K^{*} : v(x) \geq 0 \} \cup \{0\}$. Then $R$ is a sub ring of
+$K$ since if $a, b \in R$, then
+\begin{itemize}
+	\item $v(a + b) \geq \min(v(a), v(b)) \geq 0 \Rightarrow a + b \in R$
+	\item $v(ab) = v(a) + v(b) \geq 0 \Rightarrow ab \in R$ 
+	\item $v(1) = v(1^{m}) = mv(1)$ for all $m \in \N$ so $v(1) = 0$
+		and $1 \in R$. We also have $v(-1) = v(1)/2 = 0$.
+	\item $v(-a) = v(-1 \cdot a) = v(-1) + v(a) = v(a) \geq 0$ so $-a \in R$.
+\end{itemize}
+
+It's an integral domain since it's a sub ring of a field. Finally, it's an
+evaluation ring, since $0 = v(1) = v(a a^{-1}) = v(a) + v(a^{-1})$ so if $v(a)
+< 0$ then $v(a^{-1}) > 0$ and vice versa (if $v(a) = v(a^{-1}) = 0$ then both
+$a, a^{-1} \in R$, which is allowed).
+
+\section*{Ch 6}
+
+
+\subsection*{Ex 3}
+
+By Prop 6.3 we have $M / N_i$ Noetherian, Cor 6.4 gives $(M / N_1) \oplus (M /
+N_2)$ Noetherian, and we are done after noting that $M/(N_1 \cap N_2) \cong (M
+/ N_1) \oplus (M / N_2)$ (was an early exercise or proposition or something,
+follows by considering the kernel of $m \mapsto (m + N_1, m + N_2)$). 
+
+\subsection*{Ex 8}
+
+No, we can still have strict infinite ascending chains of ideals which aren't
+prime. But to aid us in our search for a counterexample, we'll explore if there
+is anything useful which must hold in such a scenario first. \\
+
+Let $A$ be a ring such that $\spec(A)$ is Noetherian. Let 
+\[
+	I_0 \subseteq I_1 \subseteq \ldots
+\] 
+be a ascending chain of ideals. Then $V(I_i)$ is an ascending chain of closed
+subsets in $\spec(A)$, hence it must be stationairy after some index $i = k$.
+From the definition of the spectrum toplogy, it follows that all ideals $I_i$
+from the point $i = k$ and on, are covered by the same prime ideals. Hence
+they have the same radical. Thus every ideal in the tail of the chain 
+\[
+	I_k \subseteq I_{k + 1} \subseteq \ldots
+\] 
+lies in $r(I_k)$, and has $r(I_k)$ as its radical. Passing to $A' = A/I_k$ and
+writing $J_i = I_{k + i} + I_k \in A / I_k$, we get an infnite ascending chain
+\[
+	J_0 \subseteq J_1 \subseteq \ldots
+\] 
+which is contained in the nilradical of $A'$. We will use this to craft a
+counter example. \\
+
+Let $k$ be a algebraically closed field of characteristic $0$. Let $B = k[x_1,
+x_2, \ldots, ]$ be the polynomial ring in infinitely many indeterminates. Let
+$A = B / (x_1^{2}, x_2^{2}, \ldots, )$ be the quotient ring where we've modded
+out all powers of $x_i$. Then
+\[
+	(x_1) \subsetneq (x_1, x_2) \subsetneq (x_1, x_2, x_3) \subsetneq \ldots
+\] 
+is a strictly ascending infinite chain of ideals. However any prime ideal of
+$A$ must contain the nilradical, which contains every $x_i$. But $(x_1, x_2,
+\ldots)$ is maximal since we get $k$ if we quotient by it. It follows that $A$
+only has one prime ideal, whence $\spec(A)$ is Noetherian. 
+
+
+\section*{Ch 7}
+
+
+\subsection*{Ex 2}
+
+Suppose $f$ is nilpotent and $f^k = 0$. Then the the $0$-th coefficient of
+$f^k$ is $a_0^k = 0$ so $a_0$ is nilpotent. Denothe the $m$-th coefficient of
+$f^{k}$ by $c_m$. Then $c_{km} = a_{m}^{k} + E(k, m)$ where $E(k, m)$ is an sum
+where each term has a factor $a_{j}^{i}$ for some $j < m, i \geq k$. By
+induction we have that $E(k, m) = 0$, so $a_{m}^{k} = 0$ for all $m$. \\
+
+Now assume that all $a_i$ are nilpotent. We need the following lemma before we
+show that $f$ is nilpotent. Then $a_i \in r(0)$ by definition, and Corollary
+7.14 tells us that there is some exponent such that $r(0)^{k} = 0$. It follows
+that any product of $k$ elements from $a_i$ is $0$. But the coefficients of $f^k$
+are sums of $k$-element products of $a_i$, so $f^{k} = 0$.
+
+\subsection*{Ex 11}
+
+No, but before we produce a counterexample, we'll try and find some properties
+which such a counterexample must exhibit. \\
+
+Let $A$ be a ring which is locally Noetherian. Let 
+\[
+	I_1 \subsetneq I_2 \subsetneq \ldots
+\] 
+be an infinite strictly ascending chain. Let $\mathfrak{p}$ be a prime ideal.
+Then the chain of $I_i^{e}$ is stationary in $A_{\mathfrak{p}}$ by hypothesis.
+Let $k$ be the index from which all the $I_i$ extend to the same ideal in
+$A_{\mathfrak{p}}$. Since the original chain is strictly ascending, there
+exists $x \in I_k \setminus I_{k + 1}$. Since $x/1 \in I_{k + 1}^{e}$, there
+exist some $y \in I_{k + 1}$ such that $x/s = y/t$ for $s, t \in A -
+\mathfrak{p}$ and this is the case if and only if we have $u \in A -
+\mathfrak{p}$ such that $u(xt - ys) \in A - \mathfrak{p}$. If the ideal $x, y
+\in \mathfrak{p}$, we'd have that $u(xt - ys) \in \mathfrak{p}$ a
+contradiction. So there can be no ideal which contains the entire chain, since
+such an ideal would be contained in a maximal (I.e prime) ideal. In particular,
+the union of the chain can't be an ideal. \\ 
+
+Even more, every ideal in the chain has to be contained in infinitely many
+maximal ideals. Suppose towards a contradiciton $I_r$ is some ideal only
+contained in the finitely many maximal ideals $\mathfrak{m}_1, \mathfrak{m}_2,
+\ldots, \mathfrak{m}_n$. Then there has to be some index $r_1 > r$ such that
+$I_{r_1} \not \subset \mathfrak{m}_1$, as otherwise $\mathfrak{m}_1$ would
+contain the whole chain. Let $R = \max(r_i)$. Since $I_R$ is an ideal, it's
+contained in some maximal ideal $\mathfrak{m}_R$ which isn't equal to any other
+$\mathfrak{m}_{r_i}$ since none of them contain $I_R$. But then since $I_R
+\supset I_r$, we have that $\mathfrak{m}_R \supset I_r$, a contradiction. \\
+
+Let $k$ be an algebraically closed field of characteristic $0$ and $A =
+\prod^{\infty}_{i = 1} k$. First, note that 
+\[
+	((1, 0, 0, 0, \ldots, ))
+	\subsetneq
+	((1, 1, 0, 0, \ldots, ))
+	\subsetneq
+	((1, 1, 1, 0, \ldots, ))
+	\subsetneq
+	((1, 1, 1, 1, 0, \ldots, ))
+\] 
+is an infinite chain of strictly increasing ideals in $A$, whence $A$ isn't
+Noetherian. \\
+
+The maximal ideals coincide with the prime ideals in $A$ and are precisely the
+$\mathfrak{m}_i$ where 
+\[
+	\mathfrak{m_i} = ((1, 1, 1, \ldots, 1, 0, 1, 1, 1, \ldots))
+\] 
+where the $0$ is at index $i$. To see this, first note that since $k$ is a
+field, any ideal in $A$ can be identified with the indices where it has
+non-zero elements. Then suppose $\mathfrak{a}$ is an ideal in $A$ which is zero
+at more than one index. Say at least indices $i$ and $j$, $i \not = j$. Then
+$A/\mathfrak{a}$ contains the zero divisors $(1_i + \mathfrak{a})(1_j +
+\mathfrak{a}) = 0$ (where $1_i$ is the element of all zeros except for a $1$ at
+index $i$). So any prime ideal is of the form $\mathfrak{m}_i$. The
+$\mathfrak{m}_i$ are maximal since they induce fields as quotient rings. \\
+
+Let's dig a little deeper and investigate what the induced localizations look
+like. Let $f : A \to A_{\mathfrak{m}_1}$ be the canonical injection and
+consider some elements $x,  y \in A$. Then $f(x) = f(y)$ if and only if there
+are $u, s, t, \in A \setminus \mathfrak{m}_1$ such that $u(xt - ys) = 0$. Let
+$p : A \to k$ denote the projection onto the first entry. I.e $p(a, b, c,
+\ldots,) = a$. Let $i : k \to A$ denote the corresponding injection. The
+elements in $A \setminus \mathfrak{m}_{1}$ are precisely those which have a
+non-zero entry in the first index, and if $p(x) = X, p(y) = Y$ where $X, Y \not
+= 0$, then $i(1)(x i(X^{-1}) - y i(Y^{-1})) = 0$. If both $X = Y = 0$, then
+picking $u = s = t = i(1)$ also results in $u(xt - ys) = 0$. If only one of $X,
+Y$ are non-zero, then we can't pick $u, s, t \in A \setminus \mathfrak{m}_1$
+such that $u(xt - ys) = 1$. So in other words, $f(x) = f(y)$ precisely when
+either both $x, y \in \mathfrak{m}_1$ or both $x, y \not \in \mathfrak{m}_1$.
+So each $A_{\mathfrak{m}_i}$ is a ring of two elements, hence isomorphic to
+$\F_2$, whence they are all clearly Noetherian.
+
+
+
+\subsection*{Ex 14}
+
+We flesh out the steps in the hint to show that $r(\mathfrak{a}) \supseteq
+I(V(\mathfrak{a}))$. \\
+
+Let $f \in A \setminus r(\mathfrak{a})$. Then since $r(\mathfrak{a})$ is the
+intersection of all prime ideals containing $\mathfrak{a}$, there must be some
+prime ideal $\mathfrak{p}$ which does not contain $f$. Let $\overline{f}$ be
+the image of $f$ in $B = A/\mathfrak{p}$. Let $C = B_{f} = B[1/\overline{f}]$
+and let $\mathfrak{m}$ be a maximal ideal of $C$. $C$ as a $k$-algebra is
+finitely generated by $1/\overline{f}, \overline{t_1}, \overline{t_2}, \ldots,
+\overline{t_n}$, and Corollary 7.9 can be applied to yield $C/\mathfrak{m}
+\cong k$. Let $\phi: A \to k$ be given by the composition
+\[
+\begin{tikzcd}
+	A \arrow[r, "a"] & 
+	B = A / \mathfrak{p} \arrow[r, "b"] &
+	C = B_{f} \arrow[r, "c"] &
+	C / \mathfrak{m} \arrow[r, "d"] &
+	k.
+\end{tikzcd}
+\] 
+Then $(\phi(t_1), \phi(t_2), \ldots, \phi(t_n))$ defines a point in $k^{n}$.
+Moreover, consider any $g \in \mathfrak{a}$. We have that $\phi(g(t_1, t_2,
+\ldots, t_n)) = 0$ since $a(g(t_1, t_2, \ldots, t_n)) = 0$. But all of the $a,
+b, c, d$ are homomorphisms and commute with algebraic operations (which is what
+polynomials really are), so $g(\phi(t_1), \phi(t_2), \ldots, \phi(t_n)) = 0$
+and $(\phi(t_1), \phi(t_2), \ldots, \phi(t_n)) \in V(\mathfrak{a})$. We also
+have $\phi(f(t_1, t_2, \ldots, t_n)) \not = 0$, since $b(a(f(t_1, t_2, \ldots,
+t_n)))$ is a unit, and $k \not = 0$, so $x = (\phi(t_1), \phi(t_2), \ldots,
+\phi(t_n))$ is a point in $V(\mathfrak{a})$ such that $f(x) \not = 0$ whence $f
+\not \in I(V(\mathfrak{a})).$
+
+\section*{Ch 9}
+
+
+\subsection*{Ex 2}
+
+
+First of, every coefficient in $fg$ is a sum of terms of the form $a_i b_j$
+with $a_i \in c(f), b_j \in c(g)$ so $c(fg) \subseteq c(f)c(g)$. \\
+
+(the arguments in this paragraph uses lots of results from Prop 9.2 and the
+proof of it without reference.) For the other inclusion, first consider the
+case when $A$ is a discrete valuation ring. Let $x$ generate the maximal ideal
+$\mathfrak{m}$ in $A$, and let $v$ be the valuation on $A$ where $v(a) = k
+\Leftrightarrow (a) = (x^{k})$. Then $v(a + b) = \min(v(a) + v(b))$, and there
+exist $a_i, b_j$ such that $v(a_ib_j) = v(c(f)c(g))$. But $a_ib_j$ is a term in
+the sum which is the $i + j$-th coefficient of $fg$, so $v(c(fg)) \leq
+v(a_ib_j)$, and it follows that $c(fg) \supseteq (x^{v(a_ib_j)}) = c(f)c(g)$,
+whence $c(fg) = c(f)c(g)$. \\
+
+We give a quick lemma before we generalize to Dedekind domains.
+
+\begin{lemma}
+	Let $A$ be a Dedekind domain, $\mathfrak{m}$ a prime ideal and
+	$\mathfrak{a}$ an arbitrary ideal. Then the exponent of $\mathfrak{m}$ in
+	the prime ideal factorisation of $\mathfrak{a}$ is precisely the exponent
+	of $\mathfrak{a}^{e} = (\mathfrak{m}^{e})^{r}$ in the localization
+	$A_{\mathfrak{m}}$ (where we allow $r = 0$).
+\end{lemma}
+\begin{proof}
+	Let $\mathfrak{m}$ be a primary ideal belonging to $\mathfrak{a}$, and $r,
+	\mathfrak{b}$ be such that $\mathfrak{a} = \mathfrak{m}^{r}\mathfrak{b}$
+	and $r$ is maximal. It follows that $\mathfrak{b}$ isn't contained in
+	$\mathfrak{m}$. Then by 3.11.ii) and 3.11.iv), we have 
+	\begin{align*}
+		(A - \mathfrak{m})^{-1}\mathfrak{a}
+		&=
+		((A - \mathfrak{m})^{-1}\mathfrak{m})^{r}
+		(A - \mathfrak{m})^{-1}\mathfrak{b} \\
+		&=
+		((A - \mathfrak{m})^{-1}\mathfrak{m})^{r}
+	\end{align*}
+\end{proof}
+
+Now let $A$ be a Dedekind domain. Since Gauss's lemma holds
+in discrete valuation rings, we see that $c(f)c(g)$ extends to
+the same ideal as $c(fg)$ in every localization. It follows that 
+they have the same prime factorization, whence they must be equal.
+
+
+\subsection*{Ex 9}
+
+First we show that the problem statement is equivalent to the given sequence
+being exact. This follows from the fact that $x \in A$ is a solution to the
+equation system induced by $\phi(x) = (x_1 + \mathfrak{a}_1, \ldots, x_n +
+\mathfrak{a}_n)$, and if the sequence is exact, then any elements in
+$\bigoplus_{i=1}^{n} A/\mathfrak{a}_i$ are in in the image of $\phi$ precisely
+when they are in the kernel of $\psi$. $(x_1 + \mathfrak{a}_1, \ldots, x_n +
+\mathfrak{a}_n)$ is in the kernel of $\psi$ exactly when $x_i - x_j +
+\mathfrak{a}_i + \mathfrak{a}_j = 0$, and we see that the two formulations of
+the problem are equivalent. \\
+
+Prop 3.8 tells us that exactness is a local property (it also tells us that
+it's enough to localize at maximal ideals, so we may skip localizing at $(0)$),
+and since all localizations of a Dedekind domain are discrete valuation rings,
+we show that the sequence is exact when $A$ is a DVR. \\
+
+Since $A$ is a DVR, we may write $\mathfrak{a}_i = (a)^{k_i}$ where $a$
+generates the maximal ideal of $A$. It also follows that $\mathfrak{a}_i +
+\mathfrak{a}_j = (a)^{k_{ij}}$ where $k_{ij} = \max(k_i, k_j)$. Now, since all
+$x_i$ are in the equivalence class of $x$ in their corresponding quotient
+rings, we can write $\phi(x) = (x + (a)^{k_1}, \ldots, x + (a)^{k_n})$. Then we
+see that $\psi(\phi(x))$ consists of entries $x - x + (a)^{k_i} + (a)^{k_j} = x
+- x + (a)^{k_{ij}} = (a)^{k_{ij}}$, so $\im(\phi) \subseteq \ker(\psi)$. Now
+let $x_i \in A$ and $x' = (x_1 + (a)^{k_1}, \ldots, x_n + a^{k_n})$ be such
+that $x' \in \ker(\psi)$. Then $x_i - x_j \in (a)^{k_{ij}}$ for every $i \not =
+j$. Let $s \in [1..n]$ be such that $k_s$ is maximal. Then every single $x_i$
+is congruent to $x_s$ modulo $(a^{k_s})$, and since every other $(a)^{k_i}
+\supseteq (a)^{k_s}$, they are all congruent to $x_s$ modulo every $(a)^{k_i}$.
+Pick some representative $x \in x_s + (a)^{k_s}$. Then $\phi(x) = x'$, and we
+see that $\im(\phi) = \ker(\psi)$.
+
+
+\section*{Ch 10}
+
+\subsection*{Ex 9}
+
+We follow the hint. Let $\phi : A[x] \to (A/\mathfrak{m})[x]$ be the natural
+homomorphism and $g_0, h_0$ be elements in the preimages of $\overline{g},
+\overline{h}$. Then $\phi(g_0h_0) = \overline{f}$ by definition. Hence $g_0h_0
+- f \in \ker(\phi) = \mathfrak{m}A[x]$. Now inductively assume that we have
+$g_{k-1}, h_{k-1}$ in the preimages of $\overline{g}, \overline{h}$ such that
+$g_{k-1}h_{k-1} - f \in \mathfrak{m}^{k - 1}A[x]$. We will construct $g_k, h_k$
+with analogous properties and the same degrees. We will let $p, q \in A[x]$ be
+generic polynomials and set $g_k = g_{k-1} + p, h_k = h_{k - 1} + q$. We then
+want to set $p, q$ in such a way that
+\begin{align*}
+	f - g_kh_k &\in \mathfrak{m}^{k}A[x], \\
+	g_k - g_{k - 1} &\in \mathfrak{m}^{k - 1}A[x], \\
+	h_k - h_{k - 1} &\in \mathfrak{m}^{k - 1}A[x], \\
+	\deg(p) &\leq \deg(g_{k-1}), \\
+	\deg(q) &\leq \deg(h_{k-1}).
+\end{align*}
+If we can do this, then it follows that the $i$-th coefficients of $(g_j)$
+forms a Cauchy sequence in $A$, and since $A$ is $\mathfrak{m}$-adically
+complete, we have that there is some $g \in A[x]$ which is sent to $(g_j)$ by
+the natural map $A[x] \to \hat{A}[x]$. The first condition implies that
+$(g_j)(h_j) = f$ in $\hat{A}[x]$, and it follows that $gh = f$. We now turn our
+efforts to finding $p, q$ which fulfil the requirements above. \\
+
+Since $f - g_{k-1}h_{k-1} \in \mathfrak{m}^{k - 1}A[x]$, we can write
+$f - g_{k-1}h_{k-1} = \sum c_i x^{i}$ where $c_i \in \mathfrak{m}^{k-1}A[x]$.
+Our requirements can now be rewritten into
+\begin{align*}
+	pq + ph_k + qg_k - \sum c_i x^{i} &\in \mathfrak{m}^{k}A[x], \\
+	p &\in \mathfrak{m}^{k - 1}A[x], \\
+	q &\in \mathfrak{m}^{k - 1}A[x].
+\end{align*}
+Since $\phi(g_{k-1}), \phi(h_{k-1})$ are monic, they generate the trivial ideal
+$(1)$ in $(A/\mathfrak{m})[x]$, and it follows that there exist $a_i, b_i \in
+A[x]$ such that $a_i g_{k-1} + b_i h_{k - 1} = x_i + r_i$ where $r_i \in
+\mathfrak{m}A[x]$. Moreover, since $A/\mathfrak{m}$ is a field,
+it follows that $\deg(a_i) \leq \deg(h_{k-1}), \deg(b_i) \leq \deg(g_{k - 1})$.
+If we let $p = \sum b_i c_i , q = \sum a_i c_i$ we get that both $p, q \in
+\mathfrak{m}^{k-1}A[x]$, the degrees are sufficiently low, and
+\begin{align*}
+	pq + ph_k + qg_k - \sum c_i x^{i}
+	&=
+	pq + \sum c_i (
+		b_i h_k
+		+
+		a_i g_k
+		-
+		x_i
+	) \\
+	&=
+	pq + \sum c_i r_i \\
+	&\in
+	\mathfrak{m}^{(k - 1)^{2}}A[x] + \mathfrak{m}^{k-1}\mathfrak{m}A[x] \\
+	&=
+	\mathfrak{m}^{k}A[x],
+\end{align*}
+whence we are done.
+
+
+\section*{Ch 11}
+
+\subsection*{Ex 6}
+We begin with showing the inequality $1 + \dim A \leq \dim A[x]$. Let 
+\[
+	\mathfrak{p}_0 \subsetneq \mathfrak{p}_1 \subsetneq \ldots \subsetneq \mathfrak{p}_n
+\] 
+be a strictly increasing chain of prime ideals in $A$. Then let $\mathfrak{q}_i
+= \mathfrak{p}_i (x)$ be the ideal of polynomials in $A[x]$ with coefficients
+in $\mathfrak{p}_i$. Then every $\mathfrak{q}_i$ is a prime ideal, since
+$(A/\mathfrak{p}_i)[x] \cong A[x]/\mathfrak{q}_i$, and $A/\mathfrak{p}_i$ is a
+domain whence $(A/\mathfrak{p}_{i})[x] = A[x]/\mathfrak{q}_i$ is aswell. We can
+define $\mathfrak{q}_{n + 1} = (x) + \mathfrak{q}_n$ to be the ideal of
+polynomials where the constant coefficient is in $\mathfrak{p}_n$. This is
+prime, since it's the preimage of the prime ideal $\mathfrak{p}_n$ under the
+quotient map by $(x)$. Moreover, $\mathfrak{q}_{n + 1} \supsetneq
+\mathfrak{q}_n$ and we have a strictly increasing chain of length $n + 1$ in
+$A[x]$. It follows that $1 + \dim A \leq \dim A[x]$. \\
+
+We use the hint to show the second inequality. Let $\mathfrak{p}$ be a prime
+ideal in $A$. By Ex 3.21.iv), we have that the spectrum of the fiber of
+$\mathfrak{p}$, I.e the prime ideals in $A[x]$ which contract to
+$\mathfrak{p}$, is homeomorphic to the spectrum of $k(\mathfrak{p}) \otimes_A
+A(x)$ which in turn is isomorphic to $k(\mathfrak{p})[x]$, a field. Since
+$k(\mathfrak{p})[x]$ has two ideals, $(0), (x)$, it follows that there are
+exactly two prime ideals in $A[x]$ which contract back to $\mathfrak{p}$. It's
+easy to verify that these are given by $\mathfrak{p}A[x]$ (Ex 4.7.ii)), and
+$\mathfrak{p} + (x)$. \\
+
+Any chain of strict inclusions in $A[x]$ must contract back to a chain of (not
+necessarily strict) inclusions in $A$. It then follows that after removing
+duplicates in the contracted chain, it can never be more than half as short
+(modulo odd length chains in $A[x]$, for which we have to round up the length
+after halving it), and the second inequality follows.
+
+\subsection*{Ex 7}
+
+Let $\mathfrak{p}$ be a prime ideal of height $m$ in $A$. The hint claims that
+we can pick $a_1, a_2, \ldots, a_m \in A$ such that $\mathfrak{p}$ is a minimal
+ideal of $(a_1, a_2, \ldots, a_m)$. To see why, note that
+$\dim(A_{\mathfrak{p}}) = m$, so by the Dimension Theorem of Noetherian Local
+Rings, we have that there is some $\mathfrak{p}^{e}$-primary ideal
+$\mathfrak{q}$ in $A_{\mathfrak{p}}$ generated by $m$ elements $\mathfrak{q} =
+(\overline{a}_1, \overline{a}_2, \ldots, \overline{a}_m)$. When we contract
+back to $A$, this ideal is $\mathfrak{p}$-primary since inverse images of
+primary ideals are primary, and by Prop 1.8 \& 3.11.iv) we have 
+\begin{align*}
+	r(\mathfrak{q}^{c})
+	&=
+	r(\mathfrak{q})^{c} \\
+	&=
+	\mathfrak{p}^{ec} \\
+	&=
+	\mathfrak{p}.
+\end{align*}
+Moreover, given $a_i \in f^{-1}(\overline{a}_i)$, we have that
+$\mathfrak{q}^{c} = (a_1, a_2, \ldots, a_m)$ since 
+\[
+	a_i \in f^{-1}(\overline{a}_i) \subset f^{-1}(\mathfrak{q}) = \mathfrak{q}^{c} \subseteq \mathfrak{p},
+\] 
+so no element of $A - \mathfrak{p}$ is a zero-divisor in $A/(a_1, a_2, \ldots,
+a_m)$ whence $(a_1, a_2, \ldots, a_m)$ is a contracted ideal. We've shown the
+that the first statement proposed in the hint holds. Denote $\mathfrak{a} =
+\mathfrak{q}^{c}$. \\
+
+Continuing along with the hint, Ex 4.7.iv) tells us that $\mathfrak{p}A[x]$ is
+a minimal ideal of $\mathfrak{a}A[x]$, so the height of $\mathfrak{p}A[x]$ is
+$\leq m$ by Corollary 11.16 (the $a_i$ generate $\mathfrak{a}A[x]$ as well). It
+follows that $\mathfrak{p}A[x]$ has height $m$. Suppose that we picked
+$\mathfrak{p}$ to be a maximal ideal with maximal height in $A$. Then the only
+prime ideal in $A[x]$ containing $\mathfrak{p}A[x]$ is $\mathfrak{p} + (x)$,
+since we saw in Exercise 6 that this is the only other prime ideal in $A[x]$
+which contracts to $\mathfrak{p}$, and $A[x]/(\mathfrak{p} + (x)) =
+A/\mathfrak{p}$ is a field, so $\mathfrak{p} + (x)$ is maximal. It follows that
+the first bound in Exercise 6 is tight in the Noetherian case and we are done.
+
+
+\end{document}
