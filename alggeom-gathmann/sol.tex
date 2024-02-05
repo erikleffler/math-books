@@ -1925,4 +1925,171 @@ other inclusion follows similarly, hence $C(X \cap Y) = C(X) \cap C(Y)$ has
 dimension at least $1$, so it's at least a line in affine space, and least a
 point in projective space.
 
+\subsection*{Ex 6.36}
+
+In the real plane, our surface is given by the graph $x_2 = \pm
+\sqrt{\frac{1}{x_1} + x_1^{2}}$ when $x_1 \in \R \setminus (-1, 0]$. For large
+$x_1$, we have two asymptotes where $x_2 \to x_1$ and $x_2 \to -x_1$. Hence we
+expect two points at infinity, namely $a = [0 : 1 : 1], b = [0 : -1 : 1]$. \\
+
+When $x_1$ goes to $0$ from the positive side we see that $x_2 \to \pm
+\frac{1}{\sqrt{x_1}} \to \pm \infty$. So we might also expect the points at
+infinity $c = [0 : 0 : 1], d = [0 : 0 : -1]$. However, they are not in the
+closure as we can see bellow. Perhaps because we don't have any points on the
+curve with $x_1 = 0$? \\
+
+We see that $a, b$ are the only points at infinity, since $\overline{X} =
+V_p(x_1^{3} - x_1x_2^2 + x_0^{3})$, which when intersected with $V_p(x_0)$
+becomes $V_p(x_1^{2} - x_2^{2}) = V_p((x_1 - x_2)(x_2 + x_1))$, and consists of
+$a, b$ exactly. 
+
+
+\subsection*{Ex 7.3}
+
+\subsubsection*{(a)}
+
+Let $\PP{1}$ be the projective line as introduced in Example 5.5 (a), and
+$\PP{1'}$ be the projective line as given in Definition 6.1, using Notation
+6.2, with structure sheaf as in Definition 7.2. We will show that the two are
+isomorphic. \\
+
+As a set, we have that $\PP{1} = X_0 \coprod X_1 / \sim$ where $X_0 = X_1 =
+\AA{1}$ and $x_0 \sim x_1$ for $x_0 \in X_0, x_1 \in X_1$ whenever $x_0, x_1
+\not = 0$ and $x_0 = 1/x_1$. \\ 
+
+We claim that the function $f : \PP{1} \to \PP{1'}$ which sends $f(x_0) = [x_0 :
+1], x_0 \in X_0$ and $f(x_1) = [1 : x_0], x_1 \in X_1$ is well-defined and
+bijective. To show that it's well-defined, let $x_0 \sim x_1$. Then $x_0, x_1
+\not = 0$ and
+\[
+	f(x_1) = [1 : x_1] = 1/x_1 [1 : x_1] = [1/x_1 : 1] = [x_0 : 1] = f(x_0).
+\]
+Now suppose that $f(x_0) = f(x_1)$. This is impossible whenever either $x_0 =
+0$ or $x_1 = 0$, so we have $x_0, x_1 \not = 0$. Then
+\[
+	[1 : x_1] = [x_0 : 1] = [1 : 1/x_0]
+\]
+hence $x_1 = 1/x_0$ and $x_0 \sim x_1$. Finally, let $x = [x_0 : x_1] \in
+\PP{1'}$. If $x_0 = 0$, then $x = f(0_0)$, otherwise $x = f(x_1/x_0)$ with
+$x_1/x_0 \in X_1$. Hence $f$ is a bijective function. \\
+
+Now suppose that $Z \subseteq \PP{1}$ is a closed set. Then $Z_0 = Z \cap X_0,
+Z_1 = Z \cap X_1$ are both closed in $\AA{1}$. Let $J_0 = I(Z_0), J_1 =
+I(Z_1)$. Then let $g \in J_1$ and $x_1 \in Z_1$. We have that $g^{h}([1 : x_1])
+= g(x_1) = 0$, hence $g^{h}$ vanishes on $f(Z_1)$. Similarly, now let
+$g^{h} \in J_1^{h}$ and $[x_0:x_1] \in V_p(J_0^{h})$. First of, every term but
+the leading term of $g^{h}$ has a factor $x_0$, hence $g^{h}([0 : 1]) \not = 0$
+and $x_0 \not = 0$. Thus we can assume $x_0 = 1$. Now, $(g^{h})^{i} = g$, so
+$g(x_1) = g^{hi}(x_1) = g^{h}([1 : x_1]) = 0$. It follows that $f(Z_k) =
+V_p(J_k^{h})$ for $k = 0,1$, and $f(Z) = V_p(J_0^{h}) \cup V_p(J_1)^{h}$
+is closed. \\
+
+Now let $Z \subseteq \PP{1'}$ be closed, and suppose $Z = V_p(J)$. Then let $g
+\in J$, $[1 : x_1] \in Z \cap U_0$. Before we move on, we need some new
+notation. Let $g^{i_0} = g(1, x_1)$ and $g^{i_1} = g(x_0, 1)$ be the
+dehomogenizations onto each coordinate. Then $0 = g([1:x_1]) = g^{i_0}(x_1)$ so
+$f^{-1}(Z \cap U_0) \subseteq V_a(J^{i})$. Now suppose that $x_1 \in
+V_a(J^{i_0})$. Then again, $g([1:x_1]) = g^{i_0}(x_1) = 0$, so $f(x_1) \in Z
+\cap U_0$ and $f^{-1}(Z \cap U_0) = V_a(J^{i_0})$. We get
+\[
+	V_a(J^{i_0}) \cup V_a(J^{i_1}) = f^{-1}(Z \cap U_0) \cup f^{-1}(Z \cap U_1) = f^{-1}(Z).
+\]
+Now, let $i_0, i_1$ be the injections $X_1, X_2 \to \PP{1}$. Then,
+$i_1^{-1}(V_a(J^{i_0}))$ is closed in $X_1$, as it $i_1^{-1}$ leaves the $x_1$
+coordinates unchanged and it's still the vanishing set of $J^{i_0}$. It follows
+from the lemma bellow that $i_1^{-1}(V_a(J^{i_1}))$ is closed as well.
+
+\begin{lemma}
+	Let $X_0, X_1, i_0, i_1$ be as in the gluing construction of $\PP{1}$, and
+	$Z \subseteq X_0$ be a closed set. Then $i_1^{-1}(i_0(X_0))$ is closed in
+	$X_1$.
+\end{lemma}
+\begin{proof}
+	Let $f \in V(X_0)$. Then define $\hat{f}(x) = x^{\deg(f)}f(1/x) \in \K[x]$.
+	We have that $V(\hat{f}) \setminus \{0\} = V(\hat{f}(x)) \cap
+	i_1^{-1}(i_0(X_0)) = i_1^{-1}(i_0(V(f)))$, and $f(0) \not = 0$ since $f$
+	has a constant term which is equal to the leading coefficient of $f$. It
+	follows that $V(\hat{f}) = i_1^{-1}(i_0(V(f)))$, and by picking generators
+	of $X_0$, hatting them and intersecting their vanishing sets, we see that
+	$i_1^{-1}(i_0(X_0))$ is closed in $X_1$.
+\end{proof}
+
+It follows that both $V_a(J^{i_k}), k=1,2$ are closed in both $X_k, k=1,2$, and
+$f^{-1}(Z)$ is closed in $\PP{1}$. Hence $f : \PP{1} \to \PP{1'}$ is continuous. \\
+
+It remains to show that $f, f^{-1}$ are morphisms of ringed spaces. So,
+suppose that $g$ is regular on $\PP{1'}$. Then $g$ is locally the quotient
+of two homogeneous polynomials of the same degree, and 
+\[
+	i_0^*(f^*(g)) = g(x_0, 1/x_0)
+\]
+is also locally a quotient of polynomials, hence regular on $X_0$. Similarly,
+for $X_1$ as well. As $f^*(g)$ is regular on both $X_0$ and $X_1$, it's regular
+on $\PP{1}$. \\
+
+Now suppose that $g$ is regular on $\PP{1}$. This, by definition, is the case
+exactly when both $g_0 = i_0^*(g), g_1 = i_1^*(g)$ are regular. Let $f_0 = f
+\circ i_0, f_1 = f \circ i_1$. Then $\im(f_0) = U_1$, (where $U_1 = \{[x_0 : 1]
+: x_0 \in \AA{1}\}$). \\
+
+We have that
+\[
+	\restr{g \circ f^{-1}}{U_1} 
+	=
+	g \circ i_0 \circ i_0^{-1} \circ \restr{f^{-1}}{U_1} 
+	= 
+	g_0 \circ f_0^{-1},
+\]
+so by the gluing property of sheaves, we'll be done if we can show that $g_0
+\circ f_0^{-1} : U_1 \to \AA{1}$ is regular. Locally, we can write $g_0 =
+p_0/q_0$ as a quotient of polynomials, which in turn is the restriction to
+$U_1$ of function which is locally a quotient of homogeneous polynomials
+$\Kx[x_1,x_2]$ of the same degree via
+\[
+	g_0 \circ f_0^{-1}([x_0 : 1]) 
+	= 
+	g_0(x_0) 
+	= 
+	\frac{p_0(x_0)}{q_0(x_0)}
+	= 
+	\left(\frac{p_0^{h}}{q_0^{h}}x_1^{\deg q_0 - \deg p_0}\right)([x_0 : 1]),
+\]
+and we are done.
+
+\subsubsection*{(b)}
+
+Let $\mathcal{O}_{X}$ be the structure sheaf defined as a closed subvariety via
+Construction 5.10 (b), and $\mathcal{O}_X'$ defined as in Definition 7.1. Let
+$U \subseteq X$ be an open set and suppose $f \in \mathcal{O}_X(U)$. Then given
+some $a \in U$, by Construction 5.10 (b), we have some $V$ open in $\Pn$
+containing $a$, and $g \in \mathcal{O}_{\Pn}(V)$ such that $\restr{f}{V} =
+\restr{g}{U}$, whence $f$ can be written as a quotient of two homogeneous
+polynomials on $U \cap V \ni a$. Hence $f \in \mathcal{O}_X'(U)$. \\
+
+Now suppose that $f \in \mathcal{O}_X'(U)$, and let $a \in U$. Then we have
+some open $U_a \subseteq U$ containing $a$ such that $f$ can be written as a
+quotient of two homogeneous polynomials of the same degree on $U_a$. Hence
+$\restr{f}{U_a} \in \mathcal{O}_{\Pn}(U_a)$, and $f$ satisfies Construction
+5.10 b with $V = U_a, \Psi = \restr{f}{U_a}$ for all $a \in U$.
+
+\section*{Fleshing out the proof of Lemma 7.4}
+
+First note that $f$ is continuous, since if $V(g_1, g_2, \ldots, g_m)$ is a
+closed set in $\Pm$, then
+\[
+	f^{-1}(V(g_1, g_2, \ldots, g_m))
+	=
+	V(g_1 \circ f, g_2 \circ f, \ldots, g_m \circ f)
+\] 
+is closed in $X$, since compositions of quotients of homogeneous polynomials of
+the same degree are again quotients of homogeneous polynomials of the same
+degree. It follows that the $U_i$ are open in $\Pn$. \\
+
+The next problem we deal with is how to apply Proposition 4.7 in the end of the
+proof. For this we need $U_i$ affine, and I can't see why this is known.
+Instead, define $V_i' \subset \Pn$ to be an affine cover of $\Pn$, just as we
+defined $V_i$ to be an affine cover of $\Pm$. Then $U_i \cap V_j'$ is closed in
+every $V_j'$, hence affine, and we can apply Proposition 4.7 here and lift back
+up to $U_i$ with Lemma 4.6 whence $\restr{f}{U_i}$ is a morphism.
+
 \end{document}
