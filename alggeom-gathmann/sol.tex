@@ -73,6 +73,7 @@ showstringspaces=false
 
 \newcommand{\x}{\bm{x}}
 \newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
 
 \renewcommand{\AA}[1]{\A^{#1}}
 \newcommand{\An}{\A^n}
@@ -95,6 +96,7 @@ showstringspaces=false
 \newcommand{\ann}{\text{ann}}
 \newcommand{\im}{\text{im}}
 \newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
 
 \newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
 \newcommand{\Set}{\catname{Set}}
@@ -2072,7 +2074,7 @@ quotient of two homogeneous polynomials of the same degree on $U_a$. Hence
 $\restr{f}{U_a} \in \mathcal{O}_{\Pn}(U_a)$, and $f$ satisfies Construction
 5.10 b with $V = U_a, \Psi = \restr{f}{U_a}$ for all $a \in U$.
 
-\section*{Fleshing out the proof of Lemma 7.4}
+\subsection*{Fleshing out the proof of Lemma 7.4}
 
 First note that $f$ is continuous, since if $V(g_1, g_2, \ldots, g_m)$ is a
 closed set in $\Pm$, then
@@ -2091,5 +2093,508 @@ Instead, define $V_i' \subset \Pn$ to be an affine cover of $\Pn$, just as we
 defined $V_i$ to be an affine cover of $\Pm$. Then $U_i \cap V_j'$ is closed in
 every $V_j'$, hence affine, and we can apply Proposition 4.7 here and lift back
 up to $U_i$ with Lemma 4.6 whence $\restr{f}{U_i}$ is a morphism.
+
+\subsection*{Ex 7.6}
+
+By Example 7.5 (c), we have that $X = V_p(x_0^{2}) \subset \PP{2}$ is
+isomorphic to $Y = \PP{1}$, meanwhile $S(Y) = \K[x] \not \cong \K[x_0,
+x_1]/(x_0^{2}) = S(X)$ since $S(X)$ has a non-trivial element
+$\overline{x_0}$ of order $2$, whilst $S(Y)$ doesn't.
+
+\subsection*{Ex 7.8}
+
+We solve Exercise 7.8 before 7.7, since we use 7.8 to solve 7.7. \\
+
+
+Let $U_i$ be the standard affine cover of $\PP{n}$, let $V_{i, j}$ be an affine
+cover of $f(U_i)$ for all $i$, and finally let $\hat{U}_{i, j} = f^{-1}(V_{i,
+j})$. Then $\hat{U}_{i, j}$ is an open cover of the affine open set $U_i$,
+hence all $\hat{U}_{i, j}$ are affine as well. Regular functions on
+$\hat{U}_{i, j}$ are quotients of polynomials in the $x_k, k \not = i$, and it
+follows from Proposition 4.XX that the restriction of $f$ to $\hat{U}_{i, j}$
+is locally quotients such of polynomials in each coordinate. We can pass from
+the affine embedding of $\hat{U}_{i, j}$ to the embedding in $\PP{n}$ via
+tacking on the $x_k = 1$ coordinate to the tuple. When we do this, quotients of
+polynomials in $x_k, k \not = i$ turn into their homogenised versions via
+multiplying each term by a power of $x_k$ such that every term has the same
+degree. Since the numerators are non-zero, and $\PP{n}$ is invariant to
+multiplication, we can clear all denominators by multiplication with their
+product, and what remains is a function which is locally a homogeneous
+polynomial in each coordinate. \\
+
+I.e we have that for every $a \in \PP{n}$, there is some open $V_a \ni a$ such
+that we can write $\restr{f}{V_a} = (f_1^a, f_2^a, \ldots, f_m^a)$ with all
+$f_i^a$ homogeneous. We have $\PP{n}$ compact, so we can pick a finite subcover
+$V_a, a \in A$ with $|A|$ finite. Since only the zero polynomial is zero on any
+open set, we have that $f$ admits the same representation as homogeneous
+polynomials $f_i^a = f_i^b$ on $V_a, V_b$ whenever $V_a \cap V_b \not =
+\emptyset$. But since $\PP{n}$ is connected and $|A|$ is finite, we can use
+induction to conclude that $f_i^a = f_i^b$ for all $a, b \in A$, and we can
+write $f = (f_1, f_2, \ldots, f_m)$ on all of $\PP{n}$.
+
+\subsection*{Ex 7.7}
+\subsubsection*{(a)}
+
+The statement of the exercise is false. Suppose that $n = m = 2$, and $X =
+V(x_0)$, and let $f : \PP{2} \to \PP{2}$ be given by $f([x_0 : x_1 : x_2]) = [1
+: 1 :1]$. As $[1 : 1 : 1] \not \in X$, we have $f^{-1}(X) = \emptyset$. \\
+
+We need the additional statement that $X \cap \im(f) \not = \emptyset$,
+or equivalently that $f^{-1}(X) \not = \emptyset$. \\
+
+We use Exercise 7.8 to solve this. \\
+
+By Remark 6.33, we know that $I(X) = (g)$ for some homogeneous polynomial $g$.
+Then
+\[
+	f^{-1}(X) 
+	=  
+	f^{-1}(V_p(g)) 
+	=  
+	f^{-1}(g^{-1}(0)) 
+	= 
+	(g \circ f)^{-1}(0)
+	=
+	V_p(g \circ f). 
+\]
+Let $h = g \circ f$. Then $h$ is a homogeneous polynomial since $f$ is (by
+Exercise 7.8). Moreover, as $f^{-1}(X) = V_p(h) \not = \emptyset$, we see that
+$h$ isn't a constant. \\
+
+The irreducible components of $V_p(h)$ correspond to the principal ideals of
+the prime factors of $h$. Any such ideal is prime, and Krull's Principal Ideal
+Theorem tells us that their heights are at most one, hence the corresponding
+varieties have dimension at least $n - 1$. \\
+
+\subsubsection*{(b)}
+
+This will follow from Exercise 7.8 after we prove the following lemma.
+
+\begin{lemma}
+	Let $n > m$ and $f_1, f_2, \ldots, f_m \in \KP{x}{n}$ be $m$ polynomials in
+	$n$ variables. Then $V_a(f_1, f_2, \ldots, f_n)$ is either empty or infinite.
+\end{lemma}
+\begin{proof}
+	Let $J = I_a(V_a(f_1, f_2, \ldots, f_m)) = (f_1, f_2, \ldots, f_m)$.
+	Suppose that the $f_i$ share some root. Then $J$ is a proper ideal, and
+	applying Krull's height theorem yields that every minimal ideal of $J$ has
+	height at most $m$. Minimal prime ideals of $J$ correspond to irreducible
+	components of $V(J)$, so Lemma 2.27 (b) tells us that the dimension of any
+	irreducible component of $V_a(f_1, f_2, \ldots, f_m)$ is at least $n - m
+	\geq 1$, whence $V_a(f_1, f_2, \ldots, f_m)$ is infinite as all finite
+	affine sets have dimension $0$.
+\end{proof}
+
+Now, Exercise 7.8 tells us that any morphism $f : \PP{n} \to \PP{m}$ is of the
+form $f = [f_1 : f_2 : \ldots : f_m ]$ where all $f_i$ have the same degree
+$d$. Suppose towards a contradiction that such a morphism where $d \geq 1$
+exist. Then since the $f_i$ are homogeneous, we have $f_i(0) = 0$ for all
+$f_i$. Hence the lemma tells us that the $f_i$ will always have a common
+non-zero root as well, which would yield an ill-defined morphism $f$ since $[0
+: 0 : \ldots : 0]$ isn't a well defined projective point. Hence $\deg f_i = 0$
+and $f$ must be constant. 
+
+\subsubsection*{(c)}
+
+We have non-constant automorphisms $\PP{n + m} \to \PP{n + m}$ by Example 7.5
+(a). There are no non-constant morphisms $\PP{n + m} \to \PP{n}, \PP{n + m} \to
+\PP{m}$ by Exercise 7.7 (b), hence no non-constant morphisms $\PP{n + m} \to
+\PP{n} \times \PP{m}$.
+
+\subsection*{Ex 7.14}
+
+Let $a = [a_0 : a_1 : a_2], b = [b_0 : b_1 : b_2]$ be two points
+on the cubic curve $X$. A line $L$ through $a, b$ can be parameterised 
+as 
+\[
+	L = \{ [a_0 s + b_0 t : a_1 s + b_1 t : a_2 s + b_2 t] : [s : t] \in \PP{1} \}.
+\] 
+Let $h_{a, b} : \PP{1} \to L$ be the parameterisation above. We know that $X$
+is the vanishing set of a homogeneous cubic in three variables. Name it $g$.
+Then let $g_{a, b} = g \circ h_{a, b} \in \K[s, t]$. This is again a
+homogeneous cubic, but in two variables. We already know that $g_{a, b}$
+vanishes on $[0 : 1], [1 : 0]$, hence it must lie in the ideals $(s), (t)$ and
+it follows that we can write $g_{a, b} = st(As + Bt)$ where not both $A$ and
+$B$ are zero. We now see that the remaining root of $g_{a, b}$, namely $[B :
+-A]$, is given by homogeneous polynomials of the same degree in $a, b$,
+\begin{align*}
+	[B:-A]
+	=&
+	[2B : -2A] \\
+	=&
+	[g_{a, b}(1, 1) - g_{a, b}(-1, 1) : -g_{a, b}(1, 1) + g_{a, b}(1, -1)\big] \\
+	=&
+	[g_{a, b}(1, 1) + g_{a, b}(1, -1) : -g_{a, b}(1, 1) + g_{a, b}(1, -1)\big] \\
+	=& 
+	[g(a_0 + b_0, a_1 + b_1, a_2 + b_2) + g(a_0 - b_0, a_1 - b_1, a_2 - b_2) \\
+	 &: -g(a_0 + b_0, a_1 + b_1, a_2 + b_2) + g(a_0 - b_0, a_1 - b_1, a_2 - b_2)].
+\end{align*} 
+As $a \not = b$, we have $h_{a, b}$ bijective, and it follows that the
+remaining root of $g$ is given by $f(a, b) = h_{a, b}([B:-A])$, which we can
+write as
+\[
+	f(a, b) = [f_0(a, b) : f_1(a, b) : f_2(a, b)]
+\]
+where
+\begin{align*}
+	f_0([a_0 : a_1 : a_2], [b_0 : b_1 : b_2])
+	=& 
+		a_0 (g(a_0 + b_0, a_1 + b_1, a_2 + b_2) + g(a_0 - b_0, a_1 - b_1, a_2 - b_2)) \\
+	 &+ b_0 (-g(a_0 + b_0, a_1 + b_1, a_2 + b_2) + g(a_0 - b_0, a_1 - b_1, a_2 - b_2)) \\
+	=& 
+		(a_0 - b_0) g(a_0 + b_0, a_1 + b_1, a_2 + b_2) \\
+	 &+ (a_0 + b_0) g(a_0 - b_0, a_1 - b_1, a_2 - b_2),
+\end{align*}
+and similarly
+\begin{align*}
+	f_1([a_0 : a_1 : a_2], [b_0 : b_1 : b_2])
+	=& 
+		(a_1 - b_1) g(a_0 + b_0, a_1 + b_1, a_2 + b_2) \\
+	 &+ (a_1 + b_1) g(a_0 - b_0, a_1 - b_1, a_2 - b_2), \\
+	f_2([a_0 : a_1 : a_2], [b_0 : b_1 : b_2])
+	=& 
+		(a_2 - b_2) g(a_0 + b_0, a_1 + b_1, a_2 + b_2) \\
+	 &+ (a_2 + b_2) g(a_0 - b_0, a_1 - b_1, a_2 - b_2).
+\end{align*}
+Now, the $f_i$ will only simultaneously vanish on $\Delta_X$, since we have
+that at least one of $A, B$ non-zero, and $f_i = a_i B - b_i A$, so $f_0(a, b) =
+f_1(a, b) = f_2(a, b) = 0$ would imply $B [a_0 : a_1 : a_2] = A [b_0 : b_1 :
+b_2]$ hence $a = b$. It follows that $f$ is a well-defined function on $(X
+\times X) \setminus \Delta_X$. It's a morphism by the following lemma.
+
+\begin{lemma}
+	Let $X \subseteq \PP{m} \times \PP{n}$ be a subvariety, and $f : X \to
+	\PP{k}$ be a function $f = [f_1 : f_2 : \ldots : f_k]$ in which each $f_i$
+	is a homogeneous polynomial in the coordinates of $[x_1 : x_2 : \ldots :
+	x_m] \in \PP{m}$ and $[y_1 : y_2 : \ldots : y_n] \in \PP{n}$, $f_i(x_1,
+	x_2, \ldots, x_m, y_1, y_2 \ldots y_n)$ such that all $f_i$ have degree
+	$d$. Then $f$ is a morphism of varieties.
+\end{lemma}
+\begin{proof}
+	Later TODO Todo todo
+\end{proof}
+
+Now consider the set $V_1 \subset (X \times X) \setminus \Delta_X$ given by
+$(a, b)$ such that $f(a, b) = a$. Then $V_1$ is closed by Prop 5.20 (b), since
+it's the subset where $\pi_1 = f$. Similarly, if $V_2$ is the set of $(a, b)$
+where $f(a, b) = b$, it's closed as well. It now follows that $U$ is open since
+\[
+	U = (X \times X) \setminus (\Delta_X \cup V_1 \cup V_2).
+\]
+
+\subsection*{Ex 7.15}
+
+We proceed as suggested in the hint. Let $X = \PP{1} \times \PP{1}$ and $Y =
+\PP{1} \times \{[1 : 0]\} \subset X$ be a hypersurface. Let $f : X \to \PP{3},
+f([x_0, x_1] : [y_0 : y_1]) = [x_0y_0 : x_0y_1 : x_1y_0 : x_1y_1]$ be the Segre
+embedding of $X$. Then $Y$ is mapped to $f(Y) = \{[x_0 : 0 : x_1 : 0] : [x_0 :
+x_1] \in \PP{1} \}$. In $\PP{3}$, we have that $f(X) = V_p(z_0z_3 - z_1z_2)$
+and $f(Y) = (V_p)_{f(X)}(z_1, z_3)$. Moreover, $(I_p)_{f(X)}(f(Y)) =
+(\overline{z}_1, \overline{z}_3)$ can't be generated by fewer polynomials.
+Indeed, suppose towards a contradiction that we have some homogeneous
+$\overline{g} \in S(f(X))$ such that $(I_p)_{f(X)}(f(Y)) = (\overline{g})$.
+Then $\overline{g} | \overline{z}_1$ and $\overline{g} | \overline{z}_3$. But
+both $\overline{z}_1, \overline{z}_3$ are irreducible, as they are degree $1$
+elements in the graded ring $S(f(X))$, hence no such $\overline{g}$ exists. 
+
+
+\subsection*{Ex 7.28}
+
+\subsubsection*{(a)}
+
+Let $f : \PP{n} \to X \subset \PP{N}$ be the degree $d$ embedding of $\PP{n}$,
+and let $z_{k_0, k_1, \ldots, k_n} = z_{\bm{k}}$ be the coordinate of
+$f(x_0^{k_0}x_1^{k_1} \ldots x_n^{k_n})$ where $\sum k_i = d$. Let $J$ be the
+ideal generated of all polynomials of the form $z_{\bm{k}}z_{\bm{k}'} -
+z_{\bm{r}}z_{\bm{r}'}$ where $\bm{k} + \bm{k}' = \bm{r} + \bm{r}'$, and write
+$X' = V(J)$. Then $X \subseteq X'$ by definition of the Veronese embedding. \\ 
+
+
+Now suppose that $x \in X'$. Then some coordinate of $x$ is non-zero, and we
+can assume that $x_{d, 0, 0, \ldots, 0} = 1$. Let $\bm{e}_i$ be the $n +
+1$-tuple with a $1$ at index $i$ and $0$ everywhere else, and consider $y \in
+\PP{n}$ where $y_0 = 1$ and $y_i = x_{(d - 1)\bm{e}_0 + \bm{e}_i} = x_{d - 1,
+0, \ldots, 0, 1, 0, \ldots 0}$. Then
+\begin{align*}
+	f(y)_{\bm{k}}
+	&=
+	y_0^{k_0}
+	\prod_{i = 1}^{n}
+	y_i^{k_i} \\
+	&=
+	x_{d \bm{e}_0}
+	\prod_{i = 1}^{n}
+	x_{(d - 1)\bm{e}_0 + \bm{e}_i}^{k_i} \\
+	&=
+	x_{d \bm{e}_0}
+	\prod_{i = 1}^{n}
+	x_{(d - k_i)\bm{e}_0 + k_i\bm{e}_i}
+	x_{d\bm{e}_0}^{k_i - 1} \\
+	&=
+	x_{d \bm{e}_0}
+	\prod_{i = 1}^{n}
+	x_{(d - k_i)\bm{e}_0 + k_i\bm{e}_i} \\
+	&=
+	x_{\bm{k}}
+	x_{d \bm{e}_0}^{n} \\
+	&=
+	x_{\bm{k}}
+\end{align*}
+hence $f(y) = x$ and $x \in \im(f) = X$, $X = X'$.
+
+\subsubsection*{(b)}
+
+Let $Y \subset \PP{n}$ be a projective variety, and $g_1, g_2, \ldots, g_m$ be
+homogeneous polynomials of the same degree $2d$ which generate an ideal $J$
+such that $V(J) = Y$. (such $f_i$ exist by Remark 6.XX). Then let $f : \PP{n} \to
+X \subset \PP{N}$ be the degree $d$ Veronese embedding, and $Y' = f(Y)$. \\
+
+
+Let $I_d$ denote $n + 1$-tuples whose sum is $d$. Since each $g_i$
+is homogeneous of degree $2d$, it follows that we can write
+\[
+	g_i = \sum_{\bm{k}, \bm{r} \in I_d} a_{i, \bm{k}, \bm{r}} x^{\bm{k}}x^{\bm{r}}. 
+\] 
+Note that this description is not unique, indeed there are multiple tuples
+$\bm{k}, \bm{r}$ which sum to the same tuple, which means that descriptions of
+the form above are unique only up to the sum of all $a_{i, \bm{k}, \bm{r}}$ with
+the same $\bm{k} + \bm{r}$. We shall not worry about this though, and simply
+pick some set of $a_{i, \bm{k}, \bm{r}}$ such that the equation above holds. 
+Now let
+\[
+	h_i = \sum_{\bm{k}, \bm{r} \in I_d} a_{i, \bm{k}, \bm{r}} z_{\bm{k}}z_{\bm{r}} \in S(X).
+\]
+Then since $h_i = g_i \circ f$, it follows that $y \in Y$ precisely when $f(y)
+\in V_X(h_1, h_2, \ldots, h_m)$. We showed in part (a) that $X$ is the zero
+locust of quadratic forms in $\PP{N}$, and since each $h_i$ is quadratic as
+well, it now follows that $Y'$ also is the zero locust of quadratic forms in
+$\PP{N}$.
+
+
+\subsection*{Ex 7.30}
+
+\subsubsection*{(a)}
+
+Let $f = ax_0^{2} + bx_0x_1 + cx_0x_2 + dx_1^{2} + ex_1x_2 + fx_2^{2}$ be a
+quadratic form on $\PP{2}$. Scaling the polynomial $f$ by a non-zero constant
+does not change it's vanishing set, hence each quadric curve in $\PP{2}$
+defined by a polynomial $f$ like above can be identified with the point
+$[a:b:c:d:e:f] \in \PP{5}$. More over, this correspondence is bijective, since
+if $V(f), V(g)$ are identified with the same point in $\PP{5}$, we have $f =
+\lambda g$ hence $V(f) = V(g)$. \\
+
+Under this correspondence, the set of conics in $\PP{2}$ are identified with
+the subset of points $[a:b:c:d:e:f] \in \PP{5}$ such that $f = ax_0^{2} +
+bx_0x_1 + cx_0x_2 + dx_1^{2} + ex_1x_2 + fx_2^{2}$ is an irreducible
+polynomial. This is the $U$ described in the exercise. We will show that the
+complement of $U$, $V = \PP{5} \setminus U$ is closed. \\
+
+Suppose instead that $f = ax_0^{2} +
+bx_0x_1 + cx_0x_2 + dx_1^{2} + ex_1x_2 + fx_2^{2}$
+is reducible. Homogeneous polynomials factor into homogeneous polynomials,
+and it follows that we can write
+\[
+	f 
+	= 
+	(Ax_0 + Bx_1 + Cx_2)(Dx_0 + Ex_1 + Fx_2)
+\]
+whence 
+\begin{align*}
+	a &= AD \\
+	b &= AE + BD \\
+	c &= AF + CD \\
+	d &= BE \\
+	e &= BF + CE \\
+	f &= CF,
+\end{align*}
+which gives us a parameterisation of $V$ in terms of $\left([A:B:C], [D:E:F]\right) \in
+\PP{2} \times \PP{2}$. \\
+
+Now let $s : \PP{2} \times \PP{2} \to X \subset \PP{8}$ be the Segre embedding,
+and $g : X \to \PP{5}$ be the map
+\begin{align*}
+	&g([z_{0,0}:z_{0,1}:z_{0,2}:z_{1,0}:z_{1,1}:z_{1,2}:z_{2,0}:z_{2,1}:z_{2,2}]) \\
+	&=
+	[z_{0,0}:z_{0,1}+z_{1,0}:z_{0,2}+z_{2,0}:z_{1,1}:z_{1,2}+z_{2,1}:z_{2,2}].
+\end{align*}
+$g$ is a linear automorphism followed by a projection, hence it's a closed
+morphism by Proposition 7.17. Since $s$ is an isomorphism as well, we have that
+$g \circ s$ is a closed morphism and $\im(g \circ s)$ is closed. But $\im(g
+\circ s)$ is parameterised in exactly the same way as $V$, hence $V$ is closed
+and $U$ is open.
+
+\subsubsection*{(b)}
+
+Let $A=[A_0:A_1:A_2]$ be a point in $\PP{2}$. It follows immediately from our
+solution to (a), that the points $[a:b:c:d:e:f] \in U$ which correspond to
+conics which pass through $A$ are precisely those points which satisfy the
+linear equation $aA_0^{2} + bA_0A_1 + cA_0A_2 + dA_1^{2} + eA_1A_2 + fA_2^{2} =
+0$. \\
+
+\subsubsection*{(c)}
+
+We introduce some new language to deal with this exercise. 
+
+\begin{definition}
+	A set of $k > n$ points $p_i \in \PP{n}$ are said to be in general position
+	if no hyperplane of $\PP{n}$ contains a subset of $n + 1$ points $p_i$. I.e
+	if no linear homogeneous polynomial $f \in S(\PP{n})$ annihilates all
+	$p_i$.
+\end{definition}
+
+So, in our case, we have $5$ points $p_1,p_2,p_3,p_4,p_5 \in \PP{2}$
+which are in general position. 
+
+\begin{lemma}
+	Let	$v_d : \PP{n} \to \PP{N}$ be the veronese embedding. Then any set of
+	points in general position in $\PP{n}$ are mapped to a set of points in
+	general position in $\PP{N}$ under $v_d$.
+\end{lemma}
+\begin{proof}
+	Let $p_i, i \in [1..k] \in \PP{N}, k > N$ be a set of points, and suppose
+	that $f \in S(\PP{N})_1$ is a linear homogeneous polynomial such that $p_i
+	\in V_p(f)$ for all $i$. Then suppose that $p_i \in U_0$, then we have 
+	\[
+		(v^{d})^{-1}(p_i) 
+		= 
+		\left[
+			1 : 
+			\frac{x_1^{N}}{x_0 x_1^{N-1}} : 
+			\frac{x_2^{N}}{x_0 x_2^{N-1}} :
+			\ldots :
+			\frac{x_n^{N}}{x_0 x_n^{N-1}}
+		\right]
+	\]
+\end{proof}
+
+
+
+\begin{lemma}
+	Let $P_i \in \PP{n}$ be a set of $k > n$ points. Then
+	the points are in general position if and only if their 
+	corresponding vectors in $\AA{n + 1}$ are linearly independent.
+\end{lemma}
+
+Let $A_1,A_2,A_3,A_4,A_5 \in \PP{2}$ be $5$ points, such that no three of them
+lie on the same line in $\PP{2}$, and let $f_1,f_2,f_3,f_4,f_5$ be their
+corresponding linear functionals $\AA{6} \to \A$ as in (b). Then our first
+claim is that the $f_i$ are linearly independent. We assume this for now, and
+show how to use it to solve the exercise. \\
+
+Suppose that $0 = \sum b_i f_i$ is a non-trivial linear independence. 
+Let $F : \PP{2} \to \PP{5}$ be the map from (b) which sends a point $A_i=[A_{i,
+0}:A_{i, 1}:A_{i, 2}]$ to $F(A_i) = [A_{i, 0}^{2} : A_{i, 0}A_{i, 1} : A_{i,
+0}A_{i, 2} : A_{i, 1}^{2} : A_{i, 1}A_{i, 2} : A_{i, 2}^{2}]$. Note that $F$
+coincides with the degree $2$ Veronese embedding. Now, as no combination
+of more than $2$ $A_i$ lie on the same line
+
+Suppose that $f_1 \in (f_2,f_3,f_4,f_5)$. Then since all $f_i$ are linear, it
+follows that $f_1$ can be written as a $\K$-linear combination of the other
+$f_i$. Hence $f_1,f_2,f_3,f_4,f_5$ linearly independent implies that $J =
+(f_1,f_2,f_3,f_4,f_5)$ is a minimal generating set. Now inductively define
+$S_i, J_i$ by $S_0 = S(\PP{5})$, $J_0 = (0)$ and $S_i = S_{i - 1}/J_i$, $J_i =
+(f_i) + J_{i - 1}$. I.e each $S_i$ is obtained from $S_{i - 1}$ via taking the
+quotient by $f_i$. Then $S_0 = \KP{x}{6}$, and if $S_i$ is isomorphic to a
+polynomial ring in $6- i$ variables, then $S_{i + 1}$ is isomorphic to a
+polynomial ring in $6 - (i + 1)$ variables since it's obtained from $S_i$ via a
+non-trivial linear relation. It follows that each $J_i$ is prime, and that $J =
+J_5 = (f_1,f_2,f_3,f_4,f_5)$ is a prime ideal of height $5$. Hence $V_p(J) =
+\{a\}$ for some point $a \in \PP{5}$. Points $a \in V_p(J)$ correspond
+bijectively with conics that pass through $A_1,A_2,A_3,A_4,A_5$ by part (b),
+thus there is exactly one conic which passes through the given points so long
+as the linear homogeneous polynomials which correspond to the point are
+linearly independent. We will now show that this is the case whenever no three
+$A_i$ lie on a line.
+\\
+
+TODO Todo todo
+
+Suppose towards a contradiction that $\sum b_i f_i = 0, b_i \in \K$ is a
+non-trivial linear dependence, and assume that $b_1 \not = 0$. Then we have
+$f_1 = \sum_{i = 2}^{n}c_i f_i$, with $c_i = -b_i/b_1$. Write the point $A_i$
+as $A_i = [A_{i, 0}:A_{i, 1}:A_{i, 2}]$. 
+Then for all $i$ we have $A_{1, i} = \sum $
+
+
+
+Then each point $A_i$ corresponds to a line
+$L_i \in \AA{3}$ which passes through the origin, and no three lines lie in the
+same plane.
+
+
+Let $F : \PP{2} \to \PP{5}$ be the map from (b) which sends a point $A_i=[A_{i,
+0}:A_{i, 1}:A_{i, 2}]$ to $F(A_i) = [A_{i, 0}^{2} : A_{i, 0}A_{i, 1} : A_{i,
+0}A_{i, 2} : A_{i, 1}^{2} : A_{i, 1}A_{i, 2} : A_{i, 2}^{2}]$. Note that $F$
+coincides with the degree $2$ Veronese embedding. A linear dependence on the
+$f_i$ corresponds to a linear relation on $\im(F)$, 
+
+but we showed in Exercise
+7.28 that the Veronese embedding is given by
+\[
+	\im(F) 
+	= 
+	V(
+		z_{0,1}z_{1,0} - z_{1, 1}z_{0,0},
+		z_{0,2}z_{2,0} - z_{2, 2}z_{0,0},
+		z_{1,2}z_{2,1} - z_{2, 2}z_{1,1},
+	)
+\]
+and none of the polynomials inside t
+
+
+Using our notation in from part (a), we can break down $g$
+into a linear automorphism followed by a projection like this
+\[
+	g 
+	= 
+	\pi_{0,1,2,4,5,8} \circ 
+	([z_{0,0}:z_{0,1}+z_{1, 0}:z_{0,2}+z_{2, 0}:z_{1,0}:
+	z_{1,1}:z_{1,2}+z_{2,1}:z_{2,0}:z_{2,1}:z_{2,2}]),
+\] 
+and we see that $\dim(V) = 6$ 
+
+We just need to find point $A, B, C \in \PP{2}$ that define linearly
+independent function $f_A, f_B, f_C : U \to$. 
+
+
+\subsection*{Ex 7.31}
+
+The projection $f$ from $a = [0 : 0 : 1 : 0]$ to $L = V(y_2)$ is given by $f :
+\PP{3} \setminus \{ a \} \to \PP{2}$ where $f([y_0, y_1, y_2, y_3]) = [y_0 :
+y_1 : y_3]$. \\
+
+\subsubsection*{(a)}
+
+$f(X)$ may be parameterised as $f(X) = \{ [x_0^{3} : x_0^{2} x_1 : x_1^{3}] :
+[x_0:x_1] \in \PP{1} \}$, so $f(X) = g(\PP{1})$ where $g([x_0:x_1]) = [x_0^{3}
+: x_0^{2}x_1 : x_1^{3}]$. From our parameterisation of $f$, it follows that
+\[
+	f(X) \subseteq V(y_0^{2}y_2 - y_1^{3}).
+\] 
+Moreover, suppose $a = [a_0 : a_1 : a_2]\in V(y_0^{2}y_2 - y_1^{3})$. We will
+show that $a$ lies in the image of $g$, hence in $f(X)$. First consider the
+case $a_0 = 1$. Then $a_2 = a_1^{3}$ and we have
+\[
+	g([1 : a_1]) = [1 : a_1 : a_1^{3}]  = [a_0 : a_1 : a_2] = a.
+\]
+Now consider the case when $a_0 = 0$. Then $a_1 = 0$ as well, and $a_2$ must be
+non-zero, so we can assume $a_2 = 1$. Then
+\[
+	g([0 : 1]) = [0 : 0 : 1] = [a_0 : a_1 : a_2] = a,
+\]
+hence $f(X) = V(y_0^{2}y_2 - y_1^{3})$. Note that for both cases, the element
+in the pre-image is uniquely determined, hence $g$ is injective (thus bijective
+onto its image). 
+
+\subsubsection*{(b)}
+
+Note that $g$ from part (a) is an isomorphism (the degree $3$ Veronese
+embedding) composed with $f$. Hence $f$ is an isomorphism if and only if $g$
+is. We claim that $g$ isn't an isomorphism, since if it were, it would be an
+isomorphism on the affine subset $U_1 = \{ [x_0 : x_1] \in \PP{1} : x_1 \not =
+0 \} \cong \AA{1}$, but on this set $g$ restricts to $g([x_0 : 1]) = [x_0^{3} :
+x_0^{2} : 1]$, so we can identify $\restr{g}{U_1}$ with $\hat{g} : \AA{1} \to
+\AA{2}$ where $\hat{g}(t) = (t^{3}, t^{2})$, and we saw in Example 4.9 that
+this map isn't an isomorphism.
 
 \end{document}
