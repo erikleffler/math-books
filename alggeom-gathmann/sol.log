@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.2)  21 FEB 2024 16:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.2)  19 APR 2024 10:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -431,7 +431,7 @@ File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfarrowwidth=\dimen274
 \pgfarrowlinewidth=\dimen275
 )))
-LaTeX Font Info:    Trying to load font information for T1+txtt on input line 28.
+LaTeX Font Info:    Trying to load font information for T1+txtt on input line 49.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/txfonts/t1txtt.fd
 File: t1txtt.fd 2000/12/15 v3.1
 )
@@ -443,20 +443,20 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 ) (./sol.aux)
 \openout1 = `sol.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
-LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
 \c@lstlisting=\count317
  (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -477,11 +477,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/local/texlive/2023/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 117.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 140.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 117.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 140.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -489,85 +489,140 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] (/usr/local/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 253.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 276.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 253.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 276.
 
-Overfull \hbox (58.2041pt too wide) in paragraph at lines 253--254
+Overfull \hbox (58.2041pt too wide) in paragraph at lines 276--277
 [][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (7.80359pt too wide) in paragraph at lines 257--258
+Overfull \hbox (7.80359pt too wide) in paragraph at lines 280--281
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [3{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [4] [5]
-Overfull \hbox (23.6528pt too wide) in paragraph at lines 443--448
+Overfull \hbox (23.6528pt too wide) in paragraph at lines 466--471
 \OML/cmm/m/it/10 ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U[]\OT1/cmr/m/n/10 )$ are non-trivial de-com-po-si-tions into sub-sets. We will show that $\OML/cmm/m/it/10 ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U[]\OT1/cmr/m/n/10 )$
  []
 
 [6]
-Overfull \hbox (27.07391pt too wide) in paragraph at lines 506--508
+Overfull \hbox (27.07391pt too wide) in paragraph at lines 529--531
 []\OT1/cmr/bx/n/10 Lemma 0.1. []\OT1/cmr/m/n/10 Let $\OML/cmm/m/it/10 X \OMS/cmsy/m/n/10 ^^R \U/msb/m/n/10 A[]$ \OT1/cmr/m/n/10 be a va-ri-ety that is pa-ram-e-ter-ized by $\OML/cmm/m/it/10 a[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 y[]; y[]; [] ; y[]\OT1/cmr/m/n/10 )$.
  []
 
 [7] [8]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 637.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 660.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) [9] [10] [11]
-Overfull \hbox (7.20384pt too wide) in paragraph at lines 798--802
+Overfull \hbox (7.20384pt too wide) in paragraph at lines 821--825
 []\OT1/cmr/m/n/10 Now sup-pose that $\OML/cmm/m/it/10 g \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 I\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 )$, then $\OML/cmm/m/it/10 ^^^\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 g=\OT1/cmr/m/n/10 1) = 0$, so all the gen-er-a-tors of $\OML/cmm/m/it/10 I\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 )\U/msb/m/n/10 K\OT1/cmr/m/n/10 [\OML/cmm/b/it/10 x\OT1/cmr/m/n/10 ][]$
  []
 
 [12] [13] [14]
-Overfull \hbox (3.03409pt too wide) in paragraph at lines 1007--1010
+Overfull \hbox (3.03409pt too wide) in paragraph at lines 1030--1033
 \OT1/cmr/m/n/10 which just like in the pre-vi-ous case gives us an iso-mor-phism be-tween the $\OML/cmm/m/it/10 A\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 V\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 g[]\OT1/cmr/m/n/10 ))$
  []
 
 [15] [16] [17]
-Overfull \hbox (40.19858pt too wide) detected at line 1252
+Overfull \hbox (40.19858pt too wide) detected at line 1275
 []
  []
 
 [18]
-Overfull \hbox (54.50508pt too wide) detected at line 1270
+Overfull \hbox (54.50508pt too wide) detected at line 1293
 \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ax[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 bx[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 c\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 Ax[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 Bx[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 C\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 aAx[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 bBx[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 cC \OT1/cmr/m/n/10 + (\OML/cmm/m/it/10 aB \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 Ab\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x[]x[] \OT1/cmr/m/n/10 + (\OML/cmm/m/it/10 aC \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 Ac\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x[] \OT1/cmr/m/n/10 + (\OML/cmm/m/it/10 bC \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 bC\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 x[]:
  []
 
 [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34]
-Overfull \hbox (64.2526pt too wide) detected at line 2247
+Overfull \hbox (64.2526pt too wide) detected at line 2270
 []
  []
 
 [35] [36]
-Overfull \hbox (19.55699pt too wide) in paragraph at lines 2366--2372
+Overfull \hbox (19.55699pt too wide) in paragraph at lines 2389--2395
 \OT1/cmr/m/n/10 Then since $\OML/cmm/m/it/10 h[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 g[] \OMS/cmsy/m/n/10 ^^N \OML/cmm/m/it/10 f$\OT1/cmr/m/n/10 , it fol-lows that $\OML/cmm/m/it/10 y \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 Y$ \OT1/cmr/m/n/10 pre-cisely when $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 y\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 V[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 h[]; h[]; [] ; h[]\OT1/cmr/m/n/10 )$.
  []
 
 [37] [38] [39]
-Overfull \hbox (12.53705pt too wide) detected at line 2553
+Overfull \hbox (12.53705pt too wide) detected at line 2576
 \OML/cmm/m/it/10 g \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 ^^Y[] \OMS/cmsy/m/n/10 ^^N \OT1/cmr/m/n/10 ([\OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[] \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 z[]\OT1/cmr/m/n/10 ])\OML/cmm/m/it/10 ;
  []
 
-[40] [41] (./sol.aux) ) 
+[40] [41] [42]
+Overfull \hbox (17.09991pt too wide) detected at line 2779
+[]
+ []
+
+[43] [44]
+Overfull \hbox (27.5581pt too wide) detected at line 2935
+[]
+ []
+
+
+Overfull \hbox (27.5581pt too wide) detected at line 2951
+[]
+ []
+
+
+Overfull \hbox (35.81294pt too wide) in paragraph at lines 2968--2974
+\OT1/cmr/m/n/10 Then $\OML/cmm/m/it/10 g[]$ \OT1/cmr/m/n/10 is al-ways a poly-no-mial in $\U/msb/m/n/10 K\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 x[]; y[]; [] ; y[]\OT1/cmr/m/n/10 ]$, as ev-ery term of $\OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x[]; x[]y[]; [] ; x[]y[]\OT1/cmr/m/n/10 )$
+ []
+
+[45]
+Overfull \hbox (44.25151pt too wide) detected at line 3008
+[]
+ []
+
+[46]
+Overfull \hbox (189.84732pt too wide) detected at line 3126
+[]
+ []
+
+[47] [48]
+Overfull \hbox (91.8064pt too wide) in paragraph at lines 3225--3227
+\OT1/cmr/m/n/10 We will use the an-swer from here: https://math.stackexchange.com/questions/4001996/fundamental-
+ []
+
+[49] [50] [51] [52]
+Overfull \hbox (9.13618pt too wide) detected at line 3528
+[]
+ []
+
+
+Overfull \hbox (32.1637pt too wide) in paragraph at lines 3537--3538
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[53]
+Overfull \hbox (32.1637pt too wide) in paragraph at lines 3551--3552
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (6.33057pt too wide) in paragraph at lines 3554--3555
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[54] [55] [56] (./sol.aux) ) 
 Here is how much of TeX's memory you used:
- 17703 strings out of 476025
- 348721 string characters out of 5790017
- 1876388 words of memory out of 5000000
- 37854 multiletter control sequences out of 15000+600000
- 519999 words of font info for 60 fonts, out of 8000000 for 9000
+ 19344 strings out of 476025
+ 372928 string characters out of 5790017
+ 1920388 words of memory out of 5000000
+ 39494 multiletter control sequences out of 15000+600000
+ 520167 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 116i,18n,118p,447b,1495s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/txfonts/t1xbtt.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb>
-Output written on sol.pdf (41 pages, 382079 bytes).
+ 116i,18n,118p,17910b,3160s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/txfonts/t1xbtt.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/txfonts/t1xtt.pfb>
+Output written on sol.pdf (56 pages, 457255 bytes).
 PDF statistics:
- 257 PDF objects out of 1000 (max. 8388607)
- 166 compressed objects within 2 object streams
+ 311 PDF objects out of 1000 (max. 8388607)
+ 202 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -14,6 +14,27 @@
 \usepackage{xcolor}
 \usepackage{tikz-cd}
 
+\definecolor{maccolor}{rgb}{0.3,0.3,0.8}
+\newcommand\macoutput[1]{{\tt [Macaulay2 output o#1]}}%placeholder to compile w/o running M2
+\lstdefinelanguage{Macaulay2}
+{
+basicstyle={\ttfamily},
+keywordstyle={\color{maccolor!80!black}},
+commentstyle={\color{gray}},
+stringstyle={\color{red!40!black}},
+rulecolor=\color{maccolor},
+basewidth={1.2ex}, %workaround for prompts being same width as normal tt text
+sensitive=false,
+morecomment=[l]{--},
+morecomment=[s]{-*}{*-},
+morestring=[b]",
+escapechar={`},
+escapebegin={\rmfamily},
+morekeywords={about,abs,AbstractToricVarieties,accumulate,Acknowledgement,acos,acosh,acot,addCancelTask,addDependencyTask,addEndFunction,addHook,AdditionalPaths,addStartFunction,addStartTask,Adjacent,adjoint,AdjointIdeal,AffineVariety,AfterEval,AfterNoPrint,AfterPrint,agm,AInfinity,alarm,AlgebraicSplines,Algorithm,Alignment,all,AllCodimensions,allowableThreads,ambient,analyticSpread,Analyzer,AnalyzeSheafOnP1,ancestor,ancestors,ANCHOR,and,andP,AngleBarList,ann,annihilator,antipode,any,append,applicationDirectory,applicationDirectorySuffix,apply,applyKeys,applyPairs,applyTable,applyValues,apropos,argument,Array,arXiv,Ascending,ascii,asin,asinh,ass,assert,associatedGradedRing,associatedPrimes,AssociativeAlgebras,AssociativeExpression,atan,atan2,atEndOfFile,Authors,autoload,AuxiliaryFiles,backtrace,Bag,Bareiss,baseFilename,BaseFunction,baseName,baseRing,baseRings,BaseRow,BasicList,basis,BasisElementLimit,Bayer,BeforePrint,beginDocumentation,BeginningMacaulay2,Benchmark,benchmark,Bertini,BesselJ,BesselY,betti,BettiCharacters,BettiTally,between,BGG,BIBasis,Binary,BinaryOperation,Binomial,binomial,BinomialEdgeIdeals,Binomials,BKZ,BlockMatrix,BLOCKQUOTE,BODY,Body,BoijSoederberg,BOLD,Book3264Examples,Boolean,BooleanGB,borel,Boxes,BR,break,Browse,Bruns,cache,CacheExampleOutput,CacheFunction,CacheTable,cacheValue,CallLimit,cancelTask,capture,catch,Caveat,CC,CDATA,ceiling,Center,centerString,Certification,ChainComplex,chainComplex,ChainComplexExtras,ChainComplexMap,ChainComplexOperations,ChangeMatrix,char,CharacteristicClasses,characters,charAnalyzer,check,CheckDocumentation,chi,Chordal,class,Classic,clean,clearAll,clearEcho,clearOutput,close,closeIn,closeOut,ClosestFit,CODE,code,codim,CodimensionLimit,coefficient,CoefficientRing,coefficientRing,coefficients,Cofactor,CohenEngine,CohenTopLevel,CoherentSheaf,CohomCalg,cohomology,coimage,CoincidentRootLoci,coker,cokernel,collectGarbage,columnAdd,columnate,columnMult,columnPermute,columnRankProfile,columnSwap,combine,Command,commandInterpreter,commandLine,COMMENT,commonest,commonRing,comodule,CompactMatrix,compactMatrixForm,CompiledFunction,CompiledFunctionBody,CompiledFunctionClosure,Complement,complement,complete,CompleteIntersection,CompleteIntersectionResolutions,Complexes,ComplexField,components,compose,compositions,compress,concatenate,conductor,ConductorElement,cone,Configuration,ConformalBlocks,conjugate,connectionCount,Consequences,Constant,Constants,constParser,content,continue,contract,Contributors,ConvexInterface,conwayPolynomial,ConwayPolynomials,copy,copyDirectory,copyFile,copyright,Core,CorrespondenceScrolls,cos,cosh,cot,CotangentSchubert,cotangentSheaf,coth,cover,coverMap,cpuTime,createTask,Cremona,csc,csch,current,currentColumnNumber,currentDirectory,currentFileDirectory,currentFileName,currentLayout,currentLineNumber,currentPackage,currentString,currentTime,Cyclotomic,Database,Date,DD,dd,deadParser,debug,debugError,DebuggingMode,debuggingMode,debugLevel,DecomposableSparseSystems,Decompose,decompose,deepSplice,Default,default,defaultPrecision,Degree,degree,degreeLength,DegreeLift,DegreeLimit,DegreeMap,DegreeOrder,DegreeRank,Degrees,degrees,degreesMonoid,degreesRing,delete,demark,denominator,Dense,Density,Depth,depth,Descending,Descent,Describe,describe,Description,det,determinant,DeterminantalRepresentations,DGAlgebras,diagonalMatrix,diameter,Dictionary,dictionary,dictionaryPath,diff,DiffAlg,difference,dim,directSum,disassemble,discriminant,dismiss,Dispatch,distinguished,DIV,Divide,divideByVariable,DivideConquer,DividedPowers,Divisor,DL,Dmodules,do,doc,docExample,docTemplate,document,DocumentTag,Down,drop,DT,dual,eagonNorthcott,EagonResolution,echoOff,echoOn,EdgeIdeals,edit,EigenSolver,eigenvalues,eigenvectors,eint,EisenbudHunekeVasconcelos,elapsedTime,elapsedTiming,elements,Eliminate,eliminate,Elimination,EliminationMatrices,EllipticCurves,EllipticIntegrals,else,EM,Email,End,end,endl,endPackage,Engine,engineDebugLevel,EngineRing,EngineTests,entries,EnumerationCurves,environment,Equation,EquivariantGB,erase,erf,erfc,error,errorDepth,euler,EulerConstant,eulers,even,EXAMPLE,ExampleFiles,ExampleItem,examples,ExampleSystems,Exclude,exec,exit,exp,expectedReesIdeal,expm1,exponents,export,exportFrom,exportMutable,Expression,expression,Ext,extend,ExteriorIdeals,ExteriorModules,exteriorPower,Factor,factor,false,Fano,FastMinors,FastNonminimal,FGLM,File,fileDictionaries,fileExecutable,fileExists,fileExitHooks,fileLength,fileMode,FileName,FilePosition,fileReadable,fileTime,fileWritable,fillMatrix,findFiles,findHeft,FindOne,findProgram,findSynonyms,FiniteFittingIdeals,First,first,firstkey,FirstPackage,fittingIdeal,flagLookup,FlatMonoid,flatten,flattenRing,Flexible,flip,floor,flush,fold,FollowLinks,for,forceGB,fork,FormalGroupLaws,Format,format,formation,FourierMotzkin,FourTiTwo,fpLLL,frac,fraction,FractionField,frames,FrobeniusThresholds,from,fromDividedPowers,fromDual,Function,FunctionApplication,FunctionBody,functionBody,FunctionClosure,FunctionFieldDesingularization,fusePairs,futureParser,GaloisField,Gamma,gb,GBDegrees,gbRemove,gbSnapshot,gbTrace,gcd,gcdCoefficients,gcdLLL,GCstats,genera,GeneralOrderedMonoid,GenerateAssertions,generateAssertions,generator,generators,Generic,GenericInitialIdeal,genericMatrix,genericSkewMatrix,genericSymmetricMatrix,gens,genus,get,getc,getChangeMatrix,getenv,getGlobalSymbol,getNetFile,getNonUnit,getPrimeWithRootOfUnity,getSymbol,getWWW,GF,gfanInterface,Givens,GKMVarieties,GLex,Global,global,globalAssign,globalAssignFunction,GlobalAssignHook,globalAssignment,globalAssignmentHooks,GlobalDictionary,GlobalHookStore,globalReleaseFunction,GlobalReleaseHook,Gorenstein,GradedLieAlgebras,GradedModule,gradedModule,GradedModuleMap,gradedModuleMap,gramm,GraphicalModels,GraphicalModelsMLE,Graphics,graphIdeal,graphRing,Graphs,Grassmannian,GRevLex,GroebnerBasis,groebnerBasis,GroebnerBasisOptions,GroebnerStrata,GroebnerWalk,groupID,GroupLex,GroupRevLex,GTZ,Hadamard,handleInterrupts,HardDegreeLimit,hash,HashTable,hashTable,HEAD,HEADER1,HEADER2,HEADER3,HEADER4,HEADER5,HEADER6,HeaderType,Heading,Headline,Heft,heft,Height,height,help,Hermite,hermite,Hermitian,HH,hh,HigherCIOperators,HighestWeights,Hilbert,hilbertFunction,hilbertPolynomial,hilbertSeries,HodgeIntegrals,hold,Holder,Hom,homeDirectory,HomePage,Homogeneous,Homogeneous2,homogenize,homology,homomorphism,HomotopyLieAlgebra,hooks,horizontalJoin,HorizontalSpace,HR,HREF,HTML,html,httpHeaders,Hybrid,HyperplaneArrangements,Hypertext,hypertext,HypertextContainer,HypertextParagraph,icFracP,icFractions,icMap,icPIdeal,id,Ideal,ideal,idealizer,identity,if,IgnoreExampleErrors,ii,image,imaginaryPart,IMG,ImmutableType,importFrom,in,incomparable,Increment,independentSets,indeterminate,IndeterminateNumber,Index,index,indexComponents,IndexedVariable,IndexedVariableTable,indices,inducedMap,inducesWellDefinedMap,InexactField,InexactFieldFamily,InexactNumber,InfiniteNumber,infinity,info,InfoDirSection,infoHelp,Inhomogeneous,input,Inputs,insert,installAssignmentMethod,installedPackages,installHilbertFunction,installMethod,installMinprimes,installPackage,InstallPrefix,instance,instances,IntegralClosure,integralClosure,integrate,IntermediateMarkUpType,interpreterDepth,intersect,intersectInP,Intersection,intersection,interval,InvariantRing,inverse,InverseMethod,inversePermutation,Inverses,inverseSystem,InverseSystems,Invertible,InvolutiveBases,irreducibleCharacteristicSeries,irreducibleDecomposition,isAffineRing,isANumber,isBorel,isCanceled,isCommutative,isConstant,isDirectory,isDirectSum,isEmpty,isField,isFinite,isFinitePrimeField,isFreeModule,isGlobalSymbol,isHomogeneous,isIdeal,isInfinite,isInjective,isInputFile,isIsomorphism,isLinearType,isListener,isLLL,isMember,isModule,isMonomialIdeal,isNormal,isOpen,isOutputFile,isPolynomialRing,isPrimary,isPrime,isPrimitive,isPseudoprime,isQuotientModule,isQuotientOf,isQuotientRing,isReady,isReal,isReduction,isRegularFile,isRing,isSkewCommutative,isSorted,isSquareFree,isStandardGradedPolynomialRing,isSubmodule,isSubquotient,isSubset,isSupportedInZeroLocus,isSurjective,isTable,isUnit,isWellDefined,isWeylAlgebra,ITALIC,Iterate,Jacobian,jacobian,jacobianDual,Jets,Join,join,Jupyter,K3Carpets,K3Surfaces,Keep,KeepFiles,KeepZeroes,ker,kernel,kernelLLL,kernelOfLocalization,Key,keys,Keyword,Keywords,kill,koszul,Kronecker,KustinMiller,LABEL,last,lastMatch,LATER,LatticePolytopes,Layout,lcm,leadCoefficient,leadComponent,leadMonomial,leadTerm,Left,left,length,LengthLimit,letterParser,Lex,LexIdeals,LI,Licenses,LieTypes,lift,liftable,Limit,limitFiles,limitProcesses,Linear,LinearAlgebra,LinearTruncations,lineNumber,lines,LINK,linkFile,List,list,listForm,listLocalSymbols,listSymbols,listUserSymbols,LITERAL,LLL,LLLBases,lngamma,load,loadDepth,LoadDocumentation,loadedFiles,loadedPackages,loadPackage,Local,local,localDictionaries,LocalDictionary,localize,LocalRings,locate,log,log1p,LongPolynomial,lookup,lookupCount,LowerBound,LUdecomposition,M0nbar,M2CODE,Macaulay2Doc,makeDirectory,MakeDocumentation,makeDocumentTag,MakeHTML,MakeInfo,MakeLinks,makePackageIndex,MakePDF,makeS2,Manipulator,map,MapExpression,MapleInterface,markedGB,Markov,MarkUpType,match,mathML,Matrix,matrix,MatrixExpression,Matroids,max,maxAllowableThreads,maxExponent,MaximalRank,maxPosition,MaxReductionCount,MCMApproximations,member,memoize,memoizeClear,memoizeValues,MENU,merge,mergePairs,META,method,MethodFunction,MethodFunctionBinary,MethodFunctionSingle,MethodFunctionWithOptions,methodOptions,methods,midpoint,min,minExponent,mingens,mingle,minimalBetti,MinimalGenerators,MinimalMatrix,minimalPresentation,minimalPresentationMap,minimalPresentationMapInv,MinimalPrimes,minimalPrimes,minimalReduction,Minimize,minimizeFilename,MinimumVersion,minors,minPosition,minPres,minprimes,Minus,minus,Miura,MixedMultiplicity,mkdir,mod,Module,module,ModuleDeformations,modulo,MonodromySolver,Monoid,monoid,MonoidElement,Monomial,MonomialAlgebras,monomialCurveIdeal,MonomialIdeal,monomialIdeal,MonomialIntegerPrograms,MonomialOrbits,MonomialOrder,Monomials,monomials,MonomialSize,monomialSubideal,moveFile,multidegree,multidoc,multigraded,MultigradedBettiTally,MultiGradedRationalMap,multiplicity,MultiplicitySequence,MultiplierIdeals,MultiplierIdealsDim2,MultiprojectiveVarieties,mutable,MutableHashTable,mutableIdentity,MutableList,MutableMatrix,mutableMatrix,NAGtypes,Name,nanosleep,Nauty,NautyGraphs,NCAlgebra,NCLex,needs,needsPackage,Net,net,NetFile,netList,new,newClass,newCoordinateSystem,NewFromMethod,newline,NewMethod,newNetFile,NewOfFromMethod,NewOfMethod,newPackage,newRing,nextkey,nextPrime,nil,NNParser,NoetherianOperators,NoetherNormalization,NonAssociativeProduct,NonminimalComplexes,nonspaceAnalyzer,NoPrint,norm,normalCone,Normaliz,NormalToricVarieties,not,Nothing,notify,notImplemented,NTL,null,nullaryMethods,nullhomotopy,nullParser,nullSpace,Number,number,NumberedVerticalList,numcols,numColumns,numerator,numeric,NumericalAlgebraicGeometry,NumericalCertification,NumericalImplicitization,NumericalLinearAlgebra,NumericalSchubertCalculus,numericInterval,NumericSolutions,numgens,numRows,numrows,odd,oeis,of,ofClass,OL,OldPolyhedra,OldToricVectorBundles,on,OneExpression,OnlineLookup,OO,oo,ooo,oooo,openDatabase,openDatabaseOut,openFiles,openIn,openInOut,openListener,OpenMath,openOut,openOutAppend,operatorAttributes,Option,OptionalComponentsPresent,optionalSignParser,Options,options,OptionTable,optP,or,Order,order,OrderedMonoid,orP,OutputDictionary,Outputs,override,pack,Package,package,PackageCitations,PackageDictionary,PackageExports,PackageImports,PackageTemplate,packageTemplate,pad,pager,PairLimit,pairs,PairsRemaining,PARA,Parametrization,parent,Parenthesize,Parser,Parsing,part,Partition,partition,partitions,parts,path,pdim,peek,PencilsOfQuadrics,Permanents,permanents,permutations,pfaffians,PHCpack,PhylogeneticTrees,pi,PieriMaps,pivots,PlaneCurveSingularities,plus,poincare,poincareN,Points,polarize,poly,Polyhedra,Polymake,PolynomialRing,Posets,Position,position,positions,PositivityToricBundles,POSIX,Postfix,Power,power,powermod,PRE,Precision,precision,Prefix,prefixDirectory,prefixPath,preimage,prepend,presentation,pretty,primaryComponent,PrimaryDecomposition,primaryDecomposition,PrimaryTag,PrimitiveElement,Print,print,printerr,printingAccuracy,printingLeadLimit,printingPrecision,printingSeparator,printingTimeLimit,printingTrailLimit,printString,printWidth,processID,Product,product,ProductOrder,profile,profileSummary,Program,programPaths,ProgramRun,Proj,Projective,ProjectiveHilbertPolynomial,projectiveHilbertPolynomial,ProjectiveVariety,promote,protect,Prune,prune,PruneComplex,pruningMap,Pseudocode,pseudocode,pseudoRemainder,Pullback,PushForward,pushForward,Python,QQ,QQParser,QRDecomposition,QthPower,Quasidegrees,QuaternaryQuartics,QuillenSuslin,quit,Quotient,quotient,quotientRemainder,QuotientRing,Radical,radical,RadicalCodim1,radicalContainment,RaiseError,random,RandomCanonicalCurves,RandomComplexes,RandomCurves,RandomCurvesOverVerySmallFiniteFields,RandomGenus14Curves,RandomIdeals,randomKRationalPoint,RandomMonomialIdeals,randomMutableMatrix,RandomObjects,RandomPlaneCurves,RandomPoints,RandomSpaceCurves,Range,rank,RationalMaps,RationalPoints,RationalPoints2,ReactionNetworks,read,readDirectory,readlink,readPackage,RealField,RealFP,realPart,realpath,RealQP,RealQP1,RealRoots,RealRR,RealXD,recursionDepth,recursionLimit,Reduce,reducedRowEchelonForm,reduceHilbert,reductionNumber,ReesAlgebra,reesAlgebra,reesAlgebraIdeal,reesIdeal,References,ReflexivePolytopesDB,regex,regexQuote,registerFinalizer,regSeqInIdeal,Regularity,regularity,relations,RelativeCanonicalResolution,relativizeFilename,Reload,remainder,RemakeAllDocumentation,remove,removeDirectory,removeFile,removeLowestDimension,reorganize,replace,RerunExamples,res,reshape,ResidualIntersections,ResLengthThree,Resolution,resolution,ResolutionsOfStanleyReisnerRings,restart,Result,resultant,Resultants,return,returnCode,Reverse,reverse,RevLex,Right,right,Ring,ring,RingElement,RingFamily,ringFromFractions,RingMap,rootPath,roots,rootURI,rotate,round,rowAdd,RowExpression,rowMult,rowPermute,rowRankProfile,rowSwap,RR,RRi,rsort,run,RunDirectory,RunExamples,RunExternalM2,runHooks,runLengthEncode,runProgram,same,saturate,Saturation,scan,scanKeys,scanLines,scanPairs,scanValues,schedule,schreyerOrder,Schubert,Schubert2,SchurComplexes,SchurFunctors,SchurRings,SCRIPT,scriptCommandLine,ScriptedFunctor,SCSCP,searchPath,sec,sech,SectionRing,SeeAlso,seeParsing,SegreClasses,select,selectInSubring,selectVariables,SelfInitializingType,SemidefiniteProgramming,Seminormalization,separate,SeparateExec,separateRegexp,Sequence,sequence,Serialization,serialNumber,Set,set,setEcho,setGroupID,setIOExclusive,setIOSynchronized,setIOUnSynchronized,setRandomSeed,setup,setupEmacs,sheaf,SheafExpression,sheafExt,sheafHom,SheafOfRings,shield,ShimoyamaYokoyama,short,show,showClassStructure,showHtml,showStructure,showTex,showUserStructure,SimpleDoc,simpleDocFrob,SimplicialComplexes,SimplicialDecomposability,SimplicialPosets,SimplifyFractions,sin,singularLocus,sinh,size,size2,SizeLimit,SkewCommutative,SlackIdeals,sleep,SLnEquivariantMatrices,SLPexpressions,SMALL,smithNormalForm,solve,someTerms,Sort,sort,sortColumns,SortStrategy,source,SourceCode,SourceRing,SPACE,SpaceCurves,SPAN,span,SparseMonomialVectorExpression,SparseResultants,SparseVectorExpression,Spec,SpechtModule,SpecialFanoFourfolds,specialFiber,specialFiberIdeal,SpectralSequences,splice,splitWWW,sqrt,SRdeformations,stack,stacksProject,Standard,standardForm,standardPairs,StartWithOneMinor,stashValue,StatePolytope,StatGraphs,status,stderr,stdio,step,StopBeforeComputation,stopIfError,StopWithMinimalGenerators,Strategy,String,STRONG,StronglyStableIdeals,STYLE,Style,style,SUB,sub,SubalgebraBases,sublists,submatrix,submatrixByDegrees,Subnodes,subquotient,SubringLimit,Subscript,subscript,SUBSECTION,subsets,substitute,substring,subtable,Sugarless,Sum,sum,SumOfTwists,SumsOfSquares,SUP,super,SuperLinearAlgebra,Superscript,superscript,support,SVD,SVDComplexes,switch,SwitchingFields,sylvesterMatrix,Symbol,symbol,SymbolBody,symbolBody,SymbolicPowers,symlinkDirectory,symlinkFile,symmetricAlgebra,symmetricAlgebraIdeal,symmetricKernel,SymmetricPolynomials,symmetricPower,synonym,SYNOPSIS,syz,Syzygies,SyzygyLimit,SyzygyMatrix,SyzygyRows,syzygyScheme,TABLE,Table,table,take,Tally,tally,tan,TangentCone,tangentCone,tangentSheaf,tanh,target,Task,taskResult,TateOnProducts,TD,temporaryFileName,tensor,tensorAssociativity,TensorComplexes,terminalParser,terms,TEST,Test,testExample,testHunekeQuestion,TestIdeals,TestInput,tests,TEX,tex,TeXmacs,texMath,Text,TH,then,Thing,ThinSincereQuivers,ThreadedGB,threadVariable,Threshold,throw,Time,time,times,timing,TITLE,TO,to,TO2,toAbsolutePath,toCC,toDividedPowers,toDual,toExternalString,toField,TOH,toList,toLower,top,top,topCoefficients,Topcom,topComponents,topLevelMode,Tor,TorAlgebra,Toric,ToricInvariants,ToricTopology,ToricVectorBundles,toRR,toRRi,toSequence,toString,TotalPairs,toUpper,TR,trace,transpose,TriangularSets,Tries,Trim,trim,Triplets,Tropical,true,Truncate,truncate,truncateOutput,Truncations,try,TSpreadIdeals,TT,tutorial,Type,TypicalValue,typicalValues,UL,ultimate,unbag,uncurry,Undo,undocumented,uniform,uninstallAllPackages,uninstallPackage,Unique,unique,Units,Unmixed,unsequence,unstack,Up,UpdateOnly,UpperTriangular,URL,urlEncode,Usage,use,UseCachedExampleOutput,UseHilbertFunction,UserMode,userSymbols,UseSyzygies,utf8,utf8check,validate,value,values,Variable,VariableBaseName,Variables,Variety,variety,vars,Vasconcelos,Vector,vector,VectorExpression,VectorFields,VectorGraphics,Verbose,Verbosity,Verify,VersalDeformations,versalEmbedding,Version,version,VerticalList,VerticalSpace,viewHelp,VirtualResolutions,VirtualTally,VisibleList,Visualize,wait,WebApp,wedgeProduct,weightRange,Weights,WeylAlgebra,WeylGroups,when,whichGm,while,width,wikipedia,Wrap,wrap,WrapperType,XML,xor,youngest,zero,ZeroExpression,zeta,ZZ,ZZParser}
+}
+\lstalias{Macaulay2output}{Macaulay2}
+
+
 \hbadness = 10000
 \vbadness = 10000
 
@@ -92,11 +113,13 @@ showstringspaces=false
 \newcommand{\lm}{\text{lm}}
 \newcommand{\nr}{\text{nilrad}}
 \newcommand{\spec}{\text{spec}}
+\newcommand{\spn}{\text{span}}
 \newcommand{\codim}{\text{codim}}
 \newcommand{\ann}{\text{ann}}
 \newcommand{\im}{\text{im}}
 \newcommand{\id}{\text{id}}
 \newcommand{\height}{\text{height}}
+\newcommand{\ini}{\text{in}}
 
 \newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
 \newcommand{\Set}{\catname{Set}}
@@ -2596,5 +2619,1024 @@ isomorphism on the affine subset $U_1 = \{ [x_0 : x_1] \in \PP{1} : x_1 \not =
 x_0^{2} : 1]$, so we can identify $\restr{g}{U_1}$ with $\hat{g} : \AA{1} \to
 \AA{2}$ where $\hat{g}(t) = (t^{3}, t^{2})$, and we saw in Example 4.9 that
 this map isn't an isomorphism.
+
+
+
+\subsection*{Ex 8.22}
+
+To be extra clear for my own sake, and get things right, we will follow 
+construction 8.12 step by step. Let $U \in G(2, 4)$ be a plane in 
+$\K^4$. Then $U$ is spanned by two basis vectors, say 
+\begin{align}
+	v_1 &= a_1 e_1 + a_2 e_2 + a_3 e_3 + a_4 e_4, \\
+	v_2 &= b_1 e_1 + b_2 e_2 + b_3 e_3 + b_4 e_4.
+\end{align}
+The correspondence of construction 8.12 first sends $U$ to 
+\begin{align*}
+	v_1 \wedge v_2
+	=&
+	(a_1 e_1 + a_2 e_2 + a_3 e_3 + a_4 e_4)
+	\wedge
+	(b_1 e_1 + b_2 e_2 + b_3 e_3 + b_4 e_4) \\
+	=&
+	(a_1 b_2 - a_2 b_1) e_1 \wedge e_2
+	+
+	(a_1 b_3 - a_3 b_1) e_1 \wedge e_3
+	+
+	(a_1 b_4 - a_4 b_1) e_1 \wedge e_4 \\
+	 &+
+	(a_2 b_3 - a_3 b_2) e_2 \wedge e_3
+	+
+	(a_2 b_4 - a_4 b_2) e_2 \wedge e_4
+	+
+	(a_3 b_4 - a_4 b_3) e_3 \wedge e_4,
+\end{align*}
+and then to 
+\begin{align*}
+	\left[
+	a_1 b_2 - a_2 b_1
+	:
+	a_1 b_3 - a_3 b_1
+	:
+	a_1 b_4 - a_4 b_1
+	:
+	a_2 b_3 - a_3 b_2
+	:
+	a_2 b_4 - a_4 b_2
+	:
+	a_3 b_4 - a_4 b_3
+	\right]
+\end{align*}
+in $\PP{5}$. Thus the correspondence sends the minor of columns $i, j$ in the
+matrix $[v_1 v_2]^T$ to the coordinate $x_{i, j}$ in
+\[
+	[x_{1, 2} : x_{1, 3} : x_{1, 4} : x_{2, 3} : x_{2, 4} : x_{3, 4}] \in \PP{5}.
+\]
+
+\subsubsection*{(a)}
+
+It's immediate from the correspondence above that $G(2, 4) \subseteq V(f =
+x_{1, 2}x_{3, 4} - x_{1, 3}x_{2, 4} + x_{1, 4}x_{2, 3})$. To see that this
+containment is an equality, note that $\dim G(2, 4) = 2(4 - 2) = 4$ and as $f$
+is prime, $\dim V(f) = \dim \PP{5} - 1 = 4$ hence the varieties are the same as
+they are both irreducible.
+
+\subsubsection*{(b)}
+
+A line $L'$ intersects $L$ in $\PP{3}$ exactly when the intersection of the
+corresponding planes $U, U' \in \K^4$ intersect in a line. This happens if and
+only if the basis vectors of the two spaces, $v_1, v_2, v_1', v_2'$, are
+linearly dependent, and the determinant of the matrix $M(L, L') = \left[v_1\, v_2\,
+v_1'\, v_2'\right]^T$ is $0$. The determinant expansion by minors of $\det(M(L, L'))$
+along the top two rows shows that $\det(M(L, L')) = 0$ can be expressed as a
+linear relation among the $2 \times 2$ minors contained in the bottom two rows,
+with coefficients in the top to rows. Since the coordinates of the point
+corresponding to $U'$ in $\PP{5}$ are given by it's $2 \times 2$ minors, this
+is exactly what it means for the embedding of $G(2, 4)$ in $\PP{5}$ to be the
+variety of a linear homogeneous polynomial. \\
+
+It follows that the set of lines intersecting four general lines is given by
+the vanishing set of four general linear polynomials in $\PP{5}$, which would
+have dimension $1$, and hence should only consist of a single line in general.
+
+
+\subsection*{Ex 8.23}
+\subsubsection*{(a)}
+
+Let $v_1, \ldots, v_k$ be an orthogonal basis for the $k$-dimensional subspace
+$U \subseteq \K^{n}$. Then the distance $d_U(a)$ from $U$ to a point $a = (a_1,
+\ldots, a_n) \in \K^n$ is given by $|a - a_{\|U}|$ where $a_{\|U}$ is the
+projection of $a$ onto $U$ as
+\[
+	a_{\|U} = \sum_{i = 1}^{k} \frac{\langle a, v_i \rangle}{|v_i|^2}v_i.
+\] 
+After squaring and clearing denominators, we have that
+\[
+	f 
+	=
+	d_U(a)^2
+	\prod_{i = 1}^{k} |v_i|^{4}
+	=
+	\sum_{i = 1}^{k} 
+	(|v_i|^{2}a_i - \langle a, v_i \rangle)^{2}
+\] 
+is a polynomial in $a, U$ which is zero precisely when $d_U(a) = 0$, I.e when
+$a \in L$. It follows that our variety is given by $V_{G(k, n), \K}(f)$,
+however, we've thus far treated the embeddings in of the elements $U$ in
+$\A^{n}$. It's clear though that $V(f)$ is a cone, since $a \in L \Rightarrow
+ka \in kL, \forall k \in \K$ so the variety is a projective variety as well.
+
+\subsubsection*{(b)}
+
+This is really unintuitive to me so I'll begin with an example. Consider the
+ambient space $\PP{3}$, and the two varieties $X = V_p(x_1^2 + x_2^2 - x_0^2,
+x_3 - x_0)$ $Y = V_p(x_1^2 + x_2^2 - x_0^2, x_3 + x_0)$. Then on the affine
+patch $U_0$ where $x_0 = 1$, we have that $X$ is the circle at height $1$, and
+$Y$ is the circle at height $-1$. \\
+
+Now consider the geometry of our setup in $\R^{3}$. We have two circles
+parallel with the $x_1x_2$-plane at different heights $1, -1$, and take all the
+lines joining them. Then if we fix some point $x \in X$, the join of $x$ with
+$Y$ is a sort of hollow skew double sided cone, and when we rotate $x$ around
+the circle $X$, the union of all skew cones trace a volume, i.e $3$-dimensional
+space, which isn't all of $\R^3$, which is strange? There is one thing missing
+from this picture though, we're not considering the entire complex circles.
+Thus, taking all of the complex points into account on the circles as well, we
+should expect that the resulting join is all of $\PP{3}$. Let's verify this on
+the affine patch. \\
+
+Let $p = [1:a:b:c] \in U_0$ be some fixed arbitrary point on our affine patch.
+Then let $q_X = [1:X_1:X_2:1] \in X \cap U_0$ and $q_Y = [1:Y_1:Y_2:-1] \in Y
+\cap U_0$ be affine points on our varieties. We will vary the points $q_X, q_Y$
+such that the line through both points meets $p$ as well. The lines $L_X, L_Y$
+through $p,q_X$ and $p, q_Y$ are given by 
+\begin{align*}
+	L_X
+	&= 
+	\{ [1 : ta + (1-t)X_1 : tb + (1-t)X_2 : tc + 1 - t] : t \in \C \}, \\
+	L_Y
+	&= 
+	\{ [1 : sa + (1-s)Y_1 : sb + (1-s)Y_2 : sc - 1 + s] : s \in \C \}. 
+\end{align*} 
+We will now find $q_X, q_Y$ such that these lines coincide. First, we can use
+the last coordinate to express $s$ in terms of $t$. We need $tc + 1 - t = sc -
+1 + s$, hence $s = \frac{tc + 2 - t}{c + 1}$, and the two lines
+can be jointly parameterised according to
+\begin{align*}
+	L_X
+	&= 
+	\{ [1 : ta + (1-t)X_1 : tb + (1-t)X_2 : tc + 1 - t] : t \in \C \}, \\
+	L_Y
+	&= 
+	\left\{ \left[1 
+		:
+		\frac{tc + 2 - t}{c + 1}(a - Y_1) + Y_1 
+		: 
+		\frac{tc + 2 - t}{c + 1}(b - Y_2) + Y_2 
+		: 
+		tc + 1 - t
+	\right] : t \in \C \right\}. 
+\end{align*}
+We see that these equations linearly determine each $Y_1, Y_2$ in terms of
+$X_1, X_2$ respectively. Name this correspondence $Y_1 = f_1(X_1), Y_2 =
+f_2(X_2)$. Then $X_1, X_2$ need to satisfy $X_1^{2} + X_1^{2} = 1$ and
+$f_1(X_1)^2 + f_2(X_2)^2 = 1$. This system has a solution in the affine plane
+since the circle is reducible into linear factors (over $\K$ algebraically
+closed, but not over $\R$!), hence we can substitute one variable for the
+other, and then solve the remaining polynomial. It follows that $p$ lies on the
+join of $X, Y$ - hence we've verified that the join is all of $\PP{3}$ (or at
+least that it contains $U_0$). \\
+
+Now, let's solve the actual exercise. TODO Todo todo - maybe solve, spent a lot
+of time on example.
+
+
+\subsection*{Ex 9.9}
+
+Let $f \in \K[x_0, x_1, \ldots, x_n]$ be some irreducible homogeneous
+polynomial of degree $2$. Our first claim is that there exists a suitable
+change of coordinates such that $f$ can be written as $f = x_0x_1 + x_2^2 +
+x_3^2 + \ldots + x_m^2$ where $2 \leq m \leq n$. \\
+
+To see this, first note that any bilinear form
+\[
+	f = \sum_{i \leq j} c_{i, j} x_i x_j
+\]
+can be written as 
+\[
+	f 
+	=
+	\begin{bmatrix}
+		x_0 & x_1 & \ldots & x_n 
+	\end{bmatrix}
+	A
+	\begin{bmatrix}
+		x_0 \\
+		x_1 \\
+		\vdots \\
+		x_n \\
+	\end{bmatrix}
+\] 
+where $A$ is a symmetric matrix with $A_{i,j} = A_{j, i} = c_{i,j}/2$ for $i
+\not = j$ and $A_{i, i} = c_{i, i}$. We can perform a change of coordinates
+which diagonalises this matrix, and then by rescaling the coordinates, we can
+do so in such a way that the first two elements on the diagonal are $1/2$, and
+the remaining are either $1$ or $0$ ($f$ is irreducible so the first to
+diagonal entries must be non-zero). After we've diagonalised it we can perform
+a row swap to obtain a matrix of the form
+\[
+	\hat{A}
+	=
+	\begin{bmatrix}
+		0 & 1/2 & 0 & 0 & \ldots & 0 \\
+		1/2 & 0 & 0 & 0 &\ldots & 0 \\
+		0 & 0 & 1 \text{ or } 0 & 0 & \ldots & 0 \\
+		0 & 0 & 0 & 1 \text{ or } 0 & \ldots & 0 \\
+		 &  &  &  & \ddots & \\
+		0 & 0 & 0 & 0 & \ldots & 1 \text{ or } 0, \\
+	\end{bmatrix}
+\] 
+which has a corresponding quadratic form with the desired shape. \\
+
+So, suppose $f = x_0x_1 + x_2^2 + x_3^2 + \ldots + x_m^2$ is an irreducible
+quadratic form, and consider $X = V_p(f)$. Then the projection $\pi : X \to
+\AA{n - 1}$ given by $\pi([a_0:a_1:\ldots:a_n]) = (a_1,\ldots,a_n)$, and it's
+invertible on $\AA{n - 1} \setminus 0$ with inverse
+\[
+	\pi^{-1}(a_1, \ldots, a_n) 
+	=
+	([-(a_2^{2} + a_3^{2} + \ldots + a_n^{2}) : a_1^{2} : a_1a_2 : \ldots : a_1 a_n]),
+\]
+hence $V_p(f)$ is birational to $\PP{n - 1}$. \\
+
+An example of a irreducible quadric surface which isn't isomorphic to some
+projective space, consider the Segre embedding of $\PP{1} \times \PP{1}$ in
+$\PP{3}$. This is given by the variety $V_p(z_{0, 0}z_{1,1} - z_{0, 1}z_{1,
+0})$, hence is an irreducible quadric hypersurface of $\PP{3}$, but $\PP{1}
+\times \PP{1}$ isn't isomorphic to $\PP{2}$ by Exercise 7.7 (c).
+
+\subsection*{Ex 9.18}
+
+We follow along with Example 9.15. By Lemma 9.14, we have that the blow-up of
+$\AA{3}$ along the $x_3$ axis satisfies 
+\[
+	\widetilde{\AA{3}}
+	\subseteq 
+	\{ 
+		((a_1, a_2, a_3), [b_1 : b_2]) \in \AA{3} \times \PP{1}
+		:
+		b_1a_2 = b_2 a_1
+	\}
+	=:
+	Y.
+\] 
+
+The affine patch $U_0 \subset Y$ where $b_1 = 1$, is given by
+$V_{\AA{3} \times \PP{1}}(a_2 - a_1 b_2)$. Hence there is an isomorphism 
+$f : \AA{3} \to U_0$ given by
+\[
+	f : 
+	(a_1, b_2, a_3) 
+	\mapsto
+	((a_1, a_1 b_2, a_3), [1 : b_2]),
+\]
+and we see that $\AA{3}$ is birationally equivalent to $Y$, hence $\dim Y = 3$.
+Moreover, $Y$ is covered by the $U_i$, which are all isomorphic to affine space
+hence irreducible, and as they intersect, $Y$ is irreducible as well by
+Exercise 2.21 (a). As $\widetilde{\AA{3}} \subseteq Y$ and both varieties have
+dimension $3$, it follows that they are the same. \\
+
+The blow-up $\pi : \widetilde{\AA{3}} \to \AA{3}$ maps $U = \AA{3} \setminus
+V(x_1, x_2)$ to $U$, and the exceptional set is given by
+\[
+	\pi^{-1}(V(x_1, x_2))
+	=
+	\{ 
+		((0, 0, a_3), [b_1 : b_2]) \in \AA{3} \times \PP{1}
+	\}
+	\cong
+	\AA{1} \times \PP{1}.
+\]
+
+For two lines $L_1 = t(a_1, a_2, a_3), L_2 = t(b_1, b_2, b_3)$ through
+$V(x_1,x_2)$ to intersect in the blow-up, we need them to intersect in
+$\AA{3}$, and that their projections onto the first two coordinates coincide,
+$t(a_1, a_2) = t(b_1, b_2)$, since these are the lines which get sent to the
+projective axis. \\
+
+The geometric interpretation of this is that the exceptional set parameterizes
+the projected directions onto the $x_1,x_2$-plane. So in some sense, the
+blow-up unravels all planes parallel $x_1, x_2$-plane where each plane is
+unraveled in a way analogous to the blow-up of $\AA{2}$ at the origin. Note
+however that the unraveling happens out into an extra fourth dimension, and has
+nothing to do with the $x_3$ coordinate.
+
+\subsection*{Ex 9.19}
+
+Suppose that $f_1, \ldots, f_s$ is a generating set for $I(Y_1)$ and that $g_1,
+\ldots, g_r$ is a generating set for $I(Y_2)$. The exceptional set of the
+blow-up of $X$ is given by $\pi^{-1}(Y_1 \cap Y_2)$, and it follows
+$\widetilde{Y}_i$ is the closure of the embedding of the $Y_i \setminus Y_j, j
+\not = i$. The embeddings of these open sets are given by 
+\begin{align*}
+	\pi^{-1}(Y_1 \setminus Y_2)
+	&=
+	\{ 
+		(a, [f_1(a):f_2(a):\ldots:f_s(a):g_1(a):g_2(a):\ldots:g_r(a)])
+		:
+		a \in Y_1 \setminus Y_2
+	\} \\
+	&=
+	\{ 
+		(a, [0:0:\ldots:0:g_1(a):g_2(a):\ldots:g_r(a)])
+		:
+		a \in Y_1 \setminus Y_2
+	\}, 
+\end{align*}
+and 
+\begin{align*}
+	\pi^{-1}(Y_2 \setminus Y_1)
+	&=
+	\{ 
+		(a, [f_1(a):f_2(a):\ldots:f_s(a):g_1(a):g_2(a):\ldots:g_r(a)])
+		:
+		a \in Y_2 \setminus Y_1
+	\} \\
+	&=
+	\{ 
+		(a, [f_1(a):f_2(a):\ldots:f_s(a):0:0:\ldots:0])
+		:
+		a \in Y_2 \setminus Y_1
+	\}.
+\end{align*}
+We then see that the first $s$ coordinates of the projective part of
+$\pi^{1}(Y_1 \setminus Y_2)$ are $0$, hence the same is true of the closure
+$\widetilde{Y_1}$. Meanwhile, the last $r$ coordinates of the projective part
+of $\pi^{1}(Y_2 \setminus Y_1)$ are $0$, hence the same is true of the closure
+$\widetilde{Y_2}$. It follows that the two blow-ups are disjoint.
+
+
+\subsection*{Ex 9.22}
+
+\subsection*{(a)}
+
+For a given polynomial $f \in \Kx$, let 
+\[
+	g_f(x_1, y_2, \ldots, y_n) 
+	=
+	f(x_1, x_1y_2, \ldots, x_1y_n)/x_1^{\text{min deg } f}.
+\]
+Then $g_f$ is always a polynomial in $\K[x_1, y_2, \ldots, y_n]$, as every term
+of $f(x_1, x_1y_2, \ldots, x_1y_n)$ is divisible by $x_1^{\text{min deg } f}$.
+Thus given some ideal $J \in \Kx$, we can define the ideal $J_g \in \K[x_1, y_2, \ldots, y_n]$
+as $J_g = (g_f : f \in J)$. Moreover, $f(x_1, x_1y_2, \ldots, x_1 y_n) = 0$
+implies that either $g_f(x_1, y_2, \ldots y_n) = 0$ or $x_1 = 0$. \\
+
+Now, first consider the blow-up of an irreducible variety $X = V(J)$ at the
+origin. Then $\widetilde{X}$ is irreducible as well. We've already seen that
+the affine patch of $\widetilde{\AA{n}}$ given by $V_1 = \{(x, [y]) \subset
+\widetilde{\AA{n}} : y_1 = 1\}$ can be parameterised as 
+\[
+	V_1 = \{ ((x_1, x_1y_2, \ldots, x_1 y_n), [1:y_2:\ldots:y_n]) \in \widetilde{\AA{n}}\},
+\]
+and if we consider $\widetilde{X} \cap V_1$ with this parameterisation,
+we see that 
+\begin{align*}
+	\widetilde{X} \cap V_1
+	&\subseteq
+	\{
+		((x_1, x_1y_2, \ldots, x_1 y_n), [1:y_2:\ldots:y_n]) 
+		\in 
+		\widetilde{\AA{n}}
+		:
+		f(x_1, x_1y_2, \ldots, x_1 y_n) = 0,
+		f \in J
+	\} \\
+	&\subseteq
+	\{
+		((x_1, x_1y_2, \ldots, x_1 y_n), [1:y_2:\ldots:y_n]) 
+		\in 
+		\widetilde{\AA{n}}
+		:
+		x_1 g_f(x_1, y_2, \ldots, y_n) = 0, 
+		f \in J
+	\} \\
+	&=
+	V_{V_1}(x_1J_g) \\
+	&=
+	V_{V_1}(J_g) \cup V_{V_1}(x_1).
+\end{align*}
+But since $\widetilde{X}$ is irreducible, and $\widetilde{X} \cap V_1$ is open
+in $\widetilde{X}$, we have $\widetilde{X} \cap V_1$ irreducible as well. This
+means that either $\widetilde{X} \cap V_1 \subseteq V_{V_1}(J_g)$ or
+$\widetilde{X} \cap V_1 \subseteq V_{V_1}(x_1)$. If $X \not \subset V(x_1)$
+then clearly the first case must hold. If $X \subseteq V(x_1)$, then $x_1 \in
+J$ and $1 \in J_g$ so $V_{V_1}(J_g) = \emptyset$, but we also have that $y_1 =
+0$ for all $(x, [y]) \in \pi^{-1}(X_1 \setminus \{0\})$, hence $\widetilde{X}
+\cap V_1 = \emptyset$ as well. In both cases $\widetilde{X} \cap V_1 \subseteq
+V_{V_1}(J_g)$. \\
+
+Meanwhile, we have an injective morphism 
+\[
+	\phi : V_{V_1}(J_g) \to X, \,
+	((x_1, x_1y_2, \ldots, x_1 y_n), [1:y_2:\ldots:y_n]) 
+	\mapsto 
+	(x_1, y_2, \ldots, y_n),
+\] 
+hence $\dim V_{V_1}(J_g) \leq \dim X = \dim \widetilde{X} = \dim \widetilde{X}
+\cap V_1$ (where the last equality follows from Exercise 5.24). To recap, we
+have two irreducible varieties $\widetilde{X} \cap V_1$, $V_{V_1}(J_g)$, both
+of which are closed in $V_1$, such that $\widetilde{X} \cap V_1 \subseteq
+V_{V_1}(J_g)$ and $\dim V_{V_1}(J_g) = \dim \widetilde{X} \cap V_1$. It follows
+that $\widetilde{X} \cap V = V_{V_1}(J_g)$ and we are done with the case when
+$X$ is irreducible. \\
+
+Now consider the case when $X = X_1 \cup \ldots \cup X_r = V(J_1) \cup \ldots
+\cup V(J_r)$ is the irreducible decomposition of $X$. Then $\widetilde{X} =
+\widetilde{X_1} \cup \ldots \cup \widetilde{X_r}$, hence 
+\begin{align*}
+	\widetilde{X} \cap V_1
+	&=
+	\bigcup_{i = 1}^{r} 
+	(\widetilde{X}_r \cap V_1) \\
+	&=
+	\bigcup_{i = 1}^{r} 
+	V_{V_1}((J_i)_g) \\
+	&=
+	V_{V_1}\left(
+	\prod_{i = 1}^{r} 
+	(J_i)_g
+	\right),
+\end{align*} 
+so we are done if we can show that $(JJ')_g = J_gJ'_g$. But this is seen easily
+since both ideals are generated by all products $g_{f} g_{f'}$ with $f \in J$
+and $f' \in J'$. 
+
+\subsection*{(b)}
+
+First of, we have 
+\begin{align*}
+	g_f^{\ini}(x_1, y_2, \ldots, y_n)
+	&=
+	f^{\ini}(x_1, x_1y_2, \ldots, x_1 y_n) / x_1^{\deg(f^{\ini})} \\
+	&=
+	f^{\ini}(1, y_2, \ldots, y_n),
+\end{align*}
+so $f^{\ini}$ agrees with $g_f^{\ini}$ on $V_1$ if we evaluate $f^{\ini}$ on
+the projective part of $V_1$ (i.e the $y$-coordinates). Moreover, on
+$\pi^{-1}(0)$, $g_f = g_f^{\ini}$ since all terms but the initial term in $g_f$
+is divisible by $x_1$. Combining these to facts shows that $f^{\ini} = g_f$ on
+the projective part of $E_1$, where $E_1 = ({0} \times \PP{n - 1}) \cap V_1$ is
+the first affine patch of the exceptional set of $\AA{n}$ blown up at the
+origin. In other words, the first affine patch of the exceptional set of the
+blow-up of $X$ is given by
+\begin{align*}
+	\pi^{-1}(0) \cap V_1
+	&= 
+	V_{E_1}(J_g) \\
+	&= 
+	0 \times V_{A_1}(J^{\ini})
+\end{align*}
+where $A_1$ is the first affine patch of $\PP{n - 1}$, and gluing together all
+such patches yields
+\begin{align*}
+	\pi^{-1}(0)
+	&= 
+	0 \times V_p(J^{\ini}).
+\end{align*}
+
+\subsection*{(c)}
+
+Let $hf \in (f)^{\ini}$. Then $hf^{\ini} = h^{\ini}f^{\ini} \in (f^{\ini})$ hence
+$(f)^{\ini} = (f^{\ini})$. \\
+
+For a counter example when $J$ isn't principal. Consider $J = (f_1 = x + y, f_2
+= x - y)$ in lex order with $y < x$. Then $f_1^{\ini} = y, f_2^{\ini} = -y$, so
+$(f_1^{\ini}, f_2^{\ini}) = (y)$. Meanwhile $x \in J$ so $x \in J^{\ini}$.
+
+
+\subsection*{Ex 9.25}
+
+\subsection*{(a)}
+
+We already know what the blow-up of $\AA{2}$ at the ideal $(x_1, x_2)$ is from
+Example 9.15. Denote this blow-up by $Y$. Our aim will be to show that the blow
+up of the plane at $J = (f_1 = x_1^2, f_2 = x_1x_2, f_3 = x_2^2)$, which we
+will denote by $\widetilde{\AA{2}}$, is isomorphic to $Y$. Let $X = V(J)$. Then
+by Lemma 9.14, 
+\begin{align*}
+	\widetilde{\AA{2}}
+	&\subseteq 
+	\{
+		((x_1, x_2), [y_1, y_2, y_3]) \in \AA{2} \times \PP{2} 
+		:
+		y_1 f_2(x_1,x_2) = f_1(x_1,x_2) y_2,
+		y_1 f_3(x_1,x_2) = f_1(x_1,x_2) y_3,
+		y_2 f_3(x_1,x_2) = f_2(x_1,x_2) y_3
+	\} \\
+	&=
+	\{
+		((x_1, x_2), [y_1, y_2, y_3]) \in \AA{2} \times \PP{2} 
+		:
+		y_1 x_1x_2 = x_1^2 y_2,
+		y_1 x_2^2 = x_1^2 y_3,
+		y_2 x_2^2 = x_1x_2 y_3
+	\} \\
+	&:= Y''.
+\end{align*}
+Moreover, on $\pi^{-1}(\AA{2} \setminus \{0\})$ we have 
+$y_1y_3 = y^2$, hence this equation holds on its closure $\widetilde{\AA{2}}$
+as well, and we have 
+\[
+	\widetilde{X} 
+	\subseteq 
+	V_{Y''}(y_1y_3 = y_2^2)
+	:=
+	Y'.
+\] 
+We will be done if we can show that $Y \cong Y'$, as from this it would follow
+that $Y'$ is an irreducible variety of dimension $2$ containing
+$\widetilde{\AA{2}}$, hence $\widetilde{\AA{2}} = Y' \cong Y$. \\
+
+Consider the injective morphism 
+\begin{align*}
+	\phi &: Y \to Y', \\
+	\phi &:
+	(x, [y_1 : y_2])
+	\mapsto
+	(x, [y_1^2 : y_1y_2 : y_2^2]), 
+\end{align*}
+and let $U_i$ be the affine patch $y_i = 1$ of $Y'$. Then we can invert $\phi$
+on these patches as 
+\begin{align*}
+	\phi^{-1} &: Y' \to Y, \\
+	\phi^{-1} &:
+	(x, [y_1=1 : y_2 : y_3]) 
+	\mapsto
+	(x, [y_1 : y_2]), \\
+	\phi^{-1} &:
+	(x, [y_1 : y_2=1 : y_3]) 
+	\mapsto
+	(x, [y_1 : y_2]), \\
+	\phi^{-1} &:
+	(x, [y_1 : y_2 : y_3=1]) 
+	\mapsto
+	(x, [y_2 : y_3]).
+\end{align*}
+Note that $\phi^{-1}$ is injective on all of $Y'$ as well, since $y_1y_3 =
+y_2^2$ on $Y'$ hence any two $y_i, y_j$ determine the third $y_k$ uniquely up to
+sign, but this signage can be ignored above as in the image of $\phi^{-1}$ we
+have $[y_i : y_j] = [- y_i : - y_j]$. Hence $Y' \cong Y$ and we are done.
+
+\subsection*{(b)}
+
+Let's try the blow-up $\AA{2}$ at $(x_1^2, x_2)$. By Lemma 9.14, we have 
+\begin{align*}
+	\widetilde{\AA{2}}
+	&\subseteq
+	\{
+		((x_1, x_2), [y_1, y_2]) \in \AA{2} \times \PP{1} 
+		:
+		x_1^2 y_2 = y_1 x_2.
+	\} \\
+	&=:
+	Y
+\end{align*}
+On the affine patch $U_1$ where $y_1 \not = 0$ this becomes equation
+$x_2 = y_2 x_1^2$, hence we have an isomorphism 
+\[
+	\phi_1 : \AA{2} \to U_1,
+	(x_1, y_2)
+	\mapsto 
+	((x_1, x_1^2 y_2), [1 : y_2]).
+\] 
+Similarly, on the affine patch $U_2$ the equation becomes 
+$x_1^2 = y_1 x_2$, and we have an isomorphism 
+\[
+	\phi_2 : V_{\AA{3}}(x_1^2 - x_2 x_3) \to U_2,
+	(x_1, x_2, x_3)
+	\mapsto 
+	((x_1, x_2), [x_3 : 1]).
+\] 
+Hence $Y$ can be covered by irreducible patches of dimension $2$, and must
+itself be an irreducible variety of dimension $2$, whence $\widetilde{\AA{2}} =
+Y$. \\
+
+Now, let's consider the tangent cone of $U_2 = V_{\AA{3}}(x_1^2 - x_2 x_3)$ at
+the origin. As $x_1^2 - x_2x_3$ is homogeneous, this is simply $V(x_1^2 -
+x_2x_3)$. \\
+
+Meanwhile, let $\widehat{\AA{2}}$ be the blow-up of $\AA{2}$ at the origin.
+As $\widehat{\AA{2}}$ can be covered by patches isomorphic to $\AA{2}$, it
+follows that the tangent cone at any point is $C(\PP{1}) = \AA{2}$. \\
+
+Now, as the coordinate ring of the tangent cone of $U_1$ is isomorphic to
+$\Kx/(x_1^2 - x_2 x_3)$, hence not a UFD, it can't be isomorphic to any tangent
+cone of $\widehat{\AA{2}}$ as they all have coordinate rings $\K[x_1,x_2]$, and
+it now follows from the hint that $\widetilde{\AA{2}} \not \cong
+\widehat{\AA{2}}$.
+
+
+
+\subsection*{Ex 9.25}
+
+\subsection*{(a)}
+
+We will use the answer from here: https://math.stackexchange.com/questions/4001996/fundamental-points-of-cremona-plane-transformation, but it uses limits, and so we will motivate limits 
+with a lemma first. 
+
+\begin{lemma}
+	Let $X, Y$ be varieties, $f : X \to Y$ a morphism, and $a_i \in X, i \in
+	\N$ a sequence such that $\lim_{i \to \infty} a_i = a$ in the classical
+	topology on $U$. Then
+	\[
+		\lim_{i \to \infty} f(a_i) = f(a).
+	\]
+\end{lemma}
+\begin{proof}
+	We can assume that $X, Y$ are affine by restricting $f$ to open affine sets
+	containing $a, f(a)$. Then since Zariski closed subsets of affine varieties
+	are closed in the classical topology, it follows that $f$ is continuous in
+	the classical topology, after which our statement follows as well.
+\end{proof}
+
+Now assume that there exists an extension $\hat{f}$ of $f$ to all of $\PP{2}$.
+Now consider two different sequences on $\PP{2}$, one on the
+variety $V(x_1)$ given by $r_i = [1 : 0 : \lambda_i]$ and one on
+$V(x_2)$ given by $s_i [1 : \lambda_i : 0]$ where $\lambda_i = 1/i \to 0$.
+On the first sequence, $f$ is given by
+\[
+	f(r_i)
+	=
+	f([1 : 0 : \lambda_i]) 
+	= 
+	[0 : \lambda_i : 0]
+	=
+	[0 : 1 : 0],
+\]
+whilst, at the second sequence, $f(s_i) = [0 : 0 : \lambda_i] = [0 : 0 : 1]$.
+We now arrive at the contradiction
+\[
+	[0 : 1 : 0]
+	=
+	\lim_{i \to \infty}
+	\hat{f}(r_i)
+	=
+	\hat{f}([1 : 0 : 0])
+	=
+	\lim_{i \to \infty}
+	\hat{f}(s_i)
+	=
+	[0 : 0 : 1].
+\] 
+
+
+\subsection*{(b)}
+
+TODO Todo todo
+LATER!
+
+\subsection*{Ex 10.6}
+
+Let $I_a, J_{f(a)}$ be the maximal ideals of $\mathcal{O}_{X, a},
+\mathcal{O}_{Y, f(a)}$ respectively. By Corollary 10.5, it will suffice to show
+that $f$ induces a linear map $g^* :  J_{f(a)} / J_{f(a)}^{2} \to I_a/I_a^{2}$
+(note that the arrow goes in the opposite direction as it's a morphism in the
+dual space of the tangent space). \\
+
+We construct $g^*$ as 
+\begin{align*}
+	g^* :
+	\left(U_{f(a)}, \phi\right) + J_{f(a)}^{2}
+	&\mapsto
+	(f^{-1}\left(U_{f(a)}\right), f^* \phi) + I_{a}^{2}.
+\end{align*}
+First of, $g$ is well defined, as $f^{-1}(U_{f(a)})$ is open in $X$ since $f$
+is a morphism, $a \in f^{-1}(U_{f(a)})$, and $f^{*} \phi \in
+\mathcal{O}_X(f^{-1}(U_{f(a)}))$. Linearity of $g^*$ follows by linearity of
+$f^{*}$. \\
+
+\subsection*{Ex 10.13}
+
+\subsection*{(a)}
+
+First suppose that $f = \bm{x}^{\bm{\alpha}}$ is a monomial.
+If $\alpha_i \geq 1$, we have
+\[
+	\frac{\partial f}{\partial x_i} = \alpha_i \bm{x}^{(\alpha_1, \ldots, \alpha_i - 1, \ldots, \alpha_n)},
+\]
+hence 
+\[
+	x_i \frac{\partial f}{\partial x_i} = \alpha_i \bm{x}^{\bm{\alpha}} = \alpha_i f.
+\]
+If instead $\alpha_i = 0$ then we just have
+\[
+	\frac{\partial f}{\partial x_i} = 0.
+\]
+It now follows that  
+\[
+	\sum_{i = 1}^{n}
+	x_i \frac{\partial f}{\partial x_i}
+	=
+	\sum_{i = 1}^{n}
+	\alpha_i f	
+	=
+	f
+	\sum_{i = 1}^{n}
+	\alpha_i
+	=
+	d f.
+\] 
+The result now follow for general homogeneous polynomials since 
+\[
+	f \mapsto
+	\sum_{i = 1}^{n}
+	x_i \frac{\partial f}{\partial x_i}
+\] 
+is a linear operator.
+
+
+\subsection*{(b)}
+
+Assume WLOG that $a_0 = 1$ and consider the affine patch of $\AA{n}$ denoted
+$U_0$. Let $f'_i(x_1, \ldots, x_n) = f_i(1, x_2, \ldots, x_n)$ denote the
+dehomogenization of $f$. Then $X$ is smooth if and only if the affine Jacobi
+criterion is holds for $X' = V(I') = V(f_1', \ldots f_n')$ at $a' = (a_1,
+\ldots, a_n)$. We differentiate, and note that 
+\[
+	\frac{\partial f'_i}{\partial x_j}(a')
+	=
+	\frac{\partial f_i}{\partial x_j}(a),
+\] 
+for $j \not = 0$ hence $X$ is smooth at $a$ if and only if
+$\left(\frac{\partial f_i}{x_j}\right)_{i, j \geq 1}$ has rank $n -
+\codim_X\{a\}$. Note however that this is an $r \times n$ matrix, and does not
+include the derivatives with respect to $x_0$. To deal with this, just note
+that since $a_0 = 1$, it follows from part (a) that
+\[
+	\frac{\partial f_i}{\partial x_0}(a)
+	=
+	d f(a)
+	-
+	\sum_{i = 1}^{n}
+	a_i \frac{\partial f}{\partial x_i}(a)
+	=
+	-
+	\sum_{i = 1}^{n}
+	a_i \frac{\partial f}{\partial x_i}(a),
+\] 
+hence the omitted $0$-th column is linearly dependent with the other columns
+and does not change the rank.
+
+\subsection*{Ex 10.17}
+
+Let $\widetilde{X_k}$ be the blow-up of $X_k$ at the origin. The exceptional
+set whenever $k > 0$ is given by $\{0\} \times V_p(x_2^2) = \{((0, 0), [1 :
+0])\}$. Let's investigate $\widetilde{X_k}$ around this point, and 
+consider the affine patch $U_1$ of $\widetilde{X_k}$. As in the Example 10.16,
+Exercise 9.22 (a) tells us that this patch of the blow-up is given by
+\[
+	V\left(\frac{(x_1y_2)^2 - x_1^{2k + 1}}{x_1^{2}}\right)
+	=
+	V(y_2^{2} - x_1^{2(k - 1)})
+	\cong
+	X_{k - 1}.
+\]
+Hence, the $k$-th blow-up of $X_k$ at the origin is the first blow-up which is
+smooth. Since isomorphic varieties have isomorphic blow-ups, it follows that
+$X_k \not \cong X_l$ when $x \not = l$.
+
+\subsection*{Ex 10.18}
+Let $f : \PP{1} \to X \subset \PP{3}$ be the degree $3$ Veronese embedding
+given by 
+\[
+	f 
+	: 
+	[x_0 : x_1] 
+	\mapsto 
+	[y_0 : y_1 : y_2 : y_3]
+	=
+	[x_0^{3} : x_0^{2}x_1 : x_0x_1^{2} : x_1^{3}].
+\]
+Then by Exercise 7.28, 
+\[
+	X \subseteq X' = V_p(f_1 = y_0y_3 - y_1y_2, f_2 = y_0 y_2^{3} - y_1^{3} y_3),
+\] 
+and as both $X, X'$ are irreducible varieties of codimension $2$ in $\PP{3}$,
+we have $X = X'$ (we needed the dimensional argument to see that $X = X'$,
+since we haven't motivated that $f_1,f_2$ generate the ideal of all the
+polynomials of the form $z_{\bm{k}}z_{\bm{k}'} - z_{\bm{r}}z_{\bm{r}'}$ as
+given in the solution of Exercise 7.28). \\
+
+The Jacobian of $f_1, f_2$ is now given as 
+\[
+\begin{pmatrix}
+	y_3 & -y_2 & -y_1 & y_1 \\	
+	y_2^{3} & -3y_1^{2} y_3 & 3y_0y_2^{2} & -y_1^3 \\	
+\end{pmatrix}
+\] 
+which when evaluated at any point $a \in X$, has rank at least $3 -
+\codim_X(\{a\}) = 3 - 1 = 2$ since the upper row never vanishes, and the lower
+row only vanishes when $a_1 = a_2 = 0$, which can't happen when $a \in X$.
+
+\subsection*{Ex 10.22}
+
+\subsection*{(a)}
+
+Suppose that $X \subseteq \PP{N}$ with $\dim X = n$. The answer is trivial if
+there is exist an automorphism $\phi$ on $\PP{N}$ such that at most $2n + 1$
+coordinates on $\phi(X)$ are non-zero, so assume no such $\phi$ exist. I.e,
+that for every $\phi \in \Aut(\PP{N})$, and $i \in [0..N]$, we have that the
+affine patch $U_i$ of $\PP{N}$ intersects $X$. \\
+
+We claim that $X$ must be smooth (?). \\
+
+It now follows that
+
+
+Then $S(X)$ contains a
+chain of $n$ radical homogeneous ideals not equal to the projective ideal.
+Let 
+
+
+TODO Todo todo: Finnish!!!
+
+\subsection*{(b)}
+
+\subsection*{Ex 10.23}
+
+\subsection*{(a)}
+
+We prove the contrapositive. Suppose that $X = X_1 \cup \ldots \cup X_r \subset
+\Pn$ is the irreducible decomposition of the hypersurface $X$, and that $r \geq
+2$. Then by Exercise 6.31 (b), the two irreducible components $X_1, X_2$ meet
+in some point $p \in X_1 \cap X_2$, which by Remark 10.10 (b) then must be a
+singular point. \\
+
+So, in general, any smooth variety $X \subset \Pn$ of pure dimension $\geq n/2$
+is irreducible.
+
+\subsection*{(b)}
+
+Let $N = \PP{\binom{n + d}{n} - 1}$,
+and $X \subseteq \PP{N}$ be the set of points corresponding
+to homogeneous degree $d$ polynomials in $n + 1$ variables which carve out
+smooth, hence irreducible, varieties of $\PP{n}$. We are asked to show that this
+is a dense open set, but since projective space is irreducible, it will be
+enough to show that it's an open non-empty set. \\
+
+To see that $X$ is non-empty just consider some Fermat hypersurface
+from Example 10.21. It remains only to show that $X$ is open. \\
+
+We will first show that given some point $a \in \Pn$, the set of points in
+$\PP{N}$ which correspond to degree $d$ forms vanishing at $a$ is closed. This
+follows easily from the Jacobi criterion; A degree $d$ form $f \in \C[x_1,
+\ldots, x_n]_d$ is singular at $a$ precisely if all partial derivatives of $f$
+vanish simultaneously at $a$, and this is a closed condition on the
+coefficients on $f$. Hence the subset $U_a \subset \PP{N}$ of points
+corresponding to homogeneous degree $d$ polynomials which are regular at $a$ is
+open. The $U_a$ cover $\PP{N}$ since no polynomial is singular everywhere. As
+projective space is compact, there is a finite subcover of $U_a$, and their
+intersection is also open, and equal to $X$.
+
+
+\subsection*{Ex 10.24}
+
+\subsection*{(a)}
+
+It means that the gradient of $f$ is the same at $a$ and $b$. This means that
+the tangent space of $f$ at $a$ is equal to the tangent space of $f$ at $b$.
+
+\subsection*{(b)}
+
+Since $f$ is a quadratic form, all partial derivatives of $f$ are linear forms.
+Hence the parameterisation of the dual curve $F$ is a linear map. Moreover, as
+these linear forms never simultaneously vanish at $X$ by assumption, the kernel
+of this map interpreted in $\AA{3}$ intersects the cone $C(X)$ trivially. But
+then the kernel of the map must be trivial, since $C(X)$ is a $3$-dimensional
+surface in $\AA{3}$ (as $X$ is irreducible, it's not a line or a point in
+$\PP{2}$), and can't be contained in any subspace of $\AA{3}$ of vector space
+dimension less than $3$. I.e the linear map is an isomorphism, and the curve
+parameterised by $F$ differs from the curve determined by $f$ by a change of
+coordinates only, hence they must both be irreducible of degree $2$. \\
+
+To do part (c), we'll need to verify that the dual of the dual is indeed the
+original curve, and to do that, we will write a Macaulay2 script which
+explicitly calculates the implicit form of $F$ for a generic conic $f$. We know
+that $F$ is a conic, hence an implicit form for $F$ amounts to finding a linear
+relation among products of order $2$ of the partial derivatives of $f$. I.e, if
+we write 
+\[
+	f 
+	= 
+	a x_1^{2} + b x_1x_2 + c x_1x_3 + d x_2^2 + e x_2x_3 + r x_3^2,
+\] 
+and let $g_i = f'_{x_i}$, then we're looking for linear relations among 
+\begin{align*}
+	g_1^{2} &= 
+	4a^2 x_1^2 + 4ab x_1 x_2 + 4ac x_1 x_3 + b^2 x_2^2 + 2bc x_2x_3 + c^2 x^3 \\
+	g_1g_2 &= 
+	2ab x_1^2 + (4ad + b^2) x_1 x_2 + (2ae + cb) x_1 x_3 + 2bd x_2^2 + (be + 2cd) x_2x_3 + ce x^3 \\
+	g_1g_3 &= 
+	2ac x_1^2 + (2ae + bc) x_1 x_2 + (4ar + c^2) x_1 x_3 + be x_2^2 + (2br + ce) x_2x_3 + 2cr x^3 \\
+	g_2^{2} &= 
+	b^2 x_1^2 + 4bd x_1 x_2 + 2be x_1 x_3 + 4 d^2 x_2^2 + 4de x_2x_3 + e^2 x^3 \\
+	g_2g_3 &= 
+	bc x_1^2 + (be + 2dc) x_1 x_2 + (2br + ec) x_1 x_3 + 2de x_2^2 + (4dr + e^2) x_2x_3 + 2er x^3 \\
+	g_3^{2} &= 
+	c^2 x_1^2 + 2ce x_1 x_2 + 4cr x_1 x_3 + e^2 x_2^2 + 4er x_2x_3 + 4r^2 x^3,
+\end{align*}
+Now, we're only concerned with $F(X)$, I.e we only need a quadratic form in the
+$g_i$ which vanishes when $(x_1,x_2,x_3) \in X$. We can therefor reduce
+everything modulo $f$. Here is a script which does this.
+
+\begin{lstlisting}[language = Macaulay2]
+clearAll
+
+unorderedPairs = l -> 
+	flatten ((0..<#l) / (i -> (toList (i..<#l) / (j -> (l_i, l_j)))))
+degreeTwoMonomials = l -> unorderedPairs l / times
+
+dualConic = f -> (
+	R := ring f;
+	baseR := baseRing R;
+	Rq := R/ideal(f);
+
+	-- extract cofficeints of quadratic forms of 
+	-- partial derivatives % ideal(f) into a matrix
+	g := flatten entries sub(jacobian f, Rq);
+	gg := degreeTwoMonomials g;
+	mons := degreeTwoMonomials gens R;
+	monsQ := mons / (r -> r_Rq);
+	ggCoeffs := gg / (x -> coefficients(x, Monomials=>monsQ)) / last;
+	M := sub(fold((v1, v2) -> v1 | v2, ggCoeffs), baseR);
+
+	-- Recast that matrix as a map from the free module baseR^6,
+	-- to the quotient module baseR^6 modulo the relations 
+	-- induced by f
+	fCoeffsVec := last coefficients(f, Monomials=>mons);
+	fCoeffsVecInBaseR := sub(fCoeffsVec, baseR);
+	M = map(coker fCoeffsVecInBaseR, baseR^6, M);
+
+	-- The kernel of M will be the baseR-linear dependecies 
+	-- among the partial derivatives
+	k := ker M;
+	cs := (entries k_0) / (c -> sub(c, R));
+	sum apply(mons, cs, times)
+)
+
+Rgeneric = QQ[a,b,c,d,e,r]
+R = Rgeneric[x_0 .. x_2]
+
+f = a * x_0^2 + b * x_0 * x_1 + c * x_0 * x_2 
+	+ d * x_1^2 + e * x_1 * x_2 + r * x_2^2
+F = dualConic f
+
+<< "f: " << f << endl << endl;
+<< "F: " << F << endl << endl;
+<< "dualConic F: " << dualConic F << endl << endl;
+<< "F(jacboian f) % f: " 
+	<< F(toSequence flatten entries jacobian f) % f << endl;
+<< "f(jacboian F) % F: " 
+	<< f(toSequence flatten entries jacobian F) % F << endl;
+\end{lstlisting}
+
+The script produces the following output (with some manual wrapping added for
+readability). \\
+\begin{lstlisting}[language=Macaulay2output]
+i0 : load "dual-conic.m2"
+
+
+      2               2                        2
+f: a*x  + b*x x  + d*x  + c*x x  + e*x x  + r*x
+      0      0 1      1      0 2      1 2      2
+
+       2         2                           2         2 
+F: (- e  + 4d*r)x  + (2c*e - 4b*r)x x  + (- c  + 4a*r)x  + ...
+                 0                 0 1                 1 
+
+                                                     2         2
+ ... + (- 4c*d + 2b*e)x x  + (2b*c - 4a*e)x x  + (- b  + 4a*d)x
+                       0 2                 1 2                 2
+
+                2               2                        2
+dualConic F: a*x  + b*x x  + d*x  + c*x x  + e*x x  + r*x
+                0      0 1      1      0 2      1 2      2
+
+F(jacboian f) % f: 0
+f(jacboian F) % F: 0
+\end{lstlisting}
+
+We see in this output that the dual curve of the dual curve is indeed the
+original curve.
+
+\subsection*{(c)}
+
+A line $L_i$ in $\PP{2}$ is determined by a linear form like $L_i = V_p(X_i x_0
++ Y_i x_1 + Z_i x_2)$. Given $5$ lines $L_i$, let $p_i = [X_i : Y_i : Z_i]$.
+The $L_i$ are in general position precisely when the $p_i$ are. From Exercise
+7.30 (c) we know that any $5$ points of $\PP{2}$ in general position uniquely
+determine a conic, so let $F$ be the conic determined by the $p_i$. Let $f$ be
+the dual of $F$. We showed in part (b) that this implies that the dual of $f$
+is $F$. This means that $F$ can be parameterised as $F = [f'_{x_0} : f'_{x_1} :
+f'_{x_2}]$, and passes through the points $p_i$ for some inputs $a^i = [a^i_0 :
+a^i_1 : a^i_2]$. In other words, 
+\[
+	[f'_{x_0}(a^i_0) : f'_{x_1}(a^i_1) : f'_{x_2}(a^i_2)]
+	=
+	p_i
+	=
+	[X_i : Y_i : Z_i],
+\]
+hence the tangent space of $f$ at $p_i$ is $L_i$ and we are done. \\
+
+We end with a remark that that emphasises that the tangent space of $f$ is
+indeed equal to $L_i$ at $a_i$, and not just parallel to it. Consider $f$ as a
+function on affine space. Then since $f$ is a cone, the tangent plane at any
+point will intersect the origin of $\AA{3}$. Similarly, if we interpret $L_i$
+in affine space, it will be a plane intersecting the origin. Hence both are
+spaces determined by an implicit equation of the form $Ax_0 + Bx_1 + C x_2 =
+0$. I.e there is no non-zero "$m$" value in the equation as $Ax_0 + Bx_1 + C
+x_2 = m$. Maybe this is obvious, I just needed to write it out for myself. 
 
 \end{document}
