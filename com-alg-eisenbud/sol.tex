@@ -1,0 +1,341 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\subsection*{Exercise A3.1}
+
+Let $a : N \to M$ be a monomorphism, $M$ essential over $N$, and $b : M \to E$
+be a morphism which restricts to a monomorphism on $a(N)$. Then $\ker(b) \cap
+a(N) = 0$, and as $M$ is essential over $N$, this implies that $\ker(b) = 0$.
+Indeed, any non-trivial submodules of $M$ intersect $a(N)$ non-trivially. 
+
+\subsection*{Exercise A3.2}
+\subsubsection*{(a)}
+
+Let $Q_i, i \in I$ be a family of injective $R$-modules, $M, N$ be $R$ modules,
+$a : M \to N$ an injective $R$-linear map, and $b : M \to Q = \prod_{i \in I}
+Q_i$ a $R$-linear map. Then if we let $b_i = \pi_i \circ b : M \to Q_i$, we
+have a morphism $c_i : N \to Q_i$ which agrees with $b_i$ on $M$ since $Q_i$ is
+in injective. It now follows from the universal property of $Q$ that there is a
+unique morphism $c : N \to Q$ such that $c_i = \pi_i \circ c$. If we collect
+all our results, we get that
+\[
+	\pi_i \circ c \circ a = \pi_i \circ b,
+\] 
+whence $c \circ a = b$ since $\pi_i$ is an epimorphism, hence $Q$ is injective. \\
+
+An alternate picture, which emphasizes the component-wise picture of the problem
+is given as follows. We have the following diagram,
+
+\begin{equation*}
+\begin{tikzcd}[row sep=huge]
+M \arrow[r, hook, "a"] \arrow[d,swap,"b"] &
+N \\
+Q,
+\end{tikzcd}
+\end{equation*}
+which we can split up for each injective component $Q_i$ of $Q$ as
+\begin{equation*}
+\begin{tikzcd}[row sep=huge]
+M \arrow[r, hook, "a"] \arrow[d,swap,"b_i"] &
+N \arrow[dl, dashed, "\exists c_i"] \\
+Q_i
+\end{tikzcd}
+\end{equation*}
+and we can then let $c : N \to Q$ be the morphism $c : n \mapsto (c_i(n))_{i
+\in I}$. This shows that we indeed need that $Q$ is the direct product, and the
+same construction can't be used for a direct sum of injective modules, since
+$c_i(n)$ can be non-zero for infinitely many $i \in I$. If however we could
+guarantee that $c_i(n) \not = 0$ for all but finitely many $i \in I$, then this
+proof would work when $Q$ is the direct product as well, which leads us into
+the second part of the question. \\
+
+Suppose that $R$ is Noetherian, and that $Q = \bigoplus_{i \in I} Q_i$ where
+each $Q_i$ is an injective $R$-module, and that we have $R$-modules and
+morphisms as in the following diagram
+\begin{equation*}
+\begin{tikzcd}[row sep=huge]
+I \arrow[r, hook, "a"] \arrow[d,swap,"b"] &
+R \\
+Q,
+\end{tikzcd}
+\end{equation*}
+where $I$ is an ideal in $R$. Then since $R$ is Noetherian, $I$ is finitely
+generated by say $(f_1, \ldots, f_m)$. Let $i_j \in I$ be the index such 
+that $a(f_j) \in Q_{i_j}$. It then follows that $a(I) \subseteq \bigoplus_{j = 1}^{m} Q_{i_j}$,
+hence we have maps $c_i$
+\begin{equation*}
+\begin{tikzcd}[row sep=huge]
+M \arrow[r, hook, "a"] \arrow[d,swap,"b_i"] &
+N \arrow[dl, dashed, "\exists c_i"] \\
+Q_i
+\end{tikzcd}
+\end{equation*}
+such that $c_i = 0$ whenever $i \not = i_j$ for some $j \in [1..m]$, and 
+\begin{equation*}
+\begin{tikzcd}[row sep=huge]
+I \arrow[r, hook, "a"] \arrow[d,swap,"b"] &
+R \arrow[dl, "c : r \mapsto \sum_{j = 1}^{m} c_{i_j}(r)"] \\
+Q,
+\end{tikzcd}
+\end{equation*}
+is a commutative diagram, which shows that $Q$ is injective by Lemma A.3.4. \\
+
+For the other direction, suppose that $R$ is a ring, $Q_i, i \in I$ is a family
+of injective $R$-modules, and that $Q = \bigoplus_{i \in I} Q_i$ is a
+non-injective $R$-module. Then there exist an ideal $I \subset R$ and maps 
+\begin{equation*}
+\begin{tikzcd}[row sep=huge]
+I \arrow[r, hook, "a"] \arrow[d,swap,"b"] &
+R \\
+Q,
+\end{tikzcd}
+\end{equation*}
+such that $b$ doesn't extend to $R$. It follows that $I$ must be infinitely
+generated, as otherwise we could extend $b$ like above, hence $R$ isn't
+Noetherian.
+
+\subsubsection*{(b)}
+
+Let $R$ be a Noetherian ring and $Q$ be an injective $R$-module. Let $Q' =
+\bigoplus_{i \in I} Q_i \subseteq Q$ be a maximal direct sum of indecomposable
+injective submodules. Such $Q'$ exists by Zorn's lemma, since $0 \subset Q$ is
+a direct sum of indecomposable injective submodules, and if $A_0 \subset A_1
+\subset A_2 \subset \ldots$ is a chain of such sums, then so is $\bigcup A_i$. \\
+
+Our objective is to show that $Q = Q'$. By part (a), $Q'$ is injective, so $Q =
+Q' \oplus Q''$ since injective morphisms from injective modules split. But,
+$Q''$ is injective as well since $Q'' \cong Q/Q'$ is a quotient of an injective
+module. Now, $Q''$ can't contain any indecomposable injective submodule, as 
+this would contradict the maximality of $Q'$. \\
+
+Now suppose towards a contradiction that we have some $m \in Q''$, and let $E =
+E(Rm)$ be the injective envelope of $Rm$. We claim that $E$ is indecomposable.
+To see this, suppose that $E = E' \oplus E''$, and that $m \in E'$. Then $Rm
+\subseteq E'$, so $E'' \cap Rm = 0$ since $E = E' \oplus E''$, whence $E'' = 0$
+since $E$ is an essential extension of $Rm$. We've found an indecomposable
+injective module $E \subseteq Q''$, a contradiction, hence $Q'' = 0$ and we are
+done.
+
+\subsection*{Exercise A3.3}
+
+We showed in the previous exercise that $E(R/P)$ is an indecomposable injective. \\
+
+Now suppose that $E$ is an indecomposable injective module, and that $P$ is
+some associated prime of $E$. Then $E(R/P)$ is an injective submodule of $E$,
+hence a direct summand of $E$ as injective morphisms from injective modules
+split. Since $E$ is irreducible, it follows that $E = E(R/P)$. \\
+
+Now let $P \not = Q$ be two prime ideals and suppose towards a contradiction
+that $E = E(R/P) = E(R/Q)$. Then let $x_P \in \ann(P)$ and $x_Q \in \ann(Q)$.
+We claim that $M_P = Rx_P, M_Q = Rx_Q$ are two submodules with trivial
+intersection. To see this, note that e
+
+Then $R/P, R/Q$ are both submodules of $E$,
+and we claim that they don't intersect. To see this, let $x \in R/P \cap R/Q$.
+Then $P \cup Q \subset \ann(x)$
+
+
+We showed above that when $E$ is an injective indecomposable, then $E = E(R/P)$
+for any associated prime $P$ of $E$. 
+
+If we can show that $P$ is the only associated prime of $E$, then it follows
+that $Q \not = P$ implies $E(R/Q) \not = E(R/P)$, since other wise $R/Q$ would
+be a submodule of $E(R/P)$. \\
+
+So, let $Q$ be an associated prime of $E = E(R/P)$. 
+
+We showed in the previous part that this implies that $E = E(R/P) = E(R/Q)$.
+
+Our goal is to show that $Q = P$. Let $x \in E$ be such that $\ann(x) = Q$.
+Since $E$ is an essential extension of $R/P$, we must have some $rx \in Rx \cap
+R/P$. But then $rxP = 0$ so $rP \subseteq \ann(x) = Q$. 
+
+By symmetric arguments (since $E = E(R/P) = E(R/Q)$), we can find $r'$ such
+$r'Q \subseteq P$. Then
+
+TODO: Finnish after reading about primary decomposition of modules
+
+\subsection*{Exercise A3.4}
+
+\subsection*{(a)}
+
+Let $R$ be a Noetherian ring, $P \subset R$ a prime ideal, $I \subset R$ an
+arbitrary ideal and $\phi : I \to R/P$ some $R$-linear map. Then if $p \in P, i
+\in I$, we have $\phi(pi) = p \phi(i) = 0$, so the kernel of $\phi$ contains
+$PI$. \\
+
+Now let's apply the Artin-Rees lemma. Consider the $P$-filtration
+\[
+	R \subset P \subset P^2 \subset \ldots,
+\]
+and the $R$-submodule $I$. By the lemma, the filtration 
+\[
+	I \subset I \cap P \subset I \cap P^2 \subset \ldots
+\] 
+is $P$-stable. Hence there exist $d \in \N$ such that $I \cap P^{d + r} =
+P^{r}I \cap P^{d + r}$ for all $r \in \N$. In particular, $P^{r}I \subset PI$
+so $I \cap P^{d} \subset PI \subseteq \ker(\phi)$, hence $\phi$ factors through
+$\frac{I}{I \cap P^{d}} = \frac{P^{d} + I}{P^{d}}$. \\
+
+Now let $E' = \{m \in E : p^km = 0 \text{ for some } p \in P, k \in \N \}.$ Then 
+$E'$
+
+
+\subsection*{Exercise A3.8}
+
+We need to show to things,
+\begin{enumerate}
+	\item That the resulting $z$ is independent of our choice of $y$.
+	\item That the resulting $z$ is independent on which representative $x$ we
+		choose from the homology class of $x$. I.e that any element in
+		$\im(\phi''_i)$ is sent to $\im(\phi'_{i-1})$.
+\end{enumerate}
+
+We begin with showing (1), I.e that the given map is a well-defined morphism
+$F''_i \to HF'_{i-1}$. Suppose that $y' \in F_i$ is another choice of element
+in $F_i$ such that $\beta_i(y') = x$. Then $y - y' \in \ker(\beta_i) =
+\im(\alpha_i)$, so there is some $w \in F_i'$ such that $\alpha_i(w) = y - y'$.
+We now have that 
+\begin{align*}
+	z - z'
+	&=
+	\alpha_{i-1}^{-1}\phi_{i-1}(y)
+	-
+	\alpha_{i-1}^{-1}\phi_{i-1}(y') \\
+	&=
+	\alpha_{i-1}^{-1}\phi_{i-1}(y - y') \\
+	&=
+	\alpha_{i-1}^{-1}\phi_{i-1}\alpha_i(w) \\
+	&=
+	\phi_{i-1}'\alpha_{i-1}^{-1}\alpha_{i-1}(w) \\
+	&=
+	\phi_{i-1}'(w) \\
+	&\in 
+	\im(\phi)'.
+\end{align*}
+
+To show (2), let $x' \in \im(\phi''_i)$. Then there is $u \in F''_{i + 1}$ such
+that $\phi''_i(u) = x'$. As $\beta_{i + 1}$ is surjective, we have some $v \in
+F_{i + 1}$ such that $\beta_{i + 1}(u) = v$. Then by the commutativity of the
+diagram, $\phi_{i}(u) \in \beta_i^{-1}(x')$ so we can chose $y = \phi_i(u)$ The
+$\phi_{i+1}(y) = \phi_{i+1}\phi_i(u) = 0$, and the resulting $z$ is $0$ as well
+since $\alpha$ is a monomorphism. \\
+
+This last paragraph shows that if we pick any $y + \ker(\phi_{i + 1}) \in H
+F_i$, then $\delta_i \beta_i (y + \ker(\phi_{i + 1})) = 0$, since $y \in
+\im(\phi_i)$ gets sent to $z = 0$. Hence we get a long exact sequence through
+all homologies as in figure A3.4.
+
+
+\end{document}

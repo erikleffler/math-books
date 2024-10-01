@@ -186,5 +186,47 @@ W_k \cap U_i)$ as well. Since $\mathcal{A}_2$ covers $M$, we see that $\phi_i
 \circ \phi_j^{-1}$ is infinitely smooth on all of $\phi_J(V_j \cap U_i)$ and we
 are done.
 
+\subsection*{Ex 1.13}
+
+Let $f : M \to N$ be a smooth map, and $V$ be open in $N$. Let $U = f^{-1}(V)$,
+and for each $p \in U$, let $U_p \subseteq M, \phi_p : U_p \to \R^m, V_p
+\subseteq N, \psi_p : V_p \to \R^n$ be admissible charts such that $p \in U_p$
+and $f(U_p) \subseteq V_p$. Then $U = f^{-1}(V) = \bigcup f^{-1}(V \cap V_p)$,
+hence $U$ is open if every $f^{-1}(V \cap V_p)$ is. Now, as $V \cap V_p$ is
+open in $N$ we have $B = \psi_p(V \cap V_p)$ open in $\R^n$, hence $A = \phi_p
+\circ f \circ \psi_p^{-1}(B) = \phi_p(U \cap U_p)$ is open in $\R^n$ (since
+$\phi_p \circ f \circ \psi_p^{-1}$ is $C^{\infty}$), whence $U \cap U_p =
+\phi^{-1}(B)$ is open in $M$.
+
+\subsection*{Ex 1.14}
+
+Let $p \in M_1$ and $(U_1, \phi_1), (U_2, \phi_2)$ be admissible charts on
+$M_1, M_2$ respectively such that $p \in U_1, f_{12}(U_1) \subseteq U_2$ and
+$\phi_1 \circ f_{12} \circ \phi_2^{-1}$ is $C^{\infty}$. Then let $(V_2,
+\psi_2), (V_3, \psi_3)$ be admissible charts on $M_2, M_3$ with $f_{23}(V_2)
+\in V_3$ and all of the above. Then $U_2 \cap V_2$ is an open set in $M_2$
+containing $f_{12}(p)$, hence $f_{12}^{-1}(U_2 \cap V_2)$ is an open set in
+$M_1$ containing $p$ and $f_{23} \circ f_{12} \circ f_{12}^{-1}(U_2 \cap V_2) =
+f_{23}(U_2 \cap V_2)$ is contained in $f_{23}(V_2)$ which is contained in
+$V_3$. The open set induce charts from the already given charts via
+restrictions of the coordinate functions. \\
+
+Finally, since $U_2, V_2$ are two admissible charts 
+on $M_2$, we have that $\psi_{2} \circ \phi_2^{-1}$ is $C^{\infty}$, hence
+\[
+	\psi_3 \circ f_{23} \circ f_{12} \circ \phi_1^{-1}
+	=
+	(\psi_3 \circ f_{23} \circ \psi_2^{-1})
+	\circ
+	(\psi_2 \circ \phi_2^{-1})
+	\circ
+	(\psi_2 \circ f_{12} \circ \phi_1^{-1})
+\]
+is $C^{\infty}$ as well as it's a composition of three $C^{\infty}$ functions.
+
+\subsection*{Ex 1.15}
+
+The projection map $\pi$ is smooth since 
+
 
 \end{document}

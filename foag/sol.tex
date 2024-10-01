@@ -1,0 +1,2596 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{rotating}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec\left(#1\right)}}
+\newcommand{\rospu}[2]{\restr{\osp{#1}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Proj}{\text{Proj}}
+\newcommand{\proj}{\Proj}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{Ch 1}
+
+\subsection*{Ex 1.2.B}
+Let $a, b \in \Mor(A, A)$ be invetible morphisms. Then $(ab)$ is invertible
+with inverse $(ab)^{-1} = b^{-1}a^{-1}$, $a^{-1}$ is invertible with inverse
+$a$, and the identity morphism is it's own inverse. Hence the set of invertible
+morphisms $A \to A$ form a group. \\
+
+In Example 1.2.2, $\Aut(A, A)$ is the set of bijections on $A$, hence the
+symmetric group $S_A$. \\
+
+In Example 1.2.3, $\Aut(V, V)$ is the set of invertible linear maps $V \to V$. \\
+
+Let $A, B \in \mathcal{C}$ be two objects in some category, isomorphic via $f :
+A \to B$. Then if $a, b \in \Aut(A)$, we have
+\begin{align*}
+	e_B &= f f^{-1} = f e_A f^{-1} \\
+	f a b f^{-1} &= f a f^{-1} f b f^{-1} \\
+	(f a f^{-1})^{-1} &= (f^{-1})^{-1} a^{-1} f^{-1} = f a^{-1} f^{-1},
+\end{align*}
+hence $a \mapsto f a f^{-1}$ is a group homomorphism $\Aut(A) \to \Aut(B)$.
+It's an isomorphism since its inverse is given by $a' \mapsto f^{-1} a' f$.
+
+\subsection*{Ex 1.2.C}
+
+First of, let $\phi : A \to S^{-1}A$ be the canonical homomorphism. Then $a \in
+\ker(\phi)$ exactly when there is some $s \in S$ such that $s(a \cdot 1 - 0
+\cdot 1) = 0$, and such $a$ exists if and only if some $s \in S$ is a zero
+divisor.
+
+\section*{Ch 2}
+
+\subsection*{Ex 2.2.J}
+
+$\mathcal{F}_{p}$ is the set of pairs $(m, U)$ with $U$ open in $X$ containing
+$p$ and $m \in \mathcal{F}(U)$ modulo the relation that if $(m', U')$ is
+another such pair, and $V \in U \cap U', p \in V$ such that $\restr{m}{U} =
+\restr{m'}{U'}$, then $(m, U) \sim (m', U')$. \\
+
+Now, let $(r, U) \in \mathcal{O}_p$. Then define $(r, U) (m, U) = (rm, U)$.
+This action is well defined, as if $(r', U') \sim (r, U)$ and $r = r'$ in
+$\mathcal{O}(V)$, then as $\mathcal{F}(V)$ is an $\mathcal{O}(V)$-module, $rm =
+r'm$ in $\mathcal{F}(V)$, and $(rm, V) \sim (r'm, V)$.
+
+ 
+\subsection*{Ex 2.3.A}
+
+Let $\phi_p : (m, U) \to (\phi(m), U)$. Then $\phi_p$ is well defined, as if
+$(m, U) \sim (m', U')$ with $m = m'$ in $\mathcal{F}(V)$, then $\phi(m) =
+\phi(m')$ in $\mathcal{G}(V)$ since the morphisms in a morphism of sheaves
+commute with restrictions.
+
+\subsection*{Ex 2.3.C}
+
+Given $V \subset U$, any morphism of sheaves $\restr{\mathcal{F}}{U} \to
+\restr{\mathcal{G}}{U}$ contains the data of a morphism of sheaves
+$\restr{\mathcal{F}}{V} \to \restr{\mathcal{G}}{V}$, so restrictions in
+$\Hom(\mathcal{F}, \mathcal{G})$ may be defined in this natural way, and it's
+clear that they compose as they should. \\
+
+We now prove the identity axiom. Suppose that $U$ is open in $X$ and that $U_i,
+i \in I$ is an open cover of $U$ such that $f, g \in \Hom(\mathcal{F},
+\mathcal{G})(U)$ agree on all $U_i$. Then let $V \subset U$ be open and $x \in
+\mathcal{F}(U)$. As $f, g$ agree on all $U_i$, they agree on all $V \cap U_i$,
+hence $\restr{f}{V \cap U_i}(x) = \restr{g}{V \cap U_i}(x)$ in $\mathcal{G}(V
+\cap U_i)$ for all $i \in I$. Then commutativity of the morphisms tells us that
+$\restr{f(x)}{V \cap U_i} = \restr{g(x)}{V \cap U_i}$ on these sets, whence the
+identity axiom on $\mathcal{G}$ tells us that $f(x) = g(x)$. Hence $f = g$ on
+any open set $V \subset U$, and we have verified identity on $\Hom(\mathcal{F},
+\mathcal{G})$. \\
+
+We now prove the gluability axiom. Suppose that $U$ is open in $X$ and that
+$U_i, i \in I$ is an open cover of $U$. Furthermore, suppose that $f_i \in
+\Hom(\mathcal{F}, \mathcal{G})(U_i), i \in I$ is a set of sheaf morphisms that
+agree on the intersections $U_i \cap U_j$. Then, given some $V$ open in $U$ and
+$h \in \mathcal{F}(V)$, we have that the $f_i$ all agree on the intersections
+$V \cap U_i$, hence $f_i(\restr{h}{V \cap U_i})$ agrees on all intersections,
+and by the gluability axiom there exists a $h' \in \mathcal{G}(V)$ which
+restricts down to $f_i(h)$ in all $V \cap U_i$, and furthermore, identity tells
+us that this $h'$ is unique. We can now define $f \in \Hom(\mathcal{F},
+\mathcal{G})(V)$ as $f : h \to h'$, and this $f$ will restrict to each $f_i$ on
+each $U_i$.
+
+\subsection*{Ex 2.3.I}
+
+We show identity and glueing, beginning with identity. \\
+
+Let $U$ be open in $\ker(\phi)$ and $U_i, i \in I$ be an open cover of $U$. Let
+$f, g \in \ker(\phi)(U)$ be such that $\restr{f}{U_i} = \restr{g}{U_i}$ in
+every $\ker(\phi)(U_i), i \in I$. Then $f = g$ by the identity property in
+$\mathcal{F}$ and injectivity of $\ker(\phi)$ into $\mathcal{F}$. \\
+
+We now show the glueing property. Let $U$ be open in $\ker(\phi)$ and $U_i, i
+\in I$ be an open cover of $U$. Furthermore, suppose $f_i \in \ker(\phi)(U_i),
+i \in I$ is a set of elements which agree when restricted to intersections $U_i
+\cap U_j$. We can glue these $f_i$ in $\mathcal{F}$ to find a $f \in
+\mathcal{F}(U)$ which restricts to $f_i$ on each $U_i$. It remains to show that
+$f \in \ker(\phi)(U)$. To see this, note that $\phi(f)$ restricts to $0$ on
+each $U_i$, since $f$ restricts to $f_i$ which lies in the kernel of $\phi$. It follows 
+that $\phi(f) = 0$ by the identity property of $\mathcal{G}$, and we are done.
+
+
+\subsection*{Ex 2.4.A}
+
+Suppose that $f \in \mathcal{O}(U)$ is $0$ at all stalks $p \in U$. Then for
+every $p \in U$, there exist some open set $V_p$ containing $p$ such that $f =
+0$ in $\mathcal{O}(V_p)$. Then $V_p \cap U$ form an open cover of $U$, and $f =
+0$ by the identity property. 
+
+\subsection*{Ex 2.4.B}
+
+Suppose that $(s_p)_{p \in U}$ is a set of compatible germs. Then we can find
+an open cover $U_i,i \in I$ of $U$ and sections $f_i \in \mathcal{O}(U_i)$ such
+that the germ of any $f_i$ at any point $q \in U_i$ is $s_q$. The $f_i$ must
+then agree on intersections $U_i \cap U_j$ by Exercise 2.4.A, for they induce
+the same germs $s_q, q \in U_i \cap U_j$ here. It follows that we can glue the
+$f_i$ to an $f \in \mathcal{O}(U)$ which restricts to the $f_i$, and this $f$
+has germ $s_q$ at any point $q \in U$, and we are done.
+
+\subsection*{Ex 2.4.C}
+
+If we show that the given diagram (2.4.3.1) commutes then we are done, as it
+would follow that if
+\[
+	\phi_1((s_p)_{p \in U})
+	=
+	\phi_2((s_p)_{p \in U}),
+\]
+then $\phi_1(s) = \phi_2(s)$ since sections are determined by germs (Exercise
+2.4.A). \\
+
+To see that the diagram commutes we just write out all the definitions. Let $V$
+be open in $U$ and $s \in \mathcal{O}(V)$. Then 
+\[
+	\phi(s_p)
+	=
+	\overline{(\phi(s), V)}_p
+	=
+	\phi(s)_p.
+\] 
+
+\subsection*{Ex 2.4.D}
+
+We begin with injectivity. Let $\phi : \mathcal{F} \to \mathcal{G}$ be a
+morphism of sheaves on the space $X$. Then if $U$ is open in $X$ and $s \in U$,
+we have $\phi(u) = 0$ in $U$ if and only if the germ of $\phi(U)$ is $0$ on
+every point of $U$. Hence $u \in \ker(\phi)$ if and only if $u \in
+\ker(\phi_p)$ for all $p \in U$. Hence a morphism of sheaves is injective if
+and only if it is injective on stalks. \\
+
+We move on and treat surjectivity. Let $\phi : \mathcal{F} \to \mathcal{G}$ be
+an injective morphism of sheaves. Then if $\phi$ is surjective, and
+$\overline{(s, U)}$ is some germ at the stalk $\mathcal{G}(U)_{p}$, there exist
+some $s' \in \mathcal{F}(U)$ in the preimage of $\phi$, hence
+$\phi_p(\overline{(s', U)}) = \overline{(\phi(s'), U)} = \overline{(s, U)}$ and
+the morphism is surjective at stalks as well. \\
+
+For the final case, suppose that $\phi$ is injective on the level of sheaves,
+and is surjective at every stalk. Then by the previous part, we know that every
+$\phi_p$ is injective as well, hence an isomorphism. We will show that a
+compatible set of germs in $\mathcal{G}$ pull back to a compatible set of germs
+in $\mathcal{F}$ under $\phi$, and doing this will require diligent
+bookkeeping. \\
+
+Let $U$ be open in $X$, and $(a_p)_{p \in U}$ be a compatible set of germs in
+$\mathcal{G}$. As $\phi_p$ is an isomorphism for every $p \in U$, we may write
+$\phi_p((b_p)_{p \in U}) = (a_p)_{p \in U}$ where $b_p \in \mathcal{F}_p$.
+Picking representatives, let $b_p = \overline{(c_p, U_p)}$ where $c_p \in
+\mathcal{F}(U_p)$. Then as Diagram 2.4.3.1 commutes (we showed this in Exercise
+2.4.C), we have
+\[
+	\overline{(\phi(c_p), U_p)}
+	=
+	a_p.
+\] 
+Now, as $(a_p)_{p \in U}$ is a compatible set of germs, there exist an open
+cover $V_i, i \in I$ and $g_i \in \mathcal{G}(V_i)$ such that the germ
+$\overline{g_i}_p$ coincides with $a_p = \overline{(\phi(c_p), U_p)}$ for all
+$p \in V_i$. I.e, there exist some open $W_{p}^{i} \subseteq V_i \cap U_p$
+where $\phi(c_p) = g_i$. Since there exist such a open set for every $p \in U$,
+just picking one for every $p \in U$ is enough to form an open cover of $U$,
+and forgetting the $i$-superscript, the $W_p$ form an open cover of $U$, and
+for every $q \in W_{p}$ we have that 
+\[
+	\overline{\phi(c_p)}_q = a_q = \phi_q(b_q),
+\]
+whence commutativity of 2.4.3.1 yields 
+\[
+	\phi_q(\overline{(c_p, W_p)}_q)
+	=
+	\overline{\phi(c_p)}_q 
+	= 
+	\phi_q(b_q),
+\]
+and injectivity of $\phi_q$ that
+\[
+	\overline{(c_p, W_p)}_q
+	= 
+	b_q.
+\]
+To summarize, we have an open cover $W_{p}, p \in U$ of $U$, and sections $c_p
+\in \mathcal{F}(W_p)$ such that the germs of the $c_p$ coincide with $b_q$ for
+all $q \in W_p$. I.e, $(b_p)_{p \in U}$ is a compatible set of germs! \\
+
+It now follows from Diagram 2.4.3.1 and Exercise 2.4.B that $\phi$ is
+surjective.
+
+
+\section*{Ch 3}
+
+\subsection*{Ex 3.2.A}
+
+\subsection*{(a)}
+
+Let $R = \K[\epsilon]/(\epsilon^2)$. The set of prime ideals of $R$ is the set
+of prime ideals of $\K[\epsilon]$ containing $(\epsilon^2)$. Hence $\Spec(R) =
+\{(\epsilon)\}$.
+
+\subsection*{(b)}
+
+Let $R = \K[x]_{(x)}$. The set of prime ideals of $R$ is the set of prime
+ideals of $\K[x]$ contained in $(x)$. Hence $\Spec(R) = \{(x), (0)\}$.
+
+
+\subsection*{Ex 3.2C}
+
+Let $R = \Q[x]$. Then $R$ is a PID, hence prime ideals $\mathfrak{p} \in
+\Spec(R)$ correspond to irreducible polynomials in $\Q[x]$. I don't know any
+nice way to describe all irreducible polynomials over $\Q[x]$, but we certainly
+still do have all prime $(x - q) \in \Spec(R)$ for $q \in \Q$ which trace out a
+line.
+
+\subsection*{Ex 3.2D}
+
+Suppose towards a contradiction that the set $Q \subset \K[x]$ of irreducible
+polynomials is finite, and let $p = 1 + \prod_{q \in Q} q$. Then $p \equiv 1
+\mod q$ for all $q \in Q$, hence $p \not \in (q)$. Since $p$ isn't a unit
+(indeed it's a polynomial of degree $\deg(p) = \sum \deg(q)$), it's contained
+in some maximal ideal $p \in (q')$. But then $q'$ is irreducible, and $q' \not
+\in Q$, a contradiction!
+
+
+\subsection*{Ex 3.2E}
+
+Since $\dim(\C[x, y]) = 2$, any non-maximal non-zero prime ideal has to have
+codimension $1$. We claim that every prime $\mathfrak{p}$ of codimension $1$
+in a UFD is a principal ideal. \\ 
+
+Let $R$ be a Noetherian UFD (don't think we need Noetherian, but it simplifies
+things). Any prime ideal of $R$ can be generated by irreducible elements, since
+if $\mathfrak{p} = (f_1, f_2, \ldots, f_k)$, then some irreducible factor of
+every $f_i$ lies in $\mathfrak{p}$ by primality, and these factors generate
+$\mathfrak{p}$. \\
+
+Now suppose that $\mathfrak{p} = (f_1, f_2, \ldots, f_k)$ is a prime ideal in
+$R$ with $k > 1$ and the $f_i$ form a minimal set of irreducible generators.
+Then each $(f_i)$ is a prime ideal of codimension $1$ strictly contained in
+$\mathfrak{p}$, and we see that $\mathfrak{p}$ has codimension $\geq 1$. \\
+
+I.e, if $\mathfrak{p}$ is some prime ideal of codimension $1$, then it must
+have a minimal set of irreducible generators that only has one element. \\
+
+It follows that every prime ideal of codimension $1$ in $\C[x, y]$ is generated
+by an irreducible polynomial.
+
+\subsection*{Ex 3.2.F}
+
+Let $\mathfrak{m}$ be a maximal ideal of $\Kx$. Then $\K \subset
+\Kx/\mathfrak{m}$ is a field extension which is finitely generated as an
+algebra (by $x_1, \ldots, x_n$), hence $\Kx/\mathfrak{m}$ has finite dimension
+as a $\K$-space by the Nullstellensatz. Since $\K$ is algebraically closed, and
+finite dimensional extensions are algebraic, we must have $\K \cong
+\Kx/\mathfrak{m}$ as fields. As $\K \subseteq \Kx/\mathfrak{m}$, we have an
+isomorphism $\K \to \Kx/\mathfrak{m}$ which is the identity on $\K$, as this is
+surjective, it follows that $x_i = a_i$ in $\Kx/\mathfrak{m}$ for all $x_i$,
+hence $\mathfrak{m} = (x_1 - a_1, \ldots, x_n - a_n)$.
+
+\subsection*{Ex 3.2.G}
+
+Since ideals of $A$ are subspaces, $A$ must satisfy both chain conditions.
+Hence it's Artinian and Noetherian. The result now follows since Artinian
+domains are fields.
+
+\subsection*{Ex 3.2H}
+
+First of, the ideal $I = (x^2 - 2, y^2 - 2)$ is not maximal, or even prime. To
+see this, note that $(x + y)(x - y) = x^2 - y^2 = -2 + 2 = 0 \in \Q[x, y] / I$
+\\
+
+$(\sqrt{2}, \sqrt{2}), (-\sqrt{2}, -\sqrt{2})$ corresponds to the maximal ideal
+$(x - y, y^2 - 2)$ with residue field $\Q[x, y]/(x - y, y^2 - 2) \cong
+\Q[\sqrt{2}]$. \\
+
+$(\sqrt{2}, -\sqrt{2}), (-\sqrt{2}, \sqrt{2})$ corresponds to the maximal ideal
+$(x + y, y^2 - 2)$ with residue field $\Q[x, y]/(x + y, y^2 - 2) \cong
+\Q[\sqrt{2}]$. \\
+
+The two residue fields are isomorphic, but not equal, and they differ in
+whether $x = y$ or $x = -y$.
+
+\subsection*{Ex 3.2.L}
+
+We begin by showing that localizations and quotients commute. This 
+follows from the fact that localization is an exact functor, so both the following
+sequences are exact, 
+\[
+	\begin{tikzcd}
+		0 
+		\arrow{r} & 
+		S^{-1}I
+		\arrow{r} & 
+		S^{-1}R
+		\arrow{r} & 
+		S^{-1}(R/I)
+		\arrow{r} & 
+		0 \\
+		0 
+		\arrow{r} & 
+		S^{-1}I
+		\arrow{r} & 
+		S^{-1}R
+		\arrow{r} & 
+		(S^{-1}R)/(S^{-1}I)
+		\arrow{r} & 
+		0, \\
+	\end{tikzcd}
+\] 
+hence the two rightmost modules/rings are isomorphic. \\
+
+Now, in $\C[x, y]_x$ we have that $(xy)_x = (y)_x$. Hence $\C[x, y]_x / (xy)_x
+\cong \C[x]_x / (0)_x \cong C[x]_x$, where the last isomorphism follows since
+$C[x]_x$ is a domain. The sought after isomorphism now follows by applying that
+quotients and localizations commute.
+
+\subsection*{Example 3.2.11}
+So we have
+\[
+	\phi : \Spec(\C[a, b]/(b-a^2)) \to \Spec(\C[x,y,z]/(y-x^2, z-y^2))
+\]
+which sends a maximal ideal
+\[
+	\phi 
+	: 
+	(a - k, b - k^2) 
+	\mapsto
+	(x - k, y - k^2, z - k^4).
+\]
+Now consider the map 
+\[
+	\psi : 
+	\C[x,y,z]/(y-x^2, z-y^2)
+	\to 
+	\C[a, b]/(b-a^2)
+\]
+which sends
+\[
+	\psi : x \mapsto a, \, 
+	\psi : y \mapsto b, \,
+	\psi : z \mapsto b^2.
+\]
+Then (as $\psi$ is an algebra homomorphism and fixes $\K$)
+\[
+	\psi^{-1}(a - k) = x - k, \,
+	\psi^{-1}(b - k^2) = y - k^2, \,
+	\psi^{-1}(b^2 - k^4) = z - k^4,
+\]
+and we see that $\psi^{-1}$ coincides with $\phi$ on maximal ideals.
+
+\subsection*{Ex 3.2.O}
+
+Let $\phi : \C[y] \to \C[x]$ be the $\C$-algebra morphism given by $\phi(y) =
+x^2$. Then $\phi^{-1}(x^2 - a) = y - a$, and as $x^2 - a = (x - \sqrt{a})(x +
+\sqrt{a})$, we have $[(y - a)] = \phi^{-1}([x - \sqrt{a}])$ and $[(y - a)] =
+\phi^{-1}([x + \sqrt{a}])$. Moreover, if $\mathfrak{p}$ is a prime ideal in
+$\C[x]$ such that $[(y - a)] = \phi^{-1}(\mathfrak{p})$, then $\mathfrak{p}$
+must contain $x^2 - a$, and as $\C[x]$ is a PID, we see that we've already
+found all such $\mathfrak{p}$.
+
+\subsection*{Ex 3.2.P}
+
+\subsubsection*{(a)}
+
+We prove the statement for general rings $A, B$ and a morphism $\phi : B \to
+A$. Note that if $\phi(J) \subseteq I$, then $\phi$ induces a map $B/I \to
+A/J$, and we get a map $\spec(A/J) \to \spec(B/I)$.
+
+\subsubsection*{(b)}
+
+Suppose that $\phi : \K[y_1, y_2, \ldots, y_m] \to \Kx$ be given by $\phi : y_i
+\mapsto f_i$. Then let $a = (x_1 - a_1, x_2 - a_2, \ldots, x_n - a_n)$. Then
+$\phi(y_i - f_i(a_1, a_2, \ldots, a_n)) = f_i(x_1, x_2, \ldots, x_n) - f_i(a_1,
+a_2, \ldots, a_n) \in a$ (the containment in $a$ follows after evaluating at
+$(a_1, a_2, \ldots, a_n)$). Hence 
+\[
+	(y_1 - f_1(a_1, a_2, \ldots, a_n), y_2 - f_2(a_1, a_2, \ldots, a_n), \ldots, y_m - f_m(a_1, a_2, \ldots, a_n))
+	\subseteq 
+	\phi^{-1}(a),
+\] 
+and equality follows from $(y_1 - f_1(\bm{a}), y_2 - f_2(\bm{a}), \ldots, y_m -
+f_m(\bm{a}))$ being a maximal ideal.
+
+\subsection*{Ex 3.2.Q}
+
+The fiber $\pi^{-1}([p])$ consists of the set of all ideals in $\Z[x_1, x_2,
+\ldots, x_n]$ containing $p$. Any such ideal can be generated by $p$ along with
+polynomials where all coefficients are $< p$, since we can subtract any terms
+of the form $pk x^d$. This gives us a map $\pi^{-1}([p]) \to \spec(\F_p[x_1,
+x_2, \ldots, x_n])$. \\
+
+Moreover, this map is invertible as follows. Given some ideal $I \in
+\spec(\F_p[x_1, x_2, \ldots, x_n])$, and generators $f_1, f_2, \ldots, f_m$ for
+$I$ - pick representatives $\overline{f}_i$ for each $f_i$ in $\Z[x_1, x_2,
+\ldots, x_n]$, and consider the ideal $J = (p, \overline{f}_1, \ldots,
+\overline{f}_n)$. \\
+
+It's easy to see that these two maps are mutually inverse each other.
+
+\subsection*{Ex 3.4.F}
+
+In $R \to R/I$, we have that the preimage of $\sqrt{0}$ is $\sqrt{I}$, and as
+$\sqrt{0}$ is the intersection of all prime ideals in $R/I$, which in turn
+correspond to all prime ideals in $R$ containing $I$, the statement follows.
+
+\subsection*{Ex 3.4.G}
+
+In a PID, all non-zero primes are maximal and are in one to one correspondence
+with irreducible elements. Hence, $\A^1_k$ corresponds to all irreducible
+polynomials in $\K[x]$. Given some set of functions $S \subset \K[x]$, $V(S)$
+consists of all the common prime factors of elements in $S$. I.e $V(S)$ is a
+finite set of points. So, the situation is much like that of $\A^1_{\C}$, where
+the only closed subsets are finite sets of (non-zero) points, and no closed set
+other than the whole space contains $(0)$. Hence every open set other than
+$\emptyset$ contains $(0)$ as claimed in the exercise.
+
+\subsection*{Ex 3.4.H}
+
+Let $V(I)$ be a closed set in $B$. Our objective is to show that
+$(\phi^*)^{-1}V(I)$ is a closed set in $A$. We have
+\begin{align*}
+	(\phi^*)^{-1}(V(I))
+	&=
+	\{
+		\mathfrak{p} \in \spec(A) : \phi^*(\mathfrak{p}) \in V(I)
+	\} \\
+	&=
+	\{
+		\mathfrak{p} \in \spec(A) : \phi^{-1}(\mathfrak{p}) \in V(I)
+	\} \\
+	&=
+	\{
+		\mathfrak{p} \in \spec(A) : I \subseteq \phi^{-1}(\mathfrak{p})
+	\}.
+\end{align*}
+Now, if $I$ is contained in $\phi^{-1}(\mathfrak{p})$, then certainly the ideal 
+generated by $\phi(I)$ in $A$ will be contained in $\mathfrak{p}$ and vice versa, 
+so we have
+\[
+	\{
+		\mathfrak{p} \in \spec(A) : I \subseteq \phi^{-1}(\mathfrak{p})
+	\} 
+	=
+	\{
+		\mathfrak{p} \in \spec(A) : \phi(I)A \subseteq \mathfrak{p}
+	\} 
+	=
+	V(\phi(I)A)
+\] 
+which is a closed set in $A$.
+
+\subsection*{Ex 3.4.I}
+
+\subsubsection*{(a)}
+
+$\Spec(B/I)$ corresponds to all prime ideals of $B$ containing $I$, hence is
+given by $V(I)$. Meanwhile, $\Spec(B_f)$ contains all prime ideals of
+$\Spec(B)$ which don't meet $f$, I.e $\Spec(B) \setminus V(f)$. Finally,
+$\Spec(\Q) = \{(0)\}$ which is neither closed nor open as a set in $\Spec(\Z)$,
+it's closure is all of $\Spec(\Z)$, whilst it's complement isn't closed since
+the closed subsets of $\Spec(\Z)$ are either the whole space or finite.
+
+\subsubsection*{(b)}
+
+Let $V(J) \subseteq \Spec(B/I)$ be a closed subset, and suppose that
+$\mathfrak{p} \in V(J) = V(J \cup \{0\})$. Then $\phi^{-1}(J) \subseteq
+\phi^{-1}(\mathfrak{p})$, so $\phi^{-1}(\mathfrak{p}) \in V(\phi^{-1}(J \cup
+\{0\})) = V(\phi^{-1}J) \cap V(I)$. Now let $\mathfrak{q} \in V(\phi^{-1}(J)
+\cap V(I))$. Then $\phi(\mathfrak{q})$ is a prime ideal in $B/I$ which contains
+$\phi\phi^{-1}(J)$, and $\phi\phi^{-1}(J) = J$ since $\phi$ is surjective. Hence 
+$\phi(\mathfrak{q}) \in V(J)$. \\
+
+Let $V(J) \subseteq \Spec(B_f)$ be a closed subset, and suppose that
+$\mathfrak{p} \in V(J)$. Then $\phi^{-1}(\mathfrak{p})$ is a prime ideal in $B$
+which contains $\phi^{-1}(J)$ and doesn't meet $f$, I.e it lies in
+$V(\phi^{-1}(J)) \setminus V(f)$. Similarly, let $\mathfrak{q} \in
+V(\phi^{-1}(J)) \setminus V(f)$. Then $\phi(\mathfrak{q})$ is a prime ideal in
+$B_f$ which contains $\phi\phi^{-1}(J)$. But every ideal of $B_f$ is an
+extended ideal (Atiyah Macdonald - Prop 3.11.i), so the ideal generated by
+$\phi\phi^{-1}(J)$ is $J$ (AMD - Prop 1.17.iii), hence $J \subseteq
+\phi(\mathfrak{q})$ and $\phi(\mathfrak{q}) \in V(J)$.
+
+\subsection*{Ex 3.4.J}
+
+$f$ vanishes on $V(I)$ if and only if it vanishes on all prime ideals
+containing $I$ if and only if it's contained in all prime ideals containing $I$
+if and only if it's contained in $\sqrt{I}$ by Exercise 3.4.F.
+
+\subsection*{Ex 3.5.A}
+
+Let $U \in \Spec(A)$ be an open set, and suppose that $U = \Spec(A) \setminus
+V(J)$ (Any closed set can be written as $V(J)$ by Ex 3.4.C with $J$ an ideal).
+Then let $f_i, i \in I$ be some generating set of $J$. Then
+\[
+	U 
+	=
+	\Spec(A) \setminus V\left( \bigcup_{i \in I} f_i \right)
+	=
+	\Spec(A) \setminus \bigcap_{i \in I} V\left(f_i\right)
+	=
+    \bigcup_{i \in I} \left(\Spec(A) \setminus V\left(f_i\right)\right)
+	=
+	\bigcup_{i \in I} D_{f_i}.
+\]
+
+\subsection*{Ex 3.5.B}
+
+From the previus exercise, we have that 
+\[
+	\bigcup_{i \in I} D_{f_i}
+	=
+	\Spec(A) \setminus V\left(\bigcup_{i \in I} f_i\right).
+\] 
+Now, $A = (f_i, i \in I)$, if and only if $V(f_i, i \in I) = \emptyset$ (using
+Zorn's Lemma) if and only if $\bigcup_{i \in I} D_{f_i} = \Spec(A)$.
+
+\subsection*{Ex 3.5.C}
+
+We have that $(f_i, i \in I) = A$ if and only if there are finitely many $a_i
+\in A$, $i \in J$ such that $\sum_{i \in J} a_i f_i = 1$, and these $f_i, i \in
+J$ therefore generate $A$ as an ideal, so $\bigcup_{i \in J} D_{f_i} = A$ by Ex
+3.5.B.
+
+\subsection*{Ex 3.5.D}
+
+If $\mathfrak{p} \in D(f) \cap D(g)$ then $\mathfrak{p}$ contains neither $f,
+g$ and primality, not $fg$ hence $\mathfrak{p} \in D(fg)$. The other direction
+is trivial.
+
+\subsection*{Ex 3.5.E}
+
+$D(f) \subset D(g)$ if and only if all prime ideals not meeting $f$ also don't
+meet $g$ if and only if all prime ideals containing $g$ contain $f$ as well if
+and only if $f \in \sqrt{(g)}$ (all prime ideals containing $g$ contain $(g)$,
+and the intersection of all prime ideals containing $(g)$ is $\sqrt{(g)}$). \\
+
+Now, $f \in \sqrt{g}$ if and only if $f^n \in (g)$ if and only if $gh = f^n$ if
+and only if $\frac{gh}{f^n} = 1$ in $A_f$ if and only if $g$ is invertible in
+$A_f$.
+
+\subsection*{Ex 3.6.A}
+
+Let $\mathfrak{p}$ be a prime ideal in $A = A_1 \times A_2$. We will show that
+$\mathfrak{p}$ is of the form $\mathfrak{p}_1 \times A_2$ or $A_1 \times
+\mathfrak{p}_2$ for some arbitrary prime ideals $\mathfrak{p}_1,
+\mathfrak{p}_2$ in $A_1, A_2$ respectively. Suppose that $(a, b) \not \in
+\mathfrak{p}$. Then $(a, 0)$ and $(0, b)$ can't both simultaneously lie in
+$\mathfrak{p}$, and we assume with out loss of generality that $(a, 0) \not \in
+\mathfrak{p}$. Now suppose that $(a', b') \in \mathfrak{p}$. Then $(a, 0)(a',
+b') = (aa', 0) \in \mathfrak{p}$. Moreover, for any $b'' \in A_2$, we have $(a,
+0)(a', b'') = (aa', 0) \in \mathfrak{p}$, and as $\mathfrak{p}$ is prime, we
+must have $(a', b'') \in \mathfrak{p}$. We've shown that if $(a', b') \in
+\mathfrak{p}$, then $(a', b'') \in \mathfrak{p}$ for any $b'' \in A_2$, hence
+$\mathfrak{p}$ is of the form $\mathfrak{p}_1 \times A_2$ for some set
+$\mathfrak{p}_1$. Moreover, $\mathfrak{p_1}$ must be a prime ideal in $A_1$,
+since $\mathfrak{p_1} \times \{0\} \subset \mathfrak{p_1} \times A_2$, which
+allows us to utilize primality of $\mathfrak{p}$ in $A$ to obtain primality of
+$\mathfrak{p_1}$ in $A_1$. \\
+
+This argument may be replicated to the case where $A$ is the product of $A_i, i
+\in [1..n]$ to show that any prime ideal in $A$ is of the form $A_1 \times A_2
+\times \ldots \times \mathfrak{p_j} \times \ldots \times A_{n-1} \times A_{n}$. \\
+
+This gives us a bijection between $\Spec(A)$ and $\coprod_{i = 1}^{n}
+\Spec(A_i)$, which clearly respects inclusions, hence a homeomorphism.
+
+\subsection*{Ex 3.6.B}
+
+\subsubsection*{(a)}
+
+Let $U \subset X$ be a non-empty open set in the irreducible topological space
+$X$. Then let $V = X \setminus U$. We have that $V \cup U = X$, hence $V \cup
+\overline{U} = X$. As $U$ is non-empty, $V \not = X$, whence $\overline{U} = X$
+by irreducibility of $X$.
+
+\subsubsection*{(b)}
+
+Suppose that $Z = (A \cap Z) \cup (B \cap Z)$ with $A, B$ closed in $X$ (this
+is exactly what a reduction of $Z$ into two closed subsets is in the subspace
+topology). Then $A \cup B$ is closed in $X$, and contains $Z$. Hence
+$\overline{Z} \subseteq A \cup B$ since $\overline{Z}$ is the smallest closed
+set containing $Z$. It follows that $\overline{Z} = (A \cap \overline{Z}) \cup
+(B \cap \overline{Z})$. \\
+
+Now, $Z$ is irreducible if and only if whenever $Z = (A \cap Z) \cup (B \cap Z)$ 
+we have either $Z = (A \cap Z)$ or $Z = (B \cap Z)$, which is equivalent to 
+$Z \subseteq A$ or $Z \subseteq B$. But again, as $\overline{Z}$ is contained 
+in every closed subset containing $Z$, this is equivalent to $\overline{Z} \subseteq A$ 
+or $\overline{Z} \subseteq B$, I.e irreducibility of $\overline{Z}$.
+
+\subsection*{Ex 3.6.C}
+
+If $A$ is an integral domain, then every prime ideal contains the minimal prime
+ideal $(0)$. Since all closed subsets of spectra are of the form $V(S)$, it
+follows that any closed subset $V \subset \Spec(A)$ which contains $[(0)] \in
+V$, must contain every other prime ideal as well. Now, $V \cup U = \Spec(A)$
+with $V, U$ closed implies either $V = \Spec(A)$ or $U = \Spec(A)$ since one of
+these sets must contain $[(0)]$.
+
+\subsection*{Ex 3.6.D}
+
+Proving the contrapositive is trivial. If $X = U \cup V$ where $U, V$ are
+non-trivial, open and disjoint, then $U, V$ are closed and non-trivial as well,
+hence $X$ is reducible.
+
+\subsection*{Ex 3.6.E}
+
+The union of the $x$ and $y$-axes in $\A^2_{\C}$ seems like a good candidate.
+The corresponding ring is given by $A = \C[x, y]/(xy)$. This is reducible as it
+isn't an integral domain. To show that it's connected, we will show that there
+are no idempotents except $1$. Suppose $f \in A$ is such that $f^2 = f$. Then
+if $f$ has any pure $x^m$ or $y^m$ term, consider the term with highest degree,
+$f^2$ would have a $x^{2m}$ or $y^{2m}$ term since there couldn't be
+cancelation due the maximality of degree. It follows that $f^2 \not = f$. Hence
+$f$ is constant, and $f = 1$ since $\K$ doesn't have idempotents $\not = 1$.
+
+\subsection*{Ex 3.6.G}
+
+Let $\mathcal{U}$ be a cover of $\Spec(A)$. We can assume that every element of
+$\mathcal{U}$ is a distinguished open set, since these form a basis for the
+topology. Exercise 3.5.C tells us that each such cover by distinguished open
+sets adimts a finite subcover, hence $\Spec(A)$ is compact.
+
+\subsection*{Ex 3.6.H}
+
+\subsubsection*{(a)}
+
+Let $X = \bigcap_{i = 1}^{r} X_i$ with each $X_i$ quasicompact, and
+$\mathcal{U} = \{U_i\}_{i \in I}$ be an open cover for $X$. For each $i \in
+[1..r]$, let $\mathcal{U}_i$ be the restriction of $\mathcal{U}$ to $X_i$. Then
+each $\mathcal{U}_i$ admits a finite subcover with indexing set $J_i \subset
+I$, and it follows that $X$ is covered by the finite subcover $\{U_i\}_{i \in
+J}$ with $J = \bigcap_{i = 1}^{r} J_i$.
+
+\subsubsection*{(b)}
+
+Let $X$ be quaiscomapct and $V \subset X$ a closed non-trivial subset. Let
+$\mathcal{U} = \{U_i \cap V\}_{i \in I}$ be a open cover of $V$. Then
+$\mathcal{U} \cup \{X \setminus V\}$ is an open cover for $X$, hence admits a
+finite subcover, which is a finite subcover for $V$ as well. So $V$ is
+quasicompact.
+
+\subsection*{Ex 3.6.I}
+
+Non-maximal prime ideals are not closed points, since if $\mathfrak{p} \in
+V(S)$, then $S \subseteq \mathfrak{p}$, and $S \subseteq \mathfrak{m}$ for any
+maximal ideal containing $\mathfrak{p}$, hence $\mathfrak{m} \in V(S)$.
+Meanwhile maximal ideals are closed, as $V(\mathfrak{m}) = [(\mathfrak{m})]$. \\
+
+In particular, if $\mathfrak{p}$ lies in some closed set, then all prime ideals
+containing $\mathfrak{p}$ must lie in that set as well.
+
+\subsection*{Ex 3.6.L}
+
+See remark from Ex 3.6.I above.
+
+\subsection*{Ex 3.6.N}
+
+We prove the contrapositive. If $q \in X$, is such that some neighbourhood $U
+\ni q$ doesn't contain $p$, then $X \setminus U$ is a closed set which contains
+$p$, hence $\overline{\{p\}} \subseteq X \setminus U$, and in particular, $q
+\not \in \overline{\{p\}}$. \\
+
+In particular, this shows that $\overline{\{p\}}$ is dense, but this is fairly
+clear anyhow. \\
+
+If $r \not \in K$, then $X \setminus K$ is an open set containing $r$ but not
+$p$. 
+
+\subsection*{Ex 3.6.P}
+
+First of all, the closure of any point must be irreducible by minimality of the
+closure. In §3.4.5 it is shown that the closed subsets of $\Spec(\C[x, y])$ are
+either the entire space, or finite unions of closure of points. So, given a chain 
+\[
+	Z_0 \supset Z_1 \supset \ldots,
+\] 
+where $Z_0 \not = Z_1$, we know that $Z_1$ is a finite union of closures of
+points, hence admits only a finite amount of proper closed subsets. It follows
+that the chain must stabilize.
+
+\subsection*{Ex 3.6.Q}
+
+Let $C$ be a connected component. Then $C$ is a union of irreducible components
+in the subspace topology. Moreover, the irreducible components of $C$ are
+closed and irreducible in $X$ since $C$ is closed by Remark 3.6.13. They are
+also maximal since $C$ is open. Indeed, if $X_C$ is an irreducible component of
+$C$, and $V \supset X_C$ is closed, then $V \cap (X \setminus C)$ is closed, so
+$V$ is not irreducible unless $V \subseteq C$.
+
+\subsection*{Ex 3.6.R}
+
+PID's are UFD's, and so the ideals properly containing $(x) = (x_1x_2\ldots
+x_m)$ with each $x_i$ irreducible are all the combinations of $x_i$. I.e there
+are finitely many such ideals, hence each chain must stabilize.
+
+\subsection*{Ex 3.6.T}
+
+We prove the contrapositive. Any closed set in $\Spec(A)$ is of the form $V(I)$
+with $I$ a radical ideal. If 
+\[
+	V(I_1) \supsetneq V(I_2) \supsetneq \ldots
+\] 
+is a strictly decreasing sequence with each $I_i$ radical, then
+\[
+	I_1 \subsetneq I_2 \subsetneq \ldots
+\]
+is a strictly increasing sequence of ideals by reverse inclusion. \\
+
+The ring $\K[x_1,x_2, \ldots]$ has a non-Noetherian spectrum since it has
+infinite strictly ascending chains of prime ideals, which turn into infinite
+strictly decreasing chains of closed irreducible sets under $\Spec$.
+
+\subsection*{Ex 3.6.U}
+
+First of all, if $X$ is Noetherian, and $U$ is an arbitrary subset of $X$, then
+$U$ is Noetherian as well. To see this, let 
+\[
+	U \cap U_1 \supsetneq U \cap U_2 \supsetneq \ldots
+\] 
+be an infinite strictly decreasing chain of closed sets in $U$. Then
+\[
+	U_1 \supsetneq U_1 \cap U_2 \supsetneq U_1 \cap U_2 \cap U_3 \ldots
+\] 
+is an infinite strictly decreasing chain of closed sets in $X$. \\
+
+Now, suppose that $X$ is Noetherian and $U$ is an arbitrary subset of $X$. Let
+$\mathcal{U} = \{U_i\}_{i \in I}$ be an open cover of $U$. Then for each $U_i
+\in \mathcal{U}$, let $V_i = U \setminus U_i$. Then every $V_i$ is closed in
+$U$, and their intersection is empty. Now, first pick some $W_0 = V_0$. Then
+pick a $V_1$ which doesn't contain $W_0$. Such $V_1$ exists since the $V_i$
+have empty intersection. Now let $W_1 = W_0 \cap V_1$. If $W_1 \not =
+\emptyset$, continue and pick $W_2$ similarly. As $X$ is Noetherian, so is $U$,
+hence the chain of $W_i$'s must stabilize, but by construction this happens
+only when some $W_n = \emptyset$, giving us a finite subset of $V_i$'s with
+empty intersection, whence the corresponding subset of $U_i$'s is a finite
+subcover of $\mathcal{U}$.
+
+
+\subsection*{Ex 3.6.X}
+
+Induction and Ex 3.6.W.
+
+\subsection*{Ex 3.6.Y}
+
+Finitely generated modules are quotients of free modules, which are Noetherian
+by Ex 3.6.X, and their quotients are again Noetherian by Ex 3.6.W.
+
+\subsection*{Ex 3.7.A}
+
+Let $f \in I(S)$. Then $f$ vanishes on the $x$ axis, hence is divisible by $y$
+and vanishes on $(0, 1)$, hence lies in $(x, y - 1)$. It follows that $f \in
+(y) \cap (x, y-1) = (xy, y^2 - y)$, and it's easy to see that $(xy, y^2 - y)
+\subseteq I(S)$, so there must be an equality.
+
+\subsection*{Ex 3.7.B}
+
+The axes have ideals $(y, z), (x, z), (x, y)$ respectively, and their
+intersection is $(yx, yz, xy)$. This is a radical ideal as the quotients has no
+nilpotents since elements of $\C[x, y, z]/(yx,yz,xy)$ have leading terms which
+are pure powers of either $x, y, z$, and are not nilpotent.
+
+\subsection*{Ex 3.7.E}
+
+$f \in I(V(J))$ if and only if $f$ vanishes on $V(J)$ if and only if $f$ lies
+in all prime ideals containing $J$ if and only if $f$ lies in $\sqrt{J}$. \\
+
+Using the old definitions from Gathmann, where $V(J)$ is the set of zeros in
+$\K$ of the ideal $J \in \Kx$, this statement required $\K$ algebraically
+closed. But now we don't. Let's see why. \\
+
+Let $J$ be an ideal in $\R[x]$, and $f \in I(V(J))$. Then $f$ vanishes on $V(J)$,
+and w
+
+\subsection*{Ex 3.7.D}
+
+Over $\C$, $V(J)$ corresponds to the intersection of the unit circle with the
+line $y = 1$. I.e geometrically, we should have that $V(J)$ corresponds to the
+point $(0, 1)$, which is given by the maximal ideal $[(x, y - 1)]$. It is
+indeed the case that $J \subset (x, y - 1)$ since $x^2 + y^2 - 1 = x^2 + (y -
+1)(y + 1)$. To see that no other ideals are contained in $V(J)$, just note that 
+$\C[x, y]/J \cong \C[x]/(x^2)$ and the only prime ideal in $\C[x]/(x^2)$ is $(x)$.
+It follows that $V(J) = [(x, y - 1)]$, and that $I(V(J)) = (x, y - 1)$, hence 
+an element as requested may be given as 
+\[
+	x \in I(V(J)) \setminus J.
+\] 
+Note that $x \in \sqrt{J}$ as expected (or proved really), since $x^2 = x^2 +
+y^2 - 1 - (y-1)(y+1) \in J$.
+
+\subsection*{Ex 3.7.F}
+
+Now let $V(S) \subset \Spec(A')$ be an closed set. We can suppose that $V(S) =
+V(J)$ with $J$ an ideal. Now, $V(J) = \Spec(A'/J)$, so we might as just well
+show that for some given ring $A$, $\Spec(A)$ is irreducible if and only if $A$
+is an integral domain. One direction was Exercise 3.6.C, so we focus on the
+other direction. \\
+
+Let $A$ be a ring such that $\Spec(A)$ is irreducible. Then any two non-trivial
+open subsets of $\Spec(A)$ intersect. I.e given non-zero $f_1, f_2 \in A$,
+there is always some $[\mathfrak{p}] \in D(f_1) \cap D(f_2)$. So $f_1 \not \in
+\mathfrak{p}$ and $f_2 \not \in \mathfrak{p}$, hence $f_1f_2 \not \in
+\mathfrak{p}$ by primality, and $f_1f_2 \not = 0$. Since this is true of any
+two non-zero elements in $A$, $A$ must be a domain.
+
+
+\subsection*{Ex 3.7.G}
+
+By 3.7.F, irreducible subsets of $\Spec(A)$ are in inclusion-reversing
+bijection with prime ideals $\mathfrak{p} \subset A$. It follows by maximality
+of irreducible components, that they are in paired with minimal prime ideals of
+$A$.
+
+\subsection*{Ex 3.7.H}
+
+Any prime ideal containing $f$ must contain an irreducible factor of $f$ by
+primality. Hence the minimal primes of $(f)$ are exactly those that are
+generated by its irreducible factors, hence these make up the irreducible
+components of $V(f)$ as well.
+
+\subsection*{Ex 3.7.I}
+
+We have $V(I) = \Spec(A/I)$ and it follows from Ex 3.7.H that the irreducible
+components of $\Spec(\C[x, y]/(xy))$ are given by $\{[(x)], [(y)]\}$.
+
+\subsection*{Ex 4.1.A}
+
+Let $S = \{g \in A : D(f) \subset D(g) \}$. Then by Exercise 3.5.F and
+Definition 4.1.1, we have $\mathcal{O}(D(f)) = S^{-1} A$. Now let $\phi : A \to
+A_f$ and $\psi : S^{-1}A \to A$ be the two natural localization maps. Any
+element of $S$ is a unit in $A_f$ by Exercise 3.5.F, hence there is a unique
+morphism $\rho : S^{-1}A \to A_f$ such that $\phi = \rho \circ \psi$.
+Similarly, as $D(f) = D(f^k)$, we have $f^k \in S$, and there is a unique
+morphism $\theta : A_f \to S^{-1}A$ such that $\psi = \theta \circ \phi$. Hence
+$\phi = \rho \circ \theta \circ \phi$ , and $\rho \circ \theta$ is the identity
+on $\im(\phi)$. But any homomorphism from $S^{-1}A$ is determined by the values
+it takes on $\im(\phi)$, hence $\rho \circ \theta = \id$ and $S^{-1}A \cong
+A_f$.
+
+\subsection*{Ex 4.1.B}
+
+We have that $\Spec(A_{f})$ consists of all the prime ideals of $\Spec(A)$
+which don't contain $f$. I.e $\Spec(A_{f}) = D(f)$. Suppose that we have an
+open cover $D(f) = \bigcup_{i \in I} D(f_i)$ of distinguished open sets
+$D(f_i)$ in $\Spec(A)$. Then $D(f_i) \subseteq D(f)$, which implies that any
+prime ideal in $D(f_i)$ doesn't contain $f$, hence is a contracted ideal from
+$A_f$. Thus, the $D(f_i)$ are distinguished open sets in $\Spec(A_f)$ as well,
+since a prime ideal $\mathfrak{p}$ in $A_f$ contains $f_i$ if and only if its
+contraction in $A$ contains $f_i$. It follows that the $D(f_i)$ cover
+$\Spec(A_f)$ as distinguished open sets in the topology of $\Spec(A_f)$, and
+the whole proof of 4.1.3 may be transposed to $\Spec(A_f)$.
+
+\subsection*{Ex 4.1.C}
+
+Let $D(f_i), i \in I$ be an open cover for $D(f)$, and that $a_i/f_i^{k_i} \in
+D(f_i)$ are elements that agree on overlaps $D(f_if_j)$. Then the
+$a_i/f_i^{k_i}$ certainly agree on the overlaps $D(f_if_j)$ after localizing to
+$A_f$, and we may use the proof of base gluability for $\Spec(A)$ to find $r
+\in A_f = \mathcal{O}(D(f))$ such that $r = a_i/f_i^{k_i}$ in every $D(f_i)$.
+
+\subsection*{Ex 4.1.D}
+
+
+We first show that $\widetilde{M}(D_f) = M_{f}$. To see this, note that any
+element in $S_{f} = \{1, f, f^2, \ldots \}$ doesn't vanish outside $V(f)$,
+hence act as isomorphisms on $\widetilde{M}(D_f)$, so we have a unique morphism
+$\phi : \widetilde{M}(D_f) \to M_f$ commuting with the canonical maps from $M$
+by the universal property. Now let $S$ be the set of elements of $A$ which
+doesn't vanish outside $V(f)$. We've shown before that this set is the set of
+elements that are invertible in $A_f$, and as $M_f$ is an $A_f$-module, they
+act as isomorphisms on the elements of $M_f$, hence we get a unique morphism
+$\psi : M_f \to \widetilde{M}(D_f)$ commuting with the canonical maps from $M$
+by the universal property. These two maps compose to an automorphism of $M_f$
+which fixes the image of $M$ under the canonical map $M \to M_f$, and only one
+such map can exist by the universal property, hence it's the identity map and
+the two modules are isomorphic. \\
+
+It's now easy to see that $\widetilde{M}$ is a presheaf, that every
+$\widetilde{M}(D(f)) = M_f$ is an $\mathcal{O}(D(f)) = A_f$-module, and that
+restrictions commute with ring actions. We take this for granted, and dedicate
+our efforts to showing that the base identity and base gluability axioms hold.
+\\
+
+We begin with identity. Let $D(f_i), i \in I$ be an open cover of $D(f)$. We
+can assume that $I = [1..n]$ by quasicompactness of $\Spec(A_f)$. Then suppose
+that $s \in \widetilde{M}(D(f))$ is such that $\restr{s}{D(f_i)} = 0$. Then
+there is $k_i \in \N$ such that $f_i^{k_i} s = 0$ for each $i \in [1..n]$, and
+writing $g_i = f_i^{k_i}$, we have as before that the $D(g_i) = D(f_i)$ cover
+$\Spec(A)$, so $(g_1, \ldots, g_n) = 1$ in $A_f = \mathcal{O}(D_f)$, and we
+conclude identity by the same partition of unity argument as before,
+\[
+	s
+	=
+	\left(\sum_{i = 1}^{n} r_i g_i\right)s
+	=
+	\sum_{i = 1}^{n} r_i g_i s
+	=
+	0,
+\] 
+where each $r_i \in A_f$. \\
+
+For gluability, let $D(f_i), i \in I$ be an open cover of $D(f)$, and
+$a_i/f_i^{k_i} \in \widetilde{M}(D(f_i))$ be elements that agree on all
+intersections $D(f_i f_j)$. First, pick some finite subcover $[1..n] \subseteq
+I$. Then let $g_i = f_i^{k_i}$. The fact that $a_i/g_i$ restricts to the same
+element as $a_j/g_j$ on $D(g_i g_j)$ means that $(g_i g_j)^{m_{ij}} (a_i g_j -
+a_j g_i) = 0$, and after picking $m = \max(m_{ij})$ (using the fact that we
+picked a finite subcover), we have $(g_i g_j)^{m} (a_i g_j - a_j g_i) = 0$. Now
+let $b_i = a_i g^m$ and $h_i = g_i^{m + 1}$. Then our previous equation becomes
+$b_i h_j = b_j h_i$. Note that this is an equality of module elements in
+$\widetilde{M}(D(f))$. Now let 
+\[
+	1 = \sum_{i = 1}^{n} r_i h_i
+\] 
+with $r_i \in A_f$ be a partition of unity (which exists since $D(h_i) = D(g_i)
+= D(f_i)$) in $A_f = \mathcal{O}(D(f))$, and set 
+\[
+	s
+	=
+	\sum_{i = 1}^{n} r_i b_i.
+\] 
+Then
+\[
+	s h_j
+	=
+	\sum_{i = 1}^{n} r_i b_i h_j
+	=
+	\sum_{i = 1}^{n} r_i b_j h_i
+	=
+	b_j,
+\] 
+and
+\[
+	\restr{s}{D(f_j)}
+	=
+	h_j/b_j.
+\] 
+The same argument as in the proof of Theorem 4.1.2 can be used to widen
+gluability to the whole index set $I$.
+
+
+\subsection*{Ex 4.1.E}
+
+Let $f \in A \setminus \mathfrak{p}$ and $m/f \in M_{\mathfrak{p}}$. Then we
+can send this to an equivalence class $(m/f, D(f)) \in
+\widetilde{M}_{[\mathfrak{p}]}$ since $[\mathfrak{p}] \in D(f)$ and $m/f \in
+\widetilde{M}(D_f) = M_f$. This map is well defined, since if $m/f = m'/f'$ in
+$M_{\mathfrak{p}}$, then $g(mf' - m'f) = 0$ for some $g \in A \setminus
+\mathfrak{p}$, and $m/f = m'/f'$ in $D(ff'g)$ so
+\[
+	(m/f, D(f)) = (m/f, D(ff'g)) = (m'/f', D(ff'g)) = (m'/f', D(f'))
+\]
+in $\widetilde{M}_{[\mathfrak{p}]}$.
+
+Similarly, let $(m, U)$ be a representative of an element in
+$\widetilde{M}_{[\mathfrak{p}]}$. We can always restrict $U$ down to a
+distinguished open set $D(f)$ which contains $[\mathfrak{p}]$, so we might as
+well suppose that we picked the representative $(m', D(f))$, and any element of
+$\widetilde{M}(D(f)) = M_f$ is of the form $m' = m/f$. So any element of
+$\widetilde{M}_{[\mathfrak{p}]}$ may be represented by a pair $(m/f, D(f))$
+with some $f \in A \setminus \mathfrak{p}$. Hence such a representative can be
+sent to $m/f \in M_{\mathfrak{p}}$, and we will now show that this is a
+well-defined map $\widetilde{M}_{[\mathfrak{p}]} \to M_{\mathfrak{p}}$. Suppose
+that $(m/f, D(f)) \sim (m'/f', D(f'))$ in $\widetilde{M}_{[\mathfrak{p}]}$.
+Then there is some $U \in D(f) \cap D(f')$ such that $m/f = m'/f'$ on
+$\widetilde{M}_{[\mathfrak{p}]}(U)$, and we can further restrict to some $D(g)
+\subseteq U$ to see that $m/f = m'/f'$ on $M_g$. But them $m/f = m'/f'$ on
+$M_{\mathfrak{p}}$ as well since this is just a further restriction ($g \in A
+\setminus \mathfrak{p}$ since $[\mathfrak{p}] \in D(g)$), so the map is
+well-defined. \\
+
+These two maps are clearly inverse each other, and both homomorphisms. Hence
+the two modules are isomorphic.
+
+\subsection*{Ex 4.1.F}
+
+\subsubsection*{(a)}
+
+Denote the given map by $\phi$. Let $m \in \ker(\phi)$. Then there is $s \in A
+\setminus \mathfrak{p}$ such that $sm = 0$ for every prime ideal $\mathfrak{p}$
+of $A$. Hence there is $s \in A \setminus \bigcap \mathfrak{p}$ such that $sm =
+0$ where the union runs over all prime ideals of $A$. But every non-unit of $A$
+lies in some maximal ideal. Hence $s$ is a unit and $m = 0$.
+
+\subsubsection*{(b)}
+
+By forming the $\Spec(A)$-module $\widetilde{M}$, which has $[\mathfrak{p}]$ as
+points and $M_{\mathfrak{p}}$ as stalks by the previous exercise, an
+application of Exercise 2.4.A immediately shows that the given map is
+injective.
+
+
+\subsection*{Ex 4.1.G}
+
+Any $\mathcal{O}$-module morphism $\widetilde{M} \to \widetilde{N}$ defines a
+$\mathcal{O}(\Spec(A)) = A$-module morphism $M \to N$ via $M =
+\widetilde{M}(\Spec(A) \to \widetilde{N}(\Spec(A)) = N$. \\
+
+For the other direction, let $\phi : M \to N$ be an $A$-module morphism. Then
+for open distinguished sets $X_f$ in $X$, define $\phi_f : \widetilde{M}(U) \to
+\widetilde{N}(U)$ by
+\[
+	\phi_f 
+	:
+	m/f^k
+	\to
+	\phi(m)/f^k.
+\]
+This map clearly commutes with restrictions, and so we've constructed a
+morphism of sheaves by Exercise 2.5.C. \\
+
+These constructions are also clearly inverses of each other, and we are done.
+
+\subsection*{Ex 4.3.A}
+
+We begin with some lemmas that will make solving this exercise easier.
+\begin{lemma}
+	Let $A, A'$ be rings, and 
+	\[
+		(\pi, \phi) 
+		: 
+		(\Spec(A), \osp{A})
+		\to
+		(\Spec(A'), \osp{A'})
+	\] 
+	be a isomorphism of locally ringed spaces. Then the value of $f \in
+	\osp{A}(\Spec(A)) = A$ at a point $[\mathfrak{p}] \in \Spec(A)$ is zero if
+	and only if the value of $\phi(f) \in A'$ is zero at the point
+	$\pi([\mathfrak{p}]) \in \Spec(A')$.
+\end{lemma}
+\begin{proof}
+	We have the following chain of equivalences. \\
+
+	The value of $f$ is zero at $[\mathfrak{p}]$. (The value of $f$ as in the
+	image of $f$ in $\kappa(\mathfrak{p}) =
+	A_{\mathfrak{p}}/\mathfrak{p}_{\mathfrak{p}}$)
+	\[
+		\Leftrightarrow
+	\] 
+	$f$ lies in the maximal ideal of $\oo_{[\mathfrak{p}]} = A_{\mathfrak{p}}$ 
+	\[
+		\Leftrightarrow
+	\] 
+	$f$ is not invertible in $\oo_{[\mathfrak{p}]}$ (since the stalk is local)
+	\[
+		\Leftrightarrow
+	\] 
+	there exist no neighbourhood $V_{[\mathfrak{p}]}$ of $[\mathfrak{p}]$, and
+	$g_{[\mathfrak{p}]} \in \oo(V_{[\mathfrak{p}]})$ such that
+	$fg_p{[\mathfrak{p}]} = 1$
+	\[
+		\Leftrightarrow
+	\] 
+	there exist no neighbourhood $\pi(V_{[\mathfrak{p}]})$ of
+	$\pi({[\mathfrak{p}]})$ and $\phi(g_{[\mathfrak{p}]}) \in
+	\pi(V_{[\mathfrak{p}]})$ such that $\phi(f)\phi(g_{[\mathfrak{p}]}) = 1$.
+	\\
+
+	It's clear that the chain can now be traversed back up using $\phi(f)$ and
+	$\pi([\mathfrak{p}])$, from which see that vanishing in the two ringed
+	spaces is equivalent.
+\end{proof}
+
+\begin{lemma}
+	Let $A, A'$ be rings, and 
+	\[
+		(\pi, \phi) 
+		: 
+		(\Spec(A), \osp{A})
+		\to
+		(\Spec(A'), \osp{A'})
+	\] 
+	be an isomorphism of ringed spaces. Then the isomorphism of global sections 
+	$\phi : \osp{A}(\Spec(A)) \to \osp{A'}(\Spec(A'))$ coincides
+	with the map $\pi$ on the spectra in the following sense. For any prime 
+	ideal $\mathfrak{p}$ of $A$, we have
+	\[
+		[\phi(\mathfrak{p})]
+		=
+		\pi([\mathfrak{p}]).
+	\] 
+\end{lemma}
+\begin{proof}
+	The point $[\mathfrak{p}] \in \Spec(A)$ is characterized by the fact that
+	$f([\mathfrak{p}]) = 0$ if and only if $f \in \mathfrak{p}$. By the
+	previous lemma, we see that $\phi(f)(\pi([\mathfrak{p}])) = 0$ if and only
+	if $f \in \mathfrak{p}$ which happens if and only if $\phi(f) \in
+	\phi(\mathfrak{p})$. Hence $[\phi(\mathfrak{p})] = \pi([\mathfrak{p}])$.
+\end{proof}
+
+The previous lemma shows that given a isomorphism of affine schemes, the map of
+topologies is completely determined by the map of global sections. The next
+lemma will show that the map of rings over any distinguished open subset also
+is determined by the map of global sections. From these two facts it follows
+that isomorphisms of ringed spaces is equivalent to isomorphisms of rings, and
+more specifically the isomorphism of global sections.
+
+\begin{lemma}
+	Let $A, A'$ be rings, and 
+	\[
+		(\pi, \phi) 
+		: 
+		(\Spec(A), \osp{A})
+		\to
+		(\Spec(A'), \osp{A'})
+	\] 
+	be an isomorphism of ringed spaces. Moreover, let $f \in A$ and $a/f^m \in
+	\osp{A}(D(f))$. Denote the map between the rings of $D(f)$ by $\phi_{D(f)}
+	: \osp{A}(D(f)) \to \osp{A'}(\pi(D(f)))$. Then
+	\[
+		\phi_{D(f)}(a/f^m)
+		=
+		\phi(a)/\phi(f)^m.
+	\] 
+\end{lemma}
+\begin{proof}
+	We have $\phi(a) = \phi_{D(f)}(a)$ since the maps of $\phi$ have to commute
+	with restrictions. Similarly $\phi(f) = \phi_{D(f)}(f)$, after which it
+	follows that $1/\phi(f) = \phi_{D(f)}(1/f)$ since both of these elements
+	are inverses to $\phi(f)$.
+\end{proof}
+
+
+\subsection*{Ex 4.3.B}
+
+We know from Exercise 3.4.I.(b) that the subspace topology $D(f) \subset
+\Spec(A)$ agrees with the topology of $\Spec(A_f)$. Hence it remains only to
+check that the structure sheaves agree. Let $D(g/f^m) = D(g)$ be a
+distinguished open set in $\Spec(A_f)$. Then $\mathcal{O}(\Spec(A_f)))(D(g)) =
+(A_f)_{g} = A_{fg}$. Meanwhile, $D(g)  \subset \Spec(A_f)$ corresponds to
+$D(fg) \subset \Spec(A)$, and $\mathcal{O}_{\Spec(A)}(D(fg)) = A_{fg}$. Hence
+the two ringed spaces are isomorphic.
+
+\subsection*{Ex 4.3.C}
+
+It's a ringed space by the definition of restriction of a sheaf. Moreover,
+given a point $[\mathfrak{p}] \in U$, we know that there exists an open
+neighbourhood $V \subset X$ of $[\mathfrak{p}]$ such that
+$\restr{\mathcal{O}}{V}$ is affine. As distinguished open sets form a base,
+there must be some distinguished set $D(f)$ in $V \cap U$ which contains
+$\mathfrak{p}$. Then $\restr{\mathcal{O}}{D(f)}$ is affine, as if
+$\restr{\mathcal{O}}{V} = (\Spec(A), \mathcal{O}_{\Spec(A)})$, then
+$\restr{\mathcal{O}}{D(f)} = (\Spec(A_f), \mathcal{O}_{\Spec(A_f)})$ by
+Exercise 4.3.b.
+
+\subsection*{Ex 4.3.D}
+
+Any points $[\mathfrak{p}] \in X$ lies in some affine open set, which in turn
+lies in some distinguished open set $D(f)$ inside that open set. If some
+$[\mathfrak{p}]$ simultaneously lies in two distinguished open sets $D(f),
+D(f')$, which in turn may lie in two different affine open sets, $D(f) \subset
+\Spec(A_f), D(f') \subset \Spec(A_f')$, then in particular, $D(f) \cap D(f')$
+is open in $\Spec(A_f)$, and we can find some $D(g) \subset D(f) \cap D(f')$
+containing $[\mathfrak{p}]$ which is distinguished open in $\Spec(A_f)$. Hence
+the distinguished open sets of the affine cover form an basis for $X$.
+
+\subsection*{Ex 4.3.F}
+
+\subsubsection*{(a)}
+
+Let $X, \oo$ be a locally ringed space. Let $f \in \oo(X)$, and $U$ be the
+subset of $X$ where the germ of $f$ is invertible. I.e $p \in U$ if and only if
+there exist some open neighbourhood $V_p$ of $p$ such that $fg = 1$ in
+$\oo(V_p)$. But then $f$ is invertible on all of $V_p$, so we can write $U$ as
+a union of open sets $U = \bigcap_{p \in U} V_p$, hence $U$ is open. It follows
+that the space $W \subset X$ where the germ of $f$ isn't invertible is closed.
+Now, a local ring is a disjoint union of its maximal ideal and set of units.
+Hence if the germ of $f$ isn't invertible at some point $p \in W$, we have that
+$f$ must lie in the maximal ideal of $\mathcal{O}_p$, whence $f$ is zero in
+$\kappa(p)$.
+
+\subsubsection*{(b)}
+
+Suppose that the germ of $f$ doesn't vanish anywhere. It follows from part (a)
+that every germ of $f$ is invertible. In other words, we have for each $p \in
+X$, some open neighbourhood $V_p$ about $p$, and $g_p \in \oo(V_p)$ such that
+$fg = 1$ in $\oo(V_p)$. But then if $q, p$ are two points such that $V_p$ and
+$V_q$ intersect, we must have $g_p = g_q$ on $V_p \cap V_q$ since inverses are
+uniquely determined. It follows by the gluing axiom that there is some $g \in
+\oo(X)$ such that $gf = 1$ on $\oo(X)$, and $f$ is invertible.
+
+\subsection*{Ex 4.4.A}
+
+
+We first specify how to construct the scheme $(X, \mathcal{O}_X)$ given $X_i, i
+\in I$, $X_{ij}$ and $f_{ij} : X_{ij} \to X_{ji}$ as in the exercise
+description. \\
+
+We construct the topological space $X$ as the disjoint union of the $X_i$
+modulo the relation that $a \sim b$ whenever $a \in X_{ij}, b \in X_{ji}$ and
+$f_{ij}(a) = b$. Using this construction, we can assume that the $X_i$ are
+embedded into $X$, and form an open cover of $X$ with intersections $X_i \cap
+X_j = X_{ij} = X_{ji}$. \\
+
+We construct the structure sheaf $\mathcal{O}_{X}$ as follows. Let $U$ be open
+in $X$. Then we define $\oo_X(U)$ as the subring of the product $\prod_{i \in
+I} \oo_{X_i}(U \cap X_i)$ where for any $a \in \prod_{i \in I} \oo_{X_i}(U \cap
+X_i)$ we have $\restr{a_i}{X_{ij} \cap U} = \restr{a_j}{X_{ji} \cap U}$ where
+$a_i$ is the $i$-th entry of $a$. Then $\mathcal{O}_X$ is a presheaf with
+restriction maps defined component wise. To verify that it's a sheaf, we prove
+that the identity and gluing axioms hold. \\
+
+Beginning with the identity axiom, let $U$ be open in $X$, and $U_j, j \in J$
+be a open cover of $X$. Then we may form another open cover according to
+$V_{ij} X_i \cap U_j, (i, j) \in I \times J$. Now suppose that $f, g \in
+\mathcal{O}_{X}(U)$ are such that $\restr{f}{U_j} = \restr{g}{U_j}$ for all $j
+\in J$. Then $\restr{f}{V_{ij}} = \restr{g}{V_{ij}}$ for all $i,j \in I \times
+J$, hence by identity in each $X_i$ we have $\restr{f}{X_i \cap U} =
+\restr{g}{X_i \cap U}$ for all $i \in I$. It follows that $f = g$ since they
+have the same entry in every component $i \in I$. \\
+
+For gluing, let $U, U_j, V_{ij}$ be as in the previous paragraph. Then let $f_j
+\in \mathcal{O}_X(U_j)$ be a family of elements which agree on intersections
+$U_j \cap U_{j'}$. Then they agree on intersections $V_{ij} \cap V_{ij'}$,
+hence can be glued to elements $f_i$ in each $\mathcal{O}_X(X_i)$. Then the
+element $f \in \prod_{i \in I} \oo_{X_i}(X_i \cap U)$ which has $f_i$ as it's
+$i$-th entry is such that $(f)_i = (f)_j$ on each intersection, hence it lies
+in $\mathcal{O}_{X}(U)$ by our construction. \\
+
+Finally, note that the cocycle condition ensures that not only does each $(X_i,
+\oo_{X_i})$ inject into $(X, \oo_X)$, but it does so in a way which is
+compatible with the injection of $(X_j, \oo_{X_j})$ on the intersection
+$(X_{ij}, \oo_{X_{ij}})$ (don't have energy to finish this). 
+
+
+\subsection*{Ex 4.4.B}
+
+Let $(W, \oo_W)$ denote the scheme of the affine line with doubled origin.
+First of, the topology $W$ is given as elements from $\Spec(\K[t]) \coprod
+\Spec(\K[u])$ modulo the relation that $(t - a) \sim (u - a)$ for all non-zero
+$a$, and $(0) \sim (0)$. Hence, as a set we may view $W$ as the affine line
+with an extra origin $\Spec(\K[t]) \cup (0_u)$. In $\Spec(\K[t])$ we have that
+all cofinite sets are open, and the same in $\Spec(\K[t])$, hence a set in $W$
+is open if and only if it's cofinite, since that's exactly the sets which
+correspond to cofinite sets in the original topologies. \\
+
+Now let's calculate the ring of global sections. It's given as the subring of
+$\oo_W \subset \K[u] \times \K[t]$ such that for any $(a_1, a_2) \in
+\oo_W$, we have that 
+\[
+	\phi\left(\restr{a_1}{D(t)}\right)
+	=
+	\restr{a_2}{D(u)}
+\] 
+where $\phi : t \mapsto u$. I.e if $a_1 = f(u)$, then $a_2 = f(t)$. Hence
+$\oo_W \cong \K[t]$. \\
+
+Suppose now towards a contradiction that $(W, \oo_W)$ is affine, and equal to
+the scheme $(\Spec(A), \osp{A})$ for some ring $A$. Then as the ring of global
+sections of an affine scheme is equal to the ring, this would imply that $A =
+\K[x]$. But in $(\AA{1}_{\K}, \osp{\K[x]})$, we have that $V(x - a) = [(x -
+a)]$, for all points, whilst in $(W, \oo_W)$ we have $V(u) = v(t) = [(u),
+(t)]$. As any isomorphism between the two ringed spaces is determined by an
+isomorphism between the global sections, and any such isomorphism is determined
+by the image of $u = t$, such a map must send $u = t$ to a generator $x - a$ of
+$\K[x]$. But this is impossible to do in a way which respects vanishing sets,
+contradicting the first lemma in Exercise 4.3.A
+
+\subsection*{Ex 4.4.C}
+
+We can pick $U, V$ as the two copies of the affine plane. Their intersection is
+the punctured affine plane, which is not an affine scheme by Example XX.
+
+\subsection*{Ex 4.4.D}
+
+First we verify that the gluing map $\phi_{ij} : U_i \to U_j$ is an isomorphism.
+To see this, note that
+\[
+	\phi_{ji} \circ \phi_{ij} (x_{k/i})
+	=
+	\phi_{ji}(x_{k/j}/x_{i/j})
+	=
+	\phi_{ji}(x_{k/j})/\phi_{ji}(x_{i/j})
+	=
+	\frac{x_{k/i}/x_{j/i}}{x_{i/i}/x_{j/i}}
+	=
+	x_{k/i},
+\]
+and if $A$ is an integral domain, then any morphism from $K(A)$ is determined
+by how it maps $A$. \\
+
+Now, to see that these isomorphisms agree on triple overlaps. Note that 
+in $U_i$, the triple overlap is given as $D(x_{j/i}x_{k/i})$,
+and here the ring is given by
+\[
+	\K[x_{0/i}, \ldots, x_{n/i}, 1/x_{j/i}, 1/x_{k/i}]/(x_{i/i} - 1).
+\]
+Similarly, on $U_j$ and $U_k$ the triple overlap rings are given by
+\[
+	\K[x_{0/j}, \ldots, x_{n/j}, 1/x_{i/j}, 1/x_{k/j}]/(x_{j/j} - 1),
+\]
+and
+\[
+	\K[x_{0/k}, \ldots, x_{n/k}, 1/x_{j/k}, 1/x_{i/k}]/(x_{k/k} - 1)
+\]
+respectively. Then
+\[
+	\phi_{jk} \circ \phi_{ij} (x_{l/i})
+	=
+	\phi_{jk}(x_{l/j}/x_{i/j})
+	=
+	\phi_{jk}(x_{l/j})/\phi_{jk}(x_{i/j})
+	=
+	\frac{x_{l/k}/x_{j/k}}{x_{i/k}/x_{j/k}}
+	=
+	x_{l/k}/x_{i/k}
+	=
+	\phi_{ik}(x_{l/i}),
+\]
+hence the gluing morphisms agree on triple overlaps.
+
+\subsection*{Ex 4.4.E}
+
+Let $U = U_0 \cup U_1$. Then $\oop{n}{\K}(U)$ is given by pairs from $(a_1,
+a_2) \in \oop{n}{\K}(U_0) \times \oop{n}{\K}(U_0)$ that agree on the overlap
+$D(x_{i/j})$ and $D(x_{j/i})$. But then $a_1$ is a polynomial in 
+$x_{1/0}, x_{2/0}, \ldots, x_{n/0}$, and $a_2$ is a polynomial in 
+$x_{0/1}, x_{2/1}, \ldots, x_{n/1}$, and these variables are identified 
+according to $x_{i/0} = x_{i/1}/x_{0/1}$ on the overlap. No non-constant
+polynomial in $x_{1/1}/x_{0/1}, x_{2/1}/x_{0/1}, \ldots, x_{n/1}/x_{0/1}$
+can be written as a polynomial in $x_{0/1}, x_{2/1}, \ldots, x_{n/1}$,
+hence $\oop{n}{\K}(U) = \K$.
+
+\subsection*{Ex 4.4.F}
+
+The closed points of each $\oop{n}{\K}(U_i)$ are given by maximal ideals, which
+are of the form
+\[
+	\mathfrak{m}_{i, a} = (x_{0/i} - a_{0/i}, x_{1/i} - a_{1/i}, \ldots, x_{n/i} -
+	a_{n/i})
+\] 
+where $a_{i/i}$ is fixed to $1$. This closed point may be written as $[a_{0/i},
+a_{1/i}, \ldots, a_{n/i}]$ where $a_{i/i} = 1$ again. As $a_{i/i} = 1$, we can
+think of this point as the equivalence class $[a_{0}, a_{1}, \ldots, a_{n}]$
+where $a_i \not = 0$ and $[a_{0}, a_{1}, \ldots, a_{n}] \sim \lambda[a_{0},
+a_{1}, \ldots, a_{n}]$ for all non-zero $\lambda$. A similar process can be
+repeated for any patch $U_j$, where the resulting point $[b_{0}, b_{1}, \ldots,
+b_{n}]$ has the coordinate $b_j$ non-zero. Thus points of $\oop{n}{\K}$ can be
+thought of as equivalence classes $n + 1$ tuples $[a_{0}, a_{1}, \ldots,
+a_{n}]$ where not all coordinates are zero, and two tuples are equivalent if
+they are scalar multiples of each other. \\
+
+We will now verify, that on the overlap $U_{ij}$, forming point tuples from the
+two descriptions $\mathfrak{m}_{i, a}$ and $\phi_{ij}(\mathfrak{m}_{i, a})$ of
+the same ideal, result in equivalent point tuples. \\
+
+On the overlap $U_{ji}$, the ideal/point $\mathfrak{m}_{i, a}$ may be
+identified as
+\begin{align*}
+	(x_{0/j}/x_{i/j} - a_{0/i},\ x_{1/j}/x_{i/j} - a_{1/i},\ \ldots,\ x_{n/j}/x_{i/j} - a_{n/i}) 
+	&= \\
+	(x_{0/j} - x_{i/j}a_{0/i},\ x_{1/j} - x_{i/j}a_{1/i},\ \ldots,\ x_{n/j} - x_{i/j}a_{n/i})
+	&,
+\end{align*} 
+but the $j$-th entry in the generator list then reads $x_{j/j} - x_{i/j} a_{j/i}$,
+and $x_{j/j}=1$ so we may replace $x_{i/j}$ with $1/a_{j/i}$ and get
+\begin{align*}
+	(x_{0/j}/x_{i/j} - a_{0/i},\ x_{1/j}/x_{i/j} - a_{1/i},\ \ldots,\ x_{n/j}/x_{i/j} - a_{n/i}) 
+	&= \\
+	(x_{0/j} - a_{0/i}a_{j/i},\ x_{1/j} - a_{1/i}/a_{j/i},\ \ldots,\ x_{n/j} - a_{n/i}/a_{j/i})
+	&,
+\end{align*}
+from which we can construct the point as
+\[
+	[a_{0/i}/a_{j/i}, a_{1/i}/a_{j/i}, \ldots, a_{n/i}/a_{n/i}]
+\] 
+which indeed is equivalent to the original point (as $x_{j/i} = x_{j/j}/x_{i/j}
+\not = 0$ on the intersection).
+
+\subsection*{Ex 4.5.A}
+
+When $x_0, x_1 \not = 0$, we have that $x_{0/1} = x_{0/0}/x_{1/0} = 1/x_{1/0}$,
+and $x_{2/1} = x_{2/0}/x_{1/0}$.
+
+\subsection*{Ex 4.5.B}
+
+On each of the affine patches $U_0, U_1, U_2$, we define schemes (by defining
+their global sections) as 
+\begin{align*}
+	\oo_{U_0} &= \K[x_{1/0},x_{2/0}]/(1 + x_{1/0}^2 - x_{2/0}^2) \\
+	\oo_{U_1} &= \K[x_{0/1},x_{2/1}]/(x_{0/1}^2 + 1 - x_{2/1}^2) \\
+	\oo_{U_2} &= \K[x_{0/2},x_{1/2}]/(x_{0/2}^2 + x_{1/2}^2 - 1) \\
+\end{align*}
+
+On the patch $U_{0,1}$ we have the isomorphism
+\[
+	\phi_{0,1} 
+	: 
+	\oo_{U_0}(U_{0,1}) = \K[x_{1/0},x_{2/0},1/x_{1/0}] / (1 + x_{1/0}^2 - x_{2/0}^2)
+	\to
+	\oo_{U_1}(U_{1,0}) = \K[x_{0/1},x_{2/1},1/x_{0/1}] / (x_{0/1}^2 + 1 - x_{2/1}^2)
+\]
+given by
+\[
+	\phi_{0,1}
+	: 
+	x_{1/0} \mapsto 1/x_{0/1},
+	x_{2/0} \mapsto x_{2/1}/x_{0/1}.
+\] 
+\[
+	\phi_{1,2}
+	x_{0/1} \mapsto x_{0/2}/x_{1/2}, 
+	x_{2/1} \mapsto 1/x_{1/2}.
+\] 
+This map is indeed well-defined, as if $f = 1 + x_{1/0}^2 - x_{2/0}^2$,
+then
+\[
+	\phi_{0,1}(f)
+	=
+	1 + (1/x_{0/1})^{2} - (x_{2/1}/x_{0/1})^{2}
+	=
+	(1/x_{0/1})^{2}
+	(x_{0/1}^{2} + 1 - x_{2/1}^{2}).
+\]
+It's inverse, and all other intersection isomorphisms, are defined in a similar
+fashion. \\
+
+Finally, we conclude by verifying the cocycle condition in one of the six
+directions
+\begin{align*}
+	\phi_{1,2} \circ \phi_{0,1}(x_{1/0})
+	&=
+	\phi_{1,2}(1/x_{0/1})
+	=
+	\frac{1}{x_{0/2}/x_{1/2}}
+	=
+	x_{1/2}/x_{0/2}
+	=
+	\phi_{0, 2}(x_{1/0}) \\
+	\phi_{1,2} \circ \phi_{0,1}(x_{2/0})
+	&=
+	\phi_{1,2}(x_{2/1}/x_{0/1})
+	=
+	\frac{1/x_{1/2}}{x_{0/2}/x_{1/2}}
+	=
+	1/x_{0/2}
+	=
+	\phi_{0,2}(x_{2/0}).
+\end{align*}
+
+\subsection*{Ex 4.5.C}
+\subsubsection*{(a)}
+
+The ones where each term has the same degree, I.e polynomials of the form 
+\[
+	-x_0^{k + 5} + x_1^{2}x_0^{k + 3} + x_0^{k}x_2^{5}.
+\] 
+The "best" might be the one with $k = 0$ since this has lowest degree?
+
+\subsubsection*{(b)}
+
+All points $(0, a, 0)$ satisfy the "best" homogeneous polynomial, and all
+points $(0, a, b)$ satisfy the remaining homogeneous polynomials. This
+justifies the word "best" from before, the "best" polynomial retains more
+information in this sense.
+
+
+\subsection*{Ex 4.5.D}
+
+The parabola dehomogenises to $x_0x_2 - x_1^2$. This meets the 
+line $x_0 = 0$ at infinity at all points $(0, a, 0)$. \\
+
+On $U_1$ the equation becomes $x_0x_2 - 1$, and on $U_2$ it's $x_0 - x_1^2$
+
+\subsection*{Ex 4.5.E}
+
+Given a set of homogeneous polynomials $f_i, i \in [1..m]$ of degrees
+$\deg(f_i) = d_i$, define $V_p(f_i, i \in [1..m])$ as the scheme glued together
+by the following gluing data. Subschemes $U_i, i \in [0..n]$ defined by global
+sections as 
+\[
+	\oo_{U_i}
+	=
+	\frac{A[x_{0/i}, \ldots, x_{n/i}]}
+	{(x_{i/i} - 1, f_{1}(x_{0,i}, \ldots x_{n/i}), f_2(x_{0,i}, \ldots x_{n/i}), \ldots, f_{m}(x_{0,i}, \ldots x_{n/i}))}.
+\] 
+Let $U_{i,j} = \oo_{U_i}(D(x_{j/i}))$ and morphisms $\phi_{i,j} : U_{i, j} \to
+U_{j, i}$ be given by $\phi_{i, j} : x_{k/i} \mapsto x_{k/j}/x_{i/j}$. These 
+are well-defined maps as 
+\[
+	\phi_{i, j}(x_{i/i} - 1)
+	=
+	x_{i/j}/x_{i/j} - 1
+	=
+	0,
+\] 
+and
+\[
+	\phi_{i,j}(f_{k}(x_{0,i}, \ldots x_{n/i}))
+	=
+	f_{k}(x_{0,j}/x_{i/j}, \ldots x_{n/j}/x_{i/j})
+	=
+	f_{k}(x_{0,j}, \ldots x_{n/j})/x_{i/j}^{d_k}
+\] 
+and $x_{i/j}$ is a unit on the intersection. Moreover, they are isomorphisms 
+as 
+\[
+	\phi_{j, i} \circ \phi_{i, j} (x_{k/i})
+	=
+	\phi_{j,i}(
+	x_{k/j}/x_{i/j}
+	)
+	=
+	\frac{x_{k/i}/x_{j/i}}{x_{i/i}/x_{j/i}}
+	=
+	x_{k/i}.
+\] 
+Finally, the cocycle condition is fulfilled as 
+\[
+	\phi_{j, k} \circ \phi_{i, j} (x_{l/i})
+	=
+	\phi_{j, k}(x_{l/j}/x_{i/j})
+	=
+	\frac{x_{l/k}/x_{j/k}}{x_{i/k}/x_{j/k}}
+	=
+	x_{l/k}/x_{i/k}
+	=
+	\phi_{i, k}(x_{l/i}).
+\] 
+
+\subsection*{Ex 4.5.F}
+\subsubsection*{(a)}
+
+First, suppose that $I$ is a homogeneous ideal of $S = \bigoplus_{i \in \Z}
+S_i$ which is generated by forms $g_i, i \in J$ of degrees $d_i \in \Z$.
+Then let $a = (a_i)_{i \in \Z} \in I$. It follows that $a$ may be written as a
+$S$-linear combination of the generators
+\[
+	a
+	=
+	\sum_{i \in J} b_i g_i
+\] 
+with only finitely many $b_i$ non-zero. Furthermore, for each $b_i$, let
+$(b_i)_{d}$ denote the degree $d$ part of $b_i$. Then, as $S$ is a direct sum
+of the $S_i$, we may decompose $a$ according to
+\[
+	a_d
+	=
+	\sum_{i \in J}
+	(b_i)^{d - d_i}g_i,
+\] 
+and as each $g_i \in I$, this sum, and therefore $a_d$, lies in $I$ as well. \\
+
+For the other direction, if $I$ is generated by some elements $g_i, i \in I$,
+then $I$ is generated by their homogeneous components as well.
+
+\subsubsection*{(b)}
+
+Let $I, I'$ be homogeneous ideals generated by forms $g_i, i \in J$ and $g_i',
+i \in J'$. Then $I + I'$ is generated by the union of the two generating sets,
+hence is homogeneous, and $II'$ is generated by the product set, hence also
+homogeneous. If $a \in I \cap I'$ then all the homogeneous components of $a$
+are in both $I$ and $I'$, hence in $I \cap I'$ and $I \cap I'$ is homogeneous. \\
+
+Finally, if $a \in \sqrt{I}$, then $a^n \in I$ for some $n \in \N$. Let $i \in
+\Z$ be the maximal index such that $a_i$ is non-zero. Then $(a^n)_{ni} =
+a_i^n$, and as $I$ contains all its homogeneous components, it contains
+$a_i^n$. It follows that $a_i \in \sqrt{I}$, hence $a - a_i \in \sqrt{I}$ and
+has a lower highest degree than $a$. Repeating this procedure inductively with
+$a - a_i$ shows that every homogeneous component of $a$ lies in $\sqrt{I}$.
+
+\subsubsection*{(c)}
+
+Suppose that $I$ is an ideal with the described property, and let $ab \in I$.
+Let $a_n, b_m$ be the non-zero homogeneous components of greatest degree in $a,
+b$. Then $(ab)_{n + m} = a_nb_m$ lies in $I$ as well, and $a_n$ or $b_m$ lies
+in $I$ by hypothesis. Suppose $a_n \in I$, then $a_nb \in I$ and  $ab - a_nb =
+(a - a_n)b \in I$. Repeat this process with $a' = a - a_n$ and $b' = b$. At
+each step, the degree of the product $a'b'$ lowers, until one of the factors is
+$0$, showing that $a$ or $b$ lies in $I$ and $I$ is prime.
+
+
+\subsection*{Ex 4.5.G}
+\subsubsection*{(a)}
+
+Suppose that $S$ is finitely generated as an $A$-algebra by the generators
+$g_i, i \in [1..m]$. We assume that all algebras are unital, hence we may
+assume that none of the generators are in $S_0$. Any element in $S$ can be
+written as a polynomial in the $g_i$. Now suppose that $a \in S^+$ and that $a
+= f(g_1, g_2, \ldots, g_m)$. Then as $a$ doesn't have a component in $S_0$, $f$
+has no constant. Hence $a$ can be written as a $S$-linear combination in 
+the $g_i$, and the $g_i$ generate $S^{+}$. \\
+
+The other direction is similar.
+
+\subsubsection*{(b)}
+
+Suppose that $S$ is Noetherian. Then $S^{+}$ is finitely generated and $S$ is
+finitely generated as an $A$-algebra by part (a). To see that $A$ must be
+Noetherian as well, let $I$ be an ideal in $A$. Then then the ideal $IS$ in $S$
+is finitely generated by say $g_1, \ldots, g_m$. So, for any $a \in A = S_{0}$,
+we may write $a$ as an $S$-linear combination of the $g_i$ according to 
+\[
+	a = \sum_{i = 1}^{m} b_i g_i.
+\] 
+But as $\deg(a) = 0$, we have that all terms of positive degree in this sum must
+cancel and we can write $a$ as the sum of degree $0$ components
+\[
+	a = \sum_{i = 1}^{m} (b_i)_0 (g_i)_0.
+\] 
+It follows that $(g_1)_0, \ldots, (g_m)_{0}$ is a generating set for $I$, hence
+$S_0$ is Noetherian. \\
+
+Now suppose that $A = S_0$ is Noetherian and $S$ is a finitely $A$-algebra.
+Then $S$ is Noetherian by the Hilbert Basis Theorem, and the fact that
+quotients of Noetherian rings are Noetherian.
+
+\subsection*{Ex 4.5.H}
+\subsubsection*{(a)}
+
+We use the notation suggested in the exercise. Let $\iota : A_0 \to A$ be the
+canonical injection. Suppose that $P \subset A$ is a homogeneous prime ideal.
+Then $P_0 = \iota^{-1}(P)$ is a prime ideal of $A_0$. \\
+
+Now suppose that $P_0$ is a prime ideal of $A_0$, and define 
+\[
+	P = \bigoplus_{i \in \Z} Q_i
+\] 
+where $a_i \in Q_i$ whenever $a_i^{\deg(f)}/f^i \in Q_0$. We will now 
+show that $P$ is a homogeneous ideal. \\
+
+Let $a_i \in A_i$. Then $a_i \in Q_i$ if and only if $a_i^{\deg(f)/f^i \in
+Q_0}$ if and only if $(a_i^{\deg(f)}/f^i)^2 = (a_i^{2})^{\deg(f)}/f^{2i} \in
+Q_0$ (as $Q_0$ is prime, hence radical) if and only if $a_i^{2} \in Q_{2i}$.
+Now suppose that $a_i, b_i \in Q_i$. Then $a_i^{\deg(f)}/f^{i} \in Q_0$ and
+$b_i^{\deg(f)}/f^{i} \in Q_0$ hence $(a_ib_i)^{\deg(f)}/f^{2i} \in Q_0$ and
+$a_ib_i \in Q_{2i}$. Moreover, $a_i^{2}, b_i^{2} \in Q_{2i}$, hence $(a_i +
+b_i)^{2} \in Q_{2i}$ so $a_i + b_i \in Q_i$. Finally, suppose $a_i \in Q_i$ and
+$b_j \in A_j$. Then $a_i^{\deg(f)}/f^i \in Q_0$ and so
+\[
+	\left(b_j^{\deg(f)}/f^j\right)
+	\left(a_i^{\deg(f)}/f^i\right) 
+	= 
+	(b_j a_i)^{\deg(f)}/f^{j + i} 
+	\in Q_0
+\]
+and $b_ja_i \in Q_{i + j}$. Thus for any $b \in A$, we have $ba_i \in P$. We've
+shown that $P$ is an ideal in $S$ (radical ideal even), and it's homogeneous by
+construction. It remains to show that $P$ is primality. \\
+
+By Exercise 4.5.F.(c), it will suffice to show primality on graded components.
+Suppose that $a_ib_j \in Q_{i + j}$. Then 
+\[
+	(b_j a_i)^{\deg(f)}/f^{j + i} 
+	=
+	\left(b_j^{\deg(f)}/f^j\right)
+	\left(a_i^{\deg(f)}/f^i\right) 
+	\in Q_0,
+\]
+and by primality of $Q_0$, we may assume that 
+\[
+	a_i^{\deg(f)}/f^i 
+	\in Q_0
+\] 
+whence $a_i \in Q_i$. \\
+
+As $P_0 = Q_0$, these two constructions are inverse each other, and we've found
+the desired bijection.
+
+\subsubsection*{(b)}
+
+The homogeneous prime ideals in the localization $S_{f}$ are precisely those in
+$S$ which do not meet $f$. As $f \in S^{+}$, these prime ideals do not contain
+the irrelevant ideal, and are elements of $\Proj(S)$. Hence the prime ideals of
+$(S_{f})_0$ are in bijective correspondence with the subset of prime ideals in
+$\Proj(S)$ which do not contain $f$ (I.e "$D(f)$" in some sense).
+
+\subsection*{Ex 4.5.I}
+
+Solved in Exercise 4.5.H, part (b) in particular.
+
+\subsection*{Ex 4.5.J}
+
+First of all, if $S = S_0$, then every ideal of $S$ contains the irrelevant
+ideal and we're in a totally degenerate scenario so we ignore this case. \\
+
+Let $U = \Proj(S) \setminus V(I)$ be a non-trivial open set in $\Proj(S)$ and
+$[\mathfrak{p}] \in U$. Then we claim that there is some homogeneous element of
+positive degree $f \in I$ such that $f \not \in \mathfrak{p}$ Suppose towards a
+contradiction that all elements in $a_0 \in I \setminus \mathfrak{p}$ have
+degree $\deg(a_0) = 0$. Then for any $b \in S_{+}$, we have $a_0b \in I$ so
+$a_0b \in \mathfrak{p}$ as $\deg(a_0b) \not = 0$, and as $a_0 \not \in
+\mathfrak{p}$, we have $b \in \mathfrak{p}$, which leads to the contradiction
+$S_{+} \subset I \Rightarrow V(I) = \emptyset$ (as elements of $\Proj(S)$ are
+not allowed to contain the irrelevant ideal). It follows that $I \setminus
+\mathfrak{p}$ contains an element of positive degree, and as $I$ is homogeneous
+it contains it's components, at least one of which have positive degree. \\
+
+So, for each $[\mathfrak{p}] \in U$, pick $f_{[\mathfrak{p}]} \in I$ of
+positive degree such that $f_{[\mathfrak{p}]} \not \in \mathfrak{p}$. Then
+$D_{+}(f_{[\mathfrak{p}]})$ is an open set containing $[\mathfrak{p}]$ which
+lies in $D_{+}(f_{[\mathfrak{p}]}) \subset U$. It follows that $U$ can be
+written as a union of distinguished open sets according to
+\[
+	U = \bigcup_{[\mathfrak{p}] \in U} D_{+}(f_{[\mathfrak{p}]}).
+\] 
+
+\subsection*{Ex 4.5.K}
+\subsubsection*{(a)}
+
+
+A prime ideal contains an ideal $I$ if and only if it contains
+radical of that ideal $\sqrt{I}$. Hence $V(I) = V(\sqrt{I}) \subset V(f)$ if
+and only if $\{f\} \subseteq \sqrt{I}$.
+
+\subsubsection*{(b)}
+
+Let
+\[
+	I(Z) 
+	= 
+	\{a \in S : a \in \mathfrak{p}, [\mathfrak{p}] \in Z\} 
+	= 
+	\bigcap_{[\mathfrak{p} \in Z]} \mathfrak{p}.
+\]
+Then $I(Z)$ is homogeneous since the intersection of (an arbitrary amount of)
+homogeneous ideals is again a homogeneous ideal. It's clear that $I(Z_1 \cup
+Z_2) = I(Z_1) \cap I(Z_2)$ by the same set theoretic rules that governed the
+affine case.
+
+\subsubsection*{(c)}
+
+First of all, $V(I(Z))$ is a closed set, and it's clear that it contains $Z$.
+Hence $\overline{Z} \subseteq V(I(Z))$. \\
+
+For the other inclusion, let $V(J)$ be a closed set containing $Z$, and
+$[\mathfrak{p}] \in V(I(Z))$. Then $I(Z)$ is contained in $\mathfrak{p}$,
+hence 
+\[
+	\bigcap_{[\mathfrak{q}] \in Z} \mathfrak{q}
+	\subseteq
+	\mathfrak{p}.
+\] 
+As $Z \subseteq V(J)$, any prime ideal in $Z$ contains $J$, hence 
+\[
+	J
+	\subseteq
+	\bigcap_{[\mathfrak{q}] \in Z} \mathfrak{q},
+\]
+and combining these inclusions we see that $J \subseteq \mathfrak{p}$ whence
+$[\mathfrak{p}] \in V(J)$ and $V(I(Z)) \subseteq V(J)$. We've shown that
+$V(I(Z))$ is contained in any closed set containing $Z$, hence $V(I(Z))
+\subseteq \overline{Z}$ and we are done.
+
+\subsection*{Ex 4.5.L}
+
+\textbf{(a) $\Rightarrow$ (b)}. Suppose $V(I) = \emptyset$, and that $I = (f_i,
+i \in I) \subseteq S_{+}$. Then no ideal in $\Proj(S)$ contains all $f_i$. In
+other words, for every $[\mathfrak{p}] \in \Proj(S)$, there is some $f_i$ such
+that $[\mathfrak{p}] \in D_{+}(f_i)$ (note that $D_{+}(f_i)$ is well-defined as
+$f_i \in I \subseteq S_{+}$ has positive degree). It follows that 
+\[
+	\Proj(S) = \bigcup_{i \in I}D_{+}(f_i).
+\] 
+
+\textbf{(b) $\Rightarrow$ (c)}. From
+\[
+	\Proj(S) = \bigcup_{i \in I}D_{+}(f_i).
+\] 
+it follows that no homogeneous prime ideal not containing $S_{+}$ contains all
+$f_i, i \in I$, hence $I$. Since $\sqrt{I}$ is the intersection of all minimal
+prime ideals of $I$, our desired result would follow if we could show that all
+minimal primes of $I$ are homogeneous, and hence would have to contain $S_{+}$.
+This is equivalent to showing that all minimal primes of $S/I$ are homogeneous,
+which follows from the following result.
+
+\begin{lemma}
+	Let $S$ be a graded ring and $\mathfrak{p}$	a prime ideal in $S$.
+	Let $\mathfrak{p}^{h} \subseteq \mathfrak{p}$ be the ideal generated 
+	by all homogeneous elements of $\mathfrak{p}$. Then $\mathfrak{p}^{h}$
+	is prime.
+\end{lemma}
+\begin{proof}
+	$\mathfrak{p}^{h}$ is a homogeneous ideal by construction, and primality
+	can be checked at homogeneous components. Let $a_i b_j \in
+	\mathfrak{p}^{h}$. Then $a_i b_j \in \mathfrak{p}$, and we can assume that
+	$a_i \in \mathfrak{p}$. As $a_i$ is homogeneous, $a_i \in \mathfrak{p}^{h}$
+	as well.
+\end{proof}
+
+\textbf{(c) $\Rightarrow$ (a)}. Since all prime ideals containing $I$ contains
+it's radical, it follows from $\sqrt{I} \supset S_{+}$ that all prime ideals
+containing $I$ contain $S_{+}$, hence are disqualified from $\Proj(S)$, and
+$V(I) = \emptyset$.
+
+\subsection*{Ex 4.5.M}
+
+We've already shown that $\iota : \Spec((S_f)_0) \to \Proj(S)$ is an inclusion,
+and it only remains to show that it is a continuous map. Let $D_{+}(g)$ be an
+open set in $\Proj(S)$. Then $\iota^{-1}(D_{+}(g))$ is given by
+\begin{align*}
+	\iota^{-1}(D_{+}(g))
+	&=
+	\{
+		(\mathfrak{p}_f)_{0}
+		:
+		\mathfrak{p} \in \Proj(S),
+		g \not \in \mathfrak{p}
+	\}.
+\end{align*}
+Now, $g \not \in \mathfrak{p}$ if and only if $g^{\deg(f)}/f^{\deg(g)} \not \in
+(\mathfrak{p}_f)_0$ by the construction from Exercise 4.5.H, hence 
+\[
+	\iota^{-1}(D_{+}(g))
+	=
+	D_{+}(g^{\deg(f)}/f^{\deg(g)})
+\] 
+is a distinguished open set in $\Spec((S_f)_0)$ and we are done.
+
+\subsection*{Ex 4.5.N}
+
+We will show that the rings of global sections are isomorphic, after which it
+will follow from Exercise 4.3.A that the affine schemes are isomorphic. We 
+will use the following lemma.
+
+\begin{lemma}
+	Let $S$ be a graded ring, and $f \in S_{d_f}, g \in S_{d_g}$. Then 
+	\[
+		((S_{f})_0)_{g_{d_f}/f^{d_g}}
+		\cong
+		(S_{fg})_0
+	\] 
+\end{lemma}
+\begin{proof}
+	An arbitrary element in $(S_f)_0$ may be written as $a/f^{k}$, where $a \in
+	S_{k d_f}$, and it follows that an arbitrary element in
+	$((S_{f})_0)_{g_{d_f}/f^{d_g}}$ can be written as $\frac{a/f^k}{g^{r d_f} /
+	f^{r d_g}}$ for $a, k$ like above and $r \in \Z$. This can then be mapped
+	to $(S_{fg})_0$ according to
+	\[
+		\frac{a/f^k}{g^{r d_f} / f^{r d_g}}
+		\mapsto
+		\frac{a f^{r d_g + r d_f} g^k}{(gf)^{k + r d_f}}
+	\]
+	An arbitrary element in $(S_{fg})_0$ can be written as 
+	$a/(fg)^{k}$ where $a \in S_{k (d_f + d_g)}$. We can map
+	this according to 
+	\begin{align*}
+		a/(fg)^{k}
+		\mapsto
+		\frac{a g^{kd_f - k}/f^{k + k d_g}}{g^{k d_f} / f^{k d_g}}.
+	\end{align*}
+
+	The maps are well-defined and homomorphisms as they are just constructed by
+	doing algebraic manipulations (we don't show this). The maps are inverse
+	each other as 
+	\begin{align*}
+		\frac{a g^{kd_f - k}/f^{k + k d_g}}{g^{k d_f} / f^{k d_g}}
+		&\mapsto
+		\frac{
+			a g^{kd_f - k} f^{k d_g + d_f} g^{k + kd_g}
+		}{
+			(gf)^{k + kd_g + kd_f}
+		} \\
+		&=
+		\frac{
+			a (gf)^{k d_g + d_f}
+		}{
+			(gf)^{k + kd_g + kd_f}
+		} \\
+		&=
+		\frac{
+			a 
+		}{
+			(gf)^{k}
+		}.
+	\end{align*}
+
+\end{proof}
+
+
+Now, open distinguished sets induce affine subschemes, and
+$\osp{(S_f)_0}(D(g^{d_f}/f^{d_g}))$ is the ring of global sections of
+the affine subscheme $\restr{\osp{(S_f)_0}}{D(g^{d_f}/f^{d_g})}$, so by
+using the lemma, we get the following isomorphism of rings of global sections
+of affine schemes
+\begin{align*}
+	\osp{(S_f)_0}(D(g^{d_f}/f^{d_g}))
+	&=
+	((S_f)_0)_{g^{d_f}/f^{d_g}} \\
+	&\cong
+	(S_{fg})_0 \\
+	&=
+	\osp{(S_{fg})_0}(\Spec(S_{fg})_0),
+\end{align*}
+and we are done.
+
+\subsection*{Ex 4.5.O}
+
+We begin by describing the triple overlaps in each patch. The subset
+$D_{+}(hg)$ of $\Spec(S_f)_0$ corresponds to the subset $D_{+}(hgf)$ of
+$\Spec(S)$, which again corresponds to the subset $D_{+}(fh)$ of
+$\Spec(S_{f})_0$ and $D_{+}(fg)$ of $\Spec(S_h)_0$. The ring of sections on
+these patches are all given by 
+\begin{align*}
+	\osp{(S_f)_0}(D_{+}(gh)) &= ((S_f)_0)_{(gh)^{d_f} / f^{d_g + d_h}} \cong (S_{fgh})_0  \\
+	\osp{(S_g)_0}(D_{+}(fh)) &= ((S_g)_0)_{(fh)^{d_g} / g^{d_f + d_h}} \cong (S_{fgh})_0  \\
+	\osp{(S_h)_0}(D_{+}(fg)) &= ((S_h)_0)_{(fg)^{d_h} / h^{d_f + d_g}} \cong (S_{fgh})_0.
+\end{align*}
+
+Now, in Exercise 4.5.N we constructed isomorphisms
+\[
+	\psi_{f, fg} 
+	:
+	((S_f)_0)_{g^{d_f}/f^{d_g}}
+	\to
+	(S_{fg})_0
+\]
+for all $f, g \in S$, and the overlap isomorphisms are given by $\phi_{f, g} =
+\psi_{g, gf}^{-1} \circ \psi_{f, fg}$. This composition is given as follows (by
+Exercise 4.5.N)
+\[
+	\phi_{f, g}
+	:
+	\frac{a/f^k}{g^{r d_f} / f^{r d_g}}
+	\mapsto
+	\frac{a f^{r d_g + r d_f} g^k}{(gf)^{k + r d_f}}
+	\frac{a f^{r d_g + r d_f} g^k f}{}
+	\frac{a f^{r d_g + r d_f} g^k}{(gf)^{k + r d_f}}
+\] 
+
+\[
+	\restr{\phi_{g, h}}{D_{+}(fh)} 
+	\circ
+	\restr{\phi_{f, g}}{D_{+}(gh)} 
+	=
+	\restr{\psi_{h, gh}^{-1}}{D_{+}(f)} \circ \restr{\psi_{g, gh}}{D_{+}(fh)}
+	\circ
+	\restr{\psi_{g, gf}^{-1}}{D_{+}(h)} \circ \restr{\psi_{f, fg}}{D_{+}(gh)}
+\]
+
+This leads to the following diagram 
+\[
+	\begin{tikzcd}[row sep=large, column sep = large]
+		\osp{\Spec(S_f)_0}(D_+(g))
+			\arrow[hook, two heads, r, "\psi_{f, fg}"]
+			\arrow[d, "\restr{\text{res}}{D_{+}(gh)}"] 
+			&
+		\osp{\Spec(S_{fg})_0}
+			\arrow[d, "\restr{\text{res}}{D_{+}(h)}"] 
+			&
+		\osp{\Spec(S_g)_0}(D_+(f))
+			\arrow[hook, two heads, l, "\psi_{g, fg}"] 
+			\arrow[d, "\restr{\text{res}}{D_{+}(fh)}"] 
+			& 
+			\\
+		\osp{\Spec(S_f)_0}(D_+(gh))
+			\arrow[hook, two heads, r, "\restr{\psi_{f, fg}}{D_{+}(gh)}"]
+			&
+		\osp{\Spec(S_{fg})_0}(D_{+}(h))
+			&
+		\osp{\Spec(S_g)_0}(D_+(fh))
+			\arrow[hook, two heads, l, "\restr{\psi_{g, fg}}{D_{+}(fh)}"]
+			&
+	\end{tikzcd}
+\] 
+
+TODO: Finnish!
+
+\subsection*{Ex 4.5.P}
+
+\subsection*{Ex 4.5.Q}
+
+First of all, the $D_{+}(x_i)$ cover $\P^{n}_A$ by Exercise 4.5.L as $(x_0,
+\ldots, x_n)$ generates the irrelevant ideal. The subschemes from §4.5.9 are 
+precisely the $(S_{x_i})_{0}$, indeed the rings 
+\[
+	A[x_{0/i}, \ldots, x_{n/i}]/(x_{i/i} - 1)
+\] 
+and 
+\[
+	(A[x_0, \ldots, x_n]_{x_i})_{0}
+\] 
+are isomorphic via 
+\[
+	x_{j/i} \mapsto x_{j}/x_{i}.
+\] 
+
+\subsection*{Ex 4.5.R}
+
+Suppose the point $a = [1, a_1, \ldots, a_n] \in \P^{n}_{k}$ is given. In
+Exercise 4.4.F, we showed how this point corresponds to the ideal $(x_{0/i} -
+1, x_{1/i} - a_1, \ldots, x_{n/i} - a_n)$ of $A[x_{0/i}, \ldots,
+x_{n/i}]/(x_{i/i} - 1)$, and using the isomorphism of Exercise 4.5.Q, this
+corresponds to the maximal ideal $(x_0/x_i - 1, x_1/x_i - a_1, \ldots, x_n/x_i
+- a_n)$ of $(A[x_0, \ldots, x_n]_{x_i})_{0}$, which in turn via the isomorphism
+of Exercise 4.5.H corresponds to the homogeneous prime ideal $(x_0 - x_i, x_1 -
+x_i a_1, \ldots, x_n - x_i a_n)$ (the easiest way the last step is to verify
+this is to check that this ideal is sent to $(x_0/x_i - 1, x_1/x_i - a_1,
+\ldots, x_n/x_i - a_n)$ under the isomorphisms from Exercise 4.5.H).
+
+\subsection*{Ex 4.5.S}
+
+We define the closed subscheme $V(f)$ as $\Proj(S/(f))$. To justify this, we show
+that the closed set $V(f) \subset \Proj(S)$ is homeomorphic to $\Proj(S/(f))$. \\
+
+Prime ideals in $S/(f)$ correspond to prime ideals in $S$ which contain $f$. \\
+
+We will now show that ideals in $S/(f)$ are homogeneous if and only if their
+inverse images in $S$ are homogeneous as well. Clearly $I + (f)$ is homogeneous
+when $I$ is homogeneous, since any homogeneous generating set of $I$ is a
+homogeneous generating set of $I + (f)$. Now suppose that $I + (f)$ is
+homogeneous, and that $\{a_i + (f)\}_{i \in I}$ is a homogeneous generating set
+for $I + (f)$. Then $\{f\} \cup \{a_i\}_{i \in I}$ is a homogeneous generating
+set for $I$. \\
+
+Finally, we show that ideals $I + (f)$ contain $(S/(f))_{+}$ if and only if $I$
+contains $S_{+}$. Suppose that $I$ contains $S_{+}$. Then $I$ contains a
+generating set of $S_{+}$ whence $I + (f)$ contains a generating set of $S_{+}
++ (f) = (S/(f))_{+}$. Now suppose that $I + (f)$ contains $S_{+} + (f)$. Then
+as $I$ contains $(f)$, $I$ also contains $S_{+}$.
+
+\subsection*{Ex 5.1.A}
+
+Suppose that $\P^{n}_k = U \cup V$ with $U, V$ closed. Then $D_{+}(x_0) = (U
+\cap D_{+}(x_0)) \cup (U \cap D_{+}(x_0))$, and as $D_{+}(x_0) \cong
+\A^{n}_{k}$ is irreducible, we have that some $U$ or $V$ contains $D_{+}(x_0)$,
+say $U$. Now we may take $V' = V \cap V(x_0) = V \setminus D_{+}(x_0)$ which is
+still a closed set, and we still have $\P^{n}_{k} = U \cup V'$. The same
+argument may be repeated to see that $D_{+}(x_1)$ is contained in $U$ or $V'$,
+but this time, since $V'$ doesn't intersect $D_{+}(x_0)$ whilst $D_{+}(x_0)$,
+it must be that $D_{+}(x_1) \subset U$. Continuing this case shows that every
+open set of the affine cover $D_{+}(x_i), i \in [0..n]$ lies in $U$, hence
+$\P^{n}_{k}$ is irreducible. \\
+
+This same argument may be repeated for any scheme which has an irreducible
+cover $U_i, i \in I$ (technically only when $I$ is finite maybe) with
+non-trivial pairwise intersections.
+
+\subsection*{Ex 5.1.B}
+
+The closure of a point is irreducible in any topological space. Indeed, if
+$\overline{x} = U \cup V$, with $U, V$ closed, then either $x \in U$ or $x \in
+V$. If $x \in U$, then $\overline{x} \subseteq U$ since the closure of a set is
+the smallest closed set containing that set. It remains to show that all
+irreducible sets of a scheme arise this way. \\
+
+Let $(X, \mathcal{O})$ be a scheme and $U \subset X$ an irreducible closed
+subset. Then if $\Spec(A_i), i \in I$ is an open affine cover, each $\Spec(A_i)
+\cap U$ is irreducible as well. Indeed, any two open subsets of $U$ intersect,
+so any two open subsets of $\Spec(A_i) \cap U$ intersect as well. It follows
+that there exists a point $[\mathfrak{p}_i]$ such that $\Spec(A_i) \cap U =
+\overline{[\mathfrak{p}_i]}_{\Spec(A_i)}$ (here the subscript denotes the
+topology we are taking the closure in) for every $i \in I$ such that
+$\Spec(A_i)$ intersects $U$. Now, as $U$ is a closed set containing
+$[\mathfrak{p}]$, we have $\overline{[\mathfrak{p}_i]}_X \subseteq U$ for every
+$\mathfrak{p}_i$ like above. But then since $\overline{[\mathfrak{p}_i]}_X \cap
+\Spec(A_i)$ is a closed set in $\Spec(A_i)$ containing $[\mathfrak{p}_i]$, we
+have
+\[
+	\Spec(A_i) \cap U
+	=
+	\overline{[\mathfrak{p}_i]}_{\Spec(A_i)}
+	\subseteq
+	\overline{[\mathfrak{p}_i]}_X \cap \Spec(A_i)
+	\subseteq
+	\overline{[\mathfrak{p}_i]}_X.
+\]
+Hence $U = \overline{[\mathfrak{p}_i]}_X \cup (U \setminus \Spec(A_i))$ is a
+decomposition into $U$ of closed sets, and as $\Spec(A_i)$ intersects $U$ by
+assumption, it follows that $U = \overline{[\mathfrak{p}_i]}$.
+
+\subsection*{Ex 5.1.C}
+
+Let $X = U \cup V$ with $U, V$ open subsets that are Noetherian topological
+spaces. Then any descending chain of closed sets in $X$ is a chain of open sets
+in $U$ and $V$, hence must stabilize, and as the union of the chains in $U, V$
+is the original chain in $X$, it to stabilizes. This argument may be applied to
+any space that has a finite cover of Noetherian spaces.
+
+\subsection*{Ex 5.1.D}
+
+Let $X, \mathcal{O}_X$ be a scheme and $U_i, i \in I$ be an open cover of $X$.
+If $X$ admits a finite affine cover $\Spec(A_i), i \in [1..m]$, then each
+$\Spec(A_i)$ quasicompact and can be covered by finitely many $U_i$, and the
+union of all such $U_i$ for all $\Spec(A_i)$ is a finite subcover of $U_i,i \in
+I$ of $X$. \\
+
+Now suppose that $X$ is quasicompact, and let $\Spec(A_i), i \in I$ be an
+affine open cover of $X$. It follows immediately from the definition of
+quasicompactness that some finite subcover of the $\Spec(A_i)$ cover $X$.
+
+\subsection*{Ex 5.1.E}
+
+First of, we note that generalizations and specializations of points induce a
+transitive relation. Indeed, let $x, y, z$ be points in a topological space
+such that $x \in \overline{y}$ and $y \in \overline{z}$, then any closed set
+containing $y$ contains $\overline{y}$ hence $x$, and in particular, $x \in
+\overline{z}$. \\
+
+Now, let $X, \mathcal{O}_X$ be a quasicompact scheme. Then it has a finite open
+affine cover $\Spec(A_i), i \in [1.m]$. Let $[\mathfrak{p}_0] \in X$ be an
+arbitrary point. Then let $i_0 \in [1..m]$ be some index such that
+$\Spec(A_{i_0})$ contains $[\mathfrak{p}_0]$. We can find a maximal ideal
+$\mathfrak{m}_0$ of $A_{i_0}$ which contains $\mathfrak{p}_0$. Now consider the
+closure of $[\mathfrak{m}_0]$ in $X$. If 
+\[
+	\overline{[\mathfrak{m}_0]} \not = [\mathfrak{m}_0],
+\] 
+let $[\mathfrak{p}_1] \in \overline{[\mathfrak{m}_0]} \setminus
+[\mathfrak{m_0}]$, and $[\mathfrak{m}_1]$ be a maximal ideal containing
+$\mathfrak{p}_1$ in some affine open set $A_{i_1}$ which contains
+$[\mathfrak{p}_1]$. Since generalizations are transitive, we have
+$[\mathfrak{m}_1] \in \overline{[\mathfrak{m}_0]}$, and as $\mathfrak{m}_0$ is
+maximal in $A_{i_0}$, we can't have $[\mathfrak{m}_1] \in \Spec(A_{i_0})$ so
+$i_0 \not = i_1$. Continuing this way yields a sequence of points
+$[\mathfrak{m}_{j}]$ which are maximal ideals in rings $A_{i_j}$, but not
+contained in any $\Spec(A_{i_{j'}})$ for $j' \le j$. Since there is a finite
+amount of $A_{i_j}$, this sequence must terminate, and the last element of the
+sequence yields a closed point in $X$. \\
+
+The last two statements follow trivially from the first.
+
+\subsection*{Ex 5.1.F}
+
+Let $X, \mathcal{O}_X$ be a quasiseparated scheme, and $U, V \subset X$ be two
+affine open subsets. Then $U, V$ are both quasicompact by Exercise 5.1.D, hence
+their intersection is quasicompact, and again by Exercise 5.1.D, can be written
+as a finite union of affine subschemes. \\
+
+Now, let $X, \oo_{X}$ be a scheme that exhibits the described property, and $U,
+V \subset X$ be two quasicompact subschemes. Then $U, V$ can be written as
+finite unions of affine open subschemes,
+\[
+	U = \bigcup_{i=0}^{n} \Spec(A_i),\, 
+	V = \bigcup_{i=0}^{m} \Spec(B_i),
+\] 
+and their intersection is given by
+\[
+	U \cap V 
+	= 
+	\left(\bigcup_{i=0}^{n} \Spec(A_i)\right)
+	\cap
+	\left(\bigcup_{i=0}^{m} \Spec(B_i)\right)
+	=
+	\bigcup_{i = 1}^{n}
+	\bigcup_{j = 1}^{m}
+	\Spec(A_i) \cap \Spec(B_j)
+\] 
+and as each $\Spec(A_i) \cap \Spec(B_j)$ is a finite union of open subschemes
+(which are quasicompact in particular), it follows that $U \cap V$ is as
+well.
+
+\subsection*{Ex 5.1.G}
+
+We begin with generalizing Exercise 3.5.C
+
+\begin{lemma}
+	Let $\Spec(B) \subset \Spec(A)$ be an affine subscheme, and $f_i \in A$
+	for $i \in I$ be a set of elements such that 
+	\[
+		\Spec(B) = \bigcup_{i \in I} D(f_i).
+	\] 
+	Then there is a finite subset $J \subset I$ such that 
+	\[
+		\Spec(B) = \bigcup_{i \in J} D(f_i).
+	\] 
+\end{lemma}
+\begin{proof}
+	Let $f \in A$ be such that $D(f) \subseteq \Spec(B)$. Then it's immediate
+	from the definition of stalks that $f([\mathfrak{p}]) =
+	f_{B}([\mathfrak{p}])$ for all $[\mathfrak{p}] \in \Spec(B)$. Hence $D(f) =
+	D(f_{B})$, since $f([\mathfrak{p}]) = 0$ if and only if $f \in
+	\mathfrak{p}$ by 4.3.7.1. \\
+
+	Hence, after restricting we have a set of elements $(f_i)_B \in B, i \in I$
+	such that $D((f_i)_{B}), i \in I$ covers $\Spec(B)$, and Exercise 3.5.C
+	tells us that there is a finite subset $J \subset I$ such that $D(f_i) =
+	D((f_i)_{B}) \in B, i \in J$ covers $\Spec(B)$.
+\end{proof}
+
+Now let $\Spec(B), \Spec(C) \subset \Spec(A)$ be two affine open subschemes,
+and let $D(f_i), i \in [1..n]$ and $D(g_i), i \in [1..m]$ be finite open covers
+of the two respective schemes by distinguished open sets in $\Spec(A)$. Then
+\[
+	\Spec(B) \cap \Spec(C)
+	=
+	\bigcup_{i = 1}^{n}
+	\bigcup_{j = 1}^{m}
+	D(f_i) \cap D(g_j)
+	=
+	\bigcup_{i = 1}^{n}
+	\bigcup_{j = 1}^{m}
+	D(f_ig_j)
+\] 
+is a decomposition of $\Spec(B) \cap \Spec(C)$ into a union of finitely many
+affine subschemes. It now follows from Exercise 5.1.F that $\Spec(A)$ is
+quasiseparated.
+
+\subsection*{Ex 5.1.H}
+
+The condition that there exist some open cover where pairwise intersections are
+finitely affine covered is weaker then the condition that the intersection of
+any two affine subsets is finitely affine covered. Hence Exercise 5.1.F implies
+one of the directions. \\
+
+For the other direction, suppose that $X$ is a scheme and $X = \bigcap_{i =
+1}^{n} \Spec(A_i)$ a finite affine open cover of $X$ such that the intersection
+of any two $\Spec(A_i), \Spec(A_j)$ can be covered by a finite union of open
+subschemes
+\[
+	\Spec(A_i) \cap \Spec(A_j)
+	=
+	\bigcup_{r = 1}^{n_{i,j}} \Spec(B_{r}^{i, j}).
+\]
+
+Let $\Spec(C) \subset X$ be an open affine subscheme. Our first claim is that
+$\Spec(C) \cap \Spec(A_i)$ can be written as a finite union of open affine
+subschemes. For each $\Spec(A_i)$, let $D(f_j^i), j \in J^{i}$ be an open cover
+of $\Spec(C) \cap \Spec(A_i)$ by distinguished open sets for $f_{j}^{i} \in C$.
+Then as the $D(f_j^i), j \in J^{i}$ for all $i \in [1..n]$ cover $\Spec(C)$, a
+finite subset of them do, hence we can relabel the indices so that $D(f_j^i), j
+\in [1.. n_i], i \in [1..n]$ is a finite open affine cover of $\Spec(C)$. Now
+it may be the case that $D(f_j^i), j \in [1.. n_i]$ is not a cover of $\Spec(C)
+\cap \Spec(A_i)$ since $\Spec(C) \cap \Spec(A_i) \cap \Spec(A_j)$ may have been
+covered by sets from the cover of $\Spec(C) \cap \Spec(A_j)$. We will remedy this 
+in the next paragraph. \\
+
+To reiterate, we have 
+\[
+	\Spec(C) 
+	= 
+	\bigcup_{i = 1}^{n} 
+	\bigcup_{j = 1}^{n_i}
+	D(f_j^{i})
+\] 
+with $f_j^{i} \in C$. Intersecting with $\Spec(A_k)$ gives 
+\begin{align*}
+	\Spec(C) \cap \Spec(A_k)
+	&= 
+	\bigcup_{i = 1}^{n} 
+	\bigcup_{j = 1}^{n_i}
+	\Spec(A_k) \cap D(f_j^{i}) \\
+	&= 
+	\bigcup_{i = 1}^{n} 
+	\bigcup_{j = 1}^{n_i}
+	\Spec(A_i) \cap \Spec(A_k) \cap D(f_j^{i}) \\
+	&= 
+	\bigcup_{i = 1}^{n} 
+	\bigcup_{j = 1}^{n_i}
+	\bigcup_{r = 1}^{n_{i, j}}
+	\Spec(W^{i, k}_{r}) \cap D(f_j^{i}),
+\end{align*}
+and as both $\Spec(W^{i, k}_{r}), D(f_j^{i})$ are affine open subschemes of
+$\Spec(A_i)$, their intersection can be written as a finite union of affine
+open subschemes. It follows that $\Spec(C) \cap \Spec(A_k)$ can be written as a
+finite union of open affine subschemes. \\
+
+
+Now, let $\Spec(C), \Spec(C') \subset X$ be affine open subschemes and 
+\[
+	\Spec(C) \cap \Spec(A_i) = \bigcup_{j = 1}^{n_i} \Spec(D_j), \,
+	\Spec(C') \cap \Spec(A_i) = \bigcup_{j = 1}^{n_i'} \Spec(D'_j)
+\] 
+be finite covers by affine open subschemes. Then
+\begin{align*}
+	\Spec(C) \cap \Spec(C')
+	&=
+	\bigcup_{i = 1}^{n}
+	\left(\Spec(C) \cap \Spec(A_i)\right)
+	\cap
+	\left(\Spec(C') \cap \Spec(A_i)\right) \\
+	&=
+	\bigcup_{i = 1}^{n}
+	\left(
+		\bigcup_{j = 1}^{n_i} \Spec(D_j)
+	\right)
+	\cap
+	\left(
+		\bigcup_{j = 1}^{n'_i} \Spec(D'_j)
+	\right) \\
+	&=
+	\bigcup_{i = 1}^{n}
+	\bigcup_{j = 1}^{n_i} 
+	\bigcup_{j' = 1}^{n'_i} 
+	\Spec(D_j)
+	\cap
+	\Spec(D'_{j'}),
+\end{align*} 
+and as both $\Spec(D_j), \Spec(D'_{j'})$ lie in the quasiseparated scheme
+$\Spec(A_i)$, and are affine open subschemes, their intersection can be written
+as a finite union of affine open subschemes by Exercise 5.1.F. It follows that
+$\Spec(C) \cap \Spec(C')$ can be written as a finite union of affine open
+subschemes as well.
+
+
+\subsection*{Ex 5.1.I}
+
+Let $f_1, \ldots, f_m$ be a generating set for the graded ring $S$. We can
+furthermore suppose that the $f_i$ are homogeneous, since otherwise we can just
+pick all the homogeneous componenets of each $f_i$. After relabeling, let $f_1,
+\ldots, f_k$ be the subset of homogenous generators of positive degree. Then
+$S_{+} \subseteq (f_1, \ldots, f_k)$, and the affine open sets $D_{+}(f_i), i
+\in [1..k]$ cover $\Proj(S)$ by Exercise 4.5.L, and any intersection
+$D_{+}(f_i) \cap D_{+}(f_j) = D_{+}(f_i f_j)$ is also affine open. Hence
+$\Proj(S)$ qualify for the conditions of Exercise 5.1.H and is therefore qsqc.
+
+\subsection*{Ex 5.1.K}
+
+Maybe later...
+
+\subsection*{Ex 5.2.A}
+
+We begin by showing an affine scheme is reduced if and only if the ring of
+global sections is reduced. For the first direction, assume that $A$ isn't
+reduced and let $x$ be a non-zero nilpotent in $A$. Then let $I = (0 : x)$ be
+the ideal of zero-divisors of $x$. Then there exists some maximal ideal
+$\mathfrak{m}$ containing $I$. It follows that $x$ is non-zero in
+$A_{\mathfrak{m}}$ since the kernel of a localization by a multiplicative set
+$S$ is all the elements which have a zero divisor in $S$. As $x$ is still a
+nilpotent in $A_{\mathfrak{m}}$, it follows that $\Spec(A)$ is not reduced
+since $A_{\mathfrak{m}}$ has non-zero nilpotents. For the other direction,
+suppose that $\Spec(A)$ isn't reduced. Then there is some prime ideal
+$\mathfrak{p} \in \Spec(A)$ and non-zero nilpotent $a/b \in A_{\mathfrak{p}}$.
+I.e, we have $s a^{n} = 0$ for some $s \in A \setminus \mathfrak{p}$ and $n \in
+\N$. But then $(sa)^n = 0$ and $A$ isn't reduced. \\
+
+Let $\Spec(A_i), i \in I$ be an affine cover of $X$. Then each
+$\oo_X(\Spec(A_i))$ is reduced, and as $f - g \in \mathfrak{p}$ for all
+$[\mathfrak{p}] \in \Spec(A_i)$, it follows that $f = g$ in every $\Spec(A_i)$.
+It then follows from the identity axiom that $f = g$ in $X$. \\
+
+\subsection*{Ex 5.2.B}
+
+See Exercise 5.2.A.
+
+\subsection*{Ex 5.2.C}
+
+First of all, since being reduced is a stalk local property, it follows that any
+scheme that can be covered by reduced schemes is itself reduced. \\
+
+$\A_{k}^{n}$ is reduced as $k[x_1,\ldots,x_n]$ is a UFD, and $\P_{k}^{n}$ is
+reduced as it's covered by $n + 1$ reduced schemes $\A_{k}^{n}$. 
+
+\subsection*{Ex 5.2.D}
+
+We have that an element $f(x, y)/x^n \in (k[x, y]/(y^2, yx))_x$ is zero if and
+only if $x^m f(x, y) \in (y^2, yx)$ for some $m \in \N$, which happens if and
+only if $y | f(x, y)$. Hence $(k[x, y]/(y^2, yx))_x \cong k[x, y] / (y) \cong
+k[x]$ and $(k[x, y]/(y^2, yx))_x$ is reduced. Since this is the ring of
+sections on $D(x)$, it follows that the subscheme $D(x)$ is reduced (as it's
+affine), and the only possibly non-reduced stalks are those which correspond to
+points which lie in $V(x)$. But the only point in $V(x)$ is $[(x, y)]$ (it
+corresponds to the only prime ideal of $k[x, y]$ containing $(y^2, yx)$ and
+$(x)$), and since we know that $k[x, y]/(y^2, yx)$ isn't reduced, it follows
+that the stalk at $[(x, y)]$ must not be reduced.
+
+\subsection*{Ex 5.2.E}
+
+We begin by proving a useful lemma that cements the idea in the paragraph after
+Exercise 5.1.I in the text.
+
+\begin{lemma}
+	Let $X$ be a scheme and $[\mathfrak{p}] \in X$ be a point, and suppose that
+	there exist some point $[\mathfrak{m}] \in \overline{[\mathfrak{p}]}$. Then
+	any open neighbourhood $U_{[\mathfrak{m}]}$ of $[\mathfrak{m}]$ conatins
+	$\mathfrak{p}$. 
+\end{lemma}
+\begin{proof}
+	Suppose towards a contradiction that we had some $U_{[\mathfrak{m}]}$ not
+	containing $[\mathfrak{p}]$. Then $X \setminus U_{[\mathfrak{m}]}$ is a
+	closed set containing $[\mathfrak{p}]$, whence it also contains
+	$\overline{[\mathfrak{p}]}$. Hence $U_{[\mathfrak{m}]}$ doesn't intersect
+	$\overline{[\mathfrak{p}]}$, which contradicts $[\mathfrak{m}] \in
+	\overline{[\mathfrak{p}]}$.
+\end{proof}
+
+It follows that when $X$ is quasicompact, then checking that a local property (
+a property $P$ such that when $P$ holds for $[\mathfrak{p}]$, then $P$ holds
+for a neighbourhood of $[\mathfrak{p}]$) holds on closed points suffices to
+check it on all $[\mathfrak{p}] \in X$ since every $[\mathfrak{p}]$ in a
+quasicompact scheme has closed points in its closure. \\
+
+We don't do this though, as Remark 5.2.2 shows that reducedness isn't an open
+condition. We follow the hint instead. \\
+
+Suppose that $[\mathfrak{p}]$ is a non-reduced point, and let $[\mathfrak{m}]$
+be a closed point in the closure of $[\mathfrak{p}]$. It follows from the lemma
+that any affine open subscheme containing $[\mathfrak{m}]$ also contains
+$[\mathfrak{p}]$, hence we can suppose that they both lie in some $\Spec(A)$
+where $[\mathfrak{m}]$ is a maximal ideal. \\
+
+Since the stalk at $[\mathfrak{p}]$ is non-reduced, we have
+$A_{[\mathfrak{p}]}$ non-reduced. Hence there is some non-zero $(a/b) \in
+A_{[\mathfrak{p}]}$ such that $sa^n = 0$ for some $s \in A \setminus
+\mathfrak{p}$ whilst there is no $s' \in A \setminus \mathfrak{p}$ such that
+$s'a = 0$. It follows that $sa$ is a non-zero nilpotent of $A$, which doesn't
+lie in the kernel of $A \to A_{[\mathfrak{p}]}$, and as this is a further
+localization of $A \to A_{[\mathfrak{m}]}$, $sa$ is a non-zero in
+$A_{[\mathfrak{m}]}$ as well. It's clearly nilpotent here also, and
+we see that $A_{[\mathfrak{m}]}$ is non-reduced.
+
+\subsection*{Ex 5.2.F}
+
+Let $\Spec(A_i), i \in [1..m]$ be a finite open affine cover of $X$, and
+suppose that $f \in \oo_{X}$ is such that $f([\mathfrak{p}]) = 0$ for all
+$[\mathfrak{p}] \in X$. Then $f$ is nilpotent in every $\Spec(A_i)$ with
+$f^{n_i} = 0$ in $\osp{A_i}$. Letting $n = \max_{i \in [1..m]}(n_i)$, we have
+that $f^n$ is zero in $\oo_{X}$ by the identity axiom. \\
+
+For the other direction, let
+\[
+	X
+	=
+	\bigcup_{i \in \N} \Spec(A_i)
+\]
+with $A = k[x_i]/x_i^i$. Then by the gluing axiom of sheaves, we have an
+element $\overline{x} \in \oo_{X}$ which restricts to $x_i$ on each patch
+$\Spec(A_i)$. This element is nilpotent on each patch and hence is contained in
+every prime ideal of every affine patch, but $\overline{x}^n \not = 0$ for any
+$n \in \N$ since $x_N^{n} \not = 0$ when $N > n$.
+
+\subsection*{Ex 5.2.G}
+
+We begin by noting that an affine scheme $\Spec(A)$ is integral if and only	if
+$A$ is a domain. Indeed, if $\Spec(A)$ is integral, then the ring of sections
+of any open set is integral, and particularly the ring of global sections, $A$.
+\\
+
+Now suppose that $A$ is an integral domain and let $U$ be open in $\Spec(A)$.
+Then $\Spec(A)$ is irreducible by Exercise 3.6.C. Suppose that $x, y \in
+\osp{A}(U)$ are such that $xy = 0$. Then let $f \in A$ be such that $D(f)
+\subseteq U$. We have that $\osp{A}(D(f)) = A_f$ is an integral domain as it's
+a localization of the integral domain $A$, and as $xy = 0$ on $D(f)$ it follows
+that either $x$ or $y$ is $0$ here. Say it's $x$. Then the locus where $x$
+vanishes on $U$, $V(x)$ is closed in $U$. But $U$ is irreducible as $\Spec(A)$
+is, since any intersection of open sets in $U$ is an intersection of open sets
+in $\Spec(A)$. Since $V(x) \not = \emptyset$, we have $V(x) = U$, and $x = 0$,
+so $U$ is an integral domain, and $\Spec(A)$ is an integral scheme. \\
+
+Now suppose that $X$ is an integral scheme. Then in particular, every affine
+open set of $X$ is integral, and these schemes are clearly reduced since they
+stem from integral domains. Now suppose towards a contradiction that $X$ is
+reducible. Then there exist open subsets $U, V \subset X$ which are disjoint,
+so we can glue sections from these sets without any restriction and
+\[
+	\oo_{X}(U)
+	\times
+	\oo_{X}(V)
+	\subset
+	\oo_{X}(U \cup V).
+\]
+As the product isn't an integral domain, this is a contradiction to $X$ being
+and integral scheme. \\
+
+Now suppose that $X$ is reduced and irreducible, and that $U \subset X$ is an
+open set where $x, y \in \oo_{X}(U)$ are such that $xy = 0$. Let $\Spec(A_i), i
+\in I$ be an open affine cover of $U$. Then for a given $i \in I$, we have $xy
+= 0$ in $A_i$ whence we can assume that $x = 0$ here. Now, $U$ is irreducible
+as $X$ is, hence the vanishing set of $x$, is all of $U$, and $\oo_X(U)$ is an
+integral domain.
+
+
+
+\end{document}

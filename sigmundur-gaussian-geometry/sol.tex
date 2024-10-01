@@ -1,0 +1,300 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{rotating}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec(#1)}}
+\newcommand{\rospu}[2]{\restr{\oo_{\Spec(#1)}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Proj}{\text{Proj}}
+\newcommand{\proj}{\Proj}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\pdx}{\frac{\partial}{\partial x}}
+\newcommand{\pddx}{\frac{\partial^2}{\partial x^2}}
+\newcommand{\pdy}{\frac{\partial}{\partial y}}
+\newcommand{\pddy}{\frac{\partial^2}{\partial y^2}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{Ch 2}
+
+\subsection*{Ex 2.1}
+
+We can describe the curve as a sum of two different curves, $\gamma_1(t) = r(t,
+1)$ and $\gamma_2(t) = r (\sin(-t), -\cos(-t))$. The first map parameterises a
+line parallel through the $x$-axis at height $y = r$. The second map
+parameterises a circle of radius $r$, but in the negative direction, and
+starting at $(0, -r)$ when $t = 0$. \\
+
+As $(\gamma_2)_x' \leq r$, and $(\gamma_1)_x' = r$, we expect the sum $\gamma =
+\gamma_1 + \gamma_2$ to have positive $x$ derivative, never "travels left". We
+also see that $\gamma$ has vanishing $x$-derivatives whenever $t = \pi/2 + k
+\pi$ for integers $k$. Moreover, $\gamma_1$ and $\gamma_2$ have the same
+arclength $|\gamma_1| = |\gamma_2| = r$ over any $t$-interval, and by thinking
+about this for a bit, we can convince ourselves that the curve can be drawn by
+attaching a marker to a wheel of radius $r$, and then letting that wheel roll
+on the $x$-axis. \\
+
+Both the $x$- and $y$-derivatives vanish at $\pi/2 + k\pi$ for $k \in \Z$,
+hence the curve is not regular (the curve has singularities wherever the
+"marker touches the ground"). \\
+
+The arclength is given by 
+\begin{align*}
+	\sigma(2\pi)
+	&=
+	\int_{0}^{2\pi}
+	|\gamma'(t)| dt \\
+	&=
+	\int_{0}^{2\pi}
+	\sqrt{(r - r\cos(-t))^2 + (r\sin(-t))^2} dt \\
+	&=
+	\int_{0}^{2\pi}
+	\sqrt{r^2 - 2r^2\cos(-t) + r^2\cos^2(-t) + r^2\sin^2(-t)} dt \\
+	&=
+	\int_{0}^{2\pi}
+	\sqrt{2r^2 - 2r^2\cos(-t)} dt \\
+	&=
+	r
+	\int_{0}^{2\pi}
+	\sqrt{2(1 - \cos(t))} dt \\
+	&=
+	r
+	\int_{0}^{2\pi}
+	\sqrt{2(2\sin^2(t/2))} dt \\
+	&=
+	2r
+	\int_{0}^{2\pi}
+	\sin(t/2) dt \\
+	&=
+	2r(-2\cos(\pi) + 2\cos(0)) \\
+	&=
+	8r
+\end{align*} 
+
+\subsection*{Ex 2.2}
+
+We can again decompose $\gamma$ into a sum of $\gamma_1(t) = 3r(\cos(t),
+\sin(t))$ and $\gamma_2(t) = r(\cos(-3t), \sin(-3t))$. So we have some small
+circular motion added to a bigger circular motion. Given the previous exercise,
+we hypothesise that this is what you get when you attach a marker to the edge
+of a coin of radius $r$, and let it roll around another coin of radius $2r$. In
+this scenario, $\gamma_1(t)$ models exactly the motion of the center of the
+smaller coin, and in the time it'd take the radius of the center of the smaller
+coin to make a full lap around the big coin, we'd expect the smaller coin to
+make three full revolutions about it's own center. Indeed, two revolutions
+would come from just rolling the length of the diameter of the bigger coin
+$2\pi (2r)$, and then another revolution would come from "bending" that length
+around the edge of the bigger coin. Also, the smaller coin would have to spin
+in the opposite direction, as opposed to its radius. I.e we get exactly
+$\gamma_1$ and $\gamma_2$. \\
+
+As before, we expect singularities whenever the marker touches the rolling
+surface (the bigger coin), and we can see this analytically as 
+\begin{align*}
+	\gamma'(t)
+	=
+	r(-3\sin(t) + 3\sin(-3t), 3\cos(t) - 3\cos(-3t))
+\end{align*}
+which vanishes whenever $t = 0 + k_2\pi$ for example. Hence the curve is not
+regular. \\
+
+
+The arclength of $\gamma$ for $t \in [0..2\pi]$ is given by 
+\begin{align*}
+	\sigma(2\pi) 
+	&=
+	r
+	\int_{0}^{2\pi}
+	\sqrt{(-3\sin(t) + 3\sin(-3t))^2 + (3\cos(t) - 3\cos(-3t))^2} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{(-\sin(t) + \sin(-3t))^2 + (\cos(t) - \cos(-3t))^2} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{\sin^2(t) -2\sin(t)\sin(-3t) + \sin^2(-3t) + \cos^2(t) -2\cos(t)\cos(-3t) + \cos^2(-3t)} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{2 -2\sin(t)\sin(-3t) -2\cos(t)\cos(-3t)} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{2 + 2\sin(t)\sin(3t) - 2\cos(t)\cos(3t)} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{2 + 2\sin(t)(3\sin(t) - 4\sin^{3}(t)) - 2\cos(t)(4\cos^{3}(t) - 3\cos(t))} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{2 + 6\sin^2(t) - 8\sin^{4}(t) - 8\cos^4(t) + 6\cos^2(t)} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{2 + 6 - 8\sin^{4}(t) - 8\cos^4(t)} dt \\
+	&=
+	3r
+	\int_{0}^{2\pi}
+	\sqrt{8 (1 - \sin^{4}(t) - \cos^4(t))} dt \\
+	&=
+	6r
+	\int_{0}^{2\pi}
+	\sqrt{8 (2 \sin^{2}(t) \cos^2(t))} dt \\
+	&=
+	24r
+	\int_{0}^{2\pi}
+	|\sin(t) \cos(t)| dt \\
+	&=
+	12r
+	\int_{0}^{2\pi}
+	|\sin(2t)| dt \\
+	&=
+	12r 2 \\
+	&=
+	24r.
+\end{align*}
+
+\subsection*{Ex 2.3}
+
+We begin by calculating the curvature $\kappa_1$ of $\gamma_1$, and we don't
+want to bother with reparameterisations, hence we use Proposition 2.12.
+We have that
+\[
+	\gamma_1' = ra (-\sin(at), \cos(at)),
+\]
+and 
+\[
+	\gamma_1'' = -ra^2 (\cos(at), \sin(at)),
+\]
+hence 
+\begin{align*}
+	\kappa_1
+	&=
+	\frac{\det[\gamma_1', \gamma_2'']}{|\gamma_1'|^3} \\
+	&=
+	\frac{r^2a^3 \sin^2(at) + r^2a^3 \cos^2(at)}{r^3a^3}\\
+	&=
+	\frac{1}{r}. \\
+\end{align*} 
+As $\kappa_1$ is independent of $a$, it follows that $\kappa_2 = \kappa_1$.
+Note that $(\gamma_1)_x = (\gamma_2)_x$ and $(\gamma_1)_y = -(\gamma_2)_y$.
+Hence $\Phi$ is just flipping $\R^2$ about the $x$-axis. $\Phi$ is not 
+orientation preserving as it has determinant $-1$. 
+
+\subsection*{Ex 2.4}
+
+
+\end{document}

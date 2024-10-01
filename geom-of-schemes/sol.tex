@@ -1,0 +1,806 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\definecolor{maccolor}{rgb}{0.3,0.3,0.8}
+\newcommand\macoutput[1]{{\tt [Macaulay2 output o#1]}}%placeholder to compile w/o running M2
+\lstdefinelanguage{Macaulay2}
+{
+basicstyle={\ttfamily},
+keywordstyle={\color{maccolor!80!black}},
+commentstyle={\color{gray}},
+stringstyle={\color{red!40!black}},
+rulecolor=\color{maccolor},
+basewidth={1.2ex}, %workaround for prompts being same width as normal tt text
+sensitive=false,
+morecomment=[l]{--},
+morecomment=[s]{-*}{*-},
+morestring=[b]",
+escapechar={`},
+escapebegin={\rmfamily},
+morekeywords={about,abs,AbstractToricVarieties,accumulate,Acknowledgement,acos,acosh,acot,addCancelTask,addDependencyTask,addEndFunction,addHook,AdditionalPaths,addStartFunction,addStartTask,Adjacent,adjoint,AdjointIdeal,AffineVariety,AfterEval,AfterNoPrint,AfterPrint,agm,AInfinity,alarm,AlgebraicSplines,Algorithm,Alignment,all,AllCodimensions,allowableThreads,ambient,analyticSpread,Analyzer,AnalyzeSheafOnP1,ancestor,ancestors,ANCHOR,and,andP,AngleBarList,ann,annihilator,antipode,any,append,applicationDirectory,applicationDirectorySuffix,apply,applyKeys,applyPairs,applyTable,applyValues,apropos,argument,Array,arXiv,Ascending,ascii,asin,asinh,ass,assert,associatedGradedRing,associatedPrimes,AssociativeAlgebras,AssociativeExpression,atan,atan2,atEndOfFile,Authors,autoload,AuxiliaryFiles,backtrace,Bag,Bareiss,baseFilename,BaseFunction,baseName,baseRing,baseRings,BaseRow,BasicList,basis,BasisElementLimit,Bayer,BeforePrint,beginDocumentation,BeginningMacaulay2,Benchmark,benchmark,Bertini,BesselJ,BesselY,betti,BettiCharacters,BettiTally,between,BGG,BIBasis,Binary,BinaryOperation,Binomial,binomial,BinomialEdgeIdeals,Binomials,BKZ,BlockMatrix,BLOCKQUOTE,BODY,Body,BoijSoederberg,BOLD,Book3264Examples,Boolean,BooleanGB,borel,Boxes,BR,break,Browse,Bruns,cache,CacheExampleOutput,CacheFunction,CacheTable,cacheValue,CallLimit,cancelTask,capture,catch,Caveat,CC,CDATA,ceiling,Center,centerString,Certification,ChainComplex,chainComplex,ChainComplexExtras,ChainComplexMap,ChainComplexOperations,ChangeMatrix,char,CharacteristicClasses,characters,charAnalyzer,check,CheckDocumentation,chi,Chordal,class,Classic,clean,clearAll,clearEcho,clearOutput,close,closeIn,closeOut,ClosestFit,CODE,code,codim,CodimensionLimit,coefficient,CoefficientRing,coefficientRing,coefficients,Cofactor,CohenEngine,CohenTopLevel,CoherentSheaf,CohomCalg,cohomology,coimage,CoincidentRootLoci,coker,cokernel,collectGarbage,columnAdd,columnate,columnMult,columnPermute,columnRankProfile,columnSwap,combine,Command,commandInterpreter,commandLine,COMMENT,commonest,commonRing,comodule,CompactMatrix,compactMatrixForm,CompiledFunction,CompiledFunctionBody,CompiledFunctionClosure,Complement,complement,complete,CompleteIntersection,CompleteIntersectionResolutions,Complexes,ComplexField,components,compose,compositions,compress,concatenate,conductor,ConductorElement,cone,Configuration,ConformalBlocks,conjugate,connectionCount,Consequences,Constant,Constants,constParser,content,continue,contract,Contributors,ConvexInterface,conwayPolynomial,ConwayPolynomials,copy,copyDirectory,copyFile,copyright,Core,CorrespondenceScrolls,cos,cosh,cot,CotangentSchubert,cotangentSheaf,coth,cover,coverMap,cpuTime,createTask,Cremona,csc,csch,current,currentColumnNumber,currentDirectory,currentFileDirectory,currentFileName,currentLayout,currentLineNumber,currentPackage,currentString,currentTime,Cyclotomic,Database,Date,DD,dd,deadParser,debug,debugError,DebuggingMode,debuggingMode,debugLevel,DecomposableSparseSystems,Decompose,decompose,deepSplice,Default,default,defaultPrecision,Degree,degree,degreeLength,DegreeLift,DegreeLimit,DegreeMap,DegreeOrder,DegreeRank,Degrees,degrees,degreesMonoid,degreesRing,delete,demark,denominator,Dense,Density,Depth,depth,Descending,Descent,Describe,describe,Description,det,determinant,DeterminantalRepresentations,DGAlgebras,diagonalMatrix,diameter,Dictionary,dictionary,dictionaryPath,diff,DiffAlg,difference,dim,directSum,disassemble,discriminant,dismiss,Dispatch,distinguished,DIV,Divide,divideByVariable,DivideConquer,DividedPowers,Divisor,DL,Dmodules,do,doc,docExample,docTemplate,document,DocumentTag,Down,drop,DT,dual,eagonNorthcott,EagonResolution,echoOff,echoOn,EdgeIdeals,edit,EigenSolver,eigenvalues,eigenvectors,eint,EisenbudHunekeVasconcelos,elapsedTime,elapsedTiming,elements,Eliminate,eliminate,Elimination,EliminationMatrices,EllipticCurves,EllipticIntegrals,else,EM,Email,End,end,endl,endPackage,Engine,engineDebugLevel,EngineRing,EngineTests,entries,EnumerationCurves,environment,Equation,EquivariantGB,erase,erf,erfc,error,errorDepth,euler,EulerConstant,eulers,even,EXAMPLE,ExampleFiles,ExampleItem,examples,ExampleSystems,Exclude,exec,exit,exp,expectedReesIdeal,expm1,exponents,export,exportFrom,exportMutable,Expression,expression,Ext,extend,ExteriorIdeals,ExteriorModules,exteriorPower,Factor,factor,false,Fano,FastMinors,FastNonminimal,FGLM,File,fileDictionaries,fileExecutable,fileExists,fileExitHooks,fileLength,fileMode,FileName,FilePosition,fileReadable,fileTime,fileWritable,fillMatrix,findFiles,findHeft,FindOne,findProgram,findSynonyms,FiniteFittingIdeals,First,first,firstkey,FirstPackage,fittingIdeal,flagLookup,FlatMonoid,flatten,flattenRing,Flexible,flip,floor,flush,fold,FollowLinks,for,forceGB,fork,FormalGroupLaws,Format,format,formation,FourierMotzkin,FourTiTwo,fpLLL,frac,fraction,FractionField,frames,FrobeniusThresholds,from,fromDividedPowers,fromDual,Function,FunctionApplication,FunctionBody,functionBody,FunctionClosure,FunctionFieldDesingularization,fusePairs,futureParser,GaloisField,Gamma,gb,GBDegrees,gbRemove,gbSnapshot,gbTrace,gcd,gcdCoefficients,gcdLLL,GCstats,genera,GeneralOrderedMonoid,GenerateAssertions,generateAssertions,generator,generators,Generic,GenericInitialIdeal,genericMatrix,genericSkewMatrix,genericSymmetricMatrix,gens,genus,get,getc,getChangeMatrix,getenv,getGlobalSymbol,getNetFile,getNonUnit,getPrimeWithRootOfUnity,getSymbol,getWWW,GF,gfanInterface,Givens,GKMVarieties,GLex,Global,global,globalAssign,globalAssignFunction,GlobalAssignHook,globalAssignment,globalAssignmentHooks,GlobalDictionary,GlobalHookStore,globalReleaseFunction,GlobalReleaseHook,Gorenstein,GradedLieAlgebras,GradedModule,gradedModule,GradedModuleMap,gradedModuleMap,gramm,GraphicalModels,GraphicalModelsMLE,Graphics,graphIdeal,graphRing,Graphs,Grassmannian,GRevLex,GroebnerBasis,groebnerBasis,GroebnerBasisOptions,GroebnerStrata,GroebnerWalk,groupID,GroupLex,GroupRevLex,GTZ,Hadamard,handleInterrupts,HardDegreeLimit,hash,HashTable,hashTable,HEAD,HEADER1,HEADER2,HEADER3,HEADER4,HEADER5,HEADER6,HeaderType,Heading,Headline,Heft,heft,Height,height,help,Hermite,hermite,Hermitian,HH,hh,HigherCIOperators,HighestWeights,Hilbert,hilbertFunction,hilbertPolynomial,hilbertSeries,HodgeIntegrals,hold,Holder,Hom,homeDirectory,HomePage,Homogeneous,Homogeneous2,homogenize,homology,homomorphism,HomotopyLieAlgebra,hooks,horizontalJoin,HorizontalSpace,HR,HREF,HTML,html,httpHeaders,Hybrid,HyperplaneArrangements,Hypertext,hypertext,HypertextContainer,HypertextParagraph,icFracP,icFractions,icMap,icPIdeal,id,Ideal,ideal,idealizer,identity,if,IgnoreExampleErrors,ii,image,imaginaryPart,IMG,ImmutableType,importFrom,in,incomparable,Increment,independentSets,indeterminate,IndeterminateNumber,Index,index,indexComponents,IndexedVariable,IndexedVariableTable,indices,inducedMap,inducesWellDefinedMap,InexactField,InexactFieldFamily,InexactNumber,InfiniteNumber,infinity,info,InfoDirSection,infoHelp,Inhomogeneous,input,Inputs,insert,installAssignmentMethod,installedPackages,installHilbertFunction,installMethod,installMinprimes,installPackage,InstallPrefix,instance,instances,IntegralClosure,integralClosure,integrate,IntermediateMarkUpType,interpreterDepth,intersect,intersectInP,Intersection,intersection,interval,InvariantRing,inverse,InverseMethod,inversePermutation,Inverses,inverseSystem,InverseSystems,Invertible,InvolutiveBases,irreducibleCharacteristicSeries,irreducibleDecomposition,isAffineRing,isANumber,isBorel,isCanceled,isCommutative,isConstant,isDirectory,isDirectSum,isEmpty,isField,isFinite,isFinitePrimeField,isFreeModule,isGlobalSymbol,isHomogeneous,isIdeal,isInfinite,isInjective,isInputFile,isIsomorphism,isLinearType,isListener,isLLL,isMember,isModule,isMonomialIdeal,isNormal,isOpen,isOutputFile,isPolynomialRing,isPrimary,isPrime,isPrimitive,isPseudoprime,isQuotientModule,isQuotientOf,isQuotientRing,isReady,isReal,isReduction,isRegularFile,isRing,isSkewCommutative,isSorted,isSquareFree,isStandardGradedPolynomialRing,isSubmodule,isSubquotient,isSubset,isSupportedInZeroLocus,isSurjective,isTable,isUnit,isWellDefined,isWeylAlgebra,ITALIC,Iterate,Jacobian,jacobian,jacobianDual,Jets,Join,join,Jupyter,K3Carpets,K3Surfaces,Keep,KeepFiles,KeepZeroes,ker,kernel,kernelLLL,kernelOfLocalization,Key,keys,Keyword,Keywords,kill,koszul,Kronecker,KustinMiller,LABEL,last,lastMatch,LATER,LatticePolytopes,Layout,lcm,leadCoefficient,leadComponent,leadMonomial,leadTerm,Left,left,length,LengthLimit,letterParser,Lex,LexIdeals,LI,Licenses,LieTypes,lift,liftable,Limit,limitFiles,limitProcesses,Linear,LinearAlgebra,LinearTruncations,lineNumber,lines,LINK,linkFile,List,list,listForm,listLocalSymbols,listSymbols,listUserSymbols,LITERAL,LLL,LLLBases,lngamma,load,loadDepth,LoadDocumentation,loadedFiles,loadedPackages,loadPackage,Local,local,localDictionaries,LocalDictionary,localize,LocalRings,locate,log,log1p,LongPolynomial,lookup,lookupCount,LowerBound,LUdecomposition,M0nbar,M2CODE,Macaulay2Doc,makeDirectory,MakeDocumentation,makeDocumentTag,MakeHTML,MakeInfo,MakeLinks,makePackageIndex,MakePDF,makeS2,Manipulator,map,MapExpression,MapleInterface,markedGB,Markov,MarkUpType,match,mathML,Matrix,matrix,MatrixExpression,Matroids,max,maxAllowableThreads,maxExponent,MaximalRank,maxPosition,MaxReductionCount,MCMApproximations,member,memoize,memoizeClear,memoizeValues,MENU,merge,mergePairs,META,method,MethodFunction,MethodFunctionBinary,MethodFunctionSingle,MethodFunctionWithOptions,methodOptions,methods,midpoint,min,minExponent,mingens,mingle,minimalBetti,MinimalGenerators,MinimalMatrix,minimalPresentation,minimalPresentationMap,minimalPresentationMapInv,MinimalPrimes,minimalPrimes,minimalReduction,Minimize,minimizeFilename,MinimumVersion,minors,minPosition,minPres,minprimes,Minus,minus,Miura,MixedMultiplicity,mkdir,mod,Module,module,ModuleDeformations,modulo,MonodromySolver,Monoid,monoid,MonoidElement,Monomial,MonomialAlgebras,monomialCurveIdeal,MonomialIdeal,monomialIdeal,MonomialIntegerPrograms,MonomialOrbits,MonomialOrder,Monomials,monomials,MonomialSize,monomialSubideal,moveFile,multidegree,multidoc,multigraded,MultigradedBettiTally,MultiGradedRationalMap,multiplicity,MultiplicitySequence,MultiplierIdeals,MultiplierIdealsDim2,MultiprojectiveVarieties,mutable,MutableHashTable,mutableIdentity,MutableList,MutableMatrix,mutableMatrix,NAGtypes,Name,nanosleep,Nauty,NautyGraphs,NCAlgebra,NCLex,needs,needsPackage,Net,net,NetFile,netList,new,newClass,newCoordinateSystem,NewFromMethod,newline,NewMethod,newNetFile,NewOfFromMethod,NewOfMethod,newPackage,newRing,nextkey,nextPrime,nil,NNParser,NoetherianOperators,NoetherNormalization,NonAssociativeProduct,NonminimalComplexes,nonspaceAnalyzer,NoPrint,norm,normalCone,Normaliz,NormalToricVarieties,not,Nothing,notify,notImplemented,NTL,null,nullaryMethods,nullhomotopy,nullParser,nullSpace,Number,number,NumberedVerticalList,numcols,numColumns,numerator,numeric,NumericalAlgebraicGeometry,NumericalCertification,NumericalImplicitization,NumericalLinearAlgebra,NumericalSchubertCalculus,numericInterval,NumericSolutions,numgens,numRows,numrows,odd,oeis,of,ofClass,OL,OldPolyhedra,OldToricVectorBundles,on,OneExpression,OnlineLookup,OO,oo,ooo,oooo,openDatabase,openDatabaseOut,openFiles,openIn,openInOut,openListener,OpenMath,openOut,openOutAppend,operatorAttributes,Option,OptionalComponentsPresent,optionalSignParser,Options,options,OptionTable,optP,or,Order,order,OrderedMonoid,orP,OutputDictionary,Outputs,override,pack,Package,package,PackageCitations,PackageDictionary,PackageExports,PackageImports,PackageTemplate,packageTemplate,pad,pager,PairLimit,pairs,PairsRemaining,PARA,Parametrization,parent,Parenthesize,Parser,Parsing,part,Partition,partition,partitions,parts,path,pdim,peek,PencilsOfQuadrics,Permanents,permanents,permutations,pfaffians,PHCpack,PhylogeneticTrees,pi,PieriMaps,pivots,PlaneCurveSingularities,plus,poincare,poincareN,Points,polarize,poly,Polyhedra,Polymake,PolynomialRing,Posets,Position,position,positions,PositivityToricBundles,POSIX,Postfix,Power,power,powermod,PRE,Precision,precision,Prefix,prefixDirectory,prefixPath,preimage,prepend,presentation,pretty,primaryComponent,PrimaryDecomposition,primaryDecomposition,PrimaryTag,PrimitiveElement,Print,print,printerr,printingAccuracy,printingLeadLimit,printingPrecision,printingSeparator,printingTimeLimit,printingTrailLimit,printString,printWidth,processID,Product,product,ProductOrder,profile,profileSummary,Program,programPaths,ProgramRun,Proj,Projective,ProjectiveHilbertPolynomial,projectiveHilbertPolynomial,ProjectiveVariety,promote,protect,Prune,prune,PruneComplex,pruningMap,Pseudocode,pseudocode,pseudoRemainder,Pullback,PushForward,pushForward,Python,QQ,QQParser,QRDecomposition,QthPower,Quasidegrees,QuaternaryQuartics,QuillenSuslin,quit,Quotient,quotient,quotientRemainder,QuotientRing,Radical,radical,RadicalCodim1,radicalContainment,RaiseError,random,RandomCanonicalCurves,RandomComplexes,RandomCurves,RandomCurvesOverVerySmallFiniteFields,RandomGenus14Curves,RandomIdeals,randomKRationalPoint,RandomMonomialIdeals,randomMutableMatrix,RandomObjects,RandomPlaneCurves,RandomPoints,RandomSpaceCurves,Range,rank,RationalMaps,RationalPoints,RationalPoints2,ReactionNetworks,read,readDirectory,readlink,readPackage,RealField,RealFP,realPart,realpath,RealQP,RealQP1,RealRoots,RealRR,RealXD,recursionDepth,recursionLimit,Reduce,reducedRowEchelonForm,reduceHilbert,reductionNumber,ReesAlgebra,reesAlgebra,reesAlgebraIdeal,reesIdeal,References,ReflexivePolytopesDB,regex,regexQuote,registerFinalizer,regSeqInIdeal,Regularity,regularity,relations,RelativeCanonicalResolution,relativizeFilename,Reload,remainder,RemakeAllDocumentation,remove,removeDirectory,removeFile,removeLowestDimension,reorganize,replace,RerunExamples,res,reshape,ResidualIntersections,ResLengthThree,Resolution,resolution,ResolutionsOfStanleyReisnerRings,restart,Result,resultant,Resultants,return,returnCode,Reverse,reverse,RevLex,Right,right,Ring,ring,RingElement,RingFamily,ringFromFractions,RingMap,rootPath,roots,rootURI,rotate,round,rowAdd,RowExpression,rowMult,rowPermute,rowRankProfile,rowSwap,RR,RRi,rsort,run,RunDirectory,RunExamples,RunExternalM2,runHooks,runLengthEncode,runProgram,same,saturate,Saturation,scan,scanKeys,scanLines,scanPairs,scanValues,schedule,schreyerOrder,Schubert,Schubert2,SchurComplexes,SchurFunctors,SchurRings,SCRIPT,scriptCommandLine,ScriptedFunctor,SCSCP,searchPath,sec,sech,SectionRing,SeeAlso,seeParsing,SegreClasses,select,selectInSubring,selectVariables,SelfInitializingType,SemidefiniteProgramming,Seminormalization,separate,SeparateExec,separateRegexp,Sequence,sequence,Serialization,serialNumber,Set,set,setEcho,setGroupID,setIOExclusive,setIOSynchronized,setIOUnSynchronized,setRandomSeed,setup,setupEmacs,sheaf,SheafExpression,sheafExt,sheafHom,SheafOfRings,shield,ShimoyamaYokoyama,short,show,showClassStructure,showHtml,showStructure,showTex,showUserStructure,SimpleDoc,simpleDocFrob,SimplicialComplexes,SimplicialDecomposability,SimplicialPosets,SimplifyFractions,sin,singularLocus,sinh,size,size2,SizeLimit,SkewCommutative,SlackIdeals,sleep,SLnEquivariantMatrices,SLPexpressions,SMALL,smithNormalForm,solve,someTerms,Sort,sort,sortColumns,SortStrategy,source,SourceCode,SourceRing,SPACE,SpaceCurves,SPAN,span,SparseMonomialVectorExpression,SparseResultants,SparseVectorExpression,Spec,SpechtModule,SpecialFanoFourfolds,specialFiber,specialFiberIdeal,SpectralSequences,splice,splitWWW,sqrt,SRdeformations,stack,stacksProject,Standard,standardForm,standardPairs,StartWithOneMinor,stashValue,StatePolytope,StatGraphs,status,stderr,stdio,step,StopBeforeComputation,stopIfError,StopWithMinimalGenerators,Strategy,String,STRONG,StronglyStableIdeals,STYLE,Style,style,SUB,sub,SubalgebraBases,sublists,submatrix,submatrixByDegrees,Subnodes,subquotient,SubringLimit,Subscript,subscript,SUBSECTION,subsets,substitute,substring,subtable,Sugarless,Sum,sum,SumOfTwists,SumsOfSquares,SUP,super,SuperLinearAlgebra,Superscript,superscript,support,SVD,SVDComplexes,switch,SwitchingFields,sylvesterMatrix,Symbol,symbol,SymbolBody,symbolBody,SymbolicPowers,symlinkDirectory,symlinkFile,symmetricAlgebra,symmetricAlgebraIdeal,symmetricKernel,SymmetricPolynomials,symmetricPower,synonym,SYNOPSIS,syz,Syzygies,SyzygyLimit,SyzygyMatrix,SyzygyRows,syzygyScheme,TABLE,Table,table,take,Tally,tally,tan,TangentCone,tangentCone,tangentSheaf,tanh,target,Task,taskResult,TateOnProducts,TD,temporaryFileName,tensor,tensorAssociativity,TensorComplexes,terminalParser,terms,TEST,Test,testExample,testHunekeQuestion,TestIdeals,TestInput,tests,TEX,tex,TeXmacs,texMath,Text,TH,then,Thing,ThinSincereQuivers,ThreadedGB,threadVariable,Threshold,throw,Time,time,times,timing,TITLE,TO,to,TO2,toAbsolutePath,toCC,toDividedPowers,toDual,toExternalString,toField,TOH,toList,toLower,top,top,topCoefficients,Topcom,topComponents,topLevelMode,Tor,TorAlgebra,Toric,ToricInvariants,ToricTopology,ToricVectorBundles,toRR,toRRi,toSequence,toString,TotalPairs,toUpper,TR,trace,transpose,TriangularSets,Tries,Trim,trim,Triplets,Tropical,true,Truncate,truncate,truncateOutput,Truncations,try,TSpreadIdeals,TT,tutorial,Type,TypicalValue,typicalValues,UL,ultimate,unbag,uncurry,Undo,undocumented,uniform,uninstallAllPackages,uninstallPackage,Unique,unique,Units,Unmixed,unsequence,unstack,Up,UpdateOnly,UpperTriangular,URL,urlEncode,Usage,use,UseCachedExampleOutput,UseHilbertFunction,UserMode,userSymbols,UseSyzygies,utf8,utf8check,validate,value,values,Variable,VariableBaseName,Variables,Variety,variety,vars,Vasconcelos,Vector,vector,VectorExpression,VectorFields,VectorGraphics,Verbose,Verbosity,Verify,VersalDeformations,versalEmbedding,Version,version,VerticalList,VerticalSpace,viewHelp,VirtualResolutions,VirtualTally,VisibleList,Visualize,wait,WebApp,wedgeProduct,weightRange,Weights,WeylAlgebra,WeylGroups,when,whichGm,while,width,wikipedia,Wrap,wrap,WrapperType,XML,xor,youngest,zero,ZeroExpression,zeta,ZZ,ZZParser}
+}
+\lstalias{Macaulay2output}{Macaulay2}
+
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+
+\newcommand{\Spec}{\text{Spec}}
+
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\nilrad}{\text{nilrad}}
+\newcommand{\spec}{\text{spec}}
+\newcommand{\spn}{\text{span}}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+\newcommand{\ini}{\text{in}}
+\newcommand{\Frac}{\text{Frac}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\subsection*{Ex I-1}
+
+We have that 
+\begin{itemize}
+	\item $\Spec(\Z) = \{0\} \cup \{(p) : p \in \Z \text{ a prime number}\}$.
+	\item $\Spec(\Z/(3)) = \{(0)\}$.
+	\item $\Spec(\Z/(6)) = \{(2), (3)\}$.
+	\item $\Spec(\Z_{(3)}) = \{(0), (3)\}$.
+	\item $\Spec(\C[x]) = \{0\} \cup \{(x - a) : a \in \C \}$.
+	\item $\Spec(\C[x]/x^2) = \{(x)\}$.
+\end{itemize}
+
+\subsection*{Ex I-2}
+We have that 
+\[
+	15 
+	\mapsto 
+	15/1 + (7) 
+	=  
+	6/1 + (7)
+	\in \kappa(7),
+\]
+and  
+\[
+	15 
+	\mapsto 
+	15/1 + (5) 
+	=  
+	0 + (5)
+	\in \kappa(15).
+\]
+
+\subsection*{Ex I-3}
+\subsubsection*{(a)}
+
+First of, $(x - a)$ is prime (maximal even) since $\C[x]/(x-a) \cong \K$ is a
+field. The quotient morphism $\C[x] \to \C[x]/(x - a)$ sends $x$ to $a$, hence
+the morphism is given by evaluation at $a$. Composing this with the canonical
+morphism to the localisation at $(x - a)$, we see that $p(x) \mapsto p(a)/1 +
+(x - a) \in \kappa((x-a))$.
+
+\subsubsection*{(b)}
+Follows by the same reasoning as above, since $I(a) = (x_1 - a_1, \ldots, x_n - a_n)$
+and the quotient morphism is given by evaluation at $a$.
+
+\subsection*{Ex I-4}
+\subsubsection*{(a)}
+
+The point $(x - a)$ are all closed as they form maximal ideals. The closure of
+$(0)$ is all of $\Spec(R)$, since any prime ideal contains $0$. None of the
+points in $\Spec(R)$ are open, since all distinguished basis elements $X_f
+\subseteq \Spec(R)$ are infinite, as $X_f$ contains all $(x - a)$ such that $x
+- a$ isn't a factor of $f$, I.e $f(a) \not = 0$.
+
+\subsubsection*{(b)}
+
+First of, $R$ consists of all fractions $f/g$ where $g(0) \not = 0$. We know
+from commutative algebra that the prime ideals of $R$ are the prime ideals of
+$\K[x]$ which are contained in $(x)$. As $\K$ is a field, $\K[x]$ is a PID, but
+then any non-zero ideal $(f) \subsetneq (x)$ is generated by a polynomial $f$
+which is divisible by $x$, say $f = x^k g$ where $x \not | g$. Then in the
+localisation, $(x^k g) = (x^k)$ is not prime. Hence the only primes in $R$ are
+$(0)$ and $(x)$, so $\Spec(R) = \{(0), (x)\}$.
+
+\subsection*{Ex I-8}
+\subsubsection*{(a)}
+
+The elements of $\overline{\mathscr{F}}$ are given by all germs $s_x \in
+\mathscr{F}_x$ for points $x \in X$. Given an open set $U \subseteq X$, the
+preimage $\pi^{-1}(U)$ is given by all germs over points $x \in U$. Hence
+$\pi^{-1}(U) = \overline{\restr{\mathscr{F}}{U}}$. This is open in $\overline{\mathscr{F}}$
+since it's the union over all open sets $V \subset U$ given by
+\[
+	\pi^{-1}(U) 
+	= 
+	\overline{\restr{\mathscr{F}}{U}}
+	=
+	\bigcup_{V \subseteq U}
+	\bigcup_{s \subseteq \mathscr{F}(V)}
+	\mathscr{V}(V, s).
+\]
+
+Meanwhile, given some basis element $\mathscr{V}(U, s') \subseteq
+\overline{\mathscr{F}}$, the preimage $\sigma^{-1}(\mathscr{V}(U, s'))$ is
+given by the largest (possibly empty) open subset $V \subseteq U$ where $s$ and
+$s'$ agree. To see this, first suppose that we have some $x \in V$. Then $s_x =
+s'_x$ so $\sigma(x) = s_x = s'_x \in \mathscr{V}(U, s')$. If $x \not \in V$
+however, then $s_x \not = s'_x$, since otherwise we would have some open subset
+$V'_x$ containing $x$ where $s, s'$ agrees, whence $(U \cap V'_x) \cup V
+\supsetneq V$ would be an open set where $s$ and $s'$ agrees, contradicting the
+maximality of $V$. It follows that $\sigma(x) \not \in \mathscr{V}(U, s')$ in
+this case. As $V$ is open, $\sigma$ is continuous. Moreover, 
+\[
+	\pi(\sigma(x))
+	=
+	\pi(s_x)
+	=
+	x
+\] 
+so $\sigma$ is a section of $\pi$.
+
+\subsubsection*{(b)}
+
+Now let $\sigma$ be a continuous section of $\pi$ on $U$. Then consider $x \in
+U$, and a basic open set $\mathscr{V}(V_i, s^x), V_x \subseteq U$ in
+$\overline{\mathscr{F}}$ such that $\sigma(x) \in \mathscr{V}(V, s^x)$. Then $x
+\in V_x$ as $x = \pi(\sigma(x)) \subseteq \pi(\mathscr{V}(V_x, s^x)) = V_x$.
+Moreover, $(x, \sigma(x)) = (x, s^x_x)$ so $\sigma(x) = s^x_x$, and this holds
+for all 
+
+\[
+	x 
+	\in 
+	\sigma^{-1}(\mathscr{V}(V_x, s^x)) 
+	= 
+	\pi(\mathscr{V}(V_x, s^x))
+	= 
+	V_x.
+\]
+
+So if we let $V_x, x \in U$ be a cover for $U$, then $\sigma$ coincides with $y
+\to s^x_y$ for all $y \in V_x$ and $x \in U$. It follows that $s^{x'}_y =
+s^x_y$ whenever $y \in V_x \cap V_x'$, hence $s^{x'} = s^x$ on $V_x \cap
+V_{x'}$, and by applying the sheaf property, we obtain a unique $s \in
+\mathscr{F}(U)$ such that $\restr{s}{V_x} = s^x$ for all $x \in U$. Hence
+$\sigma(x) = s_x$.
+
+
+\subsection*{Ex I-9}
+
+We prove both implications in contrapositive form. \\
+
+Suppose that $\phi(U)(s) = \phi(U)(s')$ for $s \not = s' \in \mathscr{F}(U)$.
+Then $\phi_x(s) = \phi_x(s')$ for all $x \in U$, even though $s_x \not = s'_x$
+for all $x \in U$ (as stalks determine sections), hence $\phi_x$ is not
+injective for all $x \in U$. \\
+
+Now suppose that $s \not = s' \in \mathscr{F}(U)$ and that $\phi_x(s) =
+\phi_x(s')$ for all $x \in U$. Then $\phi(U)(s) = \phi(U)(s')$, again as stalks
+determine sections, hence $\phi(U)$ isn't injective.
+
+
+\subsection*{Ex I-10}
+\subsubsection*{(a)}
+
+$\phi$ clearly commutes with restriction, hence induces a endomorphism of
+sheaves. Now, $\phi$ is not surjective, as the function $x \mapsto x$ has no
+continuous square root in $\C \setminus \{0\}$ (indeed, we can only define it
+on a slit plane or Riemann surface etc...). Meanwhile, $\phi_a$ is surjective
+for every $a \in \C \setminus \{0\}$, since if $f$ is continuous and non-zero,
+then we can make a branch cut of $\C$ which doesn't intersect some
+neighbourhood $U_a$ of $a$, and define $g : U_a \to \C \setminus \{0\}$ as the
+square root of $f$ with respect to this branch cut, and then extending $g$ to
+all of $\C \setminus \{0\}$ in some continuous way.
+
+\subsubsection*{(b)}
+
+\subsection*{Ex I-11}
+
+First of, the given property is indeed universal as sections are determined by
+germs. Moreover, we will show both constructions satisfy this universal
+property, hence they are equivalent. \\
+
+First some notation that will aid us with the first construction of
+$\mathscr{F}'$. Given an open set $U \subseteq X$, let $\mathscr{U}$ be the set
+of all open covers of $U$ in $X$. Given an open cover $\mathcal{U} \in
+\mathscr{U}$, and a set of sections $S$, consisting of $s_i$ for every $U_i \in
+\mathcal{U}$ we say that $S$ is a consistent set of sections if the $s_i$ agree
+on the intersections of the $U_i$. We then construct the sheaf $\mathscr{F}'$
+as
+\[
+	\mathscr{F}'(U) 
+	= 
+	\{
+		g(S) 
+		: 
+		S \text{ is a consistent set of sections for some cover } \mathcal{U} \in \mathscr{U} 
+	\},
+\]
+where $g(S)$ is the "formal" gluing of the sections of $S$. I.e $g(S)$ is such
+that it restricts to $s_i$ on every $U_i$. $\mathscr{F}'$ is a pre sheaf since
+every cover of $U$ can be restricted to a cover of an open subset of $U$.
+Moreover, given to consistent sets $S$, $S'$ on covers $\mathcal{U},
+\mathcal{U}'$ of $U$, we consider $g(S)$ and $g(S')$ to be equivalent if they
+restrict to the same section on any open subset $V \subseteq U$. Then
+$\mathscr{F}$ is a sheaf by construction, and we have a morphism of presheaves
+$\phi \mathscr{F} \to \mathscr{F}'$, since if $U \subseteq X$ is an open set,
+then $U$ is a cover of $U$ so any section $s \in \mathscr{F}(U)$ can be
+identified with a section $\phi(s) \in \mathscr{F}'(U)$, and if $s, s' \in
+\mathscr{F}(U)$ are two different sections $s \not = s'$, then they don't agree
+on the cover $\{U\}$ of $U$, hence $\phi(s) \not = \phi(s')$. Finally, $\phi_x$
+is an isomorphism for every $x \in X$ since the sections of $\mathscr{F}'$ are
+locally sections of $\mathscr{F}$. \\
+
+Now let $\mathscr{F}''$ be the second construction, I.e the sheaf of continuous
+sections of $\pi : \overline{\mathscr{F}} \to X$. We will show that this is
+indeed a sheaf, by demonstrating a more general class of sheaves that originate
+from surjective continuous maps $\psi : A \to X$ of topological spaces. \\
+
+Let $\psi : A \to X$ be a continuous surjective map of topological spaces, and
+assign to every open set $U \subseteq X$, the set of continuous sections of
+$\psi$ as
+\[
+	\mathscr{S}(U)
+	=
+	\{
+		\sigma \in C(U, A)
+		:
+		\psi \circ \sigma = \id_U
+	\}.
+\]
+Then $\mathscr{S}$ defines a sheaf on $X$. Indeed if $U \subseteq X$ is an open
+subset, and $\sigma : U \to A$ is a continuous section of $\psi$, then it also
+a continuous section on any subset $V \subseteq U$. Similarly, if $s_i : U_i
+\to X$ are continuous sections of $\psi$ which agree on the intersections of
+the $U_i$, then they induce a unique continuous function $s : U \to A$ in the
+sheaf of continuous functions $X \to A$ and this function $s$ is also a section
+of $\psi$. Hence $\mathscr{S}$ is sheaf. \\
+
+Now, since $\pi : \overline{\mathscr{F}} \to X$ is a continuous surjective map,
+$\mathscr{F}''$ is a sheaf. It remains to show that the two sheaves $\mathscr{F}'$
+and $\mathscr{F}''$ are isomorphic. \\
+
+Let $U \subseteq X$ be an open subset with a point $x \in U$, and $(x, s_x) =
+\sigma(x)$. We showed in Exercise I-8 that $\sigma : U \to
+\overline{\mathscr{F}}$ given by $\sigma : x \mapsto (x, s_x)$ is a section to
+$\pi$, hence $\sigma \in \mathscr{F}''(U)$. Now, we have that $\mathscr{V}(U,
+s)$ is an open set containing $(x, s_x)$, and we can construct the open set
+$V_s \subseteq U$ as $\sigma^{-1}(\mathscr{V}(U, s))$. Then $\pi$ and $\sigma$
+are inverse homeomorphisms when restricted to $V$ and $\sigma(V)$. I.e we've
+shown that $\pi$ is locally a homeomorphism. \\
+
+If $U' \subseteq X$ is some other subset which contain $x$, and $\sigma' \in
+\mathscr{F}''(U')$ is a section such that $\sigma'(x) = \sigma(x)$. Then since
+$\pi$ is locally a homeomorphism, and $\sigma, \sigma'$, are both locally
+inverse to $\pi$ with intersecting images, $x \in \im(\sigma) \cap
+\im(\sigma')$, it must be that $\sigma$ and $\sigma'$ are locally the same. I.e
+there exist some neighbourhood of $x$ where $\sigma$ and $\sigma'$ agree. Thus
+$\sigma$ and $\sigma'$ induce the same stalk at $x$, and it follows that any
+germ $\sigma_x \in \mathscr{F}''_x$ is fully determined by it's value at $x$.
+\\
+
+Moreover, any point $(x, s_x)$ corresponds to a germ $\sigma_x \in \mathscr{F}_x$
+since we showed above that any $\sigma : x \to (x, s_x)$ is a section. \\
+
+We've shown that the germs of $\mathscr{F}''$ correspond to points in
+$\overline{\mathscr{F}}$, just like the germs of $\mathscr{F}'$. As a sheaf is
+fully determined by its germs, we see that $\mathscr{F}''$ is equivalent to
+$\mathscr{F}'$.
+
+\subsection*{Ex I-13}
+
+Notation: When $U \subseteq X$, we write  $\mathscr{B}(U) = \{B \in
+\mathscr{B} : B \subseteq U\}$ \\
+
+We begin by verifying that $\mathscr{F}$ is indeed a sheaf. Let $U' \subseteq
+U$ be an open set. Then the inverse system of basis elements $\mathscr{B}(U')$
+is contained in the system $\mathscr{B}(U)$, hence there is a natural
+projection 
+\[
+	\pi^{U}_{U'}
+	:
+	\varprojlim_{V \in \mathscr{B}(U)} \mathscr{F}(V)
+	\to
+	\varprojlim_{V \in \mathscr{B}(U')} \mathscr{F}(V)
+\] 
+given by
+\[
+	\pi^{U}_{U'}
+	:
+	f
+	\mapsto
+	\prod_{V \in \mathscr{B}(U')}
+	\pi_{V}(f)
+\]
+where $\pi_V : \varprojlim_{W \in \mathscr{B}(U)} \mathscr{F}(W)
+\to V$ is the projection map to the component corresponding to $V$. We define
+the restriction of $\mathscr{U}$ to $\mathscr{U'}$ be $\pi'$. It's easy to see
+that this satisfies the required axioms for a presheaf. \\
+
+Now suppose that $U_i, i \in I$ is an open cover of $U$, and that $f_i \in
+\mathscr{F}(U_i)$ are sections that agree on the intersections of the $U_i$.
+Then each $U_i$ can be written as a union of basis elements in $U_i$,
+\[
+	U_i = \bigcup_{B \in \mathscr{B}(U_i)} B.
+\] 
+The union of all $\mathscr{B}(U_i)$ is a cover of $U$, and on each $B_{ij} \in
+\mathscr{B}_i$, we have $f_{ij} = \restr{f_i}{B_{ij}}$ and they all agree on
+the intersections. Any basis element $V \in \mathscr{B}(U)$ is covered by basis
+elements $B_{ij}$, and we can uniquely lift the $f_{ij}$ to $f_V \in
+\mathscr{F}(V)$ since $\mathscr{F}$ is a $\mathscr{B}$-sheaf. We define $f \in
+\mathscr{F}(U)$ to be the direct product of all of these lifts, and we see that
+the sheaf axiom is satisfied. \\
+
+Moreover, if $U \in \mathscr{B}$, then any element $f$ in the inverse limit of
+$\mathscr{F}(V)$ with $V \in \mathscr{B}(U)$ is uniquely defined by it's
+projection onto $U$, hence the inverse limit is isomorphic to $\mathscr{U}$ in
+this case. In more generality; when an inverse system has a greatest element
+$x$, then the inverse limit is isomorphic to the component at $x$, since it
+uniquely defines all other components. \\
+
+Finally, there is only one sheaf (up to isomorphism) on $X$ that agrees with
+$\mathscr{F}$ over $\mathscr{B}$ since sections are defined by stalks, and
+$\mathscr{B}$ uniquely defines all stalks. Hence the extension of a
+$\mathscr{B}$-sheaf to a sheaf on $X$ is unique.
+
+
+\subsection*{Ex I-15}
+
+If $U' \subseteq U \subseteq Y$ are open sets in $Y$, and $f \in
+\mathscr{F}(\alpha^{-1}(U))$, then we can restrict $f$ in $\mathscr{F}$ to
+$\alpha^{-1}(U')$. Hence restrictions are well defined in $\alpha_*
+\mathscr{F}$. \\
+
+Suppose we have an open cover $U_i, i \in I$ of $U \subseteq Y$. Then
+$\alpha^{-1}(U_i), i \in I$ is an open cover of $\alpha^{-1}(U)$, hence gluing
+can be delegated to the preimages as well.
+
+\subsection*{Ex I-17}
+
+Noetherian rings have Noetherian spectra, where a topological space is
+Noetherian if all descending chains of closed subsets stabilize, or
+equivalently, all ascending chains of open subsets stabilize. Indeed, suppose
+that 
+\[
+	\Spec(R) = Z_0 \supseteq Z_1 \supseteq Z_2 \supseteq \ldots
+\] 
+is an infinite ascending chain of closed subsets. Then as every closed subset
+is of the form $Z_i = \{\mathfrak{p} \in \Spec(R) : J_i \subseteq
+\mathfrak{p}\}$ for some ideal $J_i$, the chain above induces a reversed
+infinite ascending chain 
+\[
+	(0) = J_0 \subseteq J_1 \subseteq \ldots.
+\] 
+Since $R$ is Noetherian, the chain of ideals must stabilize. But then the chain
+of closed subsets stabilizes as well, hence $\Spec(R)$ is Noetherian. \\
+
+Subspaces of Noetherian spaces are again Noetherian, so any subset of
+$\Spec(R)$ is Noetherian. Now, if we have an open cover $U_i, i \in I$ of a
+Noetherian space, then we can form a chain of open subsets
+\[
+	U_{i_0} 
+	\subseteq 
+	U_{i_0} \cup U_{i_1} 
+	\subseteq 
+	U_{i_0} \cup U_{i_1} \cup U_{i_2} 
+	\subseteq 
+	\ldots,
+\] 
+and this chain must eventually stabilize. Hence the cover admits a finite
+subcover.
+
+\subsection*{Ex I-20}
+
+\subsubsection*{(a)}
+
+The spectrum is given by 
+\[
+	X_1 
+	= 
+	\{
+		(x)
+	\},
+\] 
+with the only open sets being the whole space $X_1 = \{(x)\}$ and the empty set
+$\emptyset$. The structure sheaf is trivial, as
+\[
+	\mathcal{O}(X_1) = R_1,\,  
+	\mathcal{O}(\emptyset) = 0. 
+\] 
+
+\subsubsection*{(b)}
+
+The spectrum is given by 
+\[
+	X_2 
+	= 
+	\{
+		(x),
+		(x - 1)
+	\},
+\] 
+with the open basis 
+\[
+	D_{x - 1} = \{(x)\},
+	D_{x} = \{(x - 1)\},
+	D_{0} = X_2.
+\] 
+We give the structure sheaf on the distinguished open sets. First of 
+\[
+	\mathcal{O}(D_{x}) 
+	= 
+	(R_2)_{(x)}  
+	=
+	(\C[x]/(x(x-1)))_{(x)},
+\] 
+and as $x = x(x - 1)/(x - 1) = 0/(x - 1) = 0 \in (\C[x]/(x(x-1)))_{(x)}$, it follows that 
+$\mathcal{O}(D_{x}) = \C$. \\
+
+Similarly, 
+\[
+	\mathcal{O}(D_{x - 1}) 
+	= 
+	(R_2)_{(x - 1)}  
+	=
+	(\C[x]/(x(x-1)))_{(x - 1)}.
+\] 
+and as $x - 1 = x(x - 1)/x = 0/x = 0 \in (\C[x]/(x(x-1)))_{(x)}$, it follows that 
+$x = 1 \in \mathcal{O}(D_{x})$ and $\mathcal{O}(D_{x}) = \C$. 
+
+\subsubsection*{(c)}
+
+The spectrum is given by 
+\[
+	X_3 
+	= 
+	\{
+		(x),
+		(x - 1)
+	\},
+\] 
+with the open basis 
+\[
+	D_{x - 1} = \{(x)\},
+	D_{x} = \{(x - 1)\},
+	D_{0} = X_2.
+\] 
+
+We give the structure sheaf on the distinguished open sets. First of 
+\[
+	\mathcal{O}(D_{x}) 
+	= 
+	(R_2)_{(x)}  
+	=
+	(\C[x]/(x^2(x-1)))_{(x)}.
+\] 
+Now $x^2 = x^2(x - 1)/(x - 1) = 0/(x - 1) = 0 \in (\C[x]/(x(x-1)))_{(x)}$ hence
+$x$ is not a unit in $\mathcal{O}(D_{x})$. However, $x$ is not $0$ either,
+since whenever we take the ring of fractions with respect to some
+multiplicative set $R \to S^{-1}R$, an element $a$ get's sent to zero if and
+only if $sa = 0$ for some $s \in S$. Now $xa = 0$ in $\mathcal{O}(D_{x})$
+implies that $x(x-1) | a$, whence $a \in (x)$, hence $x \not = 0$ in
+$\mathcal{O}(D_{x})$. As $x$ is neither $0$ nor a unit, it's an algebraic
+element over the field, and we already know it satisfies $x^2 = 0$, hence this
+must be its minimal polynomial, so
+\[
+	\mathcal{O}(D_{x}) = C[x]/(x^2).
+\]
+
+Similarly to part (b), 
+\[
+	\mathcal{O}(D_{x - 1}) 
+	= 
+	(R_2)_{(x - 1)}  
+	=
+	(\C[x]/(x^2(x-1)))_{(x - 1)},
+\] 
+and as $x - 1 = x^2(x - 1)/x^2 = 0/x^2 = 0 \in (\C[x]/(x(x-1)))_{(x)}$, it follows that 
+$x = 1 \in \mathcal{O}(D_{x})$ and $\mathcal{O}(D_{x}) = \C$. 
+
+\subsubsection*{(d)}
+
+$(f = x^2 + 1)$ is a maximal ideal in $\R[x]$ since $f$ is irreducible and
+$\R[x]$ is a PID, hence $\R[x]/(x^2 + 1)$ is a field. I.e the spectrum is
+trivial. Even more, we recognize that it is isomorphic to $\C$, since the
+minimal polynomial of $i$ over $\R$ is $x^2 + 1$. \\
+
+
+\subsection*{Ex I-21}
+
+We develop a fair bit of theory before we treat the two separate cases. \\
+
+First note that $X_f \cap X_g = X_{fg}$ for any $f, g \in R$. Indeed if a prime
+ideal doesn't contain $fg$, then it doesn't contain $f$ or $g$. Similarly, if a
+prime ideal doesn't contain $f$ or $g$, it can't contain $fg$ by definition. So
+finite intersections of distinguished basis elements are again distinguished
+basis elements for any ring $R$, and we only need to consider the case of $U =
+\bigcup X_f$ open sets that are unions of distinguished basis elements. \\
+
+Now we give some lemmas regarding closures and dense sets in $\Spec(R)$. 
+
+\begin{lemma}
+	Let $Y \subseteq \Spec(R)$, and $S \subseteq R$. Then $Y \subseteq V(S)$ if
+	and only if
+	\[
+		S
+		\subseteq
+		\bigcap_{\mathfrak{p} \in Y} \mathfrak{p}.
+	\] 
+\end{lemma}
+\begin{proof}
+	If $S$ is contained in every prime ideal in $Y$, then the set of all prime
+	ideals containing $S$ will contain as a subset $Y$. \\
+
+	Similarly, if $Y$ is a subset of all prime ideals containing $S$, then all
+	prime ideals in $Y$ will contain $S$.
+\end{proof}
+
+\begin{lemma}
+	Suppose that $Y \subseteq \Spec(R)$. Then
+	$\overline{Y} = \Spec(R)$ if and only if 
+	\[
+		\bigcap_{\mathfrak{p} \in Y} \mathfrak{p}
+		=
+		\nilrad(R),
+	\] 
+	if and only if $Y$ contains all minimal primes of $R$.
+\end{lemma}
+\begin{proof}
+	First note that all minimal primes of $R$ intersect to the nilradical, and
+	any proper subset of the minimal primes intersect to an ideal greater than
+	the nilradical. This follows from prime avoidance (Prop 1.11.ii in Atiyah
+	Macdonald). Hence the second statement is equivalent to the third. \\
+
+	If $\bigcap_{\mathfrak{p} \in Y} \mathfrak{p} = \nilrad(R)$, then any $S
+	\subseteq \Spec(R)$ such that $Y \subseteq V(S)$ will have to lie in the
+	nilradical $S \subseteq \nilrad(R)$ by the previous lemma. But every prime
+	ideal contains the nilradical, so $V(S) = \Spec(R)$ hence $\overline{Y} =
+	\Spec(R)$. \\
+
+	Now suppose that $\bigcap_{\mathfrak{p} \in Y} \mathfrak{p} = I \supsetneq
+	\nilrad(R)$. Then $V(I)$ doesn't contain some minimal prime of $R$, since
+	the intersection of the minimal primes is the nilradical, and $\overline{Y}
+	\subseteq V(I) \subsetneq \Spec(R)$.
+\end{proof}
+
+\begin{lemma}
+	Let $X_f \subseteq \Spec(R)$ be a distinguished open subset. Then $X_f$ is
+	dense if and only if $f$ is not contained in any minimal prime of $R$.
+\end{lemma}
+\begin{proof}
+	$X_f$ is dense if and only all minimal primes are in $X_f$ if and only 
+	if no minimal prime contains $f$.
+\end{proof}
+
+Now let's investigate the structure of open sets $U \subseteq \Spec(R)$.
+
+\begin{lemma}
+	Let $U \subseteq \Spec(R)$ be an open set. If $\mathfrak{p} \in U$, and
+	$\mathfrak{q}$ is a prime ideal such that $\mathfrak{q} \subseteq
+	\mathfrak{p}$, then $\mathfrak{q} \in U$.
+\end{lemma}
+\begin{proof}
+	We can write 
+	\[
+		U = \bigcup_{f \in F} X_f
+	\] 
+	where $F$ might be infinite. Then $\mathfrak{p} \in U$ precisely when
+	$\mathfrak{p} \in X_f$ for some $f \in F$ and this in turn happens if and
+	only if $f \not \in \mathfrak{p}$. But if $f \not \in \mathfrak{p}$, then
+	$f \not \in \mathfrak{q}$, hence $\mathfrak{q} \in U$ in this case.
+\end{proof}
+
+\begin{lemma}
+	Suppose that $U \subseteq \Spec(R)$ is an open subset. Then $U$ is dense if
+	and only if it contains some dense open distinguished set $X_f$.
+\end{lemma}
+\begin{proof}
+	If $X_f$ is dense and $X_f \subseteq U$, then $\overline{U}$ is clearly all
+	of $\Spec(R)$. We move on to the other direction and let $U$ be a dense
+	open set of $\Spec(R)$. \\
+
+	Let $V(I) = \Spec(R) \setminus U$. Then for any $f \in I$,
+	$X_f \subseteq U$, since 
+	\begin{align*}
+		\mathfrak{p} \in X_f
+		&\Leftrightarrow
+		f \not \in \mathfrak{p} \\
+		& \Rightarrow
+		I \not \subset \mathfrak{p} \\
+		&\Leftrightarrow
+		\mathfrak{p} \not \in V(I) \\
+		&\Leftrightarrow
+		\mathfrak{p} \in U.
+	\end{align*} 
+	As $U$ is dense, $U$ contains all minimal primes of $R$, whence $V(I)$
+	doesn't contain any. I.e no minimal prime of $R$ contains $I$. It follows
+	then by prime avoidance (Prop 1.11.i in Atiyah Macdonald) that $I$ isn't
+	contained in the union of all minimal primes of $R$. Hence there is some $f
+	\in I$ which isn't contained in any minimal prime. This means that $X_f$ is
+	dense, and we've already shown that $X_f \subseteq U$ so we are done.
+\end{proof}
+
+It follows that it's enough to consider dense open distinguished sets
+$\mathscr{U}'$ for the exercise. I.e that 
+\[
+	\varinjlim_{U \in \mathscr{U}}
+	\mathcal{O}_X(U)
+	=
+	\varinjlim_{U \in \mathscr{U'}}
+	\mathcal{O}_X(U).
+\] 
+Indeed, given any $U \in \mathscr{U}$ and $\sigma \in \mathscr{O}_X(U)$, pick a
+dense open set $X_f \subseteq U$, and let $\restr{\sigma}{X_f}$ be the
+restriction of $\sigma$ to $X_f$. Then $\sigma \sim \restr{\sigma}{X_f}$, and
+we see that every section over a dense open set is equivalent to a section over
+a dense open distinguished set. \\
+
+Let $F \subset R$ denote the (multiplicative) set of elements which aren't
+contained in any minimal prime of $R$. We've just shown that
+\[
+	\varinjlim_{U \in \mathscr{U}}
+	\mathcal{O}_X(U)
+	=
+	\varinjlim_{f \in F}
+	R_f.
+\] 
+The elements of $\varinjlim_{f \in F} R_f$ consists of quotients $g/h$ where $h
+\in F$ modulo the relation that $g/h \sim g'/h'$ whenever $g/h = g'/h'$ in some
+dense subset $X_r \subseteq X_h \cap X_{h'} = X_{hh'}$. I.e $g/h \sim g'/h'$
+whenever there is some $r \in F$ such that $r = r'hh'$ and $rgh' = rg'h$, which
+becomes $r'hh'gh' = r'hh'g'h$. But this is the same as saying that there is
+some arbitrary $r' \in F$ such that $r'gh' = r'g'h$ since we can just multiply
+both sides by $hh'$. This is exactly the same equivalence relation as that of
+$F^{-1}R$, hence
+\[
+	\varinjlim_{U \in \mathscr{U}}
+	\mathcal{O}_X(U)
+	=
+	F^{-1}R.
+\] 
+
+\subsubsection*{(a)}
+
+When $R$ is an integral domain, then $(0)$ is a prime ideal, hence the only
+minimal prime, and so the set of elements not in any minimal prime is $F =
+R^*$. I.e
+\[
+	\varinjlim_{U \in \mathscr{U}}
+	\mathcal{O}_X(U)
+	=
+	F^{-1}R
+	=
+	\Frac(R).
+\] 
+
+\subsubsection*{(b)}
+
+Now consider the case when $R$ is Noetherian. Note that $F^{-1}R$ has Krull
+dimension $0$ for any ring $R$, since $\Spec(F^{-1}R)$ contains only the
+minimal primes of $R$. Hence when $R$ is Noetherian, $F^{-1}R$ is Artinian
+(Theorem 8.5 in Atiyah Macdonald). It then follows that the set $m \subset
+\Spec(R)$ of minimal prime ideals in $R$ is finite (Theorem 8.3 in Atiyah
+Macdonald). By the Structure Theorem of Artin rings, we now have that $F^{-1}R$
+can be written as 
+\[
+	F^{-1}R
+	=
+	\prod_{m_i \in m}
+	\frac{F^{-1}R}{m_i^{k}}
+\] 
+where $k \in \N$ is the smallest integer such that the $\nilrad(F^{-1}R)^{k} =
+0$. I don't know how to proceed from here though.
+
+\subsection*{Ex I-23}
+
+$\K[x]$ is a PID, and whenever a ring $R$ is a PID, the proper open sets $U
+\subsetneq \Spec(R)$ are always distinguished $U = X_f$ for some $f \in R$.
+Indeed, the complement $V(I) = \Spec(R) \setminus U$ is always induced by a
+principle ideal $I = (f)$ and we see that $U = X_f$. \\
+
+The structure sheaf is now completely described by $\mathcal{O}_X(X_f) =
+\K[x]_f$ and $\mathcal{O}_X(\K[x]) = \K[x]$.
+
+\end{document}

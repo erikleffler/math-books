@@ -134,8 +134,6 @@ showstringspaces=false
 
 \begin{document}
 
-\section*{Ch 1}
-
 \subsection*{Ex 1.20}
 $A(X)$ is a field if and only if $I(X)$ is maximal, which happens if and only
 if $X$ is minimal, i.e a point.
@@ -3458,27 +3456,41 @@ is irreducible.
 
 \subsection*{(b)}
 
-Let $N = \PP{\binom{n + d}{n} - 1}$,
-and $X \subseteq \PP{N}$ be the set of points corresponding
-to homogeneous degree $d$ polynomials in $n + 1$ variables which carve out
-smooth, hence irreducible, varieties of $\PP{n}$. We are asked to show that this
-is a dense open set, but since projective space is irreducible, it will be
-enough to show that it's an open non-empty set. \\
+Let $N_d = \binom{n + d}{n} - 1$, and $X_d \subseteq \PP{N_d}$ be the set of points
+corresponding to homogeneous degree $d$ polynomials in $n + 1$ variables which
+carve out smooth, hence irreducible, varieties of $\PP{n}$. We are asked to
+show that this is a dense open set, but since projective space is irreducible,
+it will be enough to show that it's an open non-empty set. \\
 
 To see that $X$ is non-empty just consider some Fermat hypersurface
 from Example 10.21. It remains only to show that $X$ is open. \\
 
-We will first show that given some point $a \in \Pn$, the set of points in
-$\PP{N}$ which correspond to degree $d$ forms vanishing at $a$ is closed. This
-follows easily from the Jacobi criterion; A degree $d$ form $f \in \C[x_1,
-\ldots, x_n]_d$ is singular at $a$ precisely if all partial derivatives of $f$
-vanish simultaneously at $a$, and this is a closed condition on the
-coefficients on $f$. Hence the subset $U_a \subset \PP{N}$ of points
-corresponding to homogeneous degree $d$ polynomials which are regular at $a$ is
-open. The $U_a$ cover $\PP{N}$ since no polynomial is singular everywhere. As
-projective space is compact, there is a finite subcover of $U_a$, and their
-intersection is also open, and equal to $X$.
-
+From Exercise 10.13 (a), it follows that a hypersurface $V_p(f)$ contains $a$
+if all partial derivatives of $f$ vanish at $a$. Hence the hypersurface is
+smooth if and only if the partial derivatives never simultaneously vanish. We
+can now model the rest of our proof on the proof of Proposition 7.17. Namely,
+\begin{align*}
+	V_p(f'_{x_0}, \ldots, f'_{x_n}) = \emptyset 
+	&\Leftrightarrow
+	\sqrt{(f'_{x_0}, \ldots, f'_{x_n})} = (1)
+	\text{ or }
+	\sqrt{(f'_{x_0}, \ldots, f'_{x_n})} = (x_0, \ldots, x_n) \\
+	&\Leftrightarrow
+	\Kx_k = (f'_{x_0}, \ldots, f'_{x_n})_k \text{ for some } k \in \N, k \geq d - 1,
+\end{align*}
+which in turn happens if and only if the $\K$-linear map 
+\[
+	F: (\Kx_{k - d - 1})^{n + 1}
+	\to
+	\Kx_{k},\, 
+	(h_0, \ldots, h_{n})
+	\mapsto
+	h_0f'_{x_0} + \ldots + h_{n} f'_{x_n}
+\] 
+is surjective, I.e has rank $\binom{n + k}{k}$. But this happens if and only if
+some minor of size $\binom{n + k}{k}$ of $F$ is non-zero. The minors of $F$ are
+polynomials in the coefficients of the $f'_{x_i}$, and in turn $f$. Hence this
+is an open condition on the coefficients of $f$ and $X$ is open.
 
 \subsection*{Ex 10.24}
 

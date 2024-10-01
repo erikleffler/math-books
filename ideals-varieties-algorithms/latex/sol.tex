@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+
+\newcommand{\HF}{\text{HF}}
+\newcommand{\HS}{\text{HS}}
+\newcommand{\HP}{\text{HP}}
+
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\spec}{\text{spec}}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\lt}{\text{lt}}
+\newcommand{\Lt}{\text{Lt}}
+\newcommand{\Lm}{\text{Lm}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\subsection*{Ex 2.1.5}
+
+\subsubsection*{(a)}
+
+Picking two non-negative integers $a, b$ such that their sum $a + b \leq m$ is
+the same as picking three non-negative integers $a + b + c$ such that the sum
+$a + b + c = m$. To see this, just note that $c$ is completely determined by
+$a, b$. I.e the amount of monomials $x^ay^b$ with total degree $\leq m$, is the
+same as the amount of ordered $3$-integer partitions of $m$, namely
+$\binom{m + 2}{2}$.
+
+\subsubsection*{(b)}
+
+The amount of $f, g$-monomials $f(t)^a g(t)^b$ with $a, b \leq m$ is given by
+$\binom{m+2}{2}$ by the previous exercise. These will all be polynomials in
+$\K[t]$ of degree $\leq nm$. The $\K$-subspace of $\K[t]$ consisting of
+polynomials of degree $\leq nm$ has dimension $nm + 1$, and since we pick $m$
+large enough that $(m + 2)(m + 1) / 2 > nm + 1$, it follows that the $f,
+g$-monomials of degree $\leq m$ for such large enough $m$ are linearly
+dependent.
+
+\subsubsection*{(c)}
+
+If we pick $m$ large enough as described in (b), the resulting linear
+dependence on $f, g$-monomials can be seen as an algebraic dependence $F$ on
+$f, g$.
+
+\subsubsection*{(d)}
+
+There are $\binom{k + m}{k}$ $f_1, \ldots, f_k$-monomials of degree $\leq m$,
+whilst the there are $\binom{nm + k - 1}{k - 1}$ $t_1, \ldots, t_{k -
+1}$-monomials of degree $\leq nm$. Given any $n$, for large enough $m$ we have
+$\binom{k + m}{k} > \binom{nm + k - 1}{k - 1}$, since the former product has
+$k$ factors whilst the latter have $k - 1$ factors.
+
+
+\end{document}

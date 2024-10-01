@@ -1,0 +1,786 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+\DeclareMathOperator{\cone}{cone}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+\newcommand{\mo}{\catname{mod}}
+\newcommand{\Ch}{\catname{Ch}}
+\newcommand{\Ab}{\catname{Ab}}
+\newcommand{\CK}{\catname{K}}
+\newcommand{\ob}{\catname{ob}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\subsection*{Exercise 1.1.1}
+
+We have $\im(d_{n + 1}) = (4)$ and $\ker(d_n) = (2)$. $(4) \subset (2)$ so the
+maps induce a complex, and the homology at all positive degrees is given by the
+$\Z$-module quotient $(4)/(2) = \Z/(2)$.
+
+\subsection*{Exercise 1.1.2}
+
+Let $d, d'$ be the differential maps in $C$ and $D$ respectively. Let $x \in
+\ker(d_n)$ be a cycle in $C$. Then $0 = ud_n(x) = d'_n u(x)$, hence $u(x) \in
+\ker(d'_n)$ and $u(Z_n(C)) \subseteq Z_n(D)$. \\
+
+Now let $x \in \im(d_{n + 1})$, and $x' \in d_{n + 1}^{-1}(x)$. Then $u(x) = u
+d_{n+1}(x') = d'_{n + 1}u(x) \in \im(d'_{n+1})$ and $u(B_n(C)) \subseteq
+B_n(D)$. \\
+
+To see that $H_n$ is a functor from $\Ch(\mo-R) \to \mo-R$, Note that
+\begin{itemize}
+	\item $H_n$ send complexes to modules (trivial),
+	\item we just showed that $H_n$ send morphism of complexes to morphisms of modules,
+	\item $H_n$ sends the identity morphisms to identity morpshisms (trivial),
+	\item and $H_n$ preserves composition by
+		\[
+			(u'u)(x + B_n(C))
+			=
+			u'(u(x + B_n(C))).
+		\] 
+\end{itemize}
+
+\subsection*{Exercise 1.1.5}
+
+(1) and (2) are just reformulations of each other, we will show that (2) and
+(3) are equivalent. \\
+
+(2) $\Rightarrow$ (3):
+The zero map $0 \to C$ is well-defined for any complex $C$, and in our
+particular case, it is a quasi-isomorphism as $H_n = 0$ for all $n$. \\
+
+(3) $\Rightarrow$ (2):
+Only the $0$-module is isomorphic to $0$, hence $H_n = 0$
+for all $n$
+
+\subsection*{Exercise 1.2.1}
+
+For the direct product, note that an element is in the boundary of the product
+$a \in B_n\left(\prod A_{\alpha}\right)$ if and only if it's in the boundary of
+every component $a \in \prod B_n\left(A_{\alpha}\right)$. The analagous argument
+applies to cycles as well, and it follows that the homologies are isomorphic.
+\\
+
+Note here that the "if" direction only holds since an element in the direct
+proudct may have non-zero entries for infinitely many indices. Hence the
+argument can't be immediately carried over for the direct sum. \\
+
+For the direct sum, an element is in the boundary of the product $a \in
+B_n\left(\bigoplus A_{\alpha}\right)$ if and only if it's in the boundary of
+every component $a \in \prod B_n\left(A_{\alpha}\right)$, and $a_{\alpha} = 0$
+for all but finitely many indicies, I.e $a \in \bigoplus
+B_n\left(A_{\alpha}\right)$. Now all arguments generalize analogously.
+
+\subsection*{Exercise 1.2.2}
+
+We first show that the two concepts for "kernel of a map", conicide. \\
+
+Let $f : A \to B$ be an $R$-linear map, and $g : C \to A$ be such that $gf =
+0$. Then $\im(g) \subseteq \ker(f)$, hence we can factor $g$ so that $g = i g'$
+with $g' : G \to \ker(f), i : \ker(f) \to A$. Moreover, $g'$ is uniquely
+determined by $\ker(f), i$, hence $\ker(f), i$ satisfies the universal properties
+of kernels in additive categories. Since universal categories are unique up to
+isomorphism, it follows that the two definitions of the kernel of a map
+coincide. \\
+
+Now, if $i : A \to B$ is a monic map, and $f$ is the kernel of $i$, then $fi =
+0$ hence $f = 0$, so $\ker(i) = 0$ by the universal property and $i$ is a
+monomorphism. \\
+
+Similarly, if $\ker(i) = 0$, let $f$ be the kernel of $i$. Then if $g$ is a map
+such that $gi = 0$, we have that $g$ factors through $f$, via say $g = g'f$.
+But then $g = g'f = g'0 = 0$ and $i$ is mono. \\
+
+The dual statement with cokernels, epis and epimorphisms is analagous.
+
+\subsection*{Exercise 1.2.3}
+
+The argument above about kernels coinciding can be applied to every degree
+simultaneously. All that remains to show is that the functions $g', i$ are
+morphisms of chain complexes, i.e commute with differentials, but this is easy
+to see as $g'$ is just $g$ with a narrower codomain, and $i$ is just the
+identity map with wider codomain.
+
+\subsection*{Exercise 1.2.4}
+
+In Exercise 1.2.3, we showed that kernel and cokernels may be applied 
+component-wise to modules of a chain complex in $\Ch(R-\text{mod})$.
+We first show that we can do this in any abelian category. 
+
+\begin{lemma}
+	Let $\mathcal{A}$ be an abelian category, $(B, d), (C, d') \in
+	\Ch(\mathcal{A})$ be two chain complexes and $f : B \to C$ a morphism of
+	complexes. Let $A_i = \ker(f_i)$, and $j_i : \ker(f_i) \to A_i$ be the
+	injections. Then, as $f_{i-1} d_i j_i = d'_i f_i j_i = 0$, we have a unique
+	map $d''_i : A_i \to A_{i - 1}$ given by the universal property
+	of the kernel of $f_{i - 1}$ as in the following commutative diagram 
+	\[
+	\begin{tikzcd}
+		A_i \arrow[r, dashed, "d''_i"] \arrow[d, "j_i"] & A_{i-1} \arrow[d, "j_{i-1}"]\\
+		B_i \arrow[d, "f_i"] \arrow[r, "d_i"] & B_{i-1} \arrow[d, "f_{i-1}"] \\
+		C_i \arrow[r, "d'_i"] & C_{i-1}. \\
+	\end{tikzcd}
+	\] 
+
+	Then $(A, d'')$ is a kernel of $f$.
+\end{lemma}
+\begin{proof}
+	Suppose that $(A', d'''), g : A' \to B$ are such that $gf = 0$. Then $g_i
+	f_i = 0$ for all $i$, and by the universal property of $A_i = \ker(f_i)$,
+	we have unique $h_i$ such that $g_i = j_i h_i$. Then $h : A' \to A$ is a
+	map of chain complexes since 
+	\[
+		j_{i-1} h_{i-1} d'''_i
+		=
+		g_{i-1} d'''_i
+		=
+		d_i g_i
+		=
+		d_i j_i h_i
+		=
+		j_{i-1} d''_i h_i,
+	\] 
+	which since $j_{i-1}$ is mono implies
+	\[
+		h_{i-1} d'''_i
+		=
+		d''_i h_i.
+	\]
+	Moreover, $h$ is unique with this property since the $h_i$ are unique.
+\end{proof}
+
+The statement and proofs for epimorphisms is dual to the one above. \\
+
+The statement of the exercise now follows since if 
+\[
+	0 \rightarrow A \xrightarrow{f} B \xrightarrow{g} C \rightarrow 0
+\] 
+is a sequence in $\Ch(\mathcal{A})$, then kernels and cokernels (hence also
+images) may be taken component-wise, so $\ker(g) = \im(f)$ if and only if
+$\ker(g_i) = \im(f_i)$ for all $i$.
+
+\subsection*{Exercise 1.2.5}
+
+Let $x \in \ker(d_{2n})$, with 
+\[
+	x = (x_{n + i, n -i})_{i \in \N}.
+\] 
+with each $x_{r, s} \in C_{r, s}$. Since $C$ is bounded, we have upper and
+lower bounds $N_u, N_l$ such that we can write
+\[
+	x = (x_{n + i, n -i})_{i = N_l}^{N_u}.
+\] 
+After relabeling we can assume that $N_l = 0$, and write $N_u = N$. \\
+
+So, suppose that $x = \sum_{i = 0}^{N} x_{n + i, n - i}$ and that $d(x) = 0$.
+Then 
+\begin{align*}
+	d^h(x_{n, n}) &= 0, \\
+	d^h(x_{n + i + 1, n + i - 1}) + d^v(x_{n + i, n - i}) &= 0,
+	\ \forall i \in [N - 1], \\ 
+	d^v{x_{n + N, n - N}} &= 0.
+\end{align*} 
+Since the rows are exact, the first condition tells us that there is $y_{n + 1,
+n} \in C_{n + 1, n}$ such that $d^h(y_{n + 1, n}) = x_{n, n}$. Then 
+\begin{align*}
+	0
+	&=
+	d^h(x_{n + 1, n - 1}) + d^v(x_{n, n}) \\
+	&=
+	d^h(x_{n + 1, n - 1}) + d^v(d^h(y_{n + 1, n})) \\
+	&=
+	d^h(x_{n + 1, n - 1}) - d^h(d^v(y_{n + 1, n})) \\
+	&=
+	d^h(x_{n + 1, n - 1} - d^v(y_{n + 1, n})),
+\end{align*} 
+hence we have $y_{n + 2, n - 1} \in C_{n + 2, n - 1}$
+such that $d^h(y_{n + 2, n - 1}) = x_{n + 1, n - 1} - d^v(y_{n + 1, n}))$.
+Continuing on this way, we can write $y = \sum_{i = 0}^{N+1} y_{n + 1 + i, n - i}$,
+and get
+\begin{align*}
+	d(y) 
+	&=
+	\sum_{i = 0}^{N + 1} d(y_{n + 1 + i, n - i}) \\
+	&=
+	\sum_{i = 0}^{N + 1} 
+	d^h(y_{n + 1 + i, n - i})
+	+
+	d^v(y_{n + 1 + i, n - i}) \\
+	&=
+	\sum_{i = 0}^{N + 1} 
+	x_{n + i, n - i} - d^v(y_{n + i, n - i + 1}) 
+	+
+	d^v(y_{n + 1 + i, n - i}) \\
+	&=
+	\sum_{i = 0}^{N + 1} 
+	x_{n + i, n - i}  \\
+	&= 
+	x.
+\end{align*}
+
+\subsection*{Exercise 1.2.7}
+
+\subsubsection*{(1)}
+
+Each component of 
+\[
+	0 
+	\rightarrow 
+	Z(C) 
+	\rightarrow 
+	C 
+	\xrightarrow{d} 
+	B(C)[-1] 
+	\rightarrow 
+	0
+\] 
+is given by
+\[
+	0 
+	\rightarrow 
+	\ker(d_i) 
+	\rightarrow 
+	C_{i} 
+	\xrightarrow{d_i}
+	\im(d_i)
+	\rightarrow 0,
+\] 
+and is clearly exact. That these component maps commute with differentials 
+to form morphisms of complexes is easy to see.
+
+\subsubsection*{(2)}
+
+Each component of 
+\[
+	0 
+	\rightarrow 
+	H(C) 
+	\rightarrow 
+	C/B(C) 
+	\xrightarrow{d} 
+	Z(C)[-1] 
+	\rightarrow
+	H(C)[-1] 
+	\rightarrow 
+	0
+\] 
+is given by
+\[
+	0 
+	\rightarrow 
+	\ker(d_i) / \im(d_{i + 1})
+	\rightarrow 
+	C_i / \im(d_{i + 1})
+	\xrightarrow{d_i} 
+	\ker(d_{i - 1}) / \im(d_i \circ d_{ i + 1})
+	\cong
+	\ker(d_{i - 1}) 
+	\rightarrow
+	\ker(d_{i - 1})/\im(d_{i})
+	\rightarrow 
+	0
+\] 
+and is clearly exact. That these component maps commute with differentials to
+form morphisms of complexes is easy to see.
+
+\subsection*{Exercise 1.2.8}
+
+I don't know why we need $B[-1]$ and not $B$ in the row $q = 1$ of 
+$D$. I'll assume this is a mistake, and define $D$ as 
+\[
+\begin{tikzcd}
+	& \ldots \arrow[d] 
+	& \ldots \arrow[d]
+	& \ldots \arrow[d] 
+	& \ldots \arrow[d]
+	& \ldots \arrow[d] 
+	\\
+	\ldots
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	\ldots
+	& B_{-2} \arrow[l, "d_B"] \arrow[d, "f"]
+	& B_{-1} \arrow[l, "d_B"] \arrow[d, "-f"]
+	& B_{0} \arrow[l, "d_B"] \arrow[d, "f"]
+	& B_{1} \arrow[l, "d_B"] \arrow[d, "-f"]
+	& B_{2} \arrow[l, "d_B"] \arrow[d, "f"]
+	& \ldots \arrow[l]
+	\\
+	\ldots
+	& C_{-2} \arrow[l, "d_C"] \arrow[d] 
+	& C_{-1} \arrow[l, "d_C"] \arrow[d] 
+	& C_{0} \arrow[l, "d_C"] \arrow[d] 
+	& C_{1} \arrow[l, "d_C"] \arrow[d] 
+	& C_{2} \arrow[l, "d_C"] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	\ldots
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	& \ldots
+	& \ldots
+	& \ldots
+	& \ldots
+	& \ldots,
+	\\
+\end{tikzcd}
+\] 
+where $C$ is in row $q = 0$. We can then define $C'$
+as
+\[
+\begin{tikzcd}
+	& \ldots \arrow[d] 
+	& \ldots \arrow[d]
+	& \ldots \arrow[d] 
+	& \ldots \arrow[d]
+	& \ldots \arrow[d] 
+	\\
+	\ldots
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	\ldots
+	& C_{-2} \arrow[l, "d_C"] \arrow[d] 
+	& C_{-1} \arrow[l, "d_C"] \arrow[d] 
+	& C_{0} \arrow[l, "d_C"] \arrow[d] 
+	& C_{1} \arrow[l, "d_C"] \arrow[d] 
+	& C_{2} \arrow[l, "d_C"] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	\ldots
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	& \ldots
+	& \ldots
+	& \ldots
+	& \ldots
+	& \ldots,
+	\\
+\end{tikzcd}
+\]
+where $C$ is in row $q = 0$, and $B$ as 
+\[
+\begin{tikzcd}
+	& \ldots \arrow[d] 
+	& \ldots \arrow[d]
+	& \ldots \arrow[d] 
+	& \ldots \arrow[d]
+	& \ldots \arrow[d] 
+	\\
+	\ldots
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	\ldots
+	& B_{-2} \arrow[l, "d_B"] \arrow[d] 
+	& B_{-1} \arrow[l, "d_B"] \arrow[d] 
+	& B_{0} \arrow[l, "d_B"] \arrow[d] 
+	& B_{1} \arrow[l, "d_B"] \arrow[d] 
+	& B_{2} \arrow[l, "d_B"] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	\ldots
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& 0 \arrow[l] \arrow[d] 
+	& \ldots \arrow[l]
+	\\
+	& \ldots
+	& \ldots
+	& \ldots
+	& \ldots
+	& \ldots,
+	\\
+\end{tikzcd}
+\]
+where $B$ is in row $q = 0$.
+
+\subsection*{Exercise 1.4.5}
+\subsubsection*{(a)}
+
+First note that any map is chain homotopic to itself via $s = 0$. Now, let $f,
+g, h : C \to D$ be chain maps, and $s, s'$ be chain homotopies $f$ to $g$ and
+$g$ to $h$ respectively. Then $g - f = -sd - ds = -sd + d(-s)$ so $-s$ is a
+chain homotopy $g$ to $f$. Moreover,
+\begin{align*}
+	f - h
+	&=
+	(f - g) + (g - h) \\
+	&=
+	sd + ds + s'd + ds' \\
+	&=
+	(s + s')d + d(s + s')
+\end{align*}
+so $s + s'$ is a chain homotopy from $f$ to $h$, and we've verified that chain
+homotopy indeed induces an equivalence relation on chain maps. \\
+
+The category of modules is abelian, so $\Hom(C, D)$ is an abelian group, hence
+we only need to show that the inherited addition is well-defined in
+$\Hom_{\CK}(C, D)$. Let $f, g : C \to D$ be chain homotopic maps via $s$ and $h : C \to D$
+be another map. Then 
+\begin{align*}
+	f + h
+	&=
+	g + h + sd + ds,
+\end{align*} 
+hence $s$ is a chain homotopy $f + h$ to $g + h$ and addition is well-defined.
+
+\subsubsection*{(b)}
+
+We have 
+\begin{align*}
+	vfu
+	&=
+	v(g + sd + ds)u \\
+	&=
+	vgu + vsdu + vdsu \\
+	&=
+	vgu + vsud + dvsu,
+\end{align*}
+hence $vfu$ is chain homotopic to $vgu$ via $vsu : B \to E$. \\
+
+It follows that composition is well-defined in $\CK$, hence $\CK$ is a
+category. Moreover, addition of morphisms distributes over composition since 
+these operations are inherited from $\Ch$, hence $\CK$ is an $\Ab$-category.
+
+\subsubsection*{(c)}
+
+We have
+\begin{align*}
+	f_1 + f_2
+	&=
+	g_1 + g_2 + s_1d + ds_1 + s_2d + ds_2 \\
+	&=
+	g_1 + g_2 + (s_1 + s_2)d + d(s_1 + s_2),
+\end{align*}
+hence the congruence relation of homotopy equivalence is additive. \\
+
+We now show that additive congruence relations $\sim$ on additive categories
+$C$ induce additive quotient categories $C / \sim$ and functors $C \to C /
+\sim$. The hom-sets are abelian group as quotienting by $\sim$ is the same on
+the hom-sets as taking the quotient by the subgroup of elements that are $\sim
+0$. Moreover, addition distributes over composition on the hom-sets as these
+operations are inherited from $C$. Hence $C / \sim$ is an $\Ab$-category \\
+
+The zero object $z \in \ob(C)$ is also a zero object in $C / \sim$.
+Similarly, if $A, B \in C/ \sim$, then $A, B \in C$ hence we have a product
+object $A \times_C B \in C$. We will show that this also is a product object in
+$C / \sim$. Let $f_1, f_2$ be morphisms $Y \to A, B$ in $C / \sim$, and let
+$f_1', f_2'$ be representatives of these morphisms in $C$. Then there exists a
+unique $f' : Y \to A \times_C B$ such that $f_i' = \pi_i f'$, thus there is a
+unique map $f : Y \to A$ in the quotient category satisfying the same
+properties. \\
+
+The functor is additive induces homomorphisms $\Hom \to \Hom_{\CK}$ as $\sim$
+is additive. \\
+
+\subsubsection*{(d)}
+
+No, and to show this we give a counterexample. Let
+\[
+	C = \ldots \rightarrow 0 \rightarrow \Z \rightarrow 0 \rightarrow \ldots,
+\]
+and
+\[
+	D = \ldots \rightarrow 0 \rightarrow \Z/p\Z \rightarrow 0 \rightarrow \ldots,
+\]
+and $f : C \to D$ be the chain map induced by the projection $\Z \to \Z/p\Z$.
+Then the kernel of $f$ in $\Ch$ is given by
+\[
+	\ker(f) = \ldots \rightarrow 0 \rightarrow \Z \rightarrow 0 \rightarrow \ldots,
+\]
+with the injection $i$ induced by the map $\Z \to \Z, n \mapsto pn$. In $\CK$
+however, $i$ isn't monic. Indeed, let TODO FINNISH LATER
+
+\subsection*{Exercise 1.5.1}
+
+We have 
+\[
+	d(b, c)
+	=
+	(-d(b), d(c) - b),
+\] 
+and
+\[
+	dsd(b, c)
+	=
+	ds(-d(b), d(c) - b)
+	=
+	d(b - d(c), 0)
+	=
+	(d(d(c)) - d(b), d(c) - b)
+	=
+	(-d(b), d(c) - b),
+\] 
+hence $s$ is a splitting. Moreover, $\cone(C)$ is split exact as
+\[
+	(ds + sd)(b, c)
+	=
+	d(-c, 0) + s(-d(b), d(c) - b)
+	=
+	(d(c), c) + (b - d(c), 0)
+	=
+	(b, c).
+\] 
+
+\subsection*{Exercise 2.2.1}
+
+
+Let $P$ be a projective object in $\Ch$, and consider the surjective
+morphism $\pi : \cone(P) \to P[-1]$. Surjective morphisms onto projective
+objects split, hence $P[-1]$ is a direct summand of the complex $\cone(P)$,
+which is split exact by Exercise 1.5.1. Now, $H_n$ preserves direct sums by
+Exercise 1.2.1, so $P[-1]$ must be exact as well. \\
+
+Moreover, as $\pi$ sends $(p_{n - 1}, p_n) \to -p_{n - 1}$, we have that the
+splitting $i : P[-1] \to \cone(P)$ of $\pi$ is of the form $i : p_{n - 1}
+\mapsto (-p_{n - 1}, \phi(p_{n - 1}))$ for some map $\phi : P[-1] \to P$. \\
+
+Now, let $d, d'$ be the differentials on $P, \cone(P)$. Then $-d$ is the differential 
+on $P[-1]$, and as $i$ is a chain map, it commutes with $-d$ and $d'$. Thus
+\begin{align*}
+	0
+	&=
+	-d \circ -d \\
+	&=
+	i \circ -d \circ -d \\
+	&=
+	d' \circ i \circ -d \\
+	&=
+	d' \circ (d, \phi \circ -d) \\
+	&=
+	(-d \circ d, (d \circ \phi \circ - d) - d) \\
+	&=
+	(0, d \circ -\phi \circ d - d),
+\end{align*}
+hence $d \circ -\phi \circ d = d$, and $-\phi$ is a splitting, so $P[-1]$ is split exact. \\
+
+Finally, to see that each $P_n$ is projective, let $g : B \to C$ be a
+surjective module morphism, and $f : P_n \to C$. Then Let $B., C.$ be the
+complexes with the $n$-th entry as $B, C$ and the rest $0$.
+
+We skip the other direction.
+
+\subsection*{Exercise 2.2.2}
+
+Suppose that $\mathcal{A}$ has enough projectives, and let $(B, d) \in
+\Ch(\mathcal{A})$, and that $\pi_i : P_i \to B_i$ are surjections onto the
+components of $B$ from projective objects $P_i$. Then as $\pi_{i - 1}$ is a
+surjection, we have that $d_i \circ \pi_i$ factors through $\pi_{i - 1}$. I.e
+there exists $h_i : P_i \to P_{i - 1}$ such that the following diagram commutes
+\[
+	\begin{tikzcd}
+		P_i \arrow[d, "\pi_i"] \arrow[r, "h_i"] & P_{i-1} \arrow[d, "\pi_{i-1}"] \\
+		B_i \arrow[r, "d_i"] & B_{i-1}. \\
+	\end{tikzcd}
+\]
+Now, we don't know that whether or not $h \circ h$ is $0$ or not, so we can't
+form a chain complex out of $P, h$ as is. But let's pretend that $P, h$ is a
+chain complex, and form $\cone(P)$ as in Exercise 1.5.1. Then $\cone(P)$ is a
+chain complex, even if $P$ might not be, because 
+\[
+	\begin{bmatrix}
+		-h & 0 \\
+		-\id & h
+	\end{bmatrix}^2
+	=
+	\begin{bmatrix}
+		-h \circ - h & 0 \\
+		(-h \circ -\id) + (h \circ - \id) & h \circ h
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		0 & 0 \\
+		0 & 0
+	\end{bmatrix}.
+\] 
+LAST EQUALITY IS WRONG SINCE WE DON'T KNOW THAT $hh$ is $0$. Moreover,
+$\cone(P)$ is split exact for the same reason as in Exercise 1.5.1. Indeed, let
+$s : \cone(P)_i \to \cone(P)_{i + 1}$ be given by 
+\[
+	s(b, c) = (-c, 0),
+\] 
+and $d'$ be the differential on $\cone(P)$. Then 
+\begin{align*}
+	(sd' + d's)(b, c)
+	&=
+	s(-h(b), h(c) - b) + d'(-c, 0) \\
+	&=
+	(b - h(c), 0) + (h(c), c) \\
+	&=
+	(b, c), 
+\end{align*} 
+hence $\cone(P)$ is split exact. As the $\pi_i$ commute with $h_i$, the map
+$\cone(P) \to B$ given by $(b_i, c_i) \to (-\pi_i, 0)$ is a chain map, which is
+also surjective by choice of $\pi_i$.
+
+\subsection*{Exercise 2.3.1}
+
+Any ideal $J \subset \Z/(m)$ is of the form $(d)$ where $dk = m$. So, let $f :
+J \to \Z/(m)$ be a $\Z/(m)$-module morphism, where $f(d) = a$. Then, as $0 =
+f(dk) = kf(d)$, we must have that $k'm = kf(d)$, hence $dk' = f(d)$. Thus we
+can extend $f$ to $R \to R$ by sending $1 \mapsto k'$, and $R$ is an injective
+$R$-module by Baer's Criterion. \\
+
+Now, consider the $R$-module $M = \Z/d$ with $dk = m$, and some prime $p$
+divides $d$ and $m/d$. Then we have an injective $R$-linear map $M \to R$ given
+by $1 \mapsto k$, which if $M$ was injective, would have a splitting. But the
+hypothesis assures that this is not the case, hence $M$ is not injective.
+
+\subsection*{Exercise 2.4.2}
+
+Let $A \in \mathcal{A}$, and $P. \to A.$ be a projective resolution. Then 
+\begin{align*}
+	U(L_i(F))(A)
+	&=
+	U(H_i(F(P.))).
+\end{align*}
+Now, given any chain complex over an abelian category
+\[
+	C. : 
+	\ldots \rightarrow 
+	C_{n + 1} \xrightarrow{d_{n + 1}}
+	C_{n} \xrightarrow{d_{n}}
+	C_{n - 1} \rightarrow
+	\ldots,
+\] 
+we can form short exact sequences  
+\[
+	0 \rightarrow
+	\ker
+\] 
+but exact functors commute with taking homologies, and to see this, just split any
+chain complex into short exact sequences. 
+
+\end{document}
