@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{rotating}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec(#1)}}
+\newcommand{\rospu}[2]{\restr{\oo_{\Spec(#1)}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Proj}{\text{Proj}}
+\newcommand{\proj}{\Proj}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\pdx}{\frac{\partial}{\partial x}}
+\newcommand{\pddx}{\frac{\partial^2}{\partial x^2}}
+\newcommand{\pdy}{\frac{\partial}{\partial y}}
+\newcommand{\pddy}{\frac{\partial^2}{\partial y^2}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\begin{lemma}
+	Let $M$ be a regular surface, $\gamma : I \to M$ be a differentiable curve
+	on $M$, and $p \in \gamma(I)$. Furthermore, let $X : U \to X(U) \subset M$
+	be a local parameterization at $p \in X(U)$. Then there exist some interval
+	$J \subseteq I$, and differentiable curve $\alpha : J \to U$ on $U$ such
+	that $\restr{\gamma}{J} = X \circ \alpha$ and $p \in \alpha(J)$.
+\end{lemma}
+\begin{proof}
+	We assume without loss of generality that $\gamma(0) = X(0) = p$. Denote
+	the components of $X$ by $X(u, v) = (f(u, v), g(u, v), h(u, v))$. As $X$ is
+	regular, we have $X_u(0) \times X_v(0) \not = 0$, hence the differential 	
+	\[
+		dX(0)
+		=
+		\begin{bmatrix}
+			f_u(0) & f_v(0) \\
+			g_u(0) & g_v(0) \\
+			h_u(0) & h_v(0) \\
+		\end{bmatrix}
+	\] 
+	has rank $2$. It follows that there is some $2 \times 2$ minor of $dX(0)$
+	which has non-zero determinant. Suppose without loss of generality that one
+	such minor is given by
+	\[
+		\begin{bmatrix}
+			f_u(0) & f_v(0) \\
+			g_u(0) & g_v(0) \\
+		\end{bmatrix},
+	\]
+	and let $F(u, v) = (f(u, v), g(u, v))$. Then let $p' = F(0, 0)$. As $dF(0)$
+	has full rank, $F$ has a $C^{1}$ inverse about some neighbourhood $U_{p'}$ of
+	$p'$. Now let $\pi_{x, y} : \R^{3} \to \R^{2}$ be the projection onto the
+	first two coordinates. Then let $J$ be a small enough interval such that
+	$\pi(\gamma(J)) \subset U_{p'}$. Then $0 \in J$ since $\pi(\gamma(0)) =
+	\pi(p) = p'$. Now let $\alpha : J \to U$ be given by 
+	\[
+		\alpha
+		=
+		F^{-1}
+		\circ 
+		\pi
+		\circ
+		\restr{\gamma}{J}.
+	\] 
+	Then $\alpha$ is $C^1$ as it's a composition of $C^1$ functions. Moreover,
+	as $F^{-1} \circ \pi$ coincides with $X^{-1}$ on $\pi^{-1}(U_q)$ it follows
+	that
+	\begin{align*}
+		X \circ \alpha
+		&=
+		X
+		\circ
+		\restr{F}{U_q}^{-1}
+		\circ 
+		\pi
+		\circ
+		\restr{\gamma}{J} \\
+		&=
+		\restr{\gamma}{J}.
+	\end{align*}
+\end{proof}
+
+\begin{corollary}
+	Let $M_1, M_2$ be regular surfaces, and $\phi : M_1 \to M_2$ be a
+	differentiable map. Let $\gamma : I \to M_1$ be a differentiable curve on
+	$M_1$. Then $\phi \circ \gamma$ is a differentiable
+	curve on $M_2$.
+\end{corollary}
+\begin{proof}
+	Let $p \in \gamma(I)$ and $q = \phi(p)$. Let $X : U \to X(U) \subset M_1, Y
+	: V \to Y(V) \subset M_2$ be two local parameterizations such that
+	$\phi(X(U)) \subset Y(V)$ and $p \in X(U)$. Let $\alpha$ be the
+	factorization of $\restr{\gamma}{J}$ through $X$. Then
+	\[
+		\phi \circ \restr{\gamma}{J}
+		=
+		Y
+		\circ
+		Y^{-1}
+		\circ
+		\phi
+		\circ
+		X
+		\circ
+		\alpha
+	\] 
+	and as $Y, Y^{-1} \circ \phi \circ X, \alpha$ are all $C^1$, so is their
+	composition $\phi \circ \restr{\gamma}{J}$. We've verified that $\phi \circ
+	\gamma$ is $C^1$ at the arbitrary point $\gamma^{-1}(p)$, whence it's $C^1$
+	at all of its domain.
+\end{proof}
+
+\end{document}

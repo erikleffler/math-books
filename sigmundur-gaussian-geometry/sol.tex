@@ -296,5 +296,2128 @@ orientation preserving as it has determinant $-1$.
 
 \subsection*{Ex 2.4}
 
+Let $\gamma_{r}(t) = \gamma(t) + r N(t)$. Then 
+the first and second derivatives of $\gamma_r$ are given by
+\[
+	\gamma_r'(t) = T(t) + r N'(t) = (1 - r \kappa(t)) T(t) = (1 - r \kappa(t)) \gamma'(t)
+\] 
+and
+\[
+	\gamma_r''(t)
+	=
+	-r \kappa'(t)\gamma'(t) + (1 - r \kappa(t)) \gamma''(t)
+\] 
+where we used Theorem 2.8 to substitute $rN'(t)$ for $-rT(t)$. In particular,
+$\gamma_r$ is not necesarilly parameterized by arclength. Thus, we use
+Proposition 2.12 to calculate the curvature. We get
+\begin{align*}
+	\kappa_r(t)
+	&=
+	\frac{1}{|\gamma_r'(t)|^3}
+	\det[\gamma'_r(t), \gamma''_r(t)] \\
+	&=
+	\frac{1}{|(1 - r \kappa(t)) \gamma'(t)|^3}
+	\det[(1 - r \kappa(t))\gamma'(t), (1 - r \kappa(t))\gamma''(t) - r\kappa'(t)\gamma'(t)] \\
+	&=
+	\frac{1}{(1 - r \kappa(t)) |\gamma'(t)|^3}
+	\det\left[\gamma'(t), \gamma''(t) - \frac{r \kappa'(t)}{1 - r\kappa(t)}\gamma'(t)\right] \\
+	&=
+	\frac{1}{(1 - r \kappa(t)) |\gamma'(t)|^3}
+	\det\left[\gamma'(t), \gamma''(t)\right] \\
+	&=
+	\frac{\kappa(t)}{1 - r \kappa(t)},
+\end{align*}
+where we used the fact that the determinant is invariant to row operations, such as adding/subtracting 
+scalar multiples of columns to other columns.
+
+\subsection*{Ex 2.5}
+
+\begin{proof}[Proof of Proposition 2.12]
+	First of all, the curvature of any curve $\varphi$ in $\R^2$ parameterized by
+	arclength is given by
+	\begin{align*}
+		\kappa_{\varphi}(s)
+		&=
+		\langle
+			T_{\varphi}'(s),
+			N_{\varphi}(s)
+		\rangle \\
+		&=
+		\langle
+			(\varphi''(s)_x, \varphi''(s)_y),
+			(-\varphi'(s)_y, \varphi'(s)_x)
+		\rangle \\
+		&=
+		(\varphi'(s)_x, \varphi'(s)_y)
+		\times
+		(\varphi''(s)_x, \varphi''(s)_y) \\
+		&= 
+		\det
+		\begin{bmatrix}
+			\varphi'(s)_x & \varphi'(s)_y \\
+			\varphi''(s)_x & \varphi''(s)_y
+		\end{bmatrix} \\
+		&=
+		\det[\varphi'(s), \varphi''(s)]
+	\end{align*}	
+
+	Now, let $t(s) : J \to I$ be a strictly increasing surjective $C^{2}$
+	function such that $\widetilde{\gamma} = \gamma \circ t$ is parameterized
+	by arclength, and let $s(t) : J \to I$ be its inverse. Then the curvature
+	of $\gamma$ is given by
+	\begin{align*}
+		\kappa(t(s))
+		&=
+		\widetilde{\kappa}(s) \\
+		&=
+		\det[\dot{\widetilde{\gamma}}(s), \ddot{\widetilde{\gamma}}(s)] \\
+		&=
+		\det[\gamma'(t(s)) \dot{t}(s), \gamma''(t(s)) \dot{t}(s)^2 + \gamma'(t(s))\ddot{t}(s)] \\
+		&=
+		\det[\gamma'(t(s)) \dot{t}(s), \gamma''(t(s)) \dot{t}(s)^2] \\
+		&=
+		(\dot{t}(s))^3\det[\gamma'(t(s)), \gamma''(t(s))] \\
+		&=
+		\frac{1}{(s'(t(s)))^3}\det[\gamma'(t(s)), \gamma''(t(s))],
+	\end{align*}
+	where we used the fact that the determinant is invariant to row operations
+	for the third step, and the inverse function theorem for the last step.
+	Composing with $s(t)$ yields
+	\[
+		\kappa(t)
+		=
+		\frac{1}{(s'(t))^3}\det[\gamma'(t), \gamma''(t)],
+	\] 
+	so it remains to show that $|\gamma'(t)|^{3} = (s'(t))^3$. This is
+	immediate from
+	\begin{align*}
+		1
+		&=
+		|\dot{\widetilde{\gamma}}(s)| \\
+		&=
+		|\dot{\gamma(t(s))}| \\
+		&=
+		|\gamma'(t)\dot{t}(s)| \\
+		&=
+		\left|\frac{\gamma'(t)}{s'(t)}\right|
+	\end{align*}
+	and the fact that $s'$ is positive due to $s$ being strictly increasing (as
+	$t$ is).
+\end{proof}
+
+
+\subsection*{Ex 2.6}
+
+We have $\gamma'(t) = (\cos(t), 2 \cos(2t))$. As $\cos$ vanishes exactly at
+$\pi/2 + k\pi$ for all $k \in \Z$, and none of these values differ by a factor
+of $2$ (indeed, these are all the halves of odd integer multiples of $\pi$, so
+if one of them differed by a factor of $2$, we'd have two odd numbers differing
+by a factor of $2$, which is impossible), so $\gamma$ is regular. \\
+
+The curve is closed as it has period $2\pi$. Finally, it's not simple, as it
+has multiple zeros, $\pi/2, 3\pi/2$, in $[0, 2\pi)$.
+
+\subsection*{Ex 2.7}
+
+TODO: Finnish later
+
+\subsection*{Ex 3.1}
+
+We have
+\begin{align*}
+	\gamma_1'(t) 
+	&= 
+	(-ar \sin(at), ar \cos(at), ba) \\
+	\gamma_1''(t)
+	&=
+	(-a^2r \cos(at), -a^2r \sin(at), 0) \\
+	\gamma_1'''(t)
+	&=
+	(a^3r \sin(at), -a^3r \cos(at), 0) \\
+\end{align*}
+and 
+\begin{align*}
+	\gamma_1'(t) \times \gamma_1''(t)
+	&=
+	(
+	ba^3r \sin(at),
+	-ba^3r \cos(at), 
+	a^3r^2 \sin^2(at) + a^3r^2 \cos^2(at)
+	) \\
+	&=
+	(
+	ba^3r \sin(at),
+	-ba^3r \cos(at), 
+	a^3r^2, 
+	) \\
+	&=
+	a^3r(b \sin(at), -b \cos(at), r) \\
+	|\gamma_1'(t) \times \gamma_1''(t)|
+	&=
+	a^3r \sqrt{b^2 + r^2}
+\end{align*}
+whence
+\begin{align*}
+	\kappa_1(t)
+	&=
+	\frac{a^3r \sqrt{r^2 + b^2}}{a^3 \sqrt{r^2 + b^2}^3} \\
+	&=
+	\frac{r}{r^2 + b^2}.
+\end{align*}
+Moreover, $\det[u,v,w] = (u \times v) \cdot w$ for $u,v,w \in \R^3$, hence 
+\begin{align*}
+	\tau_1(s)
+	&=
+	\frac
+	{(\gamma_1'(s) \times \gamma_1''(s)) \cdot \gamma_1'''(s)}
+	{|\gamma_1'(s) \times \gamma_1''(s)|^2} \\
+	&=
+	\frac
+	{a^3r(b \sin(at), -b \cos(at), r) \cdot (a^3r \sin(at), -a^3r \cos(at), 0)}
+	{a^6r^2(r^2 + b^2)} \\
+	&=
+	\frac
+	{(b \sin(at), -b \cos(at), r) \cdot (\sin(at), - \cos(at), 0)}
+	{r^2 + b^2} \\
+	&=
+	\frac
+	{b \sin^2(at) + b \cos^2(at)}
+	{r^2 + b^2} \\
+	&=
+	\frac{b}{r^2 + b^2}.
+\end{align*}
+For $\gamma_2$, note that $\gamma_2(t)$ and $\gamma_2(-t)$ have the same
+curvature and torsion since the two curve only differ in parameterization. The
+curves $\gamma_1(t)$ and $\gamma_2(-t)$ have the same second and third
+derivatives, and the first derivative differs only in sign in the first
+coordinate. We have
+\begin{align*}
+	\gamma_2'(-t) \times \gamma_2''(-t)
+	&=
+	(
+	-ba^3r \sin(at),
+	ba^3r \cos(at), 
+	a^3r^2 \sin^2(at) + a^3r^2 \cos^2(at)
+	) \\
+	&=
+	(
+	-ba^3r \sin(at),
+	ba^3r \cos(at), 
+	a^3r^2, 
+	) \\
+	&=
+	a^3r(b \sin(at), -b \cos(at), r), \\
+	|\gamma_2'(-t) \times \gamma_2''(-t)|
+	&=
+	a^3r \sqrt{b^2 + r^2} \\
+	&=
+	|\gamma_1'(t) \times \gamma_1''(t)|, \\
+	(\gamma_2'(-t) \times \gamma_2''(-t)) \cdot \gamma_2'''(-t)
+	&=
+	-a^6r^2(b \sin^2(at) + b \cos^2(at)) \\
+	&=
+	-
+	(\gamma_1'(-t) \times \gamma_1''(-t)) \cdot \gamma_1'''(-t)
+\end{align*}
+Combining all these results with formulas for curvature and torsion, we see that 
+\[
+	\kappa_2 = \kappa_1, \tau_2 = -\tau_1.
+\]
+As the two curves differ only by sign in the last coordinate, 
+\[
+	\Phi 
+	=
+	\begin{bmatrix}
+		1 & 0 & 0 \\	
+		0 & 1 & 0 \\	
+		0 & 0 & -1 \\	
+	\end{bmatrix}
+\] 
+is a Euclidean motion that maps between them. This map is not orientation
+preserving, as it has determinant $-1$.
+
+\subsection*{Ex 3.2}
+
+The curvature and torsion of the helix from Exercise 3.1 were both constant,
+and indeed, it seems intuitive that any curve of constant curvature and torsion
+would be a helix. So, let $\gamma(t) = (r \sin(t), r \sin(t), bt)$ (we are free
+to ignore $a$ from Exercise 3.1, since this variable only affects the
+parameterization). Then we calculated in Exercise 3.1 that
+\[
+	\kappa = \frac{r}{r^2 + b^2},\, 
+	\tau = \frac{b}{r^2 + b^2}.
+\] 
+From this we obtain two linear equations $\kappa r + \tau b = 1$ and $b\kappa =
+r\tau$, and as these equations are symmetric with respect to $r,b$ versus
+$\kappa, \tau$, we see that the solution is given by
+\[
+	b = \frac{\tau}{\kappa^2 + \tau^2},\, 
+	r = \frac{\kappa}{\tau^2 + \kappa^2}, 
+\] 
+and these values of $b, r$ induce a helix curve with the desired curvature and torsion.
+
+\subsection*{Ex 3.4}
+
+We have
+\[
+	\gamma'(t)
+	=
+	(3t^2 + 2t, 3t^2 - 1, 2t + 1),
+	=
+	(3t(t + 2), (\sqrt{3} t - 1)(\sqrt{3} t + 1), 2t + 1),
+\] 
+and from the factorized expressions it follows readily that the $x,y,z$
+coordinates never simultaneously vanish. Hence the curve is regular. \\
+
+Any curve that is parameterized by a polynomial of degree $\geq 2$ in one of
+its coordinates will never lie in a plane or line. The reason is that the first
+three derivatives in that coordinate will be three polynomials of different
+degrees, which are all linearly independent.
+
+\subsection*{Ex 4.1}
+
+We begin with showing that $M_1$ is not regular. Suppose towards a
+contradiction that $M_1$ is regular, and let $U_{0}, X_{0}$ be a local
+parameterization around $0 = (0, 0, 0) \in M_1$. Then let $q \in U_0$ be the
+preimage of $0$. As $X_0(U_0)$ is an open set about $0$, it contains points
+$a^{+}$ and $a^{-}$ where $a^{+}_z > 0$ and $a^{-}_z < 0$. Let $q^{+}, q^{-}$
+be their respective preimages in $U_0$. Then as $U_0$ is open in $\R^2$, it
+contains an open ball about $q$, and as it's also simply connected, there exist
+a path from $q^{+}$ to $q^{-}$ which avoids $q$. But then $X_0(\tau)$ is a path
+in $M_1$ from $a^{+}$ to $a^{-}$ which avoids $0$. This is impossible since $0$
+is the only point of $M_1$ which has a vanishing $z$ coordinate. \\
+
+
+We will use the implicit function theorem to show that $M_2$ is regular. Let $f
+: \R^{3} \to \R$ be given by 
+\[
+	f : (x, y, z) \mapsto x^2 + y^2 - z^2.
+\] 
+Then $df = (2x, 2y, -2z)$ and $1$ is a regular point of $f(\R^{3})$. Hence $M_2
+= f^{-1}(1)$ is a regular surface. \\
+
+We will show that $M_3$ is a parameterized regular surface of revolution. Let
+$\gamma(t) = (\cosh(t), 0, t)$. Then $\gamma'(t) = (\sinh(t), 0, 1)$ never vanishes,
+hence $\gamma$ is regular and can be parameterized by arclength. Moreover, 
+\[
+	\gamma_x^2 + \gamma_y^{2} = \cosh^2(\gamma_{z}),
+\] 
+so $\gamma$ lies on $M_3$, and it's easy see that $M_3$ is the surface of
+revolution of $\gamma$, whence it is regular by Example 4.13. \\
+
+We will use the implicit function theorem to show that $M_4$ is regular. Let $f
+: \R^{3} \to \R$ be given by 
+\[
+	f : (x, y, z) \mapsto x \sin(z) - y \cos(z)
+\] 
+Then $df = (\sin(z), -\cos(z), x \cos(z) + y \sin(z))$ never vanishes and $0$ is
+a regular point of $f(\R^{3})$. Hence $M_4 = f^{-1}(0)$ is a regular surface.
+\\
+
+\subsection*{Ex 4.2}
+
+We are given $N$ in terms of the local coordinates on $T^2$. I.e
+\[
+	N \circ X_{T^2}
+	:
+	(u, v)
+	\mapsto
+	\begin{bmatrix}
+		\cos(u)\cos(v) \\
+		\cos(u)\sin(v) \\
+		\sin(v)
+	\end{bmatrix}.
+\]
+Composing this with the chart maps
+from Example 4.3 yields
+\[
+	X_{N_2}^{-1} \circ N \circ X_{T^2}
+	:
+	(u, v)
+	\mapsto
+	\frac{\cos(v)}{1 - \sin(v)}
+	(\cos(u), \sin(u))
+\]
+and
+\[
+	X_{N_2}^{-1} \circ N \circ X_{T^2}
+	:
+	(u, v)
+	\mapsto
+	\frac{\cos(v)}{1 + \sin(v)}
+	(\cos(u), \sin(u))
+\]
+which are clearly differentiable where they are defined, and their areas of
+definition "cover" $T^2$.
+
+\subsection*{Ex 4.3}
+
+This exercise is somewhat underdefined, as we haven't defined what it means for
+a map $M \to \R^2$ to be differentiable. We will interpret it as if $U = \{(x,
+y, 0) : (x,y,z) \in \R^3)\}$ is a regular surface embedded in $\R^3$
+
+\begin{proof}[Proof of Proposition 4.19]
+	The chart on $U$ is just the projection onto the first two coordinates,
+	and the composition
+	\[
+		\pi_{x, y} \circ X^{-1} \circ X
+		=
+		\id_{x, y}
+	\] 
+	is clearly differentiable.
+\end{proof}
+
+\subsection*{Ex 4.4}
+
+\begin{proof}[Proof of Corollary 4.20]
+
+	Suppose that $\phi$ is differentiable at $p$ and that $q = \phi(p)$.
+	Furthermore, let $X_p, : U_p \to M_1, X'_p : U'_p \to M_1$ and $X_q : U_q
+	\to M_2, X'_{q} : U'_q \to M_2$ be two different parameterizations of $M_1$
+	and $M_2$ at $p$ and $q$ respectively. Furthermore let
+	\[
+		W = X_p^{-1}(X_p(U_p) \cap \phi^{-1}(X_{q}^{-1}(V_q))),\, 
+		W' = (X'_p)^{-1}(X'_p(U'_p) \cap \phi^{-1}(X'_{q}(V'_q))),\, 
+	\] 
+	and $F : W \to V_q, F': W' \to V'q$ be given by 
+	\[
+		F = X_q^{-1} \circ \phi \circ X_p, \,
+		F' = (X'_q)^{-1} \circ \phi \circ X'_p.
+	\] 
+	We are supposed to show that $F$ is differentiable at $X_p^{-1}(p)$ if and
+	only if $F'$ is differentiable at $(X'_p)^{-1}(p)$.  \\
+
+	This follows immediately by picking a small enough neighbourhood $N$ around
+	$(X'_p)^{-1}(p)$ such that
+	\[
+		\restr{F'}{N} = (X'_{q})^{-1} \circ X_q \circ F \circ X_p^{-1} \circ X'_p,
+	\] 
+	and the fact that local charts and parameterizations are differentiable (as maps 
+	between regular surfaces).
+\end{proof}
+
+\subsection*{Ex 4.5}
+
+\begin{proof}[Proof of Proposition 4.21]
+	A map $U \to \R^3$ from an open set $U \subset \R^{3}$ is differentiable if
+	and only if it's $C^{1}$. As the local charts and atlases, and
+	$\restr{\phi}{M_1}$ are all $C^1$, so is their composition.
+\end{proof}
+
+\subsection*{Lemma for Proposition 4.28 and 4.31}
+
+\begin{lemma}
+	Every chart map of a regular surface is locally the restriction
+	of a differentiable map $\R^3 \to \R^2$. \\
+
+	More specifically, let $M$ be a regular surface, and $X : U \to X(U)
+	\subseteq M$ a local parameterization. Then for every point $q \in X(U)$,
+	there exists an open neighbourhood $V_q$ of $q$ $\R^3$, and a function
+	$\phi_q : V_q \to \R^2$ which restricts to $X^{-1}$ on the open set $X(U)
+	\cap V_q$ in $X(U)$.
+\end{lemma}
+\begin{proof}
+	Let $p \in U$ and $q = X(p)$. Then $X_u(p) \times X_v(p) \not = 0$,
+	hence the differential 	
+	\[
+		dX(p)
+		=
+		\begin{bmatrix}
+			f_u(p) & f_v(p) \\
+			g_u(p) & g_v(p) \\
+			h_u(p) & h_v(p) \\
+		\end{bmatrix}
+	\] 
+	has rank $2$. It follows that there is some $2 \times 2$ minor of $dX(p)$
+	which has non-zero determinant. Suppose without loss of generality that one
+	such minor is given by
+	\[
+		\begin{bmatrix}
+			f_u(p) & f_v(p) \\
+			g_u(p) & g_v(p) \\
+		\end{bmatrix},
+	\]
+	and let $F(u, v) = (f(u, v), g(u, v))$. Then let $q' = F(p)$. As $dF(p)$
+	has full rank, $F$ has a $C^{1}$ inverse $G_q$ about some neighbourhood
+	$V_{q'}$ of $q'$ (in the topology of $\R^3$). Now let $\pi_{x, y} : \R^{3}
+	\to \R^{2}$ be the projection onto the first two coordinates. Note that $q'
+	= \pi(q)$. Then let $V_q = \pi^{-1}(V_{q'})$. As $\pi$ is continuous, $V_q$
+	is an open set in $\R^3$. Moreover, for any $(u, v) \in X^{-1}(V_q)$ we
+	have
+	\[
+		G_q \circ \pi \circ X(u, v)
+		=
+		G_q \circ (f(u, v), g(u, v))
+		=
+		G_q \circ F(u, v)
+		=
+		(u, v).
+	\] 
+	Hence $X^{-1}$ coincides with $G_q \circ \pi$ on $X(U) \cap V_q$,
+	and we can set $\phi_q = G_q \circ \pi$.
+\end{proof}
+
+Many nice corollaries follow from this.
+
+\begin{corollary}
+	Any differentiable map between regular surfaces is locally the restriction
+	of a differentiable map $\R^3 \to \R^3$. \\
+
+	More specifically, let $M_1, M_2$ be regular surfaces and $\phi : M_1 \to
+	M_2$ be a differentiable map. Then for every $q \in M_1$, there exist an
+	open neighbourhood $V_q$ of $q$ in $\R^3$, and a differentiable function
+	$f_q : V_q \to \R^3$ which restricts to $\phi$ on the open set $V_q \cap
+	M_1$ in $M_1$.
+\end{corollary}
+\begin{proof}
+	Let $Y : W \to Y(W) \subset M_2$ be a local parameterization of $M_2$ which
+	contains $\phi(q)$. Let $X : U \to X(U)$ be a local parameterization of
+	$M_1$ which contains $q$ such that $\phi(X(U)) \subset Y(W)$. Let $V_q$ be
+	an open neighbourhood of $q$ in $\R^3$ such that there exists a
+	differentiable functions $G_q : V_{q} \to \R^{2}$ which restricts to
+	$X^{-1}$ on $M_1 \cap V_q$. Then define $f_{q} : V_q \to \R^3$ by
+	\[
+		f_q
+		=
+		\phi
+		\circ
+		X
+		\circ
+		G.
+	\] 
+	As $G$ restricts to $X^{-1}$ on $M_1 \cap V_q$, we see that $f_q$ restricts to
+	$\phi$ on $M_1 \cap V_q$. Moreover, $f_q$ is $C^1$ as it's the composition
+	\[
+		f_q
+		=
+		Y
+		\circ
+		\left(Y^{-1}
+		\circ
+		\phi
+		\circ
+		X\right)
+		\circ
+		G
+	\] 
+	of the $C^1$ maps $Y,\, Y^{-1} \circ \phi \circ X, G$.
+\end{proof}
+
+\begin{corollary}
+
+	Let $M_1, M_2$ be regular surfaces, and $\phi : M_1 \to M_2$ be a
+	differentiable map. Let $\gamma : I \to M_1$ be a differentiable curve on
+	$M_1$. Then $\phi \circ \gamma$ is a differentiable
+	curve on $M_2$.
+
+\end{corollary}
+\begin{proof}
+
+	Let $p \in I$ and $q = \gamma(p)$. Let $f_q : V_q \to \R^3$ be a $C^1$ map
+	which restricts to $\phi$. Then $\phi \circ \gamma$ is locally given by
+	$f_q \circ \restr{\gamma}{\gamma^{-1}(V_q)}$, which is $C^1$ at $p$. As $p$
+	was an arbitrary point in $\gamma(I)$, it follows that $\phi \circ \gamma$
+	is $C^1$ on all of its domain.
+
+\end{proof}
+
+\subsection*{Ex 4.7}
+
+Let $f : \R^3 \to \R^3$ be the differentiable map given by
+\[
+	f : (x, y, z) \mapsto \left(x, \frac{1}{\sqrt{2}}y, \frac{1}{\sqrt{3}} z\right).
+\] 
+Then $\im(\restr{f}{S^2}) = M$, hence $\phi = \restr{f}{S^2}$ is a
+differentiable map $S^2 \to M$. Moreover, as $f$ is injective, so is $\phi$,
+and as $\phi$ is surjective, it is a diffeomorphism.
+
+\subsection*{Ex 4.8}
+
+We will show that $X^{-1}$ isn't continuous using only topological arguments.
+We have that $X^{-1}$ is continuous if and only $X(V)$ is open in $M$ for every
+open set $V \subseteq U$. Now, every open neighbourhood of $0 \in M$ contains
+values of each quadrant of the $x, y$-lane. Meanwhile, if we let $V = \{(u, v)
+\in U : -\epsilon < 0 < \epsilon \}$ for $\epsilon \leq \pi/2$, we have that
+$X(V)$ only contains values in the upper right and lower left quadrants of the
+$x, y$-plane. Hence $X^{-1}$ is not continuous. \\
+
+To see that $M$ is not a regular surface, note that the tangent plane in
+$(0,0,1/2)$ is $3$-dimensional.
+
+\subsection*{Ex 4.9}
+
+\begin{proof}[Proof of Proposition 4.33]
+
+	Let $X : U \to X(U) \subset M_1$ be a local parameterization of $M_1$ at $p
+	= X(0)$, and $Y : V \to Y(V) \subset M_2$ be a local parameterization of
+	$M_2$ at $q = Y(0)$. Then let $F = Y^{-1} \circ \phi \circ X$. Then we saw
+	in the proof of Proposition 4.32 that any vector $dX (a, b) \in T_p M_1$ is
+	mapped by $d\phi_p$ to $T_p M_2$ according to
+	\[
+		d\phi_p
+		:
+		dX (a, b)
+		\mapsto 
+		dY(0) dF(0) (a b).
+	\] 
+	Thus $d\phi_p$ bijective only when $dF(0)$ is. Hence there is some
+	neighbourhoods $U_0 \subset U, V_0 \subset V$ of $0$ where $F$ has a $C^1$
+	inverse $F^{-1} : V_0 \to U_0$. We then obtain neighbourhoods $X(U_0),
+	Y(V_0)$ where $\phi$ is invertible by
+	\[
+		\phi^{-1} = X \circ F^{-1} \circ Y^{-1},
+	\] 
+	and $\phi^{-1}$ is differentiable here as $F^{-1}$ is.
+
+\end{proof}
+
+\subsection*{Ex 4.10}
+
+We have 
+\[
+	X_{\alpha}(r, \theta)
+	=
+	r \left(
+		\sin(\alpha)
+		\cos\left(\frac{\theta}{\sin(\alpha)}\right),
+		\sin(\alpha)
+		\sin\left(\frac{\theta}{\sin(\alpha)}\right),
+		\cos(\alpha)
+	\right),
+\] 
+and
+\begin{align*}
+	(X_{\alpha})_r
+	&=
+	\left(
+		\sin(\alpha)
+		\cos\left(\frac{\theta}{\sin(\alpha)}\right),
+		\sin(\alpha)
+		\sin\left(\frac{\theta}{\sin(\alpha)}\right),
+		\cos(\alpha)
+	\right) \\
+	(X_{\alpha})_{\theta}
+	&=
+	\left(
+		-\sin\left(\frac{\theta}{\sin(\alpha)}\right),
+		\cos\left(\frac{\theta}{\sin(\alpha)}\right),
+		0
+	\right) \\
+\end{align*}
+It then follows that 
+\begin{align*}
+	E 
+	&= 
+	\sin^2(\alpha)
+	\cos^2\left(\frac{\theta}{\sin(\alpha)}\right)
+	+
+	\sin^2(\alpha)
+	\sin^2\left(\frac{\theta}{\sin(\alpha)}\right)
+	+
+	\cos^2(\alpha) \\
+	&=
+	\sin^2(\alpha)
+	+
+	\cos^2(\alpha) \\
+	&=
+	1, \\
+	F
+	&=
+	-\sin(\alpha)
+	\cos\left(\frac{\theta}{\sin(\alpha)}\right)
+	\sin\left(\frac{\theta}{\sin(\alpha)}\right)
+	+
+	\sin(\alpha)
+	\sin\left(\frac{\theta}{\sin(\alpha)}\right)
+	\cos\left(\frac{\theta}{\sin(\alpha)}\right)
+	+
+	0 \\
+	&=
+	0, \\
+	G
+	&=
+	\sin^2\left(\frac{\theta}{\sin(\alpha)}\right)
+	+
+	\cos^2\left(\frac{\theta}{\sin(\alpha)}\right)
+	=
+	1.
+\end{align*}
+
+Hence, the first fundamental form pulls back to $U$ as
+\[
+	ds^2 = du^2 + dv^2.
+\] 
+
+By staring at the formula for $X_{\alpha}$, we can convince ourselves that it
+parameterises a punctured cone with angle $\alpha$ to the $z$-axis. Hence we
+expect the $M$ to be the zero locust of 
+\[
+	f_{\alpha}(x, y, z)
+	=
+	\cos(\alpha)\sqrt{x^2 + y^2} - \sin(\alpha) z
+\] 
+for $f_{\alpha} : \R^3 \setminus \{0\} \to \R$.
+
+\subsection*{Ex 4.11}
+
+For distances to be preserved, intuitively it seems that we need the plane to
+"wrap" around the cylinder multiple times. I.e, we guess that an isometric
+parameterization $X : \R^2 \to M$ will have the form
+\[
+	X : (\theta, z) \mapsto (\cos(\omega \theta), \sin(\omega \theta), z)
+\] 
+for some $\omega \in \R$. Differentiating yields 
+\begin{align*}
+	X_{\theta}(\theta, z)
+	&=
+	( -\omega \sin(\omega \theta), \omega \cos(\omega \theta), 0), \\
+	X_z(\theta, z)
+	&=
+	(0,0,1),
+\end{align*}
+and we see that
+\[
+	X_{\theta} \cdot X_{\theta} = 1, \,
+	X_{\theta} \cdot X_{z} = 0, \,
+	X_z \cdot X_z = 1.
+\]
+precisely when $|\omega| = 1$. \\
+
+Now, $X$ is not bijective, but it is bijective on open strips of $\R^2$ that
+are thinner than $2\pi$, and it has a continuous inverse on these strips.
+
+\subsection*{Ex 4.13}
+
+Let $\phi : \R^3 \to \R^3$ be a Euclidean motion
+Then $\phi$ can be written as 
+\[
+	\phi(Z) = AZ + B
+\] 
+with $A^t A = I$. Consider $\phi$ as a differentiable map between regular
+surfaces $\phi : M_1 \to M_2$. Then let $\gamma : I \to M_1$ be a
+differentiable curve on $M_1$ with $\gamma(0) = p$ and $\gamma'(0) = (a, b)$.
+Then 
+\[
+	d\phi_p
+	:
+	(a, b)
+	=
+	\gamma'(0)
+	\mapsto
+	\frac{d}{dt}
+	\restr{(\phi \circ \gamma)}{0}
+	=
+	d\phi(\gamma(0)) \circ \gamma'(0)
+	=
+	A (a, b),
+\] 
+i.e $d\phi_p : (a, b) \mapsto A (a, b)$. We now have 
+\begin{align*}
+	\langle d\phi_p Z, d\phi_p Z \rangle 
+	&=
+	\langle AZ, AZ \rangle \\
+	&=
+	(AZ)^T AZ \\
+	&=
+	Z^T A^T A Z \\ 
+	&=
+	Z^T I Z \\
+	&=
+	Z^T Z \\
+	&=
+	\langle Z, Z \rangle.
+\end{align*}
+
+\subsection*{Ex 4.14}
+
+We solve the exercise for the Catenoid only. We are given 
+\[
+	X : (u, v)
+	\mapsto
+	(\cosh(u) \cos(v), \cosh(u) \sin(v), u),
+\]
+and thus
+\begin{align*}
+	X_u
+	&=
+	(\sinh(u)\cos(v), \sinh(u)\sin(v), 1), \\
+	X_v
+	&=
+	(-\cosh(u) \sin(v), \cosh(u) \cos(v), 0).
+\end{align*} 
+It follows that 
+\begin{align*}
+	\langle X_u, X_u \rangle
+	&=
+	\sinh^2(u) + 1 \\
+	&=
+	\cosh^2(u), \\
+	\langle X_u, X_v \rangle
+	&=
+	-\sinh(u)\cos(v)\cosh(u)\sin(v)
+	+
+	\sinh(u)\sin(v)\cosh(u)\cos(v)
+	+
+	0 \\
+	&=
+	0, \\
+	\langle X_v, X_v \rangle
+	&=
+	\cosh^2(u),
+\end{align*}
+hence $ds^2 = \cosh^2(u)(du^2 + dv^2)$. The Catenoid is rotationally symmetric in 
+the $x,y$-plane, and the radius is given by $\cosh(u) = \cosh(z)$. It follows 
+that it's the zero locust of 
+\[
+	f(x, y, z)
+	=
+	\sqrt{x^2 + y^2} - \cosh(z)
+\] 
+
+\subsection*{Ex 4.16}
+
+Let $X : \to T^2$ be the parameterization given by 
+\[
+	X
+	:
+	(u, v)
+	\mapsto
+	\begin{bmatrix}
+		\cos(v) & - \sin(v) & 0 \\
+		\sin(v) & \cos(v) & 0 \\
+		0 & 0 & 1 \\
+	\end{bmatrix}
+	\begin{bmatrix}
+		R + r \cos(u) \\
+		0 \\
+		r\sin(u)
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+		\left(R + r \cos(u)\right)(\cos(v)) \\
+		\left(R + r \cos(u)\right)(\sin(v)) \\
+		r\sin(u)
+	\end{bmatrix}.
+\] 
+Then 
+\begin{align*}
+	X_u
+	&=
+	\begin{bmatrix}
+		- r \sin(u)\cos(v) \\
+		- r \sin(u)\sin(v) \\
+		r\cos(u)
+	\end{bmatrix}, \\
+	X_v
+	&=
+	\begin{bmatrix}
+		-\left(R + r \cos(u)\right)\sin(v) \\
+		\left(R + r \cos(u)\right)\cos(v) \\
+		0
+	\end{bmatrix},
+\end{align*}
+and
+\begin{align*}
+	\langle X_u, X_u \rangle
+	&=
+	r^2, \\
+	\langle X_u, X_v \rangle
+	&=
+	0, \\
+	\langle X_u, X_v \rangle
+	&=
+	\left(R + r \cos(u)\right)^2.
+\end{align*}
+Hence the area of $T^2$ is given by
+\begin{align*}
+	A(T^2)
+	&=
+	\int_{0}^{2\pi}
+	\int_{0}^{2\pi}
+	\sqrt{
+		r^2\left(R + r \cos(u)\right)^2
+	}
+	dudv \\
+	&=
+	r
+	\int_{0}^{2\pi}
+	\int_{0}^{2\pi}
+	\left|R + r \cos(u)\right|
+	dudv \\
+	&=
+	2\pi r
+	\int_{0}^{2\pi}
+	\left|R + r \cos(u)\right|
+	du \\
+	&=
+	2\pi r
+	\int_{0}^{\pi}
+	R + r \cos(u)
+	du \\
+	&=
+	2\pi r
+	\int_{0}^{\pi}
+	R
+	du \\
+	&=
+	4\pi^2 rR,
+\end{align*}
+where we used that $R > r$, hence $R + r\cos(u) > 0$.
+
+\subsection*{Ex 5.1}
+
+We will rely on some intuition from multivariate calculus, which tells us that
+the gradient of a function $\R^3 \to \R$ at a point is orthogonal to the
+tangent plane of the level surface at that point. I.e "gradients point out of
+level surfaces." \\
+
+Let $p \in M$, and $\gamma : I \to M$ be a differentiable curve on $M$
+with $\gamma(0) = p$. Then $f(\gamma(0)) = q$, hence 
+\[
+	0
+	=
+	\restr{(f(\gamma(t)))'}{t = 0}
+	=
+	df(\gamma(0)) \cdot \gamma'(0).
+\] 
+I.e $df(p) \cdot v = 0$ for all $v \in T_{p}M$. Hence $N(p) =
+\frac{df(p)}{|df(p)|}$ is a map $M \to S^2$, and it's differentiable since it's
+the restriction of the $\R^3 \to \R^3$ $C^1$-map $p \mapsto
+\frac{df(p)}{|df(p)|}$.
+
+\subsection*{Ex 5.2}
+
+First of all, let $\lambda_Z, \lambda_W$ be the eigenvalues 
+\[
+	S_p(Z) = \lambda_Z Z, \, 
+	S_p(W) = \lambda_W W.
+\] 
+Then 
+\begin{align*}
+	\kappa_{n}(\theta)
+	&=
+	\langle S_p(Z(\theta)), Z(\theta) \rangle \\
+	&=
+	\langle \lambda_Z \cos(\theta) Z + \lambda_W \sin(\theta) W, \cos(\theta) Z + \sin(\theta) W \rangle \\
+	&=
+	\langle
+		\lambda_Z \cos(\theta) Z,
+		\cos(\theta) Z
+	\rangle
+	+
+	\langle
+		\lambda_Z \cos(\theta) Z,
+		\sin(\theta) W
+	\rangle
+	+
+	\langle
+		\lambda_W \sin(\theta) W,
+		\cos(\theta) Z 
+	\rangle
+	+
+	\langle
+		\lambda_W \sin(\theta) W,
+		\sin(\theta) W
+	\rangle \\
+	&=
+	\lambda_Z \cos^2(\theta)
+	+
+	\lambda_W \sin^2(\theta),
+\end{align*}
+and 
+\begin{align*}
+	\frac{1}{2\pi}
+	\int_{0}^{2\pi}
+	\kappa_n(\theta)
+	d \theta
+	&=
+	\frac{1}{2\pi}
+	\int_{0}^{2\pi}
+	\lambda_Z \cos^2(\theta)
+	+
+	\lambda_W \sin^2(\theta),
+	d \theta \\
+	&=
+	\frac{1}{2\pi}\left(
+		\lambda_Z 
+		\left[
+			\frac{x}{2}
+			+
+			\frac{\sin(2x)}{4}
+		\right]_{0}^{2\pi}
+		+
+		\lambda_W 
+		\left[
+			\frac{x}{2}
+			-
+			\frac{\sin(2x)}{4}
+		\right]_{0}^{2\pi}
+	\right) \\
+	&=
+	\frac{\lambda_Z + \lambda_W}{2}.
+\end{align*}
+Now $H(p)$ is half the trace of $S_p$, which is half the sum of the eigenvalues
+of $S_p$, I.e $H(p) = \frac{\lambda_Z + \lambda_W}{2}$ and we are done.
+
+\subsection*{Ex 5.3}
+
+First of all, $K(p) = \det(S_p)$ is the product of the eigenvalues of $S_p$,
+and $H(p) = \frac{1}{2} \text{trace}(S_p)$ is half the sum of the eigenvalues
+of $S_p$. Now, the normal to any point of the sphere is that same point
+normalized. I.e
+\[
+	S_p : x \mapsto \frac{x}{|x|} = \frac{x}{r},
+\]
+and it follows that $S_p = \frac{1}{r} I$, so both eigenvalues of $S_p$ are
+$1/r$. Thus $H(p) = 1/r$ and $K(p) = 1/r^2$.
+
+\subsection*{Ex 5.6}
+
+Let $\Phi(x) = Ax + B$ be a rigid Euclidean motion. Then $\det(A) = 1$ and $A^t
+A = I$. \\
+
+Let $M$ be a regular surface, $p \in M$. Then $T_{\Phi(p)}\Phi(M) = AT_{p}M$
+and $N_{\Phi(M)}(\Phi(p)) = A N_{M}(p)$ (here we use the fact that $\det(A) =
+1$, since we need the new normal to have magnitude $1$). It follows for any
+$\gamma : I \to M$ with $\gamma(0) = p$ and $\gamma'(0) = Z$ that
+$\Phi(\gamma(t))' = AZ$ and
+\begin{align*}
+	S_{\Phi(M), \Phi(p)}(AZ)
+	&=
+	-\restr{\left(\frac{d}{dt}N_{\Phi(M)}(\Phi(\gamma(t)))\right)}{t = 0} \\
+	&=
+	-\restr{\left(\frac{d}{dt}AN_{M}(\gamma(t))\right)}{t = 0} \\
+	&=
+	-A\restr{\left(\frac{d}{dt}N_{M}(\gamma(t))\right)}{t = 0} \\
+	&=
+	-A dN_M(p) \\
+	&=
+	A S_p(\gamma).
+\end{align*} 
+If we now let $Z, W \in T_p M$ we get
+\begin{align*}
+	II_{\Phi(M), \Phi(p)}(\Phi(Z), \Phi(W))
+	&=
+	\langle S_{\Phi(M), \Phi(p)}(\Phi(Z)), \Phi(W)\rangle \\
+	&=
+	\langle S_{\Phi(M), \Phi(p)}(\Phi(Z)), \Phi(W)\rangle \\
+	&=
+	\langle AS_{M, p}Z, AW \rangle \\
+	&=
+	(S_{M, p}(Z))^t A^t A W \\
+	&=
+	(S_{M, p}(Z))^t W \\
+	&=
+	\langle S_{M, p}Z, W \rangle \\
+	&=
+	II_{M, p}(Z, W).
+\end{align*}
+
+\subsection*{Ex 5.7}
+
+
+We have
+\begin{align*}
+	X_u(u, v)
+	&=
+	(\sinh(u)\cos(v), \sinh(u)\sin(v), 1) \\
+	X_v(u, v)
+	&=
+	(-\cosh(u)\sin(v), \cosh(u)\cos(v), 0),
+\end{align*}
+and
+\begin{align*}
+	Y_u(u, v)
+	&=
+	(\cosh(u)\cos(v), \cosh(u)\sin(v), 0) \\
+	Y_v(u, v)
+	&=
+	(-\sinh(u)\sin(v), \sinh(u)\cos(v), 1).
+\end{align*}
+For the normals we get,
+\begin{align*}
+	N_{X}(u, v)
+	&=
+	\frac{X_u \times X_v}{|X_u \times X_v|} \\
+	&=
+	\frac{(-\cosh(u)\cos(v), -\cosh(u)\sin(v), \cosh(u)\sinh(u))}{|X_u \times X_v|} \\
+	&=
+	\frac{(-\cosh(u)\cos(v), -\cosh(u)\sin(v), \cosh(u)\sinh(u))}{\sqrt{\cosh(u)(1 + \sinh^2(u))}} \\
+	&=
+	\frac{(-\cosh(u)\cos(v), -\cosh(u)\sin(v), \cosh(u)\sinh(u))}{\sqrt{\cosh^2(u)(1 + \sinh^2(u))}} \\
+	&=
+	\frac{(-\cosh(u)\cos(v), -\cosh(u)\sin(v), \cosh(u)\sinh(u))}{\sqrt{\cosh^4(u)}} \\
+	&=
+	\frac{(-\cos(v), -\sin(v), \sinh(u))}{\cosh(u)} \\
+	&=
+	\frac{1}{\cosh(u)}
+	\begin{bmatrix}
+		-\cos(v) \\
+		-\sin(v) \\
+		\sinh(u)
+	\end{bmatrix},
+\end{align*}
+and
+\begin{align*}
+	N_{Y}(u, v)
+	&=
+	\frac{Y_u \times Y_v}{|Y_u \times Y_v|} \\
+	&=
+	\frac{(\cosh(u)\sin(v), -\cosh(u)\cos(v), \cosh(u)\sinh(u))}{|Y_u \times Y_v|} \\
+	&=
+	\frac{(\sin(v), -\cos(v), \sinh(u))}{|\cosh(u)|} \\
+	&=
+	\frac{1}{\cosh(u)}
+	\begin{bmatrix}
+		\sin(v) \\
+		-\cos(v) \\
+		\sinh(u)
+	\end{bmatrix},
+\end{align*}
+We then have
+\begin{align*}
+	dN_X(u, v)
+	&=
+	\begin{bmatrix}
+		\frac{\cos(v)\sinh(u)}{\cosh^2(u)} & \frac{\sin(v)}{\cosh(u)} \\
+		\frac{\sin(v)\sinh(u)}{\cosh^2(u)} & \frac{-\cos(v)}{\cosh(u)} \\
+		\frac{\cosh(u)^2 - \sinh^2(u)}{\cosh^2(u)} & 0
+	\end{bmatrix} \\
+	&=
+	\frac{1}{\cosh^2(u)}
+	\begin{bmatrix}
+		\cos(v)\sinh(u) & \sin(v)\cosh(u) \\
+		\sin(v)\sinh(u) & -\cos(v)\cosh(u) \\
+		1 & 0
+	\end{bmatrix} \\
+	dN_Y(u, v)
+	&=
+	\frac{1}{\cosh^2(u)}
+	\begin{bmatrix}
+		-\sin(v)\sinh(u) & \cos(v)\cosh(u) \\
+		\cos(v)\sinh(u) & \sin(v)\cosh(u) \\
+		1 & 0
+	\end{bmatrix} \\
+\end{align*}
+With $p = (p_u, p_v)$, we get
+\begin{align*}
+	S_{X, p}(a X_u(p) + b X_v(p))
+	&=
+	\frac{1}{\cosh^2(p_u)}
+	\begin{bmatrix}
+		\cos(p_v)\sinh(p_u) & \sin(p_v)\cosh(p_u) \\
+		\sin(p_v)\sinh(p_u) & -\cos(p_v)\cosh(p_u) \\
+		1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		a \\
+		b
+	\end{bmatrix} \\
+	&=
+	\begin{bmatrix}
+		a\cos(p_v)\sinh(p_u) b\sin(p_v)\cosh(p_u) \\
+		a\sin(p_v)\sinh(p_u) -b\cos(p_v)\cosh(p_u) \\
+		a
+	\end{bmatrix} \\
+	&=
+	aX_u(p) - bX_v(p),
+\end{align*}
+hence in the basis of $X_u, X_v$, we can write $S_{X, p}$ as the matrix
+$\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$. The case for $Y$ is similar with
+\begin{align*}
+	S_{Y, p}(a Y_u(p) + b Y_v(p))
+	&=
+	\frac{1}{\cosh^2(p_u)}
+	\begin{bmatrix}
+		-\sin(p_v)\sinh(p_u) & \cos(p_v)\cosh(p_u) \\
+		\cos(p_v)\sinh(p_u) & \sin(p_v)\cosh(p_u) \\
+		1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+		a \\
+		b
+	\end{bmatrix} \\
+	&=
+	\begin{bmatrix}
+		-a\sin(p_v)\sinh(p_u) + b\cos(p_v)\cosh(p_u) \\
+		a\cos(p_v)\sinh(p_u)  + b\sin(p_v)\cosh(p_u) \\
+		a
+	\end{bmatrix} \\
+	&=
+	aY_v(p) + bY_u(p),
+\end{align*}
+so in the basis $Y_u, Y_v$, we can express $S_{Y, p}$ as $\begin{bmatrix} 0 & 1
+\\ 1 & 0 \end{bmatrix}$, which in turn has the eigenvalues $-1, 1$ and
+eigenvectors $[-1\, 1],\, [1\, 1]$. \\
+
+The principal curvatures of both $X$ and $Y$ are $1, -1$.
+
+\subsection*{Ex 5.8}
+
+If $M$ is compact, it is also bounded. Let
+\[
+	R
+	=
+	\sup_{p \in M}(|p|).
+\]
+Then $M$ is contained in $S^2_R$ except for some points which coincide with
+$S^2_R$. At these points, no curve on $M$ has any tangent with a component in
+the radial direction, hence the tangent planes at these points must also
+coincide with the tangent planes of $S^2_R$. As all of $S^2_R$, hence all of
+$M$, lies on one side of these tangent planes, it follows that $K$ is positive
+here.
+
+\subsection*{Ex 5.9}
+
+We have 
+\begin{align*}
+	X_s 
+	&=
+	\gamma'(s)
+	+
+	r(\cos(\theta) n'(s) + \sin(\theta) b'(s)) \\
+	&=
+	t(s)
+	+
+	r\cos(\theta)(-\kappa(s) t(s) + \tau(s)b(s))
+	-
+	r\sin(\theta)\tau(s)n(s) \\
+	&=
+	(1 - r\cos(\theta)\kappa(s))t(s)
+	-
+	r\sin(\theta)\tau(s)n(s)
+	+
+	r\cos(\theta)\tau(s)b(s) \\
+	X_{\theta}
+	&=
+	-r\sin(\theta)n(s) + r\cos(\theta)b(s),
+\end{align*} 
+from which it follows that the outer normal,
+\begin{align*}
+	N(X(s, \theta))
+	&=
+	-\frac{X_\theta(s, \theta) \times X_{s}(s, \theta)}
+	{|X_\theta(s, \theta) \times X_{s}(s, \theta)|} \\
+	&=
+	\frac{X_s(s, \theta) \times X_{\theta}(s, \theta)}
+	{|X_s(s, \theta) \times X_{\theta}(s, \theta)|} \\
+	&=
+	\frac{
+		-(1 - r\cos(\theta)\kappa(s))
+		r\sin(\theta)
+		t(s) \times n(s)
+		+
+		(1 - r\cos(\theta)\kappa(s))
+		r\cos(\theta)
+		t(s) \times b(s)
+		-
+		r\sin(\theta)\tau(s)
+		r\cos(\theta)
+		n(s) \times b(s)
+		-
+		r\cos(\theta)\tau(s)
+		r\sin(\theta)
+		b(s) \times n(s) 
+	}
+	{|X_s(s, \theta) \times X_{\theta}(s, \theta)|} \\
+	&=
+	\frac{
+		-(1 - r\cos(\theta)\kappa(s))
+		r\sin(\theta)
+		b(s)
+		-
+		(1 - r\cos(\theta)\kappa(s))
+		r\cos(\theta)
+		n(s)
+		-
+		r\sin(\theta)\tau(s)
+		r\cos(\theta)
+		t(s)
+		+
+		r\cos(\theta)\tau(s)
+		r\sin(\theta)
+		t(s)
+	}
+	{|X_s(s, \theta) \times X_{\theta}(s, \theta)|} \\
+	&=
+	\frac{
+		-(1 - r\cos(\theta)r\kappa(s))
+		\left(\cos(\theta)n(s) + \sin(\theta)b(s)\right)
+	}
+	{|X_s(s, \theta) \times X_{\theta}(s, \theta)|} \\
+	&=
+	\cos(\theta)n(s) + \sin(\theta)b(s),
+\end{align*}
+points "out of the tube", in the radial direction with respect to $\theta$.
+Intuitively, we then expect $X_{\theta}$ to be a principal direction of the
+shape operator, since as we move along a given circle for a fixed $s$, mk, the
+normal points in exactly the same direction as $X$, and both the normal and $X$
+have constant magnitude, so we expect their derivatives to point in the same
+directions as well. From this it would follow that $t(s)$ is the other
+principal direction, as it is orthogonal to both $n$ and $X_{\theta}$. We now
+calculate the principal curvatures in the $t(s)$ and $X_\theta$ directions, and
+will along the way formally verify that these are indeed principal directions.
+\\
+
+Fix some point $p = (p_s, p_\theta) \in \R^2$ in parameter space. To calculate
+the principal curvatures at $X(p) \in M$, we need to compute $S_p(t(p)) =
+-dN(p)t(p)$ and $S_p(X_\theta(p)) = -dN(p)X_{\theta}(p)$. We don't want to
+choose a basis and figure out how to represent $-dN(p)$ in this basis, so
+instead we'll make use of the definition of the differential of differentiable
+map, and produce curves $\phi_p, \psi_p : \R \to M$ which satisfy $\phi_p(0) =
+\psi_p(0) = p$ and $\phi_p'(0) = X_\theta(p),\, \psi_p'(0) = t(p_s)$, and make
+use of the definition of $dN(p)$ and calculate $\restr{(N \circ \phi_p)'}{0}$
+and $\restr{(N \circ \psi_p)'}{0}$. Moreover, as we only have a formula for $N
+\circ X$, it will help to produce factorizations $\alpha_p, \beta_p : \R \to
+\R^2$ such that 
+\[
+	\phi_p = X \circ \alpha_p, \,
+	\psi_p = X \circ \beta_p.
+\] \\
+
+We begin with the easier curve. Let $\alpha_p : \R \to \R^2$ be given by 
+\[
+	\alpha_p : t \to \left(p_s, p_{\theta} + t\right).
+\] 
+Then let $\phi_p = X \circ \alpha_p$, which is given by 
+\[
+	\phi_p 
+	: 
+	t 
+	\mapsto 
+	\phi(p_s) 
+	+ 
+	r\left(
+		\cos\left(p_{\theta} + t\right)N(p_s)
+		+
+		\sin\left(p_{\theta} + t\right)B(p_s)
+	\right).
+\]
+Then
+\begin{align*}
+	\phi_p'(0) 
+	&= 
+	0
+	+
+	r
+	\left(
+		-\sin(p_{\theta})N(p_s)
+		+
+		\cos(p_{\theta})B(p_s)
+	\right) 
+	=
+	X_{\theta}(p),
+\end{align*}
+and 
+\begin{align*}
+	S_{p}(X_{\theta})
+	&=
+	-
+	\restr{
+		\left(
+			N(\phi_p(t))
+		\right)'
+	}{0} \\
+	&=
+	-
+	\restr{
+		\left(
+			N(X(\alpha_p(t)))
+		\right)'
+	}{0} \\
+	&=
+	-
+	\restr{
+		\left(
+			\cos\left(p_{\theta} + t \right)N(p_s)
+			+
+			\sin\left(p_{\theta} + t \right)B(p_s)
+		\right)'
+	}{0} \\
+	&=
+	-
+	\left(
+		-\sin(p_{\theta})N(p_s)
+		+
+		\cos(p_{\theta})B(p_s)
+	\right) \\
+	&=
+	\frac{-1}{r} X_{\theta}(p),
+\end{align*}
+and we see that $X_{\theta}(p)$ is indeed an eigenvector to $S_p$, hence a
+principal direction at $p$, and the corresponding principal curvature is
+$-1/r$. \\
+
+The other curve is harder, as we need to do some algebra to figure out what
+$\beta_p$ should be. Let $a, b \in \R$ and $\beta_p : \R \to \R^2$ be given by 
+\[
+	\beta_p : t \mapsto (p_s + as, p_{\theta} + bs),
+\] 
+and $\psi_p = X \circ \beta_p$. Then 
+\begin{align*}
+	\psi_p'(0)
+	&=
+	a\gamma'(p_s)
+	+
+	r\left(
+		a \cos(p_\theta)N'(p_s)
+		+
+		a \sin(p_{\theta})B'(p_s)
+		-
+		b \sin(p_\theta)N(p_s)
+		+
+		b \cos(p_\theta)B(p_s)
+	\right) \\
+	&=
+	a\gamma'(p_s)
+	+
+	r\left(
+		a \cos(p_\theta)(-\kappa(p_s)T(p_s) + \tau(p_s)B(p_s))
+		+
+		a \sin(p_{\theta})(-\tau(p_s)N(p_s))
+		-
+		b \sin(p_\theta)N(p_s)
+		+
+		b \cos(p_\theta)B(p_s)
+	\right) \\
+	&=
+	T(p_s)a(1 - r\cos(p_\theta)\kappa(p_s))
+		+
+	N(p_s)
+	r\left(
+		-a \sin(p_{\theta}) \tau(p_s)
+		-
+		b \sin(p_\theta)
+	\right)
+	+
+	B(p_s) 
+	r\left(
+		a\cos(p_\theta)\tau(p_s)
+		+
+		b\cos(p_{\theta})
+	\right),
+\end{align*} 
+and we see that for $\psi'(0)$ to point in the $T(p_s)$ direction, we need 
+\begin{align*}
+	a \sin(p_{\theta}) \tau(p_s) + b \sin(p_\theta)
+	&= 
+	0, \\
+	a\cos(p_\theta)\tau(p_s)
+	+
+	b\cos(p_{\theta})
+	&=
+	0.
+\end{align*}
+We simplify life for ourselves by setting $a = 1, b = -\tau(p_s)$, and
+observing that $\psi'_p(0) \not = t(p_s)$, but instead we now have $\psi'_p(0)
+= (1 - r\cos(p_\theta)\kappa(p_s))t(p_s)$. Now note that
+\begin{align*}
+	S_{p}((1 - r\cos(p_\theta)\kappa(p_s))t(p_s))
+	&=
+	-
+	\restr{
+		\left(
+			N(\psi_p(t))
+		\right)'
+	}{0} \\
+	&=
+	-
+	\restr{
+		\left(
+			N(X(\beta_p(t)))
+		\right)'
+	}{0} \\
+	&=
+	-
+	\restr{
+		\left(
+			\cos\left(p_{\theta} - \tau(p_s)t \right) N(p_s + t)
+			+
+			\sin\left(p_{\theta} - \tau(p_s)t \right) B(p_s + t)
+		\right)'
+	}{0} \\
+	&=
+	-
+	\left(
+		\tau(p_s)\sin(p_{\theta})N(p_s)
+		+
+		\cos(p_\theta)\dot{N}(p_s)
+		-
+		\tau(p_s)\cos(p_{\theta})B(p_s)
+		+
+		\sin(p_{\theta})\dot{B}(p_s)
+	\right) \\
+	&=
+	-
+	\left(
+		\tau(p_s)\sin(p_{\theta})N(p_s)
+		-
+		\kappa(p_s)\cos(p_\theta)T(s)
+		+
+		\tau(p_s)\cos(p_\theta)B(p_s)
+		-
+		\tau(p_s)\cos(p_{\theta})B(p_s)
+		-
+		\tau(p_s)\sin(p_{\theta})N(s)(p_s)
+	\right) \\
+	&=
+	\kappa(p_s)\cos(p_{\theta})T(s),
+\end{align*}
+and we see that the second principal curvature is
+$\frac{\kappa(p_s)\cos(p_\theta)}{1 - r\cos(p_\theta)\kappa(p_s)}$. \\
+
+
+\subsection*{Ex 5.10}
+
+If we assume that $N \circ X$ is injective, this is just the definition of a
+surface integral.
+
+\subsection*{Ex 5.11}
+
+Suppose that $M$ is a regular surface without a boundary contained in $U$. Then
+let $k \in \R$ be the minimum real number with the property that $M$ intersects
+$k + \partial U$. Then $M \subset k + \overline{U}$, where $\overline{U} = U
+\cup \partial U$. In the points where $M$ intersects $k + \partial U$, we have
+that $M$ is fully contained on one side of $k + \partial U$, and hence has the
+same tangent planes as $\partial U$ here. But $\partial U$ has positive
+Gaussian curvature, hence non-zero mean curvature. 
+
+\subsection*{Ex 6.1}
+
+In Example 5.11, it is shown that given a surface of revolution $M$
+of a curve parameterized by arclength $\gamma(t) = (r(t), 0, z(t))$,
+the curvature of $M$ is given by 
+\[
+	K = - \frac{\ddot{r}(u)}{r(u)}.
+\] 
+
+The surface given here may be given as a surface of revolution of the curve
+$\gamma(t) = t(\sin(\alpha), 0, \cos(\alpha))$, which has a vanishing second
+derivative. Hence $K = 0$.
+
+\subsection*{Ex 6.2}
+
+Let $X : U \to X(U) \subset M$ be an orthogonal local parameterization.
+Then an orthonormal basis for its tangent plane is given by
+\[
+	Z = \frac{X_u}{\sqrt{E}},\, 
+	W = \frac{X_v}{\sqrt{G}}.
+\] 
+I.e, there are $a, b : U \to \R$ only depending on $E, G$ such that $Z = a
+X_u,\, W = b X_W$. No let $N : U \to S^2$ be a local Gauss map given by
+\[
+	N 
+	= 
+	\frac{X_u \times X_v}{|X_u \times X_v|}
+	=
+	Z \times W.
+\] 
+Applying Lemma 6.3 Yields that 
+\[
+	K 
+	=
+	\frac{\langle Z_u, W \rangle_v}{\sqrt{EG}}
+	-
+	\frac{\langle Z_v, W \rangle_u}{\sqrt{EG}},
+\] 
+and expanding the first of these terms gives
+\begin{align*}
+	\langle Z_u, W \rangle
+	&=
+	\langle a_uX_u + aX_{uu}, bX_v \rangle \\
+	&=
+	\langle a_uX_u, bX_v \rangle +
+	\langle aX_{uu}, bX_v \rangle \\
+	&=
+	\langle aX_{uu}, bX_v \rangle,
+\end{align*}
+whilst simultaneously
+\[
+	F_u - \frac{1}{2}E_v
+	=
+	\langle X_{uu}, X_v\rangle
+	+
+	\langle X_{u}, X_{vu} \rangle
+	-
+	\langle X_uv, X_u \rangle 
+	=
+	\langle X_{uu}, X_v\rangle,
+\] 
+hence 
+\[
+	\langle Z_u, W \rangle
+	=
+	\frac{-ab}{2} E_v.
+\] 
+Similarly, 
+\begin{align*}
+	\langle Z_v, W \rangle
+	&=
+	\langle a_vX_u + aX_{uv}, bX_v \rangle \\
+	&=
+	\langle a_vX_u, bX_v \rangle +
+	\langle aX_{uv}, bX_v \rangle \\
+	&=
+	\langle aX_{uv}, bX_v \rangle \\
+	&=
+	\frac{ab}{2} G_u.
+\end{align*}
+Finally, combining all of these expressions and using $a = 1/\sqrt{E},\, b =
+1/\sqrt{G}$, we get
+\begin{align*}
+	K
+	&=
+	\frac{\langle Z_u, W \rangle_v}{\sqrt{EG}}
+	-
+	\frac{\langle Z_v, W \rangle_u}{\sqrt{EG}} \\
+	&=
+	\frac{-1}{2 \sqrt{EG}}
+	\left(
+		\left(\frac{E_v}{\sqrt{EG}}\right)_v
+		+
+		\left(\frac{G_u}{\sqrt{EG}}\right)_u
+	\right),
+\end{align*}
+and we are done.
+
+\subsection*{Ex 6.3}
+
+This is a direct consequence of Exercise 6.3. If $E = G$, the formula above becomes
+\begin{align*}
+	K
+	&=
+	\frac{-1}{2 \sqrt{EG}}
+	\left(
+		\left(\frac{E_v}{\sqrt{EG}}\right)_v
+		+
+		\left(\frac{G_u}{\sqrt{EG}}\right)_u
+	\right) \\
+	&=
+	\frac{-1}{2 E}
+	\left(
+		\left(\frac{E_v}{E}\right)_v
+		+
+		\left(\frac{E_u}{E}\right)_u
+	\right) \\
+	&=
+	\frac{-1}{2 E}
+	\left(
+		\left(\log(E)_v\right)_v
+		+
+		\left(\log(E)_u\right)_u
+	\right) \\
+	&=
+	\frac{-1}{2 E}
+	\left(
+		\log(E)_{vv}
+		+
+		\log(E)_{uu}
+	\right).
+\end{align*}
+
+Now suppose that $E = \frac{4}{(1 + u^2 + v^2)^2}$. Then
+\begin{align*}
+	K
+	&=
+	\frac{-(1 + u^2 + v^2)^2}{8}
+	\left(
+		\log\left(
+			\frac{4}{(1 + u^2 + v^2)^2}
+		\right)_{uu}
+		+
+		\log\left(
+			\frac{4}{(1 + u^2 + v^2)^2}
+		\right)_{vv}
+	\right) \\
+	&= 
+	\frac{-(1 + u^2 + v^2)^2}{8}
+	\left(
+		\left(
+			\frac{(1 + u^2 + v^2)^2}{4}
+			\cdot
+			\frac{-16u}{(1 + u^2 + v^2)^3}
+		\right)_{u}
+		+
+		\left(
+			\frac{(1 + u^2 + v^2)^2}{4}
+			\cdot
+			\frac{-16v}{(1 + u^2 + v^2)^3}
+		\right)_{v}
+	\right) \\
+	&=
+	\frac{-(1 + u^2 + v^2)^2}{8}
+	\left(
+		\left(
+			\frac{-4u}{1 + u^2 + v^2}
+		\right)_{u}
+		+
+		\left(
+			\frac{-4v}{1 + u^2 + v^2}
+		\right)_{v}
+	\right) \\
+	&=
+	\frac{-(1 + u^2 + v^2)^2}{8}
+	\left(
+		\frac{-4(1 + u^2 + v^2) + 8u^2}{(1 + u^2 + v^2)^2}
+		+
+		\frac{-4(1 + u^2 + v^2) + 8v^2}{(1 + u^2 + v^2)^2}
+	\right) \\
+	&=
+	(1 + u^2 + v^2) - u^2 - v^2 \\
+	&=
+	1.
+\end{align*}
+
+Now suppose that $E = \frac{4}{(1 - u^2 - v^2)^2}$. Then
+\begin{align*}
+	K
+	&=
+	\frac{-(1 - u^2 - v^2)^2}{8}
+	\left(
+		\log\left(
+			\frac{4}{(1 - u^2 - v^2)^2}
+		\right)_{uu}
+		+
+		\log\left(
+			\frac{4}{(1 - u^2 - v^2)^2}
+		\right)_{vv}
+	\right) \\
+	&= 
+	\frac{-(1 - u^2 - v^2)^2}{8}
+	\left(
+		\left(
+			\frac{(1 - u^2 - v^2)^2}{4}
+			\cdot
+			\frac{16u}{(1 - u^2 - v^2)^3}
+		\right)_{u}
+		+
+		\left(
+			\frac{(1 - u^2 - v^2)^2}{4}
+			\cdot
+			\frac{16v}{(1 - u^2 - v^2)^3}
+		\right)_{v}
+	\right) \\
+	&=
+	\frac{-(1 - u^2 - v^2)^2}{8}
+	\left(
+		\left(
+			\frac{4u}{1 - u^2 - v^2}
+		\right)_{u}
+		+
+		\left(
+			\frac{4v}{1 - u^2 - v^2}
+		\right)_{v}
+	\right) \\
+	&=
+	\frac{-(1 - u^2 - v^2)^2}{8}
+	\left(
+		\frac{4(1 - u^2 - v^2) + 8u^2}{(1 - u^2 - v^2)^2}
+		+
+		\frac{4(1 - u^2 - v^2) + 8v^2}{(1 - u^2 - v^2)^2}
+	\right) \\
+	&=
+	-(1 - u^2 - v^2) - u^2 - v^2 \\
+	&=
+	-1.
+\end{align*}
+Finally, suppose that $E = 1/u^2$. Then
+\begin{align*}
+	K
+	&=
+	-\frac{u^2}{2}
+	\left(
+		\log\left(
+			1/u^2
+		\right)_{uu}
+		+
+		\log\left(
+			1/u^2
+		\right)_{vv}
+	\right) \\
+	&= 
+	-\frac{u^2}{2}
+	\log\left( 1/u^2 \right)_{uu} \\
+	&=
+	-\frac{u^2}{2}
+	\left(\frac{-2}{u^3} u^2\right)_u \\
+	&=
+	-\frac{u^2}{2}
+	\left(\frac{-2}{u}\right)_u \\
+	&=
+	-\frac{u^2}{2}
+	\frac{2}{u^2} \\
+	&=
+	-1.
+\end{align*}
+
+\subsection*{Ex 6.4}
+
+The differential of $X$ is given by
+\[
+	dX
+	=
+	\begin{bmatrix}
+		-\sin(u) & 0 \\
+		\cos(u) & 0 \\
+		0 & -\sin(u) \\
+		0 & \cos(u) \\
+	\end{bmatrix},
+\]
+and as $dX dX^T = I$, we have for all $v, w \in \R^2$
+\[
+	\langle dX v, dX v \rangle
+	=
+	v^T dX^T dX v
+	=
+	v^T v
+	=
+	\langle v, v \rangle.
+\] 
+Hence $X$ is an isometry. \\
+
+This tells us nothing about the Gaussian curvature of $M$, since we haven't
+defined Gaussian curvature for surfaces embedded in $\R^4$. Assuming such a
+definition, we find that either Theorema Egregium or Theorem 5.13 doesn't apply
+to Gaussian curvature of surfaces embedded in $\R^4$. \\
+
+\subsection*{Ex 7.1}
+
+We have that $M$ is a surface of revolution of the curve $\gamma(s) = (r(s),
+z(s))$ with $r(s) = 1, z(s) = s$. Then $\gamma$ is parameterized by arclength,
+and it follows that with the parameterization
+\[
+	X : (s, \theta) \mapsto 
+	\begin{bmatrix}
+		\cos(\theta) \\
+		\sin(\theta) \\
+		s
+	\end{bmatrix},
+\] 
+we have
+\[
+	E = 1, \,
+	F = 0, \,
+	G = r(s)^2 = 1, \,
+\]
+and so the Geodesic equations become
+\begin{align*}
+	\ddot u
+	&=
+	0, \\
+	\ddot v
+	&=
+	0.
+\end{align*}
+I.e all Geodesics on $M$ are of the form $\gamma = X \circ \alpha$ with $\alpha
+= (at + b, ct + d)$, hence are all lines wrapped around the cylinder.
+
+\subsection*{Ex 7.2}
+
+First, any straight line is a geodesic, since $\ddot \gamma = 0$ for all
+straight lines $\gamma$. Now note that the lines $y = z$ and $y = -z$ in the
+plane $x = 1$ line on $M$, and hence are geodesics through $p$. \\ 
+
+Two more geodesics are yielded by noting that $M$ is a surface of revolution,
+and $r = 1$ is a critical point of the radius $r(s)$. Hence both the meridian
+$s \mapsto (s^2 + 1, 0, s^2)$ and the parallel $\theta \mapsto (\cos(\theta),
+\sin(\theta), 0)$ are geodesics.
+
+\subsection*{Ex 7.3}
+
+First, any straight line is a geodesic, since $\ddot \gamma = 0$ for all
+straight lines $\gamma$. Now note that the $x$- and $y$-axes lie on $M$, as
+well as the lines in the $xy$-plane with $x = y$ and $x = -y$. All these lines
+are geodesics, and they all pass through the origin.
+
+
+\subsection*{Ex 7.5}
+
+The first and second derivatives of $\gamma_{\theta}$ are given by
+\begin{align*}
+	\gamma_\theta'(t)
+	&=
+	\left(
+		\cos(\theta), 
+		\sin(\theta),
+		\cos(\theta)
+		\cos(t \cos(\theta))
+		\sin(t \sin(\theta))
+		+
+		\sin(\theta)
+		\sin(t \cos(\theta))
+		\cos(t \sin(\theta))
+	\right), \\
+	\gamma_\theta''(t)
+	&=
+	\left(
+		0, 
+		0,	
+		2\cos(\theta)
+		\sin(\theta)
+		\cos(t \cos(\theta))
+		\cos(t \sin(\theta))
+		-
+		\cos^2(\theta)
+		\sin(t \cos(\theta))
+		\sin(t \sin(\theta))
+		-
+		\sin^2(\theta)
+		\sin(t \cos(\theta))
+		\sin(t \sin(\theta))
+	\right) \\
+	&=
+	\left(
+		0, 
+		0,	
+		2\cos(\theta)
+		\sin(\theta)
+		\cos(t \cos(\theta))
+		\cos(t \sin(\theta))
+		-
+		\sin(t \cos(\theta))
+		\sin(t \sin(\theta))
+	\right).
+\end{align*}
+The geodesic curvature of $\gamma_{\theta}$,
+\begin{align*}
+	\kappa_g
+	&=
+	\langle \gamma''_{\theta}, N \times \gamma_\theta' \rangle \\
+	&=
+	\langle N, \gamma_\theta' \times \gamma''_{\theta} \rangle
+\end{align*} 
+is zero precisely when $N$ lies in the plane $L_{\theta}(s)$ spanned by $\gamma_\theta',
+\gamma_\theta''$ at all points along $\gamma$. \\
+
+We have 
+\begin{align*}
+	X_u &= (1, 0, \cos(u)\sin(v)), \\
+	X_v &= (0, 1, \sin(u)\cos(v)), 
+\end{align*} 
+and so
+\begin{align*}
+	X_u \times X_v
+	&=
+	(-\cos(u)\sin(v), -\sin(u)\cos(v), 1),
+\end{align*}
+from which we see that $N(\gamma_\theta(s))$ lies in $L_\theta(s)$ if and only if 
+there exist $c \in \R \setminus 0$ such that
+\begin{align*}
+	\cos(\theta)
+	&=
+	c \cos(t\cos(\theta))\sin(t\sin(\theta)) \\
+	\sin(\theta)
+	&=
+	c \sin(t\cos(\theta))\cos(t\sin(\theta)) \\
+\end{align*} 
+for all $t$. The expressions on the left are constant, and the expressions on
+the right are constant only when $\theta = k\pi/2$ for $k \in \N$. We've shown
+that $\gamma_\theta$ is a geodesic only when $\theta$ assume such values, and
+to see that all such values give rise to geodesics, $\gamma_\theta$ is a
+straight line for such values of $\theta$, and straight lines are geodesics on
+any surface they lie on.
+
+\subsection*{Ex 7.8}
+
+This exercise can be simplified by realising that $M$ is a Mobius strip, and
+that the curve is a circle. It follows immediately that $\gamma$ isn't a
+geodesic, since $\gamma$ has a constant curvature in the radial direction,
+whilst almost all tangent planes of $M$ have are not orthogonal to the radial
+direction. Indeed, consider the plane at $p = X(0, 0) = (2, 0, 0)$. Here we
+have 
+\[
+	X_v(u, v) = (\cos(u/2)\cos(u), \cos(u/2)\sin(u), \sin(u/2)), \,
+\] 
+and
+\[
+	X_v(0,0)
+	=
+	(1, 0, 0)
+\] 
+which is not orthogonal to $p$. \\
+
+It's also immediate that $M$ is not orientable. To see this algebraically,
+assume towards a contradiction that $N : M \to S^2$ is a Gauss map. The Gauss
+map is determined up to sign, and we can assume without loss of generality that
+$N = \frac{X_u \times X_v}{|X_u \times X_v|}$. We will show that $N$ is $4\pi$
+periodic in $u$, whilst $X$ is $2\pi$-periodic - a contradiction to $N$ being a
+differentiable map between regular surfaces, as such maps send closed curves to
+closed curves. \\
+
+Let's now show that $N$ is $4\pi$-periodic. First of, here is $X_u$:
+\begin{align*}
+	X_u
+	=& \\
+	 &2(-\sin(u), \cos(u), 0)  \\
+	 &+
+	\frac{v}{2}\cos(u/2)(0, 0, 1) \\
+	 &-
+	\frac{v}{2}\sin(u/2)(\cos(u), \sin(u), 0) \\
+	 &+
+	v \sin(u/2) (-\sin(u), \cos(u), 0).
+\end{align*}
+Note that both $X_v$ and $X_u$ are $4\pi$-periodic so $N$ must at least be
+$4\pi$ periodic. To show that it isn't $2\pi$-periodic, we will show that $N(0,
+0) \not = N(2\pi, 0)$. We have 
+\begin{align*}
+	X_u(0, 0) &= (0, 2, 0) \\
+	X_v(0, 0) &= (1, 0, 0) \\
+	X_u(2\pi, 0) &= (0, 2, 0) \\
+	X_v(2\pi, 0) &= (-1, 0, 0) \\
+\end{align*} 
+Hence 
+\begin{align*}
+	X_u(0, 0) \times X_v(0, 0)
+	&=
+	(0, 0, -2) \\
+	X_u(2\pi, 0) \times X_v(2\pi, 0)
+	&=
+	(0, 0, 2), \\
+\end{align*}
+and these clearly don't normalize to the same vector, and we are done.
+
+\subsection*{Ex 7.11}
+
+We are given a torus and are asked to find the minimal radial distance of a
+geodesic $\gamma$ satisfying certain initial conditions. As the torus is a
+surface of revolution, we are free to use the theorem of Clairaut, which says
+that $r(s)\sin(\theta(s)) = C \in \R$, where $r(s)$ is the radial distance of
+$\gamma(s)$, and $\theta(s)$ is the angle between $\dot\gamma(s)$ and the
+meridian through $\gamma(s)$. In our case, we are given the initial conditions
+$r(0) = 3$ and $\sin(\theta(0)) = 1/\sqrt{2}$, hence $r(s)\sin(\theta(s)) =
+3/\sqrt{2}$ for all $s$. \\
+
+We now claim that a curve on the torus will always either
+\begin{itemize}
+	\item pass through the inner equator, or
+	\item be tangentially orthogonal to a meridian at some point.
+\end{itemize}
+
+But there is no $\theta$ such that $2 = \frac{3}{\sin(\theta)\sqrt{2}}$, hence
+$\gamma$ will be tangentially orthogonal to a meridian at some point. It
+follows from the formula that $r(s)$ is minimized when $\sin(\theta(s))$ is
+maximized. In our case, the minimum of $\sin$ is obtained at the point where
+$\dot\gamma$ is orthogonal to a meridian, hence $\inf(r(s)) = 3/\sqrt{2}$, and
+$\inf(r(s)^2) = 9/2$.
+
+
+\subsection*{Ex 8.1}
+
+We will calculate the integral of the curvature in the region where $x \geq 0$,
+and then multiply our result by $2$. This patch of $M$ is enclosed by two
+half-circle parallels at $z = -1$ and $z = 1$, and two meridians at $x = 0$.
+The two meridians are geodesics and do not contribute to the Gauss-Bonnet
+integral. What does contribute are the two parallels as parameterized by arclength, 
+\begin{align*}
+	\gamma_1 
+	&: 
+	(0, \pi)  
+	\to 
+	M \\
+	\gamma_1 
+	&: 
+	\theta 
+	\mapsto 
+	\left(
+		-\sqrt{2}\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+		\sqrt{2}\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+		1
+	\right),
+\end{align*} 
+and
+\begin{align*}
+	\gamma_2 
+	&: 
+	(0, \pi)  
+	\to 
+	M \\
+	\gamma_2 
+	&: 
+	\theta 
+	\mapsto 
+	\left(
+		\sqrt{2}\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+		\sqrt{2}\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+		-1
+	\right),
+\end{align*}
+and we wish to compute their geodesic curvatures $\kappa_1, \kappa_2$. \\
+
+To do this, first note that the $M = f^{-1}(\{1\})$ where $f = x^2 + y^2 -
+z^2$, and so the gradient $\Delta f = (2x, 2y, -2z)$ is a normal to $M$. Thus,
+\[
+	N : (x, y, z) \mapsto \frac{1}{\sqrt{x^2 + y^2 + z^2}}(x, y, -z)
+\] 
+is a Gauss map on $M$, and we see that this choice of Gauss map makes $\gamma$
+positively oriented. Now,
+\begin{align*}
+	\gamma_1'(\theta) 
+	&= 
+	\left(
+		\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+		\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+		0
+	\right), \\
+	\gamma_1''(\theta) 
+	&= 
+	\frac{1}{\sqrt{2}}\left(
+		\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+		-\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+		0
+	\right), \\
+\end{align*}
+and so 
+\begin{align*}
+	\kappa_1
+	&=
+	\langle \gamma_1'', N \times \gamma_1' \rangle \\
+	&=
+	\left\langle
+		\frac{1}{\sqrt{2}}\left(
+			\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+			-\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+			0
+		\right), 
+		\frac{1}{\sqrt{3}}\left(
+			\sqrt{2}\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+			\sqrt{2}\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+			-1
+		\right)
+		\times
+		\left(
+			\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+			\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+			0
+		\right),
+	\right\rangle \\
+	&=
+	\frac{1}{\sqrt{6}}
+	\left\langle
+		\left(
+			\cos\left(\frac{\theta}{\sqrt{2}}\right), 
+			-\sin\left(\frac{\theta}{\sqrt{2}}\right), 
+			0
+		\right),
+		\left(
+			\cos(\frac{\theta}{\sqrt{2}}), 
+			-\sin(\frac{\theta}{\sqrt{2}}), 
+			\sqrt{2}
+		\right)
+	\right\rangle \\
+	&=
+	\frac{1}{\sqrt{6}}
+\end{align*}
+By similar arguments, we see that $\kappa_2 = \sqrt{\frac{1}{6}}$. Hence 
+\begin{align*}
+	\int_{M} K dA
+	&=
+	2\pi - 2\pi
+	- 2 \cdot 2 \int_0^{\pi}\frac{1}{\sqrt{6}} ds\\
+	&=
+	\frac{2\sqrt{2}\pi}{\sqrt{3}}.
+\end{align*}
+are being integrated 
+
+\subsection*{Ex 8.3}
 
 \end{document}

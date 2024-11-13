@@ -81,6 +81,7 @@ showstringspaces=false
 \newcommand{\osp}[1]{\oo_{\Spec\left(#1\right)}}
 \newcommand{\rospu}[2]{\restr{\osp{#1}}{#2}}
 \newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+\newcommand{\ox}{\mathcal{O}_X}
 
 \renewcommand{\AA}[1]{\A^{#1}}
 \newcommand{\An}{\A^n}
@@ -328,6 +329,172 @@ all $q \in W_p$. I.e, $(b_p)_{p \in U}$ is a compatible set of germs! \\
 It now follows from Diagram 2.4.3.1 and Exercise 2.4.B that $\phi$ is
 surjective.
 
+\subsection*{Ex 2.4.F}
+
+Suppose that $\text{sh} : \mathcal{F} \to \mathcal{F}^{\text{sh}}$ and
+$\text{sh}' : \mathcal{F} \to \mathcal{F}^{\text{sh}'}$ are two sheafifications
+of $\mathcal{F}$. Then there exist unique morphisms $f :
+\mathcal{F}^{\text{sh}} \to \mathcal{F}^{\text{sh}'}$ $g :
+\mathcal{F}^{\text{sh}'} \to \mathcal{F}^{\text{sh}}$ such that  
+\[
+	\text{sh}' = f \circ \text{sh}, \,
+	\text{sh} = g \circ \text{sh}'.
+\] 
+It follows that 
+\[
+	\text{sh} = g \circ f \circ \text{sh},
+\]
+and by considering the sheafification diagram with $\mathcal{G} =
+\mathcal{F}^{\text{sh}}$, $f = \id$, we see that $g \circ f = \id$ by the
+uniqueness constraint. Hence $g, f$ are isomorphisms.
+
+\subsection*{Ex 2.4.G}
+
+Let $\text{sh}_\mathcal{F}, \text{sh}_{\mathcal{G}}$ be the sheafification
+morphisms. Then $\text{sh}_{\mathcal{G}} \circ \phi$ is a morphism from
+$\mathcal{F}$ to the sheaf $\mathcal{G}^{\text{sh}}$, and there exist a unique
+morphism of sheaves $\phi^{\text{sh}} : \mathcal{F}^{\text{sh}} \to
+\mathcal{G}^{\text{sh}}$ such that we get a commuting square
+\[
+	\phi^{\text{sh}} \circ \text{sh}_{\mathcal{F}}
+	=
+	\text{sh}_{\mathcal{G}} \circ \phi.
+\]
+Given another presheaf $\mathcal{H}$, and a morphism $\psi : \mathcal{G} \to
+\mathcal{H}$, we can construct a rectangle diagram of two commuting squares and
+quickly read that $(\psi \circ \phi)^{\text{sh}} = \psi^{\text{sh}} \circ
+\phi^{\text{sh}}$ from which it follows that sheafification respects
+composition. By drawing a commuting square and invoking uniqueness it also
+quickly follows that $\id^{\text{sh}} = \id_{\mathcal{F}^{\text{sh}}}$, and
+we've verified that sheafification is a functor.
+
+\subsection*{Ex 2.4.H}
+
+It's immediate that the restriction maps are well-behaved, and so we dedicate
+our efforts to verifying the identity and gluability axioms. \\
+
+We begin with identity. Suppose that $U_i, i \in I$ is an open cover of $U$,
+and that $f = (f_p \in \mathcal{F}_p)_{p \in U} \in \mathcal{F}(U)$ is such
+that $\restr{f}{U_i} = 0$. Then $f_p = 0_p$ for all $p \in U_i$ and all $i \in
+I$. Since the $U_i$ cover $U$, it follows that $f_p = 0_p$ for all $p \in U$,
+and $f = 0$. \\
+
+We continue and show gluability. Suppose that $U_i, i \in I$ is an open cover
+of $U$, and that $f_i \in \mathcal{F}(U_i)$ are such that $\restr{f_i}{U_i \cap
+U_j} = \restr{f_j}{U_i \cap U_j}$ for all $i, j \in I$. Then $(f_i)_p =
+(f_j)_p$ for all $i, j \in I$ and $p \in U_i \cap U_j$. It follows that we can
+define $f = ((f_i)_p \in \mathcal{F}_p)_{p \in U}$ where we take $i \in I$ such
+that $p \in U_i$, and it doesn't matter which $i$ we take since if both $U_i$
+and $U_j$ contain $p$, then $(f_i)_p = (f_j)_p$. This $f$ clearly restricts to
+$f_i$ and we are done.
+
+\subsection*{Ex 2.5.A}
+
+Let $\mathcal{B}$ be a basis for $X$. Then let the $\mathcal{B}$-stalk at $p$
+be defined as 
+\[
+	\mathcal{O}_{\mathcal{B}, p}
+	=
+	\{
+		(a, B_i) \in
+		\mathcal{O}_X(B_i) \times \mathcal{B}
+	\}
+	/ \sim
+\] 
+where $(a, B_i) \sim (a', B_i')$ if there exist some $B_j \in \mathcal{B}$ such
+that $\restr{a}{B_j} = \restr{a'}{B_j}$. 
+
+We will show that the $\mathcal{B}$-stalks of $X$ are equal to the stalks at
+$X$, and that sets of compatible germs of germs in $\mathcal{B}$-stalks are
+precisely the sets of compatible germs of germs in classical stalks, from which
+it follows that a basis will be enough to define the stalks of a sheaf. After
+this, we will use Exercise 2.4.B to recover $\mathcal{F}$ from the
+$\mathcal{B}$-sheaf. \\
+
+Let $p \in X$ and $(a, U), (b, V) \in \mathcal{F}_{X, p}$ be two elements in
+the stalk at $p$. Let $B_U, B_V$ be two basis elements containing $p$ and
+contained in $U$ and $V$ respectively. Then $(a, U) \sim (a, B_U)$ and $(a, V)
+\sim (a, B_V)$, and so $(a, U), (b, V)$ may be identified with elements in
+$\mathcal{F}_{\mathcal{B}, p}$. \\
+
+Moreover, suppose that the germs are equivalent $(a, U) \sim (b, V)$ in the
+stalk at $p$. Then we can find some open $W$ containing $p$ and contained in $U
+\cap V$ such that $\restr{a}{W} = \restr{b}{W}$, and there is some basis
+element $B_W$ containing $p$ contained in $W \cap B_u \cap B_V$. It follows
+that $\restr{a}{B_W} = \restr{b}{B_W}$, and the two germs are equivalent in the
+$\mathcal{B}$-stalk at $p$ as well. \\
+
+It's immediate that elements of the $\mathcal{B}$-stalk can be identified with
+elements of the classical stalk, and that they are equivalent in the stalk
+whenever they are equivalent in the $\mathcal{B}$-stalk. Hence the two ways of
+defining the stalk at $p$ are the same, and $\mathcal{F}_{X, p} =
+\mathcal{F}_{\mathcal{B}, p}$. \\
+
+Finally, suppose that $U$ is open in $X$ and that $(a_p)_{p \in U}$ is a
+compatible set of germs. Then there exist a cover $U_i, i \in I$ and elements
+$s^i \in \mathcal{F}(U_i)$ such that $s^i_q = a_q$ for all $q \in U_i$. Now let
+$\mathcal{B}^{i} \subset \mathcal{B}$ be a cover of each $U_i$ by basis
+elements. Then for each $p \in U$, there is some $i \in I$ and $B_{j}^{i} \in
+\mathcal{B}^{i}$ such that $p \in B_j^{i}$, $s^i_{q} = a_q$ for all $q \in
+B_j^{i}$. Hence $(a_p)_{p \in U}$ is a compatible $\mathcal{B}$-germs. For the
+other direction, it's immediate that compatible sets of $\mathcal{B}$-germs
+form compatible sets of germs. \\
+
+Now, suppose we are given the data $X, \mathcal{B}$ and $\mathcal{F}_{B_i}$ for
+all $B_i \in \mathcal{B}$, and we wish to recover $\mathcal{F}$ for all of $X$.
+We will construct a sheaf $\mathcal{F}'$ which we will show is isomorphic to
+$\mathcal{F}$. We will assume we are working with sheaves of rings, but the
+construction is valid in other categories also. Let $U$ be open in $X$, and let
+$\mathcal{F}'(U)$ be the set of compatible germs on $U$ (which can be obtained
+from $\mathcal{B}$ as above). Then by Exercise 2.4.B, $\mathcal{F}'(U)$ is
+isomorphic to $\mathcal{F}(U)$ as a set, and we may just as well let
+$\mathcal{F}'(U)$ inherit the ring structure of $\mathcal{F}(U)$. Similarly, we
+let the restriction maps of $\mathcal{F}'$ be inherited from $\mathcal{F}$.
+It's immediate from our construction that $\mathcal{F}' \cong \mathcal{F}$.
+
+\subsection*{Ex 2.5.B}
+
+We'll begin by verifying injectivity. Let $a \in F(B)$. Then $(a_p)_{p \in B} =
+0$ implies that we have open sets $p \in B_p \subset B$ such that
+$\restr{a}{B_p} = 0$, hence $a = 0$ by gluability of $F(B)$. \\
+
+As for surjectivity, let $(a_p)_{p \in B} \in \mathcal{F}(B)$. Then by
+definition, we have open sets for all $p \in B$ satisfying $p \in B_p \subset
+B$ and $s^p \in F(B_p)$ such that $s^p_q = a_q$ for all $q \in B_p$. It follows
+from injectivity that the $s^p, s^{p'}$ agree on intersections $B_p \cap
+B_{p'}$ since they have the same germs here. Gluability now gives us an element
+$a \in F(B)$ which gets mapped to $(a_p)_{p \in B}$.
+
+\subsection*{Ex 2.5.C}
+
+\subsection*{(a)}
+
+Morphisms of sheaves are determined by their induced maps on stalks by Exercise
+2.4.C, and every stalk lies in some basic open set, hence morphisms are
+determined by their values on a basis.
+
+\subsection*{(b)}
+
+Maybe later...
+
+\subsection*{Ex 2.5.E}
+
+Let $\mathcal{B}^i$ be a basis for each $U_i$, and $\mathcal{B} = \bigcap_{i
+\in I} \mathcal{B}^i$. Then define a sheaf on $\mathcal{B}$ by setting 
+\[
+	\mathcal{F}_X(B^i) = \mathcal{F}_{U_i}(B^i)
+\] 
+whenever $B^i \in \mathcal{B}^i$. This is well-defined since if $B^i \in U_j$
+for all $j \in J$, we have isomorphisms between all $U_j$ and the cocycle
+condition assures that they define equivalence classes such that all rings can
+be simultaneously identified. \\
+
+It is now more or less immediate that $\mathcal{F}_X$ forms a sheaf on the
+basis $\mathcal{B}$, since every sheaf axiom can be checked on some $U_i$ due
+to the fact that every basis element is properly contained in some $U_i$. More
+specifically, if $B = \bigcup_{j \in L} B^j$ then we have some $i \in I$ such
+that $B \in U_i$ and identity and gluability is inherited from
+$\mathcal{F}_{U_i}$.
 
 \section*{Ch 3}
 
@@ -450,10 +617,19 @@ sequences are exact,
 \] 
 hence the two rightmost modules/rings are isomorphic. \\
 
-Now, in $\C[x, y]_x$ we have that $(xy)_x = (y)_x$. Hence $\C[x, y]_x / (xy)_x
-\cong \C[x]_x / (0)_x \cong C[x]_x$, where the last isomorphism follows since
-$C[x]_x$ is a domain. The sought after isomorphism now follows by applying that
-quotients and localizations commute.
+Moreover, in $\C[x, y]_x$ we have that $(xy)_x = (y)_x$. Combining these two
+facts yield
+\[
+	(\C[x, y] / (xy))_x
+	\cong 
+	\C[x, y]_x / (xy)_x
+	\cong 
+	\C[x, y]_x / (y)_x
+	\cong 
+	(\C[x, y] / (y))_x
+	\cong 
+	C[x]_x.
+\]
 
 \subsection*{Example 3.2.11}
 So we have
@@ -681,29 +857,33 @@ $A_f$.
 
 \subsection*{Ex 3.6.A}
 
-Let $\mathfrak{p}$ be a prime ideal in $A = A_1 \times A_2$. We will show that
-$\mathfrak{p}$ is of the form $\mathfrak{p}_1 \times A_2$ or $A_1 \times
-\mathfrak{p}_2$ for some arbitrary prime ideals $\mathfrak{p}_1,
-\mathfrak{p}_2$ in $A_1, A_2$ respectively. Suppose that $(a, b) \not \in
-\mathfrak{p}$. Then $(a, 0)$ and $(0, b)$ can't both simultaneously lie in
-$\mathfrak{p}$, and we assume with out loss of generality that $(a, 0) \not \in
-\mathfrak{p}$. Now suppose that $(a', b') \in \mathfrak{p}$. Then $(a, 0)(a',
-b') = (aa', 0) \in \mathfrak{p}$. Moreover, for any $b'' \in A_2$, we have $(a,
-0)(a', b'') = (aa', 0) \in \mathfrak{p}$, and as $\mathfrak{p}$ is prime, we
-must have $(a', b'') \in \mathfrak{p}$. We've shown that if $(a', b') \in
-\mathfrak{p}$, then $(a', b'') \in \mathfrak{p}$ for any $b'' \in A_2$, hence
-$\mathfrak{p}$ is of the form $\mathfrak{p}_1 \times A_2$ for some set
-$\mathfrak{p}_1$. Moreover, $\mathfrak{p_1}$ must be a prime ideal in $A_1$,
-since $\mathfrak{p_1} \times \{0\} \subset \mathfrak{p_1} \times A_2$, which
-allows us to utilize primality of $\mathfrak{p}$ in $A$ to obtain primality of
-$\mathfrak{p_1}$ in $A_1$. \\
-
-This argument may be replicated to the case where $A$ is the product of $A_i, i
-\in [1..n]$ to show that any prime ideal in $A$ is of the form $A_1 \times A_2
-\times \ldots \times \mathfrak{p_j} \times \ldots \times A_{n-1} \times A_{n}$. \\
-
-This gives us a bijection between $\Spec(A)$ and $\coprod_{i = 1}^{n}
-\Spec(A_i)$, which clearly respects inclusions, hence a homeomorphism.
+Let $A = \prod_{i = 1}^{n} A_i$, and $\mathfrak{p}$ be a prime ideal of $A$.
+Then $A/\mathfrak{p}$ is an integral domain and it follows that all but one
+$A_i$ is mapped to $0$ in the quotient. Thus all prime ideals of $A$ are of the
+form 
+\[
+	\mathfrak{p}
+	=
+	A_1 \times \ldots \times A_{k - 1} \times \mathfrak{p}_k
+	\times A_{k + 1} \times \ldots \times A_n
+\] 
+for some prime ideal $\mathfrak{p}_k$ of $A_k$ and $k \in [1..n]$. This gives
+us a bijection between $\coprod_{i = 1}^{n} \Spec(A_i)$ and $\Spec(A)$, where
+each $\Spec(A_i)$ is mapped onto the distinguished subset $D(e_i)$ where
+\[
+	e_i = (0, \ldots, 0, 1, 0, \ldots, 0)
+\] 
+has $0$ in all but the $i$-th coordinate, and $1$ in the $i$-th coordinate. I.e
+the $\Spec(A_i)$ are open in $\Spec(A)$. Moreover, this bijection clearly
+respects inclusions of prime ideals, and we have 
+\[
+	\Spec\left(
+		\prod_{i = 1}^{n} A_i
+	\right)
+	=
+	\coprod_{i = 1}^{n} \Spec(A_i)
+\] 
+as topological spaces.
 
 \subsection*{Ex 3.6.B}
 
@@ -757,10 +937,36 @@ $f$ is constant, and $f = 1$ since $\K$ doesn't have idempotents $\not = 1$.
 
 \subsection*{Ex 3.6.G}
 
-Let $\mathcal{U}$ be a cover of $\Spec(A)$. We can assume that every element of
-$\mathcal{U}$ is a distinguished open set, since these form a basis for the
-topology. Exercise 3.5.C tells us that each such cover by distinguished open
-sets adimts a finite subcover, hence $\Spec(A)$ is compact.
+\subsubsection*{(a)}
+
+Let $U_i, i \in I$ be a cover of $\Spec(A)$. Then each $U_i$ can be covered by
+distinguished open sets of $\Spec(A)$ which lie inside $U_i$, since these form
+a basis for the topology. Exercise 3.5.C tells us that each such cover by
+distinguished open sets admits a finite subcover, and by picking the $U_i$
+corresponding to the distinguished open sets forming the finite subcover, we
+obtain a finite subcover of $U_i, i \in I$.
+
+\subsubsection*{(b)}
+
+Let $U = \Spec(A) \setminus V(\mathfrak{m})$. Then
+\begin{align*}
+	U
+	&=
+	\Spec(A) \setminus V(\mathfrak{m}) \\
+	&=
+	\Spec(A) \setminus \bigcap_{i = 0}^{\infty} V(x_i) \\
+	&=
+	\bigcup_{i = 0}^{\infty} \left(\Spec(A) \setminus V(x_i)\right) \\
+	&=
+	\bigcup_{i = 0}^{\infty} D(x_i).
+\end{align*}
+Moreover no subcover, finite or otherwise, will do since for example 
+\[
+	[(x_1, x_2, x_3, \ldots)]
+	\not \in
+	\bigcup_{i = 1}^{\infty} D(x_i).
+\] 
+
 
 \subsection*{Ex 3.6.H}
 
@@ -775,7 +981,7 @@ J}$ with $J = \bigcap_{i = 1}^{r} J_i$.
 
 \subsubsection*{(b)}
 
-Let $X$ be quaiscomapct and $V \subset X$ a closed non-trivial subset. Let
+Let $X$ be quasicompact and $V \subset X$ a closed non-trivial subset. Let
 $\mathcal{U} = \{U_i \cap V\}_{i \in I}$ be a open cover of $V$. Then
 $\mathcal{U} \cup \{X \setminus V\}$ is an open cover for $X$, hence admits a
 finite subcover, which is a finite subcover for $V$ as well. So $V$ is
@@ -790,6 +996,44 @@ Meanwhile maximal ideals are closed, as $V(\mathfrak{m}) = [(\mathfrak{m})]$. \\
 
 In particular, if $\mathfrak{p}$ lies in some closed set, then all prime ideals
 containing $\mathfrak{p}$ must lie in that set as well.
+
+\subsection*{Ex 3.6.J}
+
+\subsubsection*{(a)}
+
+
+If $A = k[g_1, \ldots, g_n]$ is a finitely generated $k$-algebra, then so is
+$A_f = A[g_1, \ldots, g_n, 1/f]$. Now suppose that $\mathfrak{m}_f$ is a
+maximal ideal of $A_f$, and let $\mathfrak{m}$ be its preimage in $A$. Then
+$A_f / \mathfrak{m}_f$ is a finite $k$-extension by the Nullstellensatz, and we
+will show that $A/\mathfrak{m}$ is as well. This follows readilly by the fact
+that the kernel of the localization map $A \to A_f$ composed before the
+quotient map $A_f \to A_f / \mathfrak{m}_f$ is exactly $\mathfrak{m}$ by
+construction. Hence $A/\mathfrak{m}$ injects into $A_f / \mathfrak{m}_f$,
+whence 
+\[
+	\dim_k(A/\mathfrak{m})
+	\leq 
+	\dim_k(A_f/\mathfrak{m}_f),
+\] 
+and $\mathfrak{m}$ is a maximal ideal in $A$ by Exercise 3.2.G. \\
+
+Thus, every $D(f)$ contains a closed point, I.e every open set of $\Spec(A)$
+contains a closed point. It follows that no closed set except $\Spec(A)$
+contains all closed points, and the closed points are dense in $\Spec(A)$.
+
+\subsubsection*{(b)}
+
+Let $A = k[x]_{(x)}$. Then $\Spec(A) = \{(0), (x)\}$ and as $[(x)]$ is the only
+closed point, the closure of all closed points is just $[(x)] \not = \Spec(A)$
+again.
+
+\subsection*{Ex 3.6.K}
+
+Suppose that $f, g \in A$ take the same values on all closed points of
+$\Spec(A)$. Then as the set $V(f - g)$ is closed in $\Spec(A)$ and contains the
+dense set of all closed points, $V(f - g) = \Spec(A)$, and as $A$ is reduced,
+$f = g$.
 
 \subsection*{Ex 3.6.L}
 
@@ -931,18 +1175,32 @@ y^2 - 1 - (y-1)(y+1) \in J$.
 
 \subsection*{Ex 3.7.F}
 
-Now let $V(S) \subset \Spec(A')$ be an closed set. We can suppose that $V(S) =
-V(J)$ with $J$ an ideal. Now, $V(J) = \Spec(A'/J)$, so we might as just well
-show that for some given ring $A$, $\Spec(A)$ is irreducible if and only if $A$
-is an integral domain. One direction was Exercise 3.6.C, so we focus on the
-other direction. \\
+Let $V(S) \subset \Spec(A')$ be an closed set. We can suppose that $V(S) =
+V(J)$ with $J$ a radical ideal. As $V(J) = \Spec(A'/J)$, we might as just well
+show that for some given reduced ring $A$, $\Spec(A)$ is irreducible if and
+only if $A$ is an integral domain. One direction is covered by Exercise 3.6.C,
+so we focus on the other direction. \\
 
-Let $A$ be a ring such that $\Spec(A)$ is irreducible. Then any two non-trivial
-open subsets of $\Spec(A)$ intersect. I.e given non-zero $f_1, f_2 \in A$,
-there is always some $[\mathfrak{p}] \in D(f_1) \cap D(f_2)$. So $f_1 \not \in
+Let $A$ be a reduced ring such that $\Spec(A)$ is irreducible.  Let $f_1, f_2
+\in A$ be two non-zero elements. Then as $A$ is reduced, neither lies in the
+nilradical, and $D(f_1), D(f_2)$ are both non-empty. As $\Spec(A)$ is
+irreducible, any two non-trivial open subsets of $\Spec(A)$ intersect, so there
+is always some $[\mathfrak{p}] \in D(f_1) \cap D(f_2)$. So $f_1 \not \in
 \mathfrak{p}$ and $f_2 \not \in \mathfrak{p}$, hence $f_1f_2 \not \in
 \mathfrak{p}$ by primality, and $f_1f_2 \not = 0$. Since this is true of any
-two non-zero elements in $A$, $A$ must be a domain.
+two non-zero elements in $A$, $A$ must be a domain. \\
+
+We've proven the following lemma, which we will reuse in the future.
+\begin{lemma}
+	Let $A$ be a reduced ring. Then $\Spec(A)$ is irreducible if and only if
+	$A$ is an integral domain.
+\end{lemma}
+
+Note that one direction fails if $A$ is not reduced. For example, $\K[x]/(x^2)$
+has an irreducible spectrum, $\Spec(\K[x]/(x^2)) = \{[(x)]\}$, but is not an
+integral domain. Where the proof breaks down in the case of non-reduced rings
+$A$, is that $D(f_1)$ or $D(f_2)$ may be empty, since either of $f_1, f_2$ may
+be nilpotent.
 
 
 \subsection*{Ex 3.7.G}
@@ -1154,79 +1412,59 @@ These constructions are also clearly inverses of each other, and we are done.
 
 \subsection*{Ex 4.3.A}
 
-We begin with some lemmas that will make solving this exercise easier.
+It's clear that any isomorphism of affine schemes gives rise to an isomorphism
+of rings by considering the map on global sections. To show the reverse
+direction, we will show that any isomorphism of affine schemes is completely
+determined by the map between rings of global sections. From this a bijection
+between isomorphisms in the two categories will immediately follow. We begin by
+giving two lemmas which show that the map of the underlying topologies is
+determined by the map of global sections.
+
 \begin{lemma}
-	Let $A, A'$ be rings, and 
-	\[
-		(\pi, \phi) 
-		: 
-		(\Spec(A), \osp{A})
-		\to
-		(\Spec(A'), \osp{A'})
-	\] 
-	be a isomorphism of locally ringed spaces. Then the value of $f \in
-	\osp{A}(\Spec(A)) = A$ at a point $[\mathfrak{p}] \in \Spec(A)$ is zero if
-	and only if the value of $\phi(f) \in A'$ is zero at the point
-	$\pi([\mathfrak{p}]) \in \Spec(A')$.
+	Let $A, B$ be rings, and 
+	\begin{align*}
+		\pi &: \Spec(A) \to \Spec(B) \\
+		\phi &: \osp{B} \to \pi^*\osp{A}
+	\end{align*}
+	be a isomorphism of ringed spaces. Then the value of $f \in
+	\osp{B}(\Spec(B)) = B$ at a point $[\mathfrak{p}] \in \Spec(B)$ is zero if
+	and only if the value of $\phi(f) \in A$ is zero at the point
+	$\pi^{-1}([\mathfrak{p}]) \in \Spec(A)$.
 \end{lemma}
 \begin{proof}
-	We have the following chain of equivalences. \\
-
-	The value of $f$ is zero at $[\mathfrak{p}]$. (The value of $f$ as in the
-	image of $f$ in $\kappa(\mathfrak{p}) =
-	A_{\mathfrak{p}}/\mathfrak{p}_{\mathfrak{p}}$)
-	\[
-		\Leftrightarrow
-	\] 
-	$f$ lies in the maximal ideal of $\oo_{[\mathfrak{p}]} = A_{\mathfrak{p}}$ 
-	\[
-		\Leftrightarrow
-	\] 
-	$f$ is not invertible in $\oo_{[\mathfrak{p}]}$ (since the stalk is local)
-	\[
-		\Leftrightarrow
-	\] 
-	there exist no neighbourhood $V_{[\mathfrak{p}]}$ of $[\mathfrak{p}]$, and
-	$g_{[\mathfrak{p}]} \in \oo(V_{[\mathfrak{p}]})$ such that
-	$fg_p{[\mathfrak{p}]} = 1$
-	\[
-		\Leftrightarrow
-	\] 
-	there exist no neighbourhood $\pi(V_{[\mathfrak{p}]})$ of
-	$\pi({[\mathfrak{p}]})$ and $\phi(g_{[\mathfrak{p}]}) \in
-	\pi(V_{[\mathfrak{p}]})$ such that $\phi(f)\phi(g_{[\mathfrak{p}]}) = 1$.
-	\\
-
-	It's clear that the chain can now be traversed back up using $\phi(f)$ and
-	$\pi([\mathfrak{p}])$, from which see that vanishing in the two ringed
-	spaces is equivalent.
+	As $\phi$ is an isomorphism of sheaves $\osp{B} \to \pi^*\osp{A}$, it's in
+	particular an isomorphism at the stalk $\oo_{\Spec(B), [\mathfrak{p}]} \to
+	\oo_{\pi^* \Spec(A), [\mathfrak{p}]}$. An isomorphism of rings sends units
+	to units, hence when the rings are local, the maximal ideal of the ring in
+	the domain is sent to the maximal ideal in the codomain. I.e, $f$ vanishes
+	in $\oo_{\Spec(B), [\mathfrak{p}]}$ if and only if $\phi(f)$ vanishes in
+	$\oo_{\pi^* \Spec(A), [\mathfrak{p}]} = \oo_{\Spec(A),
+	\pi^{-1}([\mathfrak{p}])}$.
 \end{proof}
 
 \begin{lemma}
-	Let $A, A'$ be rings, and 
-	\[
-		(\pi, \phi) 
-		: 
-		(\Spec(A), \osp{A})
-		\to
-		(\Spec(A'), \osp{A'})
-	\] 
-	be an isomorphism of ringed spaces. Then the isomorphism of global sections 
-	$\phi : \osp{A}(\Spec(A)) \to \osp{A'}(\Spec(A'))$ coincides
-	with the map $\pi$ on the spectra in the following sense. For any prime 
-	ideal $\mathfrak{p}$ of $A$, we have
+	Let $A, B$ be rings, and 
+	\begin{align*}
+		\pi &: \Spec(A) \to \Spec(B) \\
+		\phi &: \pi^*\osp{B} \to \osp{A}
+	\end{align*}
+	be an isomorphism of ringed spaces. Then the isomorphism of global sections
+	$\phi : \osp{B}(\Spec(B)) \to \osp{A}(\Spec(A))$ coincides with the map
+	$\pi$ on the spectra in the following sense. For any prime ideal
+	$\mathfrak{p}$ of $B$, we have
 	\[
 		[\phi(\mathfrak{p})]
 		=
-		\pi([\mathfrak{p}]).
+		\pi^{-1}([\mathfrak{p}]).
 	\] 
 \end{lemma}
 \begin{proof}
-	The point $[\mathfrak{p}] \in \Spec(A)$ is characterized by the fact that
+	The point $[\mathfrak{p}] \in \Spec(B)$ is characterized by the fact that
 	$f([\mathfrak{p}]) = 0$ if and only if $f \in \mathfrak{p}$. By the
-	previous lemma, we see that $\phi(f)(\pi([\mathfrak{p}])) = 0$ if and only
-	if $f \in \mathfrak{p}$ which happens if and only if $\phi(f) \in
-	\phi(\mathfrak{p})$. Hence $[\phi(\mathfrak{p})] = \pi([\mathfrak{p}])$.
+	previous lemma, we see that $f \in \mathfrak{p}$ if and only if
+	$\phi(f)(\pi^{-1}([\mathfrak{p}])) = 0$ which happens if and only if
+	$\phi(f) \in \phi(\mathfrak{p})$. Hence $[\phi(\mathfrak{p})] =
+	\pi^{-1}([\mathfrak{p}])$.
 \end{proof}
 
 The previous lemma shows that given a isomorphism of affine schemes, the map of
@@ -1237,25 +1475,22 @@ that isomorphisms of ringed spaces is equivalent to isomorphisms of rings, and
 more specifically the isomorphism of global sections.
 
 \begin{lemma}
-	Let $A, A'$ be rings, and 
+	Let $A, B$ be rings, and 
+	\begin{align*}
+		\pi &: \Spec(A) \to \Spec(B) \\
+		\phi &: \pi^*\osp{B} \to \osp{A}
+	\end{align*}
+	be an isomorphism of ringed spaces. Moreover, let $f \in B$ and $b/f^m \in
+	\osp{B}(D(f))$. Denote the map between the rings of $D(f)$ by $\phi_{D(f)}
+	: \osp{B}(D(f)) \to \osp{A}(\pi^{-1}(D(f)))$. Then
 	\[
-		(\pi, \phi) 
-		: 
-		(\Spec(A), \osp{A})
-		\to
-		(\Spec(A'), \osp{A'})
-	\] 
-	be an isomorphism of ringed spaces. Moreover, let $f \in A$ and $a/f^m \in
-	\osp{A}(D(f))$. Denote the map between the rings of $D(f)$ by $\phi_{D(f)}
-	: \osp{A}(D(f)) \to \osp{A'}(\pi(D(f)))$. Then
-	\[
-		\phi_{D(f)}(a/f^m)
+		\phi_{D(f)}(b/f^m)
 		=
-		\phi(a)/\phi(f)^m.
+		\phi(b)/\phi(f)^m.
 	\] 
 \end{lemma}
 \begin{proof}
-	We have $\phi(a) = \phi_{D(f)}(a)$ since the maps of $\phi$ have to commute
+	We have $\phi(b) = \phi_{D(f)}(b)$ since the maps of $\phi$ have to commute
 	with restrictions. Similarly $\phi(f) = \phi_{D(f)}(f)$, after which it
 	follows that $1/\phi(f) = \phi_{D(f)}(1/f)$ since both of these elements
 	are inverses to $\phi(f)$.
@@ -2153,20 +2388,17 @@ as $I$ contains $(f)$, $I$ also contains $S_{+}$.
 
 \subsection*{Ex 5.1.A}
 
-Suppose that $\P^{n}_k = U \cup V$ with $U, V$ closed. Then $D_{+}(x_0) = (U
-\cap D_{+}(x_0)) \cup (U \cap D_{+}(x_0))$, and as $D_{+}(x_0) \cong
-\A^{n}_{k}$ is irreducible, we have that some $U$ or $V$ contains $D_{+}(x_0)$,
-say $U$. Now we may take $V' = V \cap V(x_0) = V \setminus D_{+}(x_0)$ which is
-still a closed set, and we still have $\P^{n}_{k} = U \cup V'$. The same
-argument may be repeated to see that $D_{+}(x_1)$ is contained in $U$ or $V'$,
-but this time, since $V'$ doesn't intersect $D_{+}(x_0)$ whilst $D_{+}(x_0)$,
-it must be that $D_{+}(x_1) \subset U$. Continuing this case shows that every
-open set of the affine cover $D_{+}(x_i), i \in [0..n]$ lies in $U$, hence
-$\P^{n}_{k}$ is irreducible. \\
+We prove a slightly more general statement. Let $X$ be a topological space which
+can be covered by open irreducible subsets  $U_i, i \in I$ which all
+have non-empty pairwise intersections. We will show that $X$ is irreducible. \\
 
-This same argument may be repeated for any scheme which has an irreducible
-cover $U_i, i \in I$ (technically only when $I$ is finite maybe) with
-non-trivial pairwise intersections.
+A topological space is irreducible if and only if all non-empty open sets
+intersect, so let $V_1, V_2$ be open in $X$. Then suppose that $i_1, i_2 \in I$
+are such that $V_1 \cap U_{i_1} \not = \emptyset$, and $V_2 \cap U_{i_2} \not =
+\emptyset$. Then $W = U_{i_1} \cap U_{i_2}$ is a non-empty open set in both
+$U_{i_1}$ and $U_{i_2}$, hence it must intersect $V_1$ and $V_2$. But $W$ is
+irreducible as well, since it's an open subset of an irreducible space, and so
+$V_1, V_2$ intersect in $W$, whence they also intersect in $X$.
 
 \subsection*{Ex 5.1.B}
 
@@ -2176,30 +2408,20 @@ V$. If $x \in U$, then $\overline{x} \subseteq U$ since the closure of a set is
 the smallest closed set containing that set. It remains to show that all
 irreducible sets of a scheme arise this way. \\
 
-Let $(X, \mathcal{O})$ be a scheme and $U \subset X$ an irreducible closed
-subset. Then if $\Spec(A_i), i \in I$ is an open affine cover, each $\Spec(A_i)
-\cap U$ is irreducible as well. Indeed, any two open subsets of $U$ intersect,
-so any two open subsets of $\Spec(A_i) \cap U$ intersect as well. It follows
-that there exists a point $[\mathfrak{p}_i]$ such that $\Spec(A_i) \cap U =
-\overline{[\mathfrak{p}_i]}_{\Spec(A_i)}$ (here the subscript denotes the
-topology we are taking the closure in) for every $i \in I$ such that
-$\Spec(A_i)$ intersects $U$. Now, as $U$ is a closed set containing
-$[\mathfrak{p}]$, we have $\overline{[\mathfrak{p}_i]}_X \subseteq U$ for every
-$\mathfrak{p}_i$ like above. But then since $\overline{[\mathfrak{p}_i]}_X \cap
-\Spec(A_i)$ is a closed set in $\Spec(A_i)$ containing $[\mathfrak{p}_i]$, we
-have
-\[
-	\Spec(A_i) \cap U
-	=
-	\overline{[\mathfrak{p}_i]}_{\Spec(A_i)}
-	\subseteq
-	\overline{[\mathfrak{p}_i]}_X \cap \Spec(A_i)
-	\subseteq
-	\overline{[\mathfrak{p}_i]}_X.
-\]
-Hence $U = \overline{[\mathfrak{p}_i]}_X \cup (U \setminus \Spec(A_i))$ is a
-decomposition into $U$ of closed sets, and as $\Spec(A_i)$ intersects $U$ by
-assumption, it follows that $U = \overline{[\mathfrak{p}_i]}$.
+Now suppose that $X$ is a scheme and $U$ an irreducible closed subscheme Then
+the closure of any point $p \in U$ in $U$ is the same as the closure of that
+point in $X$, since $U$ is closed. It follows that it's enough to check that if
+$X$ is irreducible, then $X = \overline{\{p\}}$ for some $p \in X$. \\
+
+So, suppose that $X$ is irreducible and let $\Spec(A)$ be an affine open
+subscheme. Then $\Spec(A)$ is irreducible, and it follows from Exercise 3.7.F
+that there exist $[\mathfrak{p}] \in \Spec(A)$ such that
+$\overline{[\mathfrak{p}]}_{\Spec(A)} = \Spec(A)$ where the subscript means the
+closure is taken in $\Spec(A)$. Then $V = X \setminus \Spec(A)$ is closed, and
+as $\overline{[\mathfrak{p}]}_X \cup V \supset
+\overline{[\mathfrak{p}]}_{\Spec(A)} \cup V = X$ is a decomposition of $X$ into
+closed subsets, we must have $\overline{[\mathfrak{p}]}_X = X$, and we are
+done.
 
 \subsection*{Ex 5.1.C}
 
@@ -2223,32 +2445,36 @@ quasicompactness that some finite subcover of the $\Spec(A_i)$ cover $X$.
 
 \subsection*{Ex 5.1.E}
 
-First of, we note that generalizations and specializations of points induce a
+First of, we note that generizations and specializations of points induce a
 transitive relation. Indeed, let $x, y, z$ be points in a topological space
 such that $x \in \overline{y}$ and $y \in \overline{z}$, then any closed set
 containing $y$ contains $\overline{y}$ hence $x$, and in particular, $x \in
-\overline{z}$. \\
+\overline{z}$. We will use the notation $x \prec y$ to denote that $y$ is a
+generization of $x$ and $x \in \overline{y}$.\\
 
 Now, let $X, \mathcal{O}_X$ be a quasicompact scheme. Then it has a finite open
 affine cover $\Spec(A_i), i \in [1.m]$. Let $[\mathfrak{p}_0] \in X$ be an
 arbitrary point. Then let $i_0 \in [1..m]$ be some index such that
 $\Spec(A_{i_0})$ contains $[\mathfrak{p}_0]$. We can find a maximal ideal
-$\mathfrak{m}_0$ of $A_{i_0}$ which contains $\mathfrak{p}_0$. Now consider the
-closure of $[\mathfrak{m}_0]$ in $X$. If 
+$\mathfrak{m}_0$ of $A_{i_0}$ which contains $\mathfrak{p}_0$. Then
+$[\mathfrak{m}]_0 \prec [\mathfrak{p}]_0$. Now consider the closure of
+$[\mathfrak{m}_0]$ in $X$. If 
 \[
 	\overline{[\mathfrak{m}_0]} \not = [\mathfrak{m}_0],
 \] 
 let $[\mathfrak{p}_1] \in \overline{[\mathfrak{m}_0]} \setminus
-[\mathfrak{m_0}]$, and $[\mathfrak{m}_1]$ be a maximal ideal containing
+[\mathfrak{m}_0]$, and $[\mathfrak{m}_1]$ be a maximal ideal containing
 $\mathfrak{p}_1$ in some affine open set $A_{i_1}$ which contains
-$[\mathfrak{p}_1]$. Since generalizations are transitive, we have
-$[\mathfrak{m}_1] \in \overline{[\mathfrak{m}_0]}$, and as $\mathfrak{m}_0$ is
-maximal in $A_{i_0}$, we can't have $[\mathfrak{m}_1] \in \Spec(A_{i_0})$ so
-$i_0 \not = i_1$. Continuing this way yields a sequence of points
-$[\mathfrak{m}_{j}]$ which are maximal ideals in rings $A_{i_j}$, but not
-contained in any $\Spec(A_{i_{j'}})$ for $j' \le j$. Since there is a finite
-amount of $A_{i_j}$, this sequence must terminate, and the last element of the
-sequence yields a closed point in $X$. \\
+$[\mathfrak{p}_1]$. Since generizations are transitive, we have
+\[
+	[\mathfrak{m}_1] \prec [\mathfrak{p}]_1 \prec [\mathfrak{m}]_0 \prec [\mathfrak{p}]_0,
+\]
+and as $\mathfrak{m}_0$ is maximal in $A_{i_0}$, we can't have
+$[\mathfrak{m}_1] \in \Spec(A_{i_0})$ so $i_0 \not = i_1$. Continuing this way
+yields a chain of points $[\mathfrak{m}_{j}]$ which are maximal ideals in rings
+$A_{i_j}$, but not contained in any $\Spec(A_{i_{j'}})$ for $j' \le j$. Since
+there is a finite amount of $A_{i_j}$, this sequence must terminate, and the
+last element of the sequence yields a closed point in $X$. \\
 
 The last two statements follow trivially from the first.
 
@@ -2278,41 +2504,18 @@ and their intersection is given by
 	\bigcup_{j = 1}^{m}
 	\Spec(A_i) \cap \Spec(B_j)
 \] 
-and as each $\Spec(A_i) \cap \Spec(B_j)$ is a finite union of open subschemes
-(which are quasicompact in particular), it follows that $U \cap V$ is as
-well.
+and by assumption we can write each $\Spec(A_i) \cap \Spec(B_j)$ a finite union
+of open affine subschemes, which are quasicompact in particular. It follows by
+Exercise 5.1.D that $U \cap V$ is quasicompact as well.
 
 \subsection*{Ex 5.1.G}
 
-We begin with generalizing Exercise 3.5.C
-
-\begin{lemma}
-	Let $\Spec(B) \subset \Spec(A)$ be an affine subscheme, and $f_i \in A$
-	for $i \in I$ be a set of elements such that 
-	\[
-		\Spec(B) = \bigcup_{i \in I} D(f_i).
-	\] 
-	Then there is a finite subset $J \subset I$ such that 
-	\[
-		\Spec(B) = \bigcup_{i \in J} D(f_i).
-	\] 
-\end{lemma}
-\begin{proof}
-	Let $f \in A$ be such that $D(f) \subseteq \Spec(B)$. Then it's immediate
-	from the definition of stalks that $f([\mathfrak{p}]) =
-	f_{B}([\mathfrak{p}])$ for all $[\mathfrak{p}] \in \Spec(B)$. Hence $D(f) =
-	D(f_{B})$, since $f([\mathfrak{p}]) = 0$ if and only if $f \in
-	\mathfrak{p}$ by 4.3.7.1. \\
-
-	Hence, after restricting we have a set of elements $(f_i)_B \in B, i \in I$
-	such that $D((f_i)_{B}), i \in I$ covers $\Spec(B)$, and Exercise 3.5.C
-	tells us that there is a finite subset $J \subset I$ such that $D(f_i) =
-	D((f_i)_{B}) \in B, i \in J$ covers $\Spec(B)$.
-\end{proof}
-
-Now let $\Spec(B), \Spec(C) \subset \Spec(A)$ be two affine open subschemes,
-and let $D(f_i), i \in [1..n]$ and $D(g_i), i \in [1..m]$ be finite open covers
-of the two respective schemes by distinguished open sets in $\Spec(A)$. Then
+Let $\Spec(B), \Spec(C) \subset \Spec(A)$ be two affine open subschemes, and
+let $D(f_i), i \in [1..n]$ and $D(g_i), i \in [1..m]$ be finite open covers of
+the two respective schemes by distinguished open sets in $\Spec(A)$. Such
+covers exist as distinguished open sets form a basis of $\Spec(A)$, and we can
+take them to be finite as $\Spec(B), \Spec(C)$ are affine hence quasicompact.
+Then
 \[
 	\Spec(B) \cap \Spec(C)
 	=
@@ -2330,10 +2533,10 @@ quasiseparated.
 
 \subsection*{Ex 5.1.H}
 
-The condition that there exist some open cover where pairwise intersections are
-finitely affine covered is weaker then the condition that the intersection of
-any two affine subsets is finitely affine covered. Hence Exercise 5.1.F implies
-one of the directions. \\
+The condition that there exist some affine open cover where pairwise
+intersections are finitely affine covered is weaker then the condition that the
+intersection of any two affine subsets is finitely affine covered. Hence
+Exercise 5.1.F implies one of the directions. \\
 
 For the other direction, suppose that $X$ is a scheme and $X = \bigcap_{i =
 1}^{n} \Spec(A_i)$ a finite affine open cover of $X$ such that the intersection
@@ -2349,13 +2552,13 @@ Let $\Spec(C) \subset X$ be an open affine subscheme. Our first claim is that
 $\Spec(C) \cap \Spec(A_i)$ can be written as a finite union of open affine
 subschemes. For each $\Spec(A_i)$, let $D(f_j^i), j \in J^{i}$ be an open cover
 of $\Spec(C) \cap \Spec(A_i)$ by distinguished open sets for $f_{j}^{i} \in C$.
-Then as the $D(f_j^i), j \in J^{i}$ for all $i \in [1..n]$ cover $\Spec(C)$, a
-finite subset of them do, hence we can relabel the indices so that $D(f_j^i), j
-\in [1.. n_i], i \in [1..n]$ is a finite open affine cover of $\Spec(C)$. Now
+Then as the $\bigcup_{i = 1}^{n}\bigcup_{j \in J^i} D(f_j^i)$ cover $\Spec(C)$,
+a finite subset of them do, hence we can relabel the indices so that $D(f_j^i),
+j \in [1.. n_i], i \in [1..n]$ is a finite open affine cover of $\Spec(C)$. Now
 it may be the case that $D(f_j^i), j \in [1.. n_i]$ is not a cover of $\Spec(C)
 \cap \Spec(A_i)$ since $\Spec(C) \cap \Spec(A_i) \cap \Spec(A_j)$ may have been
-covered by sets from the cover of $\Spec(C) \cap \Spec(A_j)$. We will remedy this 
-in the next paragraph. \\
+covered by sets from the cover of $\Spec(C) \cap \Spec(A_j)$. We will remedy
+this in the next paragraph. \\
 
 To reiterate, we have 
 \[
@@ -2393,7 +2596,8 @@ Now, let $\Spec(C), \Spec(C') \subset X$ be affine open subschemes and
 	\Spec(C) \cap \Spec(A_i) = \bigcup_{j = 1}^{n_i} \Spec(D_j), \,
 	\Spec(C') \cap \Spec(A_i) = \bigcup_{j = 1}^{n_i'} \Spec(D'_j)
 \] 
-be finite covers by affine open subschemes. Then
+be finite covers by affine open subschemes, the existence of which was proven
+in the previous paragraph. Then
 \begin{align*}
 	\Spec(C) \cap \Spec(C')
 	&=
@@ -2427,10 +2631,21 @@ subschemes as well.
 
 \subsection*{Ex 5.1.I}
 
+Let $X$ be a qcqs scheme. Then there exist some cover $\Spec(A_i), i \in I$ of
+$X$ where pairwise intersections can be finitely affine covered, and as $X$ is
+quasicompact, we have such a subcover with $I$ finite. \\
+
+Now suppose that $X$ is a scheme that can be covered by finitely many affine
+open sets $\Spec(A_i), i \in [1..n]$ that have pairwise intersections which can
+be finitely affine covered. Then $X$ is quasicompact by Exercise 5.1.D, and
+quasiseparated by Exercise 5.1.H.
+
+\subsection*{Ex 5.1.J}
+
 Let $f_1, \ldots, f_m$ be a generating set for the graded ring $S$. We can
 furthermore suppose that the $f_i$ are homogeneous, since otherwise we can just
-pick all the homogeneous componenets of each $f_i$. After relabeling, let $f_1,
-\ldots, f_k$ be the subset of homogenous generators of positive degree. Then
+pick all the homogeneous components of each $f_i$. After relabeling, let $f_1,
+\ldots, f_k$ be the subset of homogeneous generators of positive degree. Then
 $S_{+} \subseteq (f_1, \ldots, f_k)$, and the affine open sets $D_{+}(f_i), i
 \in [1..k]$ cover $\Proj(S)$ by Exercise 4.5.L, and any intersection
 $D_{+}(f_i) \cap D_{+}(f_j) = D_{+}(f_i f_j)$ is also affine open. Hence
@@ -2438,32 +2653,49 @@ $\Proj(S)$ qualify for the conditions of Exercise 5.1.H and is therefore qsqc.
 
 \subsection*{Ex 5.1.K}
 
-Maybe later...
+Let $Y = \Spec(\K[x_1,x_2,\ldots])$, and $X$ be two copies of $Y$ glued along
+$U = Y \setminus [(x_1, x_2, \ldots)]$. Then each copy of $Y$ is affine hence
+quasicompact, but their intersection is $U$, which isn't quasicompact by
+Exercise 3.6.G.(b), and so $X$ is not quasiseparated.
+
 
 \subsection*{Ex 5.2.A}
 
 We begin by showing an affine scheme is reduced if and only if the ring of
 global sections is reduced. For the first direction, assume that $A$ isn't
 reduced and let $x$ be a non-zero nilpotent in $A$. Then let $I = (0 : x)$ be
-the ideal of zero-divisors of $x$. Then there exists some maximal ideal
-$\mathfrak{m}$ containing $I$. It follows that $x$ is non-zero in
-$A_{\mathfrak{m}}$ since the kernel of a localization by a multiplicative set
-$S$ is all the elements which have a zero divisor in $S$. As $x$ is still a
-nilpotent in $A_{\mathfrak{m}}$, it follows that $\Spec(A)$ is not reduced
-since $A_{\mathfrak{m}}$ has non-zero nilpotents. For the other direction,
-suppose that $\Spec(A)$ isn't reduced. Then there is some prime ideal
-$\mathfrak{p} \in \Spec(A)$ and non-zero nilpotent $a/b \in A_{\mathfrak{p}}$.
-I.e, we have $s a^{n} = 0$ for some $s \in A \setminus \mathfrak{p}$ and $n \in
-\N$. But then $(sa)^n = 0$ and $A$ isn't reduced. \\
+the ideal of zero-divisors of $x$. As $x \not = 0$, we have $I \not = A$. Then
+there exists some maximal ideal $\mathfrak{m}$ containing $I$. It follows that
+$x$ is non-zero in $A_{\mathfrak{m}}$ since the kernel of a localization by a
+multiplicative set $S$ is all the elements which have a zero divisor in $S$. As
+$x$ is still a nilpotent in $A_{\mathfrak{m}}$, it follows that $\Spec(A)$ is
+not reduced. For the other direction, suppose that $A$ is reduced. Then every
+stalk of $\Spec(A)$ is a localization of $A$, hence reduced ($sa^n = 0
+\Rightarrow (sa)^n = 0$), and so $\Spec(A)$ is reduced. \\
 
 Let $\Spec(A_i), i \in I$ be an affine cover of $X$. Then each
-$\oo_X(\Spec(A_i))$ is reduced, and as $f - g \in \mathfrak{p}$ for all
-$[\mathfrak{p}] \in \Spec(A_i)$, it follows that $f = g$ in every $\Spec(A_i)$.
-It then follows from the identity axiom that $f = g$ in $X$. \\
+$\oo_X(\Spec(A_i))$ is reduced, and as $\restr{(f - g)}{\Spec(A_i)} \in
+\mathfrak{p}$ for all $[\mathfrak{p}] \in \Spec(A_i)$, and
+$\bigcap_{[\mathfrak{p}] \in A_i} \mathfrak{p} = 0$, it follows that $f = g$ in
+every $\Spec(A_i)$. It then follows from the identity axiom that $f = g$ in
+$X$. \\
 
 \subsection*{Ex 5.2.B}
 
-See Exercise 5.2.A.
+See Exercise 5.2.A to see that rings are reduced if and only if their spectra
+are. We use this to show that a scheme $X$ is reduced if and only if the rings
+$\mathcal{O}_X(U)$ are reduced for all open $U$ in $X$. \\
+
+Suppose that $X$ is reduced, and let $f \in \mathcal{O}_X(U)$ be such that $f^k
+= 0$. Let $\Spec(A_i), i \in I$ be an affine open cover of $U$. Then all of the
+$\Spec(A_i)$ are reduced schemes as reducedness is stalk-local, hence the $A_i$
+are reduced rings. Moreover, $\restr{f}{\Spec(A_i)}^k = 0$, and it follows that
+$\restr{f}{\Spec(A_i)} = 0$, whence $f = 0$ by the identity axiom. \\
+
+For the other direction, let $\Spec(A_i)$ be an affine cover. Then
+$\mathcal{O}_X(\Spec(A_i)) = A_i$ are all reduced rings by assumption. Hence
+the $\Spec(A_i)$ are reduced schemes, and $X$ is a reduced scheme by
+reducedness being stalk-local.
 
 \subsection*{Ex 5.2.C}
 
@@ -2475,16 +2707,19 @@ reduced as it's covered by $n + 1$ reduced schemes $\A_{k}^{n}$.
 
 \subsection*{Ex 5.2.D}
 
-We have that an element $f(x, y)/x^n \in (k[x, y]/(y^2, yx))_x$ is zero if and
-only if $x^m f(x, y) \in (y^2, yx)$ for some $m \in \N$, which happens if and
-only if $y | f(x, y)$. Hence $(k[x, y]/(y^2, yx))_x \cong k[x, y] / (y) \cong
-k[x]$ and $(k[x, y]/(y^2, yx))_x$ is reduced. Since this is the ring of
-sections on $D(x)$, it follows that the subscheme $D(x)$ is reduced (as it's
-affine), and the only possibly non-reduced stalks are those which correspond to
-points which lie in $V(x)$. But the only point in $V(x)$ is $[(x, y)]$ (it
-corresponds to the only prime ideal of $k[x, y]$ containing $(y^2, yx)$ and
-$(x)$), and since we know that $k[x, y]/(y^2, yx)$ isn't reduced, it follows
-that the stalk at $[(x, y)]$ must not be reduced.
+From Exercise 3.2.L we know that $(k[x, y]/(yx))_x \cong k[x]_x$, and it's easy
+to see using similar arguments as in our solution to that exercise that $(k[x,
+y]/(y^2, yx))_x \cong (k[x, y]/(yx))_x$, hence $(k[x, y]/(y^2, yx))_x$ is a
+domain since $k[x]_x$ is. \\
+
+Since $(k[x, y]/(y^2, yx))_x = \mathcal{O}_{k[x, y]/(y^2, xy)}(D(x))$ is the
+ring of sections on $D(x)$, it follows that the subscheme on $D(x)$ is reduced
+(as it's the spectrum of a reduced ring), and the only possibly non-reduced
+stalks are those which correspond to points in $V(x)$. But the only point in
+$V(x)$ is $[(x, y)]$ (it corresponds to the only prime ideal of $k[x, y]$
+containing $(y^2, yx)$ and $(x)$), and since we know that $k[x, y]/(y^2, yx)$
+isn't reduced, it follows that the stalk at $[(x, y)]$ isn't reduced, and is
+the only such point.
 
 \subsection*{Ex 5.2.E}
 
@@ -2509,27 +2744,24 @@ Exercise 5.1.I in the text.
 It follows that when $X$ is quasicompact, then checking that a local property (
 a property $P$ such that when $P$ holds for $[\mathfrak{p}]$, then $P$ holds
 for a neighbourhood of $[\mathfrak{p}]$) holds on closed points suffices to
-check it on all $[\mathfrak{p}] \in X$ since every $[\mathfrak{p}]$ in a
-quasicompact scheme has closed points in its closure. \\
+check it on all $[\mathfrak{p}] \in X$, since every $[\mathfrak{p}]$ in a
+quasicompact scheme has closed points in its closure by Exercise 5.1.E. \\
 
 We don't do this though, as Remark 5.2.2 shows that reducedness isn't an open
 condition. We follow the hint instead. \\
 
-Suppose that $[\mathfrak{p}]$ is a non-reduced point, and let $[\mathfrak{m}]$
-be a closed point in the closure of $[\mathfrak{p}]$. It follows from the lemma
-that any affine open subscheme containing $[\mathfrak{m}]$ also contains
-$[\mathfrak{p}]$, hence we can suppose that they both lie in some $\Spec(A)$
-where $[\mathfrak{m}]$ is a maximal ideal. \\
+Suppose that $[\mathfrak{p}]$ is a non-reduced point. It follows from Exercise
+5.1.E that there exist a closed point $[\mathfrak{m}]$ in the closure of
+$[\mathfrak{p}]$. It follows from the lemma above that any affine open
+subscheme containing $[\mathfrak{m}]$ also contains $[\mathfrak{p}]$, hence we
+can suppose that they both lie in some $\Spec(A)$ where $[\mathfrak{m}]$ is a
+maximal ideal. \\
 
 Since the stalk at $[\mathfrak{p}]$ is non-reduced, we have
-$A_{[\mathfrak{p}]}$ non-reduced. Hence there is some non-zero $(a/b) \in
-A_{[\mathfrak{p}]}$ such that $sa^n = 0$ for some $s \in A \setminus
-\mathfrak{p}$ whilst there is no $s' \in A \setminus \mathfrak{p}$ such that
-$s'a = 0$. It follows that $sa$ is a non-zero nilpotent of $A$, which doesn't
-lie in the kernel of $A \to A_{[\mathfrak{p}]}$, and as this is a further
-localization of $A \to A_{[\mathfrak{m}]}$, $sa$ is a non-zero in
-$A_{[\mathfrak{m}]}$ as well. It's clearly nilpotent here also, and
-we see that $A_{[\mathfrak{m}]}$ is non-reduced.
+$A_{[\mathfrak{p}]}$ non-reduced. As $A_{[\mathfrak{p}]}$ is a further
+localization of $A_{[\mathfrak{m}]}$, it is a stalk of the affine scheme
+$\Spec(A_{[\mathfrak{m}]})$. Thus it follows from Exercise 5.2.B that
+$A_{[\mathfrak{m}]}$ can't be reduced.
 
 \subsection*{Ex 5.2.F}
 
@@ -2553,25 +2785,10 @@ $n \in \N$ since $x_N^{n} \not = 0$ when $N > n$.
 
 \subsection*{Ex 5.2.G}
 
-We begin by noting that an affine scheme $\Spec(A)$ is integral if and only	if
-$A$ is a domain. Indeed, if $\Spec(A)$ is integral, then the ring of sections
-of any open set is integral, and particularly the ring of global sections, $A$.
-\\
-
-Now suppose that $A$ is an integral domain and let $U$ be open in $\Spec(A)$.
-Then $\Spec(A)$ is irreducible by Exercise 3.6.C. Suppose that $x, y \in
-\osp{A}(U)$ are such that $xy = 0$. Then let $f \in A$ be such that $D(f)
-\subseteq U$. We have that $\osp{A}(D(f)) = A_f$ is an integral domain as it's
-a localization of the integral domain $A$, and as $xy = 0$ on $D(f)$ it follows
-that either $x$ or $y$ is $0$ here. Say it's $x$. Then the locus where $x$
-vanishes on $U$, $V(x)$ is closed in $U$. But $U$ is irreducible as $\Spec(A)$
-is, since any intersection of open sets in $U$ is an intersection of open sets
-in $\Spec(A)$. Since $V(x) \not = \emptyset$, we have $V(x) = U$, and $x = 0$,
-so $U$ is an integral domain, and $\Spec(A)$ is an integral scheme. \\
-
-Now suppose that $X$ is an integral scheme. Then in particular, every affine
-open set of $X$ is integral, and these schemes are clearly reduced since they
-stem from integral domains. Now suppose towards a contradiction that $X$ is
+Suppose that $X$ is an integral scheme. Then in particular, every affine open
+subscheme of $X$ is integral, and these schemes are clearly reduced since they
+stem from integral domains. It follows that $X$ is reduced as this is a
+stalk-local property. Now suppose towards a contradiction that $X$ is
 reducible. Then there exist open subsets $U, V \subset X$ which are disjoint,
 so we can glue sections from these sets without any restriction and
 \[
@@ -2581,15 +2798,833 @@ so we can glue sections from these sets without any restriction and
 	\subset
 	\oo_{X}(U \cup V).
 \]
-As the product isn't an integral domain, this is a contradiction to $X$ being
-and integral scheme. \\
+As the product of two rings isn't an integral domain, this is a contradiction
+to $X$ being and integral scheme. \\
 
-Now suppose that $X$ is reduced and irreducible, and that $U \subset X$ is an
-open set where $x, y \in \oo_{X}(U)$ are such that $xy = 0$. Let $\Spec(A_i), i
-\in I$ be an open affine cover of $U$. Then for a given $i \in I$, we have $xy
-= 0$ in $A_i$ whence we can assume that $x = 0$ here. Now, $U$ is irreducible
-as $X$ is, hence the vanishing set of $x$, is all of $U$, and $\oo_X(U)$ is an
-integral domain.
+Now suppose that $X$ is a reduced irreducible scheme, that $U$ is open in $X$,
+and that $f, g \in \mathcal{O}_X(U)$ are such that $fg = 0$. Then let
+$\Spec(A_i), i \in I$ be an open affine cover of $U$. Each $\Spec(A_i)$ is
+reduced and irreducible as they are open subschemes of $X$, and it follows from
+our lemma in the solution to Exercise 3.7.F that $A_i$ is an integral domain
+for every $i \in I$. It follows that every stalk $\mathcal{O}_{X,
+\mathfrak{p}}$ is an integral domain for every $[\mathfrak{p}] \in U$, as each
+such stalk is a localization of some $A_i$. Now, the germs
+$(fg)_{[\mathfrak{p}]}$ are all $0$ for all $[\mathfrak{p}] \in U$, hence $U =
+V(f) \cup V(g)$. But $V(f)$ and $V(g)$ are both closed, and $U$ is irreducible
+as $X$ is. Hence either $U = V(f)$ or $U = V(g)$. By Exercise 5.2.A, this is
+equivalent to $f = 0$ or $g = 0$, and $\mathcal{O}_X(U)$ is a domain. 
+
+\subsection*{Ex 5.2.H}
+
+If $\Spec(A)$ is integral, then it's ring of global sections $A$ is integral. \\
+
+Now suppose that $A$ is integral. Then $A$ is reduced, and $\Spec(A)$ is
+reduced by Exercise 5.2.B. Furthermore, $\Spec(A)$ is irreducible by Exercise
+3.6.A, whence $\Spec(A)$ is integral by Exercise 5.2.G.
+
+\subsection*{Ex 5.2.I}
+
+First of all, $\eta \in \Spec(A)$, since otherwise $X \setminus \Spec(A)$ would
+be a closed set containing $\eta$, contradicting $\overline{\eta} = X$. We have
+$\Spec(A)$ integral whence $A$ is an integral domain. Now, any spectrum of an
+integral domain has a generic point $[0]$, but Exercise 5.1.B gives a bijection
+between points and irreducible subsets, and since both $[0]$ and $\eta$
+correspond to $\Spec(A)$ under this bijection, it follows that $\eta = [0]$.
+Hence 
+\[
+	\oo_{X, \eta}
+	=
+	A_{(0)}
+	=
+	K(A).
+\] 
+
+\subsection*{Ex 5.2.J}
+
+Suppose that $f, g \in \ox(U)$ are such that $\restr{f}{V} = \restr{g}{V}$.
+Then $f - g$ vanishes on $V$. We know from Exercise 4.3.F that the vanishing
+subset $V(f - g)$ is closed, but as $X$ is irreducible, so is $U$, and since
+all open sets are dense in $U$, it then follows that $V(f - g) = U$ (since $V(f
+- g)$ must contain the non-empty open set $V$, and thus its closure which is
+$U$). It now follows from Exercise 5.2.A that $f = g$. \\
+
+Now suppose that $f, g \in \ox(U)$ are such that $f = g$ in $\oo_{X, \eta}$.
+Since $\oo_{X, \eta} = K(A)$, and $A$ is a domain (and thus injects into its
+fraction field), this happens if and only if $\restr{f}{\Spec(A) \cap U} =
+\restr{g}{\Spec(A) \cap U}$, or in other words $\Spec(A) \subset V(f - g)$. But
+we showed above that this implies that $f = g$ in $\ox(U)$.
+
+\subsection*{Sections of Integral Schemes Glue iff They Have the Same Image in $K(X)$}
+
+It's remarked after Exercise 5.2.J that sections of integrals schemes glue if
+and only if they are the same as elements in $K(X)$. We prove this. \\
+
+Let $X$ be an integral scheme, $\Spec(A)$ an affine open subscheme, $U_i, i \in
+I$ an open cover, and $f_i \in \ox(U_i)$ for each $i \in I$. \\
+
+Suppose that the $f_i$ all map to the same element in $K(X) = K(A)$. Then there
+is some open neighbourhood $V_{i,j}$ of $\eta$ where $f_i$ and $f_j$ agree, and
+as the inclusion from $\ox(U_i \cap U_j) \to \ox(V_{i, j})$ is an injection, it
+follows that $f_i$ and $f_j$ agree on $U_i \cap U_j$. \\
+
+Now suppose that the $f_i$ all agree on intersections $U_i \cap U_j$. Then they
+agree in the stalk of $\eta$ by definition.
+
+\subsection*{Ex 5.3.A}
+
+Let $X$ be a locally Noetherian scheme, and $\Spec(A), \Spec(B)$ be affine open
+subschemes. Then $\Spec(A), \Spec(B)$ are both locally Noetherian by
+Proposition 5.3.3, and the Affine Communication Lemma. Now let $\Spec(A_i), \in
+I,\, \Spec(B_j), j \in J$ be open affine covers of $\Spec(A)$ and $\Spec(B)$ by
+Noetherian schemes. As $\Spec(A)$ and $\Spec(B)$, are quasicompact, there are
+finite subcovers $\Spec(A_i), i \in [1..n], \Spec(B_j), j \in [1..m]$. Now
+define the subscheme
+\[
+	Y
+	=
+	\left(
+	\bigcup_{i = 1}^{n} \Spec(A_i)
+	\right)
+	\cup
+	\left(
+	\bigcup_{i = 1}^{m} \Spec(B_i)
+	\right).
+\] 
+We have that $Y$ is Noetherian, hence the open subscheme $\Spec(A) \cap
+\Spec(B)$ of $Y$ is quasicompact by Exercise 3.6.U, and thus a finite union of
+affine open schemes by Exercise 5.1.D. It follows that $X$ is quasiseparated by
+Exercise 5.1.F.
+
+\subsection*{Ex 5.3.B}
+
+As Noetherian schemes have underlying topological spaces which are Noetherian,
+This is just proposition 3.6.15. \\
+
+Suppose that $U_i, i \in I$ are the connected components of $X$. Then in
+particular, $U_i, i \in I$ is a cover of $X$ which doesn't admit strict
+subcover, on account of the $U_i$ being disjoint. As $X$ is Noetherian, it's
+quasicompact, and the $U_i$ must admit a finite subcover. I.e $I$ is finite
+from the beginning. As $X$ is Noetherian, so are the $U_i$, and they can be
+written as finite unions of irreducible components by the previous part of the
+exercise.
+
+
+\subsection*{Ex 5.3.C}
+
+We begin with the easier direction. Suppose that $X$ is a Noetherian integral
+scheme. Then $X$ is irreducible, hence connected. Moreover, all stalks of $X$
+are integral domains as they are localizations of integral domains. \\
+
+Before we prove the other direction, we give some examples that show how and 
+why some assumptions are needed. \\
+
+The following example shows that being integral is not a stalk local property,
+and that we indeed need the connectedness requirement. Let $A$ be an integral
+domain. Then $\Spec(A \times A) = \Spec(A) \sqcup \Spec(A)$ is stalk locally
+integral, as each $\Spec(A)$ is integral and the stalks within are integral,
+but $A \times A$ is not an integral domain. \\
+
+The next example shows that we need to use integrality of stalks, and not just
+reducedness. Let $A = k[x, y]/xy$. Then $A$ is reduced, and so $\Spec(A)$ is
+reduced. Moreover, $\Spec(A)$ is Noetherian as $A$ is, and it's connected as
+$A$ contains no idempotents. But $A$ is not integral, and the stalk at the
+origin $[(x, y)]$ is not integral. We will dig a little bit deeper into this
+example. Note that $[(x, y)]$ is a point that lies in both irreducible
+components $V(x) = \overline{[(x)]}, V(y) = \overline{[(y)]}$. It follows that
+every open neighbourhood of $[(x, y)]$ contains both $[(x)]$ and $[(y)]$. Thus
+all neighbourhoods $U$ of $[(x, y)]$ have non-zero sections $x, y \in \oo(U)$
+which multiply to zero. We generalize this fact in the following lemma.
+
+\begin{lemma}
+	Let $X$ be a scheme, and $[\mathfrak{p}] \in X$ be a point which lies in
+	more than one irreducible components. Then the stalk at $[\mathfrak{p}]$ is
+	not an integral domain.
+\end{lemma}
+\begin{proof}
+	Suppose that $X_1, X_2$ are the only two irreducible components which
+	contain $[\mathfrak{p}]$. It follows from Exercise 5.1.B that we can write
+	$X_1 = \overline{[\mathfrak{q}_1]}, X_2 = \overline{[\mathfrak{q}_2]}$, and
+	from our solution to Exercise 5.1.E, that every open set containing
+	$[\mathfrak{p}]$ also contains $[\mathfrak{q}_1]$ and $[\mathfrak{q}_2]$.
+	Let $\Spec(A)$ be some affine neighbourhood of $[\mathfrak{p}]$. Then $X_1$
+	and $X_2$ are irreducible in $\Spec(A)$ as well, since any open sets in
+	$X_i \cap \Spec(A)$ are open in $X_i$ as well and hence intersect. It
+	follows that $\mathfrak{q}_1, \mathfrak{q}_2$ are minimal ideals of $A$,
+	and they are different as they corresponds to different points in the
+	spectrum. As $[\mathfrak{p}] \in \overline{[\mathfrak{q}_i]}$, it follows
+	that $\mathfrak{q}_i \subset \mathfrak{p}$ for both $i = 1,2$. Hence
+	$\mathfrak{q}_1, \mathfrak{q}_2$ are two different minimal prime ideals of
+	$A_{\mathfrak{p}} = \oo_{X, [\mathfrak{p}]}$, and $\oo_{X, [\mathfrak{p}]}$
+	is not an integral domain (since the only minimal prime of an integral
+	domain is $(0)$).
+\end{proof}
+
+With this fact in hand, our proof now follows easily. Suppose that $X$ is a
+non-empty connected Noetherian scheme with integral stalks. First of, $X$
+admits a finite decomposition into irreducible subsets,
+\[
+	X = X_1 \cup \ldots \cup X_r.
+\] 
+As $X$ is connected, the irreducible components all intersect (otherwise, two
+sets of disjoint components would form a non-trivial open disjoint
+decomposition of $X$).But every stalk of $X$ is integral, and can thus only lie
+in one irreducible component each. It follows that $X = X_1$, and $X$ is
+integral by Exercise 5.2.G. \\
+
+Note that we need the Noetherian assumption. Suppose that $X$ is just a
+connected scheme with integral stalks, but not necessarily Noetherian. Then we
+can conclude like above that all irreducible components are disjoint. But if
+there are infinitely many irreducible components $X_i, i \in I$, the union of
+all irreducible components but $X_i$ for a specific $i$ is not necessarily
+closed, whence $X_i$ is not necessarily open, and we can't use connectedness to
+conclude that the $X_i$ must intersect each other.
+
+\subsection*{Ex 5.3.D}
+
+\subsubsection*{(a)}
+
+Suppose that $X$ is a quasiprojective $A$-scheme. That is, there exist some
+ring $S$, which is a finitely generated graded ring over $A$, and $X$ is a
+quasicompact open subscheme of $\Proj(S)$. Remember that we say that a $S$ is a
+finitely generated graded ring over $A$ if the irrelevant ideal $S^{+}$ is
+finitely generated over $A$. So suppose that $S^{+} = A[f_1, \ldots, f_n]$.
+Then $\oo_{\Proj(S)}(D_{+}(f_i)) = (S_{f_i})_0$ is finitely generated by
+$f_j^{\deg(f_i)}/f_i^{\deg(f_j)} j \in [1..n]$. It follows from Exercise 4.5.L
+that the $D_{+}(f_i)$ make up a finite cover of $\Proj(S)$. Hence $\Proj(S)$ is
+of finite type. By the affine communication lemma, $X$ is locally of finite
+type, and as it is assumed to be quasicompact, it is of finite type. \\
+
+If $A$ is Noetherian, then so is $\oo_{\Proj(S)}(D_{+}(f_i))$ by the basis
+theorem. It follows that $\Proj(S)$ is locally Noetherian, whence $X$ is, and
+as it is quasicompact, it is Noetherian.
+
+\subsubsection*{(b)}
+
+Suppose that $U$ is an open subscheme of $\Proj(S)$ and $S = A[f_1, \ldots,
+f_n]$. We already saw in part (a) that $U$ is locally of finite type. Now
+suppose that $A$ is Noetherian. Then each $(S_{f_i})_0$ is Noetherian as above,
+and $D_{+}(f_i)$ is a Noetherian subscheme. It follows that $U \cap D_{+}(f_i)$
+is quasicompact, whence $U$ is quasicompact as it has a finite quasicompact
+cover. \\
+
+For a counterexample to the case when $A$ isn't Noetherian, let $A = k[x_1,
+x_2, \ldots, ]$. Then $\Spec(A)$ is a projective $A$-scheme ($\Spec(A) =
+\P^{0}_{A}$). The subscheme 
+\[
+	X = \bigcup_{i = 1}^{\infty}D(x_i)
+\] 
+is not quasicompact, as no subset of the $D(x_i), i \in \N$ covers $X$. Indeed,
+\[
+	X' = \bigcup_{i = 2}^{\infty}D(x_i)
+\] 
+does not contain $(x_2, x_3, \ldots)$.
+
+\subsection*{Ex 5.3.E}
+
+\subsubsection*{(a)}
+
+The ring finitely generated by construction, and it is reduced if and only if
+$I$ is radical. The statement now follows as affine schemes are reduced if and
+only if their corresponding rings are reduced.
+
+\subsubsection*{(b)}
+
+The ring $A = k[x_1, \ldots, x_n]/I$ is finitely generated over $k$, hence the
+scheme is $k$-projective. If  $I$ is radical, then $A$ is reduced. It follows
+that $A_{x_1}$ and $(A_{x_1})_0$ are both reduced as well, so $\Proj(A)$ is
+reduced as it has a cover by reduced open subschemes. Hence $\Proj(A)$ is a
+projective variety.
+
+\subsection*{Ex 5.3.F}
+
+Let $[\mathfrak{m}] \in X$, and $A = k[f_1, \ldots, f_n]$ be a finitely
+generated $k$-algebra such that $\Spec(A)$ is an affine neighbourhood of
+$[\mathfrak{m}]$ in $X$. \\
+
+Suppose that $[\mathfrak{m}]$ is a closed point. Then $\mathfrak{m}$ is 
+a maximal ideal of $A$, and
+\[
+	\kappa(\mathfrak{m}) 
+	= 
+	A_{[\mathfrak{m}]}/\mathfrak{m}_{[\mathfrak{m}]}
+	= 
+	K(A/\mathfrak{m})
+	=
+	A/\mathfrak{m}.
+\]
+Our result now follows from $A/\mathfrak{m}$ being a finite dimensional
+$k$-space by the Nullstellensatz. \\
+
+For the other direction, suppose that $\kappa(\mathfrak{m}) =
+K(A/\mathfrak{m})$ is a finite dimensional $k$-space. Then as $\mathfrak{m}$ is
+prime, $A/\mathfrak{m}$ is an integral domain, and $A/\mathfrak{m}$ injects
+into $K(A/\mathfrak{m})$ so $A/\mathfrak{m}$ is finite dimensional as well. It
+then follows from Exercise 3.2.G that $\mathfrak{m}$ is maximal. As $\Spec(A)$
+is any open neighbourhood of $[\mathfrak{m}]$, it follows that $[\mathfrak{m}]$
+is closed. \\
+
+Note that it follows that if a point $\mathfrak{m}$ in a locally finite
+$k$-schemes has \emph{any} affine neighbourhood where it corresponds to a
+maximal ideal, then it has a finite dimensional residue field over $k$ and is a
+closed point. I.e the closed points of locally finite $k$-schemes are precisely
+those which correspond to maximal ideals in any affine open subscheme. Contrast
+this to Exercise 5.1.E, and Exercise 15.2.P. \\
+
+For the second part of the problem, Exercise 3.6.J tells us that closed points
+are dense in affine $k$-schemes. As locally finite $k$-schemes can be covered
+by affine $k$-schemes, it follows that closed points are dense in these as
+well.
+
+
+\subsection*{Ex 5.3.G}
+
+We follow the hint. Let $M = I_{j} / I_{j - 1}$. Then as localization commutes with quotients,
+\begin{equation*}
+	(I_{J})_{f_n} / (I_{j - 1})_{f_n}
+	=
+	(I_{J} / I_{j - 1})_{f_n} 
+	=
+	M_{f_n}.
+\end{equation*}
+If $M \not = 0$, then as $M$ injects into $M_{f_1} \times \ldots \times
+M_{f_n}$, one of the $M_{f_i} \not = 0$. In particular, if the $I_j$ form a
+strictly increasing chain, then one of the $I_{i, j}$ chains have to be
+strictly increasing as well, since there only are finitely many $i \in [1..n]$.
+
+\subsection*{Ex 5.3.H}
+
+We use the notation given in the prelude. Let $r \in A$.
+Then in each $A_{f_i}$, we can write 
+\[
+	r
+	=
+	\sum_{j = 1}^{m_i} a_j r_{i, j}/f_{i}^{k_{i, j}}.
+\] 
+Let $K_i = \max_{j \in [1..m_i]}(k_{i, j})$. Then for each $i$,
+\[
+	f_i^{K_i} r
+	=
+	\sum_{j = 1}^{m_i} a_j r_{i, j} f_i^{K_i - k_{i, j}}
+	\in
+	A.
+\] 
+Now let $K = \max(K_i)$. Then as $(f_1, \ldots, f_n) = (1)$ we have $(f_1,
+\ldots, f_n)^{nK} = (1)^{nK} = (1)$. But any product of $nK$ factors of $f_1,
+\ldots, f_n$, must have at least $K$ factors of some of the $f_i$ by the
+pigeonhole principle. Hence $(f_1^K, \ldots, f_n^K) = (1)$. Thus there exists
+some partition of unity $1 = \sum_{i = 1}^{n} c_i f_i^K$ in $A$. Finally,
+\begin{align*}
+	r
+	=
+	\left(
+		\sum_{i = 1}^{m}
+		c_i f_i^K
+	\right)
+	r
+	=
+	\sum_{i = 1}^{m}
+	\sum_{j = 1}^{m_i} a_j c_i r_{i, j} f_i^{K + K_i - k_{i, j}},
+\end{align*}
+and $A$ is generated by the $c_i, r_{i, j},$ and $f_i$.
+
+\subsection*{Ex 5.4.A}
+
+Let $A$ be an integrally closed domain, and $S \subset A$ a multiplicative set.
+Suppose that $a/b \in K(S^{-1}A)) = K(S)$ is a root of the monic polynomial 
+\[
+	x^n + \frac{a_{n-1}}{s_{n-1}} x^{n-1} + \ldots + \frac{a_0}{s_0}
+\]
+with coefficients in $S^{-1}A$. Then let $s = s_0s_1\ldots s_n$,
+and note that $a/(bs)$ is a root of the monic polynomial
+\[
+	x^n + s'_{n-1} a_{n-1} x^{n-1} + \ldots + a_0s'_0,
+\]
+where
+\[
+	s'_i
+	=
+	s^n/s_i.
+\] 
+It follows that $S^{-1}A$ is integrally closed whenever $A$ is.
+
+
+\subsection*{Normality Can be Checked at Closed Points of Quasicompact Schemes}
+
+Let $X$ be a quasicompact scheme, $[\mathfrak{p}] \in X$, and $[\mathfrak{m}]
+\in \overline{[\mathfrak{p}]}$ be a closed point. Then there is some open
+affine neighbourhood $\Spec(A)$ of $[\mathfrak{p}]$ where $\mathfrak{m}$ is a
+maximal ideal containing $\mathfrak{p}$. It follows that $\oo_{X,
+[\mathfrak{p}]} = A_{\mathfrak{p}}$ is a localization of $\oo_{X,
+[\mathfrak{m}]} = A_{\mathfrak{m}}$. Hence $\oo_{X, [\mathfrak{p}]}$ is an
+integrally closed integral domain whenever $\oo_{X, [\mathfrak{m}]}$ is, and it
+is enough to check normality at closed stalks of quasicompact schemes.
+
+
+\subsection*{Ex 5.4.B}
+
+Let $X$ be a Noetherian normal scheme and $X = X_1 \cup \ldots \cup X_r$ be a
+decomposition into irreducible components, which exists by Exercise 5.3.B. Then
+as all stalks are integral, it follows from our lemma in the solution to
+Exercise 5.3.C than any point $[\mathfrak{p}] \in X$ only lies in a single
+irreducible component $X_i$. I.e all $X_i$ are disjoint. It follows again from
+Exercise 5.3.C that each $X_i$ is an integral scheme, and from affine locality
+of normality and Noetherianness that each $X_i$ is Noetherian normal. \\
+
+Now suppose that $X$ is Noetherian, and that $X = X_1 \cup \ldots \cup X_r$ is
+a decomposition of $X$ into disjoint normal integral Noetherian schemes. As
+normality is stalk-local, it follows that $X$ is normal as well.
+
+\subsection*{Ex 5.4.C}
+
+Let $s \in \cap A_{\mathfrak{m}}$. Then let $I$ be the ideal of denominators of
+$s$. Suppose towards a contradiction that $I \not = A$. Then there exists some
+maximal ideal $\mathfrak{m}'$ containing $I$. But then $s \not \in
+A_{\mathfrak{m}'}$, contradicting $s \in \cap A_{\mathfrak{m}}$.
+
+\subsection*{Ex 5.4.D}
+
+Let $I$ be the ideal of denominators of $w/y = x/z$. Then clearly $y, z \in I$.
+Now suppose that $a \in I$. Then $aw/y = b$ for some $b \in A$. Since $A$ is a
+domain, it follows that $aw = yb$. Now consider $A/(y, z) \cong k[w, x]$. This
+is an integral domain, and as $aw = 0,\, w \not = 0$ in $A/(y,z)$, we have $a
+\in (y, z)$. \\
+
+Finally, to see that $I = (y, z)$ isn't a principal ideal, suppose towards a
+contradiction that $(f) = (y, z)$. Then identify $f$ with a representative in
+$k[w,x,y,z]$. Here we have
+\[
+	k[w,x,y,z]/(wz-xy, f) 
+	=
+	A/I 
+	= 
+	k[w, x] 
+	= 
+	k[w, x, y, z]/(y, z),
+\]
+and so we have $(wz - xy, f) = (y, z)$ as ideals in $k[w,x,y,z]$. As $wz - xy$
+is homogeneous of degree $2$, the only degree $1$ polynomials we could possibly
+hope to obtain from $(wz - xy, f)$ are scalar multiples of the degree $1$
+component of $f$. Either way, we can't obtain both $y$ and $z$, a contradiction.
+
+\subsection*{Ex 5.4.E}
+
+We state and prove Kaplansky's characterization of UFD's, which will make
+solving this problem easier. To prove Kaplansky's Theorem, we'll make use of a
+saturated multiplicative set which we define now.
+
+\begin{definition}
+	Let $A$ be an integral domain, and define 
+	\[
+		T(A)
+		=
+		\{
+			r \in A :
+			r \text{ is a unit. }
+		\}
+		\cup
+		\{
+			p_1p_2 \ldots p_k \in A :
+			\text{ every }
+			p_i 
+			\text{ is prime. }
+		\}.
+	\] 
+\end{definition}
+
+\begin{lemma}
+	Let $A$ be an integral domain. Then $T(A)$ is a saturated multiplicative
+	set.
+\end{lemma}
+\begin{proof}
+	First suppose that $a, b \in T(A)$. Then clearly $ab \in T(A)$ so $T(A)$
+	is multiplicative. \\
+
+	Now suppose that $ab \in T(A)$. If $ab$ is a unit, then $a, b$ are units
+	with inverses $b(ab)^{-1}, a(ab)^{-1}$, so suppose that 
+	\[
+		ab = p_1p_2 \ldots p_k,
+	\] 
+	with each $p_i$ prime. Then $p_1$ divides either $a$ and/or $b$.
+	Say $p_1 | a$. Then we can write $a = a_1 p_1$ and after cancelation
+	we get 
+	\[
+		a_1 b = p_2 p_3 \ldots p_k.
+	\] 
+	Continuing this way, we see that we can relabel the $p_i$ such that 
+	\[
+		a = A p_1 p_2 \ldots p_r, \,
+		b = B p_{r + 1} p_{r + 2} \ldots p_k.
+	\] 
+	As $ab = p_1 p_2 \ldots p_k$, we have $AB = 1$,
+	hence $a, b \in T(A)$.
+\end{proof}
+
+Now we're ready to prove Kaplansky's Theorem.
+
+\begin{theorem}
+	An integral domain $A$ is a UFD if and only if every non-zero prime ideal
+	$\mathfrak{p}$ of $A$ contains a prime element $p \in \mathfrak{p}$.
+\end{theorem}
+\begin{proof}
+	If a $A$ is a UFD, and $a \in \mathfrak{p}$, then $\mathfrak{p}$ contains
+	an irreducible factor $u$ of $a$ by primality, and $u$ is prime as $A$ is a
+	UFD. \\
+
+	Now suppose that $A$ is a domain such that every non-zero prime ideal of
+	$\mathfrak{p}$ contains a prime element $p$. We are done if we can show
+	that $T(A) = A \setminus \{0\}$, as this would mean that every element of
+	$A$ has a decomposition into prime elements, which is necessarily unique.
+	\\
+
+	Suppose that $a \in A \setminus T(A)$. Then $(a) \cap T(A) = \emptyset$ as
+	$ra \in T(A)$ would imply $a \in T(A)$ by saturation. Let $\mathfrak{p}$ be
+	an ideal containing $(a)$ which is maximal with respect to the condition
+	that $\mathfrak{p} \cap T(A) = \emptyset$. Then $\mathfrak{p}$ is prime,
+	for if $bc \in \mathfrak{p}$, then one of $b$ or $c$ must not lie in
+	$T(A)$, say $b$, whence $\mathfrak{p} + (b)$ is an ideal containing
+	$(a)$ not meeting $T(A)$. It follows by our maximal choice that
+	$\mathfrak{p} = \mathfrak{p} + (b)$ so $b \in \mathfrak{p}$ and
+	$\mathfrak{p}$ is prime. As $\mathfrak{p} \cap T(A) = \emptyset$,
+	$\mathfrak{p}$ does not contain any prime element, from which it follows
+	from our assumption that $\mathfrak{p} = (0)$. Hence $a = 0$, and we are
+	done.
+
+\end{proof}
+
+With Kaplansky's Theorem in hand, solving the exercise is now easy. 
+
+\begin{corollary}
+	Let $A$ be a UFD, and $S \subset A$ a multiplicative subset.
+	Then $S^{-1}A$ is a UFD.
+\end{corollary}
+\begin{proof}
+	
+	Let $\phi : A \to S^{-1}A$ be the canonical localization morphism. Then let
+	$S^{-1}\mathfrak{p}$ be a non-zero prime ideal of $S^{-1}A$. Then
+	$\mathfrak{p} = \phi^{-1}(S^{-1}\mathfrak{p})$ is a non-zero prime ideal of
+	$A$, hence contains a prime element $p \in \mathfrak{p}$. Moreover, $p \not
+	\in S$ as $\phi(\mathfrak{p}) \not = S^{-1}A$. We will show that $p/1$ is
+	prime in $S^{-1}A$, after which we will be done. \\
+
+	Suppose that $p/1 | (a/A) (b/B) = ab/(AB)$, and let $d/D \in S^{-1}A$ be
+	such that $pd/D = ab/(AB)$. Then $pdAB = Dab$, and $p | Dab$ so by
+	primality, $p | Da$ or $p | b$. If $p | Da$, then let $pc = Da$, whence
+	$(c/DA)(p/1) = a/A$ and $p/1 | a/A$. If instead $p | b$, then let $pc = b$
+	whence $(c/B)(p/1) = b/B$ and $p/1 | b/B$.
+
+\end{proof}
+
+\subsection*{Ex 5.4.F}
+
+Let $A$ be a UFD, and $a/b \in K(A)$ be a root of the monic polynomial 
+\[
+	x^n + a_{n - 1}x^{n-1} + \ldots + a_0 \in A[x].
+\] 
+As $A$ is a UFD, we can suppose that $a/b$ is reduced, that no prime $p$
+divides both $a$ and $b$. But then plugging $a/b$ into the polynomial and
+rearranging yields
+\begin{align*}
+	a^n
+	=
+	- 
+	b a_{n - 1} a^{n - 1}
+	- 
+	b^2 a_{n - 2} a^{n - 2}
+	-
+	\ldots 
+	-
+	b^{n}a_0,
+\end{align*}
+from which we see that $b | a^n$. It follows that $b = 1$, $a/b \in A$ and $A$
+is integrally closed.
+
+\subsection*{Ex 5.4.G}
+
+We will show that the schemes are factorial, from which normality follows by
+Exercise 5.4.F. \\
+
+We can use Kaplansky's Theorem to show that a polynomial ring over a UFD
+is again a UFD.
+
+\begin{lemma}
+	Let $A$ be a UFD. Then $A[x]$ is a UFD.	
+\end{lemma}
+\begin{proof}
+	Let $i : A \to A[x]$ be the injection, and $\mathfrak{p}$ be a prime ideal
+	in $A[x]$. Then $i^{-1}(\mathfrak{p})$ is prime in $A$ hence contains a
+	prime element $p$. We claim that $p$ is prime in $\mathfrak{p}$ as well.
+	Suppose that $p | f(x)g(x)$, and that $a, b$ are the leading coefficients
+	of $f, g$. Then $p$ divides either $a$ or $b$, say $a$. But then if we let
+	$f_1 = f(x) - ax^{\deg(f)}$, we have $p | f(x)g(x) - ax^{\deg(f)}g(x) =
+	f_1(x)g(x)$. We can continue this way until either $f_i = 0$ or $g_i = 0$,
+	showing that $p$ divides $f$ or $g$.
+\end{proof}
+
+It follows that $k[x_1, \ldots, x_n]$ is a UFD. \\
+
+$\A^{n}_{k}$ and $\Spec(Z)$ are both affine schemes of UFD's, hence factorial
+by Exercise 5.4.E. $\P^{n}_k$ can be covered by factorial schemes and is thus
+factorial, as this is a stalk-local property. 
+
+\subsection*{Ex 5.4.H}
+
+We use all notation given in the exercise text. First of, as $A$ is a UFD and
+$z^2 - f$ is irreducible, $z^2 - f$ is a prime element and $I = (z^2 - f)$ is a
+prime ideal. Hence $B = A[z]/I$ is a domain. It follows that $\Spec(B)$ is
+integral hence irreducible. \\
+
+Suppose that
+\[
+	F(T)
+	=
+	T^{n}
+	+
+	a_{n - 1}(z) T^{n - 1}
+	+
+	\ldots
+	+
+	a_0(z)
+	\in B[X]
+\]
+is a monic polynomial with a root $\alpha \in K(B)$. First, note that as a
+vector space we have $B = A \oplus z A$, and so we can write $F(T) = G(T) + z
+H(T)$ with $G(T), H(T) \in A[T]$. As $0 = F(\alpha) = G(\alpha) + z H(\alpha)$,
+we have $H(a/b) = G(a/b) = 0$. Moreover, $G$ is clearly monic as $F$ is. Thus
+any element in $K(B)$ which is integral over $B$ is also integral over $A$, and
+as $A$ is integrally closed, we can thus assume that $\alpha \in K(B) \setminus
+K(A)$. \\
+
+Furthermore, we also have $K(B) = K(A) \oplus z K(A)$ as vector spaces, since 
+if $\frac{a + b z}{c + d z} \in B$ we can write 
+\begin{align*}
+	\frac{a + b z}{c + d z}
+	&=
+	\frac{a + b z}{c + d z}
+	\frac{c - d z}{c - d z} \\
+	&=
+	\frac{ac - f bd + (bc - ad) z}{c^2 - f d^2} \\
+	&=
+	\frac{ac - f bd}{c^2 - f d^2}
+	+
+	z \frac{bc - ad}{c^2 - f d^2} \\
+	&\in K(A) \oplus z K(A).
+\end{align*} 
+Hence we can write $\alpha = g + z h$ with $g, h \in K(A)$ and $h \not = 0$.
+Now Let $Q(T) = T^2 - 2gT + (g^2 - h^2 f) \in K(A)[T]$. Then 
+\begin{align*}
+	Q(g + z h)
+	=
+	g^2 + 2 z gh + h^2 f
+	-
+	2 g^2 - 2 z gh
+	+ g^2 - h^2 f
+	= 0,
+\end{align*}
+and so $G(T)$ factorizes to $P(T)Q(T)$ in $K(A)[T]$. As $G(T), Q(T)$ are monic,
+so is $P(T)$. Clearing denominators of $P, Q$, we have $k_P P(T), k_Q Q(T) \in
+A[T]$. As $G(T)$ is monic, the content of $k_P P(T) k_Q Q(T) = k_P k_Q G(T)$
+must be $k_P k_Q$. As $Q(T), P(T)$ are monic in $K(A)[T]$, the contents of $k_P
+P(T), k_Q Q(T)$ can at most be $k_P, k_Q$. If we combine these two facts, we
+see that the contents of $k_P P(T), k_Q Q(T)$ are exactly $k_P, k_Q$. Hence
+$Q(T) \in A[T]$. \\
+
+So we have $2g \in A$ and $g^2 - h^2 f \in A$. As $2$ is invertible, we have $g \in A$,
+whence $h^2 f \in A$. Let $h = a/b$ with $a, b$ not having any prime factors in common.
+Then $f/b^2 \in A$
+
+\subsubsection*{(a)}
+
+If $f$ is square free, this implies that $b = 1$ and $g, h \in A$ whence
+$\alpha = g + z h \in B$ so $B$ is integrally closed.
+
+\subsubsection*{(b)}
+If $f = b^2$ with $b$ a non-unit, then 
+\[
+	Q(T)
+	=
+	T^2
+	-
+	1
+\] 
+has $z / b$ as a root, which doesn't lie in $b$
+
+
+\subsection*{Ex 5.4.I}
+
+\subsubsection*{(a)}
+
+Let $A = \Z$, and $B = \Z[z]/(z^2 - n)$, and $\alpha = g + z h \in K(B)$
+be integral over $B$. Then we can proceed just like in Exercise 5.4.H
+to conclude that $2g \in A$ and $g^2 - h^2 n \in \Z$. \\
+
+Write $g = a/b$ and $h = c/d$ with $a,b,c,d \in \Z$ and $c, d \not = 0$. Then
+we have $a^2d^2 - b^2c^2 n \in \Z$. It follows that either $b = 0$ or $n$ is a
+square. But no square is $3$ (or $2$) modulo $4$, hence $b = 0$. But then as
+$g^2 \in \Z$, we need $g \in \Z$ and so $\alpha \in \Z$.
+
+\subsubsection*{(b)}
+
+Let $A = k[x_2, \ldots, x_n]$, $f = -(x_2^2 + x_3^2 + \ldots + x_m^2) \in A$,
+and
+\[
+	B 
+	= 
+	A[x_1]/(x_1^2 - f) 
+	= 
+	k[x_1, x_2, \ldots, x_n]/(x_1^2 + x_2^2 + \ldots + x_m^2).
+\]
+Then as $f$ is irreducible (remember $m \geq 3$), it's square free, and we may
+apply Exercise 5.4.H to see that $B$ is normal.
+
+\subsubsection*{(c)}
+
+Using exercise 5.4.J, we see that $A$ is isomorphic to some ring of the form
+given in part (b). Hence $\Spec(A)$ is normal.
+
+\subsection*{Ex 5.4.J}
+
+\subsubsection*{(a)}
+
+We follow the hint. If $n = 1$, the only quadratic forms are of the form $c
+x_1^2$, and are already diagonal. Now suppose that all quadratic forms in $n -
+1$ variables are diagonal, and let $f \in k[x_1, \ldots, x_n]$ be a quadratic
+form. Then by the induction hypothesis, we may perform some linear change of
+basis and write
+
+\begin{align*}
+	f
+	=&
+	a_1 \hat{x}_1^{2}
+	+
+	a_2 \hat{x}_2^{2}
+	+
+	\ldots
+	+
+	a_{n - 1} \hat{x}_{n - 1}^{2}
+	+
+	b_1 \hat{x}_1 x_{n}
+	+
+	b_2 \hat{x}_2 x_n
+	+
+	\ldots
+	+
+	b_{n - 1} \hat{x}_{n - 1} x_n
+	+
+	b_{n} x_n^{2} \\
+	=&
+	a_1 \left(\hat{x}_1 + \frac{b_1}{2} x_n\right)^{2}
+	+
+	a_2 \left(\hat{x}_2 + \frac{b_2}{2} x_n\right)^{2}
+	+
+	\ldots
+	+
+	a_{n - 1} \left(\hat{x}_{n - 1} + \frac{b_{n-1}}{2} x_{n-1}\right)^{2} \\
+	 &+
+	\left(
+		b_n
+		-
+		\frac{a_1 b_1^2}{4}
+		-
+		\frac{a_2 b_2^2}{4}
+		-
+		\ldots
+		-
+		\frac{a_{n-1} b_{n - 1}^2}{4}
+	\right)
+	x_n,
+\end{align*} 
+from which we see that $f$ may be diagonalized by performing 
+yet another change of basis.
+
+\subsubsection*{(b)}
+
+First note that any bilinear form
+\[
+	f = \sum_{i \leq j} c_{i, j} x_i x_j
+\]
+can be written as 
+\[
+	f 
+	=
+	\begin{bmatrix}
+		x_0 & x_1 & \ldots & x_n 
+	\end{bmatrix}
+	A
+	\begin{bmatrix}
+		x_0 \\
+		x_1 \\
+		\vdots \\
+		x_n \\
+	\end{bmatrix}
+\] 
+where $A$ is a symmetric matrix with $A_{i,j} = A_{j, i} = c_{i,j}/2$ for $i
+\not = j$ and $A_{i, i} = c_{i, i}$. If we perform a change of basis such that
+$C = P^{T} A_{j, i} P$ has no non-zero off-diagonal entries, then clearly the
+number of non-zero entries on the diagonal will be equal to the rank of the
+matrix. The statement now follows from the rank of a matrix being invariant to
+changes of basis.
+
+\subsection*{Ex 5.4.K}
+
+We have that $A = \Z[\sqrt{-5}] \cong \Z[x]/(x^2 + 5)$. This aligns with Exercise
+5.4.J with $n = -5$ which is congruent to $3$ modulo $4$. Hence $\Spec(A)$
+is normal, and so $A$ is integrally closed by Exercise 5.4.2. \\
+
+$A$ is not a UFD however, since
+\[
+	2 * 3 = 6 = 1 + 5^2 = (1 + \sqrt{-5})(1 - \sqrt{-5})
+\]
+
+\subsection*{Ex 5.4.L}
+
+\subsubsection*{(a)}
+
+In our solution to Exercise 5.4.I (ii) and (iii), we saw that $\Spec(A)$ is
+isomorphic to an normal scheme, and so $A$ is integrally closed by Proposition
+5.4.2.
+
+\subsubsection*{(b)}
+
+We show that $w,x,y,z$ are irreducible in $A = k[w,x,y,z]/(wy - xz)$. As $wy -
+xz$ is a homogeneous element in the graded ring $k[w,x,y,z]$, we have that $A$
+inherits the grading of $k[w,x,y,z]$. \\
+
+Now, $w,x,y,z$ are homogeneous elements degree $1$ in $A$. If $ab = w$, then
+$ab \in A_1$. Let $a_m, b_n$ be the homogeneous components of highest degree in
+$a$ and $b$ respectively. Then $a_m b_n$ is a homogeneous component of $ab$,
+hence $a_m b_n = w$. But $w$ has degree $1$, so $m + n = 1$, whence either $a$
+or $b$ must lie in $k$ and be a unit. 
+
+\subsection*{Ex 5.4.M}
+
+We follow the hint. First of all $A$, must be an integral domain, since if $ab
+= 0$ in $A$, then $(a \otimes 1)(b \otimes 1) = ab \otimes 1 = 0$. As $A
+\otimes l$ is a domain, either $a \otimes 1 = 0$ or $b \otimes 1 = 0$, so $a =
+0$ or $b = 0$ in $A$. \\
+
+Let $1 = b_1, b_2, \ldots, b_m$ be a $k$-basis for $l$. We will show that $1
+\otimes b_i$ forms a free $A$-basis for $A \otimes_{k} l$. Let $a \otimes l \in
+A \otimes_{k} l$, and suppose that $l = \sum_{i = 1}^{m} k_i b_i$ with $k_i \in
+k$. Then 
+\[
+	a \otimes l
+	=
+	a \otimes \left(\sum_{i = 1}^{m} k_i b_i\right)
+	=
+	\sum_{i = 1}^{m} a \otimes k_i b_i
+	=
+	\sum_{i = 1}^{m} a k_i (1 \otimes b_i),
+\] 
+and so the $1 \otimes b_i$ generate $A \otimes_{k} l$ as an $A$-module. Now
+suppose that we have some $A$-linear dependence
+\[
+	0 
+	= 
+	\sum_{i = 1}^{m} a_i (1 \otimes b_i)
+	=
+	\sum_{i = 1}^{m} a_i \otimes b_i.
+\] 
+Then
 
 
 

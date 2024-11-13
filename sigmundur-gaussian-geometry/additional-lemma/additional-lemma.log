@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.2)  29 OCT 2024 11:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.10.2)  10 OCT 2024 14:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**sol.tex
-(./sol.tex
+**additional-lemma.tex
+(./additional-lemma.tex
 LaTeX2e <2022-11-01> patch level 1
 L3 programming layer <2023-02-22> (/usr/local/texlive/2023/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
@@ -448,8 +448,8 @@ File: t1txtt.fd 2000/12/15 v3.1
 File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count317
 \l__pdf_internal_box=\box71
-) (./sol.aux)
-\openout1 = `sol.aux'.
+) (./additional-lemma.aux)
+\openout1 = `additional-lemma.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 127.
 LaTeX Font Info:    ... okay on input line 127.
@@ -485,99 +485,29 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \c@lstlisting=\count324
-LaTeX Font Info:    Trying to load font information for U+msa on input line 133.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 130.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 133.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 130.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (85.20639pt too wide) detected at line 268
-[]
- []
-
-[2] [3] [4] [5] [6]
-Overfull \hbox (32.85143pt too wide) detected at line 521
-[]
- []
-
-[7] [8] [9] [10] [11]
-Overfull \hbox (7.27364pt too wide) detected at line 944
-[]
- []
-
-[12] [13]
-Overfull \hbox (6.70808pt too wide) detected at line 1101
-\OML/cmm/m/it/10 X \OT1/cmr/m/n/10 : (\OML/cmm/m/it/10 u; v\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 7! [] [] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 :
- []
-
-[14] [15]
-Overfull \hbox (112.63829pt too wide) detected at line 1226
-[]
- []
-
-
-Overfull \hbox (10.95222pt too wide) in paragraph at lines 1279--1284
-[]\OT1/cmr/m/n/10 Let $\OML/cmm/m/it/10 M$ \OT1/cmr/m/n/10 be a reg-u-lar sur-face, $\OML/cmm/m/it/10 p \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 M$\OT1/cmr/m/n/10 . Then $\OML/cmm/m/it/10 T[]\OT1/cmr/m/n/10 ^^H(\OML/cmm/m/it/10 M\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 AT[]M$ \OT1/cmr/m/n/10 and $\OML/cmm/m/it/10 N[]\OT1/cmr/m/n/10 (^^H(\OML/cmm/m/it/10 p\OT1/cmr/m/n/10 )) =
- []
-
-[16] [17]
-Overfull \hbox (3.78221pt too wide) detected at line 1424
-[]
- []
-
-[18] [19]
-Overfull \hbox (329.56412pt too wide) detected at line 1550
-[]
- []
-
-[20]
-Overfull \hbox (171.1907pt too wide) detected at line 1699
-[]
- []
-
-
-Overfull \hbox (266.52846pt too wide) detected at line 1765
-[]
- []
-
-[21] [22]
-Overfull \hbox (87.85379pt too wide) detected at line 1969
-[]
- []
-
-[23]
-Overfull \hbox (87.85379pt too wide) detected at line 2022
-[]
- []
-
-[24] [25]
-Overfull \hbox (180.4273pt too wide) detected at line 2180
-[]
- []
-
-[26] [27] [28{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-Overfull \hbox (165.61435pt too wide) detected at line 2409
-[]
- []
-
-[29] (./sol.aux) ) 
+{/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./additional-lemma.aux) ) 
 Here is how much of TeX's memory you used:
- 17287 strings out of 476025
- 345204 string characters out of 5790017
- 1873388 words of memory out of 5000000
- 37448 multiletter control sequences out of 15000+600000
- 519291 words of font info for 57 fonts, out of 8000000 for 9000
+ 17277 strings out of 476025
+ 345222 string characters out of 5790017
+ 1864388 words of memory out of 5000000
+ 37442 multiletter control sequences out of 15000+600000
+ 517746 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 98i,18n,94p,447b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on sol.pdf (29 pages, 254296 bytes).
+ 98i,18n,94p,460b,261s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on additional-lemma.pdf (1 page, 121986 bytes).
 PDF statistics:
- 177 PDF objects out of 1000 (max. 8388607)
- 114 compressed objects within 2 object streams
+ 71 PDF objects out of 1000 (max. 8388607)
+ 43 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
