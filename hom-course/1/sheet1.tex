@@ -1,0 +1,2168 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{rotating}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec\left(#1\right)}}
+\newcommand{\rospu}[2]{\restr{\osp{#1}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+\newcommand{\ox}{\mathcal{O}_X}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Proj}{\text{Proj}}
+\newcommand{\proj}{\Proj}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\coker}{\text{coker}}
+\newcommand{\colim}{\text{colim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\Tor}{\text{Tor}}
+\newcommand{\Ext}{\text{Ext}}
+\newcommand{\HK}{\mathbf{K}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Ch}{\catname{Ch}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\Rep}{\catname{Rep}}
+\newcommand{\rep}{\catname{rep}}
+\newcommand{\Mod}{\catname{Mod}}
+\newcommand{\RMod}{\,_{R}\catname{Mod}}
+\newcommand{\ModR}{\catname{Mod}_{R}}
+\newcommand{\op}{\catname{op}}
+\newcommand{\Ab}{\catname{Ab}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{List 1}
+
+\subsection*{Exercise 1}
+
+\subsubsection*{(c)}
+
+Let $V, T$ be a $k$-vector space. Then we can consider $V$ as a $k[t]$ module
+by letting $t$ act on $V$ via $t^k v \mapsto T^{\circ k}(v)$ for $v \in V$,
+where $T^{\circ k}$ denotes $k$ repeated applications. \\
+
+Now let $M$ be a $k[t]$ module. Then we can consider $M$ as a $k$-space, and
+multiplication by $t$, $\cdot t : m \mapsto tm$ as a $k$-linear map. \\
+
+These two procedures are clearly inverse each other, and so $k[t]$ modules are
+the same as pairs of $V, T$ of a $k$-space and an endomorphism on it.
+
+\subsubsection*{(d)}
+
+Let $M$ be a $k[G]$-module. Then for each $g$ in $G$, define $\rho_g \in
+\Aut_{k}(M)$ by $\rho_{g} : m \mapsto gm$. Note that $\rho_g$ has an inverse
+$\rho_{g^{-1}}$, and so really is an automorphism. Then the map $g \mapsto
+\rho_g$ is a group homomorphism, as $\rho_e = I$ and
+\[
+	\rho_{gf}(m)
+	=
+	gfm
+	=
+	g\rho_{f}(m)
+	=
+	\rho_{g}\rho_f(m).
+\]
+
+Now let $\rho : G \to \Aut_k(V)$ be a $G$-representation over some $k$-space
+$V$. Then we can turn $V$ into a $k(G)$-module by letting $g \in G$ act on $V$
+via $gv \mapsto \rho(g)(v)$, and extending algebraically. This is well defined
+as if $g, f \in M$, then
+\[
+	\rho(gf)(v)
+	=
+	gfv
+	=
+	\rho(g) \circ \rho(f)(v),
+\]
+and as each $\rho(g)$ lives in $\Aut_k(V)$, everything distributes in the right
+way.
+
+These two procedures (functors) are inverse each other and so yada yada... \\
+
+
+\subsection*{Exercise 2}
+
+\subsubsection*{(a)}
+
+A $k[x]$-module is the same as a vector space $V$ together with an
+endomorphism $T$. A $k[x]/(x^n)$-module should then such a pair $V, T$ where
+$T^{\circ n} = 0$. 
+
+\subsubsection*{(b)}
+
+First, of $k[x, x^{-1}] \cong k[x, y]/(xy)$, so a $k[x, x^{-1}]$-module ought
+to be a vector space $V$ together with two mutually inverse automorphisms $T,
+T^{-1}$.
+
+
+\subsection*{Exercise 6}
+
+\subsubsection*{(c)}
+
+Let $\phi : V \to W$ be a $k[t]$-linear map. Then for $v \in V$ we have 
+\[
+	\phi(T(v))
+	=
+	\phi(t v)
+	=
+	t \phi(v)
+	=
+	W(\phi(v)).
+\] 
+
+Now let $\phi : V \to W$ be a $k$-linear map which commutes with $T, W$. Then 
+\[
+	\phi(t v)
+	=
+	\phi(T(v))
+	=
+	W(\phi(v))
+	=
+	t \phi(v),
+\]
+and $\phi$ is a $k[t]$-linear map as well.
+
+\subsection*{Exercise 9}
+
+\begin{align*}
+	(\phi + \psi)(am + n)
+	&=
+	\phi(a m + n) + \psi(am + n) \\
+	&= 
+	a\phi(m) + \phi(n) + a\psi(m) + \psi(n) \\
+	&=
+	a(\phi + \psi)(m) + (\phi + \psi)(n)
+\end{align*}
+
+\subsection*{Exercise 10}
+
+Any $\Z$-map $\phi$ out of $\Z$ is determined by where it sends $1$, since
+$\phi(n) = n\phi(1)$. \\ 
+
+\subsubsection*{(a)}
+
+We can send $1$ anywhere, as $\phi_k : n \mapsto k n$
+is an $\Z$-map for all $k \in \Z$. Indeed, 
+\[
+	\phi_k(am + n)
+	=
+	kam + kn
+	=
+	a\phi_k(m) + \phi_k(n).
+\] 
+Moreover, $(\phi_k + \phi_{l})(m) = km + lm = (k + l)m = \phi_{k + l}(m)$, and
+$\phi_k + \phi_l = 0 \Leftrightarrow k + l = 0$ so $\Hom_{\Z}(\Z, \Z) \cong \Z$.
+
+\subsubsection*{(b)}
+
+We can send $1$ anywhere in $Z/(m)$, as $\phi_k : n \mapsto k n + (m)$ is an
+$\Z$-map for all $k \in \Z$. Indeed, 
+\[
+	\phi_k(ax + n)
+	=
+	kax + kn + (m)
+	=
+	a\phi_k(x) + \phi_k(n).
+\] 
+Moreover, $(\phi_k + \phi_{l})(x) = kx + lx + (m) = (k + l)x + (m) = \phi_{k +
+l}(x)$, and $\phi_k + \phi_l = 0 \Leftrightarrow k + l \in (m)$, and so
+$\Hom_{\Z}(\Z, \Z/(m)) \cong \Z/(m)$.
+
+\subsubsection*{(c)}
+
+Let $\phi : A \to \Hom_{\Z}(\Z, A)$ be given by $\phi(a) : k \mapsto ka$. Then
+$\phi(a)$ is a $\Z$-map since $\phi(a)(lm + n) = lma + na = l\phi(a)(m) +
+\phi(a)(n)$ and $\phi$ is group homomorphism as $\phi(a + b)(k) = ka + kb =
+\phi(a)(k) + \phi(b)(k)$ and $\phi(0)(k) = 0k = 0$ is the zero-map. Moreover,
+$\phi$ is injective, since $\phi(a) = 0$ gives that $0 = \phi(a)(1) = 1a = a$.
+Finally, $\phi$ is surjective since if $\psi : \Z \to A$, then $\psi(n) = n
+\psi(1) = n \phi(\psi(1))$. We've shown that $A \cong \Hom_{\Z}(\Z, A)$.
+
+\subsubsection*{(d)}
+
+Let $\phi : \Z/(m) \to \Z$ be a $\Z$-map. Then $m\phi(1) = \phi(m) = 0$, hence $\phi(1) = 0$
+since $\Z$ is a domain, and $\phi = 0$.
+
+\subsubsection*{(f)}
+
+Let $\phi : \Q \to \Z$ be a $\Z$-map. Then $b\phi(a/b) = \phi(a)$, and so $b |
+\phi(a)$. But $a/b = ca/cb$ for any $c$, and so $c | \phi(a)$ for all $c
+\in \Z$. It follows that $\phi(a) = 0$ and so $\phi = 0$.
+
+\subsection*{Exercise 18}
+
+\subsubsection*{(b)}
+
+Let $M$ be an $R/I$ module, and let $R$ act on $M$ by 
+\[
+	rm = (r + I)m.
+\] 
+Then any $i \in I$ annihilates all of $M$ since $im = (0 + I)m = 0$. \\
+
+Now let $M$ be an $R$ module which is annihilated by $I$. Then let 
+$R/I$ act on $M$ by 
+\[
+	(r + I)m = rm.
+\] 
+This is well defined, since if $r + I = r' + I$, we have $r - r' \in I$ and so 
+\[
+	(r + I)m
+	=
+	rm
+	=
+	rm - rm + r'm
+	=
+	r'm
+	=
+	(r' + I)m.
+\] 
+
+\subsubsection*{(c)}
+
+Any $m + IM \in M/IM$ is annihilated by $I$. Hence $M/IM$ is an $R/I$-module by
+the part (b).
+
+\subsubsection*{(d)}
+
+Suppose $m_1, \ldots m_n$ generate $M$, and let $m + IM \in M/IM$. Then we can
+write $m$ as an $R$-linear combination of the $m_i$,
+\[
+	m = \sum_{i = 1}^{n} r_i m_i.
+\] 
+Moreover, 
+\[
+	m + IM
+	=
+	\sum_{i = 1}^{n} r_i (m_i + IM)
+\] 
+and since $r_i$ acts as $r_i + I$ on $M/IM$,
+\[
+	m + IM
+	=
+	\sum_{i = 1}^{n} r_i (m_i + IM)
+	=
+	\sum_{i = 1}^{n} (r_i + I) (m_i + IM)
+\]
+and so the $m_i + IM$ generates $M/IM$ as a $R/I$-module. \\
+
+To see that the size of the genarating set may decrease, note that we may have
+some $m_i \in IM$. For example if $R = k[x]$, $M = R/(x^2 - 1)$, $I = (x)$.
+Then $1$ and $x$ generate $M$, but $M/IM = k$ is generated by $1$ as a $R/I =
+k$ module.
+
+\subsubsection*{(e)}
+
+Suppose that $M = \bigoplus_{i = 1}^{n} Re_i$ is a free module with basis $e_1,
+\ldots, e_n$. Then we showed in the part (d) that $M/IM$ is generated by $e_i +
+IM$ as an $R/I$ module. We now show that the $e_i + IM$ doesn't satisfy any
+non-trivial $R/I$-linear relation. We have
+\[
+	0
+	=
+	\sum_{i = 1}^{n} (r_i + I)(e_i + IM)
+\] 
+if and only if 
+\[
+	im
+	=
+	\sum_{j = 1}^{n} r_j e_j
+\]
+for some $i \in I, m \in M$. But then we can write 
+\[
+	m = \sum_{j = 1}^{n} r_j' e_j
+\] 
+and as the $e_i$ are a basis, it follows that $i r_j' - r_j = 0$ for all $j$.
+Hence $r_j \in I$, and $r_j + I = 0$.
+
+\subsection*{Exercise 19}
+
+It follows from Exercise 18.(e) that $M/IM$ has a basis of cardinality $|J|$
+whenever $J$ is a basis for $M$. Furthermore as $R/I$ is a vector space, every
+basis of $M/IM$ has the same cardinality, and so every basis of $M$ has the
+same cardinality.
+
+\subsection*{Exercise 20}
+
+\subsubsection*{(a)}
+
+First of, as $R$ is a PID we in particular have that every ideal is finitely
+generated so $R$ is Noetherian. It follows that if we let $S$ be the set of
+ideals of the form $f(N)$ for $R$-linear maps $f : M \to R$, then $S$ has a
+maximal element $u(N)$.
+
+\subsubsection*{(b)}
+
+Let $u(N) = (a_1)$. If $a_1 = 0$, we have that $N$ is in the kernel of every
+morphism $M \to R$. As $M$ is free, we can suppose $M = \bigoplus_{i \in I} R
+E_i$, and we have projections $\pi_i : M \to R$ onto the $i$-th cordinate for
+each $i \in I$. Since $N$ is in the kernel of every $\pi_i$, it follows that no
+element of $N$ has any non-zero coordinate. Hence $N = 0$.
+
+\subsubsection*{(c)}
+
+Let $e'_1 = r_1x_1 + \ldots + r_n x_n$. Then let $b_i = u(x_i)$. We then have 
+\[
+	a_1
+	=
+	u(e'_1)
+	=
+	u(r_1x_1 + \ldots + r_n x_n)
+	=
+	r_1 b_1 + \ldots + r_n b_n.
+\] 
+Let $r$ be the generator of $(r_1, \ldots, r_n)$ and $b_i'$ be such that $r =
+r_1 b_1' + \ldots r_n b_n'$. Then define the $R$-map $u' : x_i \mapsto b_i'$.
+Then $u'(e'_1) = r$, hence $u'(N) \supseteq (r) \supseteq (a_1) = u(N)$, whence
+maximality of $u(N)$ yields $r = a_1$. The desired result now follows as
+$\pi_i(e'_1) = r_i \in (a_1)$.
+
+\subsubsection*{(d)}
+
+Follows immediately from our solution above.
+
+\subsubsection*{(e)}
+
+We have $a_1 u(e_1) = u(a_1e_1) = u(e_1') = a_1$, hence $u(e_1) = 1$ as $R$ is
+a domain. Let $M' = \ker(u)$, and define $\phi : M \to M' \oplus R$ by $\phi :
+x \mapsto (x - u(x)e_1, u(x))$. Then indeed $u(x - u(x)e_1) = u(x) - u(x) = 0$
+so $\phi$ is well-defined. Now let $x \in \ker(\phi)$. Then by looking at the
+second coordinate of $\phi$, we see that $x \in \ker(u)$, whence we get that
+$\phi(x) = (x, 0)$ so $x = 0$, and $\phi$ is injective. Now let $x, r \in M'
+\oplus R$. Then $\phi(x + re_1) = (x + re_1 - u(x + re_1), u(x + re_1)) = (x,
+r)$ and so $\phi$ is surjective as well, hence an isomorphism.
+
+\subsubsection*{(f)}
+
+Suppose first that the rank of $M$ is $1$. We claim that $e_1$ generates $M$.
+To see this, note that $e_1' = r_1x_1$ and from part (c) it follows that $r =
+r_1 = a_1$ in this case so $e_1 = x_1$ and $e_1$ is a basis for $M$. Moreover,
+$e_1' = a_1e_1$ is a basis for $N$ since \\
+
+Now suppose that $M$ is of rank $n$, and the statement holds for all modules of
+rank $< n$. Then let $e_1, a_1, u$ be as above. As $M \cong \ker(u) \oplus R$,
+there exists a basis $e_2, e_3, \ldots, e_n$ for $\ker(u)$ such that $e_2,
+\ldots, e_m$ is a basis for $N \cap \ker(u)$.
+
+
+\section*{List 2}
+
+\subsection*{Exercise 2}
+
+\subsubsection*{(a), (b), (c)}
+
+Let $m \in \ker(f)$. Then $f(m) = 0$ and so by injectivity of $f''$ and
+commutativity, we get $m'' = 0$. It follows by exactness that there is $m' \in
+M'$ in the preimage of $m$. As $f(m) = 0$, again by commutativity and the fact
+that $M' \to N' \to N$ are all injective, we have that $m' = 0$. It follows now
+that $m$ is $0$ by injectivity. \\
+
+Here we used injectivity of $f'$ and $f''$. \\
+
+Now let $n \in N$. Then let $m'' = (f'')^{-1}(n'')$ and $m_0$ be some element
+in the preimage of $m''$. Then $f(m_0) - n$ is mapped to $0$ along $N \to N''$,
+and so there is some element $n_1' \in N'$ in the preimage of $f(m_0) - n$
+by exactness. As $f'$ is surjective, we have $m_1' \in (f')^{-1}(n_1')$. 
+Now have that $f(m_1) = f(m_0) - n$ by commutativity, and so $f(m_1 - m_0) = n$. \\
+
+Here we used surjectivity of $f'$ and $f''$
+
+\subsubsection*{(d)}
+
+Let $n'' \in N''$. Then by exactness, we have $n \in N$ which maps to $n''$,
+and by surjectivity of $f$ we have $m \in M$ which maps to $n$. It follows that 
+$f''(m'') = n''$ by commutativity. \\
+
+Here we only used surjectivity of $f$.
+
+\subsubsection*{(e)}
+
+We give a counter example
+\[
+\begin{tikzcd}
+    0 
+	\arrow{r} 
+	& 
+	\mathbb{\Z} 
+	\arrow{r}{6}
+	\arrow{d}{3} 
+	& 
+	\Z
+	\arrow{r}
+	\arrow{d}{1} 
+	& 
+	\Z/6\Z
+	\arrow{r}
+	\arrow{d} 
+	& 
+	0 \\
+    0
+	\arrow{r} 
+	& 
+	\Z
+	\arrow{r}{2} 
+	& 
+	\Z
+	\arrow{r}
+	& 
+	\Z/2\Z
+	\arrow{r} 
+	& 
+	0
+\end{tikzcd}
+\] 
+
+\subsubsection*{(f)}
+
+Let $m' \in \ker(f')$. Then $f(m) = 0$, and since $m' \mapsto m \mapsto f(m)$
+are all injective, we have $m' = 0$. \\
+
+Here we used injectivity of $f$ only.
+
+\subsubsection*{(g)}
+
+We give a counter example.
+\[
+\begin{tikzcd}
+    0 
+	\arrow{r} 
+	& 
+	\mathbb{\Z} 
+	\arrow{r}{6}
+	\arrow{d}{3} 
+	& 
+	\Z
+	\arrow{r}
+	\arrow{d}{1} 
+	& 
+	\Z/6\Z
+	\arrow{r}
+	\arrow{d} 
+	& 
+	0 \\
+    0
+	\arrow{r} 
+	& 
+	\Z
+	\arrow{r}{2} 
+	& 
+	\Z
+	\arrow{r}
+	& 
+	\Z/2\Z
+	\arrow{r} 
+	& 
+	0
+\end{tikzcd}
+\]
+
+\subsection*{Exercise 3}
+\subsubsection*{(a)}
+
+We give a counter example.
+\[
+\begin{tikzcd}
+	\Z/8\Z
+	\arrow{r}
+	\arrow{d} 
+	& 
+	\Z/2\Z
+	\arrow{r}
+	\arrow{d}
+	& 
+	0
+	\arrow{r}
+	\arrow{d} 
+	& 
+	0 \\
+	\Z/4\Z
+	\arrow{r}
+	&
+	\Z/2\Z
+	\arrow{r}
+	& 
+	0
+	\arrow{r} 
+	& 
+	0
+\end{tikzcd}
+\]
+
+\subsubsection*{(b)}
+
+This is a stronger statement than Exercise 2 (g), which we gave a counter example for. I.e
+it is false.
+
+\subsection*{Exercise 10}
+
+\subsubsection*{(a)}
+Both statements are equivalent to $f_2 = 0$.
+
+\subsubsection*{(b)}
+
+If $f_1$ is surjective, $\ker(f_2) = M_2$ and so $f_2 = 0$. If $f_4$ is
+injective, $\im(f_3) = 0$, and so $f_3 = 0$. Then $M_3 = \ker(f_3) = \im(f_2) =
+0$.
+
+\subsection*{Exercise 13}
+
+\subsubsection*{(a)}
+
+Let $\hat{G} = \{\hat{g}_1, \ldots, \hat{g}_m\}$ be a generating set for $M''$,
+and $G$ be some set of choices $g_i \in \pi^{-1}(\hat{g}_i)$ for each
+$\hat{g}?i$. Also let $F = \{f_1, \ldots, f_n\}$ be the set of generators for
+$M'$ injected into $M$. Then let $m \in M$. Let $m''$ be the image of $m$ in
+$M''$. Then we can write $m''$ as a linear combination of the $\hat{g}_i$, and
+pulling this back to $M$ we get a linear combination of $g_i$ which maps to the
+same element as $m$. It follows that $m - \sum a_i g_i$ is in the kernel, and
+thus can be written as a linear combination of $f_i$, after which we can see
+that $m$ is a linear combination of elements from $F$ and $G$. \\
+
+\subsubsection*{(b)}
+
+$M''$ is generated by the image of the generators of $M$.
+
+\subsubsection*{(c)}
+
+We have that $M''$ is always finitely generated whenever $M$ is. Hence the
+statement is equivalent to saying that all submodules of any finitely generated
+module $M$ are finitely generated. This is true over Noetherian rings, hence we
+need to consider some non-Noetherian $R$ to construct a counterexample. Moreover,
+If $R$ is non-Noetherian, then it will have some infinitely generated ideal, which 
+we can take as our submodule. A counterexample is given by
+
+\[
+	\begin{tikzcd}
+		0
+		\arrow{r}
+		&
+		(x_1, x_2, \ldots)
+		\arrow{r}
+		&
+		k[x_1, x_2, \ldots]
+		\arrow{r}
+		&
+		k
+		\arrow{r}
+		&
+		0
+	\end{tikzcd}.
+\] 
+
+
+\subsection*{Exercise 19}
+
+Being projective is the same thing as being a direct summand of a free module,
+and over PID's, submodules of free modules are free.
+
+\subsection*{Exercise 21}
+
+Let 
+
+\subsection*{Exercise 22}
+
+Let $P$ be a projective $k[t]$-module. Then $P$ is a direct summand of some
+free $k[t]$-module $F = \bigoplus_{i \in I} k[t]$, and $P$ is naturally graded.
+Now, $t$ acts as a degree $1$ map on $F$, and therefore on $P$ as well. Our
+result now follows from the fact that no finite dimensional subspace of $F$ can
+have a degree $1$ endomorphism.
+
+\section*{List 3}
+
+\subsection*{Exercise 1}
+\subsubsection*{(a)}
+Let 
+\[
+\begin{tikzcd}
+	& N'
+	\arrow{r}{f} 
+	& N
+	\arrow{r}{g}
+	& N''
+	\arrow{r} 
+	& 0
+\end{tikzcd}
+\] 
+be an exact sequence. We will show that 
+\[
+\begin{tikzcd}
+	& 0
+	\arrow{r}
+	& \Hom(N'', M)
+	\arrow{r}{g^{*}} 
+	& \Hom(N, M)
+	\arrow{r}{f^{*}}
+	& \Hom(N', M)
+\end{tikzcd}
+\]
+is exact. First, as $g$ is surjective, it follows that $hg = 0 \Rightarrow h =
+0$ and so $g^{*}$ is injective. Moreover, $f^{*}g^{*} = (gf)^{*} = 0$ since the
+original sequence is exact. Finally, if $h \in \ker(f^{*})$, then $hf = 0$, and
+as $g$ is the cokernel of $f$, it follows that we have a lift $h'' \in
+\Hom(N'', M)$ such that $h''g = g^{*}(h'') = h$. Hence $\im(g^{*}) =
+\ker(f^{*})$ and the sequence is exact.
+
+\subsubsection*{(b)}
+
+$\Hom(\_, M)$ being right exact is exactly what it means for $M$ to be injective, so for a counterexample,
+we need to pick some non-injective module $M$, and we'll chose the $\Z$-module $\Z$. Consider the exact sequence
+\[
+\begin{tikzcd}
+	& 0
+	\arrow{r}
+	& \Z
+	\arrow{r}{2} 
+	& \Z
+	\arrow{r}
+	& \Z/2\Z
+	\arrow{r}
+	& 0
+\end{tikzcd}
+\]
+and the identity morphism $\id \in \Hom(\Z, \Z)$. There is no other morphism $f
+\in \Hom(\Z, \Z)$ such that $2 f = \id$.
+
+\subsection*{Exercise 3}
+\subsubsection*{(a)}
+
+This follows from the fact that left-adjoint functors commute with colimits,
+\begin{align*}
+	\left(
+		\bigoplus_{i \in I} R e_i
+	\right)
+	\otimes_{R}
+	\left(
+		\bigoplus_{j \in J} R e_j
+	\right)
+	&=
+	\bigoplus_{i \in I} 
+	\left(
+		R e_i \otimes_{R} \bigoplus_{j \in J} R e_j
+	\right) \\
+	&=
+	\bigoplus_{i \in I} 
+	\bigoplus_{j \in J} 
+	R e_i \otimes_{R} R e_j \\
+	&=
+	\bigoplus_{(i, j) \in I \times J} 
+	R (e_i \otimes_{R} e_j).
+\end{align*}
+
+\subsubsection*{(b)}
+
+Suppose that $E \oplus M = F$ and $E' \oplus M' = F'$ with $F, F'$ free. Then
+\begin{align*}
+	F \otimes F'
+	&=
+	(E \oplus M) 
+	\otimes
+	(E' \oplus M') \\
+	&=
+	E \otimes E'
+	\oplus
+	E \otimes M'
+	\oplus
+	M \otimes E'
+	\oplus
+	M \otimes M'
+\end{align*} 
+and so $E \otimes E'$ is a direct summand of the free module $F \otimes F'$, hence projective.
+
+\subsection*{Exercise 5}
+
+By the structure theorem, $\Z/6 \cong \Z/3 \oplus \Z/2$ and we see that $\Z/3$
+is a direct summand of the free $\Z/6$-module $\Z/6$.
+
+\subsection*{Exercise 9}
+\subsubsection*{(a)}
+
+We name the functions in the diagram,
+\[
+\begin{tikzcd}
+	& 0
+	\arrow{r}
+	& K
+	\arrow{r}{f}
+	& P
+	\arrow{r}{g}
+	\arrow[dashed]{d}{\exists ! p}
+	& M
+	\arrow{r}
+	\arrow[equal]{d}
+	& 0 \\
+	& 0
+	\arrow{r}
+	& K'
+	\arrow{r}{f'}
+	& P'
+	\arrow{r}{g'}
+	& M'
+	\arrow{r}
+	& 0.
+\end{tikzcd}
+\] 
+We have existence of $p$ by the fact that $P$ is projective and $g'$
+surjective. Now $g'pf = gf = 0$ by commutativity and exactness of the top row,
+and so $\im(pf) \subset \im(f')$ by exactness of the bottom row. As $f'$ is
+injective, it has an inverse on its image $(f')^{-1} : \im(f) \to K'$, giving
+us a map $k : K \to K'$ by $k = (f')^{-1} pf$ and we have a commutative diagram
+\[
+\begin{tikzcd}
+	& 0
+	\arrow{r}
+	& K
+	\arrow{r}{f}
+	\arrow{d}{k}
+	& P
+	\arrow{r}{g}
+	\arrow{d}{p}
+	& M
+	\arrow{r}
+	\arrow[equal]{d}
+	& 0 \\
+	& 0
+	\arrow{r}
+	& K'
+	\arrow{r}{f'}
+	& P'
+	\arrow{r}{g'}
+	& M'
+	\arrow{r}
+	& 0.
+\end{tikzcd}
+\]
+
+\subsubsection*{(b)}
+
+We will show that the following sequence is exact,
+\[
+	\begin{tikzcd}[ampersand replacement=\&]
+		\& 0
+		\arrow{r}
+		\& K
+		\arrow{r}{\begin{bsmallmatrix} f \\ k \end{bsmallmatrix}}
+		\& P \oplus K'
+		\arrow{r}{\begin{bsmallmatrix} p & -f' \end{bsmallmatrix}}
+		\& P'
+		\arrow{r}
+		\& 0
+	\end{tikzcd}.
+\] 
+The composition of the two middle maps is given by
+\[
+	\begin{bsmallmatrix} p & -f' \end{bsmallmatrix}
+	\begin{bsmallmatrix} f \\ k \end{bsmallmatrix}
+	=
+	pf - f'k
+\] 
+which is $0$ by commutativity of the diagram from part (a). Moreover,
+$\begin{bsmallmatrix} f \\ k \end{bsmallmatrix}$ is injective as $f$ is. \\
+
+Let $(a, b) \in \ker \begin{bsmallmatrix} p & -f' \end{bsmallmatrix}$. Then
+$p(a) = f'(b)$. By injectivity of $f$, we have some $c \in K$ such that $f(c) =
+a$. Then $f'(k(c)) = f'(b)$ by commutativity, and $b = k(c)$ by injectivity of
+$f'$. It follows that $(a, b) = (f(c), k(c)) \in \im(\begin{bsmallmatrix} f \\
+k \end{bsmallmatrix})$ and we have exactness at $P \oplus K'$. \\
+
+Finally, to see that $\begin{bsmallmatrix} p & -f' \end{bsmallmatrix}$ is
+surjective, let $a' \in P'$. Then let $a \in g^{-1}g'(a')$. By commutativity,
+$g'p(a) = g'(a')$, hence $p(a) - a' \in \ker(g') = \im(f')$ and we have some $b
+\in K'$ such that $f'(b) = p(a) - a'$. It follows that
+\[
+	\begin{bsmallmatrix} p & -f' \end{bsmallmatrix}
+	\begin{bsmallmatrix} a \\ b \end{bsmallmatrix}
+	=
+	p(a) - f'(b)
+	=
+	p(a) - p(a) + a' 
+	= 
+	a'
+\]
+and we see that the map is surjective.
+
+\subsubsection*{(c)}
+
+As $P'$ is projective, the sequence from (b) splits and $K \oplus P' \cong K' \oplus P$.
+
+\subsection*{Exercise 10}
+
+Let $F'' \to F' \to M \to 0$ be a finite presentation of $M$. Then, let $K' =
+\im(F'' \to F')$. By Exercise 9, we have the following commutative diagram.
+\[
+\begin{tikzcd}
+	& 0
+	\arrow{r}
+	& K
+	\arrow{r}{f}
+	\arrow{d}{k}
+	& F
+	\arrow{r}{g}
+	\arrow{d}{p}
+	& M
+	\arrow{r}
+	\arrow[equal]{d}
+	& 0 \\
+	& 0
+	\arrow{r}
+	& K'
+	\arrow{r}{f'}
+	& F'
+	\arrow{r}{g'}
+	& M'
+	\arrow{r}
+	& 0,
+\end{tikzcd}
+\]
+and $F \oplus K' \cong F' \oplus K$. As $F, F'$ and $K'$ all are finitely
+generate, it follows that $K$ must be finitely generated. \\
+
+We use this to give a module which is not finitely presented. Let $R = k[x_1, x_2, \ldots]$
+and $M = k$. Then we have the exact sequence 
+\[
+\begin{tikzcd}
+	& 0
+	\arrow{r}
+	& (x_1, x_2, \ldots)
+	\arrow{r}
+	& k[x_1, x_2, \ldots]
+	\arrow{r}
+	& k
+	\arrow{r}
+	& 0.
+\end{tikzcd}
+\] 
+and as $k[x_1, x_2, \ldots]$ is free and of finite rank $1$, whilst $(x_1, x_2,
+\ldots)$ is not finitely generated, it follows that $k$ cannot be finitely
+presented.
+
+\section*{List 4}
+
+\subsection*{Exercise 1}
+
+If $\id, \id' : A \to A$ are to identity morphisms then $\id = \id \circ \id' =
+\id'$.
+
+\subsection*{Exercise 2}
+Suppose both $g, g' : B \to A$ are two-sided inverses of $f : A \to B$.
+Then
+\[
+	g 
+	= 
+	g \circ \id 
+	= 
+	g \circ f \circ g'
+	= 
+	\id \circ g'
+	= 
+	g'
+\]
+and the two morphisms are equal. To see that one-sided inverses need not be
+unique, consider $f : \Z \to \Z^{2}$ with $f : a \to (a, 0)$ and $g, g' : \Z^{2}
+\to \Z$ with $g : (a, b) \to a + b$ and $g' : (a, b) \to a$.
+
+\subsection*{Exercise 3}
+
+As natural transformations compose, composition is well-defined in
+$\text{Fun}(\mathcal{C}, \mathcal{D})$. Moreover, the identity on a functor $F$
+is given by $(\id_F)_X = \id_{F(X)}$. \\
+
+Now suppose that $\eta : F \to G$ is an isomorphism of the functors $F, G :
+\mathcal{C} \to \mathcal{D}$ with inverse $\xi : G \to F$. Then in particular,
+\[
+	\xi_X \circ \eta_{X} = (\id_{F})_X = \id_{F(X)},
+\]
+and 
+\[
+	\eta_X \circ \xi_X 
+	=
+	(\id_{G})_X
+	=
+	\id_{G(X)},
+\]
+so $\eta_X : F(X) \to G(X)$ and $\xi_X : G(X) \to F(X)$ are mutually inverse
+each other, hence isomorphisms. \\
+
+Suppose instead that $\eta : F \to G$ is a natural isomorphism. Then let $\xi$
+be a family of maps for each object $X \in \mathcal{C}$ such that $\xi_X : G(X)
+\to F(X)$ is the two-sided inverse of $\eta_X : F(X) \to G(X)$. Then for any
+morphism $f : X \to Y$, consider the diagram below.
+\[
+\begin{tikzcd}
+	& F(X)
+	\arrow{r}{\eta_X}
+	\arrow{d}{F(X)}
+	& G(X)
+	\arrow{r}{\xi_X}
+	\arrow{d}{G(X)}
+	& F(X) 
+	\arrow{d}{F(X)}
+	\\
+	& F(Y)
+	\arrow{r}{\eta_Y}
+	& G(Y)
+	\arrow{r}{\xi_Y}
+	& F(Y) \\
+\end{tikzcd}
+\] 
+The left square commutes and the composition of the horizontal maps are
+identity maps, hence the outermost rectangle defined by these composition
+commute as well. It follows that
+\[
+	F(X) \circ \xi_X \circ \eta_X
+	=
+	\xi_Y \circ G(X) \circ \eta_X,
+\]
+and as $\eta_X$ is an isomorphism, the right square commutes and $\xi$ defines
+a natural transformation inverse to $\eta$.
+
+
+\subsection*{Exercise 4}
+
+Define $\eta_X : \Hom_{R}(M \otimes N, X) \to \Hom_S(N, \Hom_{R}(M, X))$ by
+\[
+	\eta_X(\phi) : n \mapsto (m \mapsto \phi(m \otimes n)).
+\] 
+Then $\eta_X(\phi)(n)$ is an $R$-module morphism as 
+\begin{align*}
+	\eta_X(\phi)(n)(rm + m')
+	&=
+	\phi((rm + m') \otimes n) \\
+	&=
+	\phi(r(m \otimes n) + m' \otimes n)) \\
+	&=
+	r\phi(m \otimes n) + \phi(m' \otimes n') \\
+	&=
+	r\eta_X(\phi)(n)(m)
+	+
+	\eta_X(\phi)(n)(m'),
+\end{align*}
+and $\eta_X(\phi)$ is an $S$-module morphism as
+\begin{align*}
+	\eta_X(\phi)(sn + n')(m)
+	&=
+	\phi(m \otimes (sn + n')) \\
+	&=
+	\phi(m \otimes sn + m \otimes n') \\
+	&=
+	\phi(ms \otimes n) + \phi(m \otimes n') \\
+	&=
+	\eta_X(\phi)(n)(ms)
+	+
+	\eta_X(\phi)(n')(m) \\
+	&=
+	(s\eta_X(\phi)(n))(m)
+	+
+	\eta_X(\phi)(n')(m).
+\end{align*}
+
+Naturality of $\eta_X$ follows by the fact that both $F(X)$ and $G(X)$
+ultimately send elements into $X$, and postcomposing with and $X \xrightarrow{f}
+Y$ can be done before or after $\eta_X$ and the result will be the same. \\
+
+I won't do the rest.
+
+\subsection*{Exercise 5}
+
+Denote the natural isomorphism by $\eta$ and let $f_A = \eta(\id_A) : B \to A$
+and $f_B = \eta^{-1}(\id_B) : A \to B$. Then we have the following commutative
+diagram by naturality along $f_B : A \to B$.
+\[
+\begin{tikzcd}
+	& \Hom(A, A)
+	\arrow{r}
+	\arrow{d}{(f_B)_{*}}
+	& \Hom(B, A) 
+	\arrow{d}{(f_B)_{*}} \\
+	& \Hom(A, B)
+	\arrow{r}
+	& \Hom(B, B) 
+\end{tikzcd}
+\] 
+By looking at where $\id_A$ is sent, we see that $f_B \circ \eta(\id_A) = f_B
+\circ f_A$ is equal to $\eta \circ f_B \circ \id_A = \eta \circ f_B = \id_B$,
+I.e that $f_B f_A = \id_B$. If we now follow the same procedure in the
+naturality diagram along $f_A : B \to A$, we get that $f_A f_B = \id_A$, hence
+the two maps are isomorphisms between $A$ and $B$.
+
+\subsection*{Exercise 8}
+
+Suppose that $L$ is another $R$-module such that 
+\[
+\begin{tikzcd}
+	& L
+	\ar{r}{\phi}
+	\ar{d} 
+	& M
+	\ar{d}{f}
+	\\
+	& 0
+	\ar{r}
+	& N
+\end{tikzcd}.
+\] 
+Then $f \circ \phi = 0$ by commutativity, and so $\phi$ factors through the kernel of $f$,
+and we have
+\[
+\begin{tikzcd}
+	& L
+	\ar[dashed]{rd}{\exists ! h} 
+	\ar[bend left=30]{drr}{\phi}
+	\ar[bend right=30]{ddr}
+	\\
+	& & \ker(f)
+	\ar{r}
+	\ar{d} 
+	& M
+	\ar{d}{f}
+	\\
+	& & 0
+	\ar{r}
+	& N
+\end{tikzcd}
+\] 
+whence we have verified that $\ker(f)$ is the colimit of the cospan.
+
+\section*{List 5}
+
+\subsection*{Exercise 1}
+
+Let $X \xrightarrow{f} Y$, $Y \xrightarrow{g_1} Z$ and $Y \xrightarrow{g_2} Z$
+be maps of sets where $f$ is surjective and $g_1f = g_2f$. Then let $y \in Y$.
+As $f$ is surjective, there is $x \in X$ such that $f(x) = y$. We then have
+$g_1(y) = g_1(f(x)) = g_2(f(x)) = g_2(y)$, and as $y$ was arbitrary, $g_1 =
+g_2$ and $f$ is epic. \\
+
+For the other direction, suppose instead that $f$ is epic, and let $y \in Y$.
+Suppose towards a contradiction that $y \not \in \im(f)$. Then we may construct
+two maps $g_1, g_2 : Y \to \{1, 2\}$ which agree on all elements on $Y$, except
+for that $g_i(y) = i$. Then $g_1 \not = g_2$ but $g_1f = g_2f$, contradicting
+the fact that $f$ is an epimorphism.
+
+\subsection*{Exercise 3}
+
+The category of free $\Z/4\Z$-modules is an $\Ab$-category since it is
+immediate from the definition of an $\Ab$-category that any full subcategory of
+an $\Ab$-category remains an $\Ab$-category. \\
+
+It is additive since finite direct sums of free modules remain free. \\
+
+Finally, it is not abeliean since for example, the kernel of a morphism of free
+$\Z/4\Z$-modules need not be free. Indeed, consider the map 
+\[
+	\Z/4\Z \overset{2}\to \Z/4\Z.
+\] 
+In the category of ordinary (not necessarily free) $\Z/4\Z$-modules, this map
+has kernel $2\Z/4\Z \cong \Z/2\Z$ which is not a free $\Z/4\Z$-module, and we
+will now show that it has no kernel in the category of free $\Z/4\Z$-modules. 
+Suppose towards a contradiction that $f : M \to \Z/4\Z$ is the kernel of our map.
+Then $2f = 0$ and $\im(f) \subset \{0, 2\}$. We will show that any kernel 
+is a monomorphism, and that monomorphisms in our category are injective,
+whence it follows that $|M| \leq 2$ hence $M = 0$. This is a contradiction
+since the sequence 
+\[
+	\Z/4\Z \overset{2}\to \Z/4\Z \overset{2}\to \Z/4\Z
+\] 
+is exact and doesn't factor through $0$. Let's prove the results we need.
+
+\begin{lemma}
+	Equalizers are monic in any category.
+\end{lemma}
+\begin{proof}
+	Let $e : E \to X$ be the equalizer of $f, f' : X \to Y$. Then suppose that
+	$g, g' : Z \to E$ are such that $eg = eg'$. As $feg = f'eg = f'eg'$, there
+	exist a unique map $Z \to E$ which which factorize $eg = eg'$ through $e$.
+	Thus uniqueness forces $g = g'$ and $e$ is monic.
+\end{proof}
+
+\begin{corollary}
+	Kernels are always monic
+\end{corollary}
+\begin{proof}
+	The kernel of any map $f : X \to Y$ is the equalizer of $f$ and $0$.	
+\end{proof}
+
+\begin{lemma}
+	Monic morphisms in the category of free $\Z/4\Z$-modules are injective.
+\end{lemma}
+\begin{proof}
+	Let $f : M \to N$ be a monic morphism of free $\Z/4\Z$-modules	where $M =
+	\bigoplus_{i \in I} \Z/4\Z e_i$ and $N = \bigoplus_{j \in J} \Z/4\Z u_j$.
+	Suppose that $f(x) = f(y)$. Then let $g_1, g_2 : \Z/4\Z \to M$ be the
+	morphisms which sends $g_1(1) = x$ and $g_2(1) = y$. Then $f(g_1(1)) =
+	f(g_2(1))$ and as morphisms of free modules are determined by where they
+	send generators, $fg_1 = fg_2$. As $f$ is monic, it follows that $g_1 =
+	g_2$ hence $x = y$ and $f$ is injective.
+\end{proof}
+
+\subsection*{Exercise 5}
+
+\subsubsection*{(1)}
+
+Suppose that $f : X \to Y$ is a monomorphism. Then $f \circ \ker(f) = 0 = f
+\circ 0$ so $\ker(f) = 0$ as $f$ is mono.
+
+\subsubsection*{(2)}
+
+Suppose that $f : X \to Y$ is both a mono- and epimorphism. As we're in an
+abelian, and in particular additive category, it follows from part (1) that the
+kernel and cokernel of $f$ is $0$. Moreover, as we're in an abelian category,
+$f$ is the kernel of it's cokernel $Y \to 0$, and the following sequence is
+exact,
+\[
+\begin{tikzcd}
+	& 0
+	\ar{r}
+	& X
+	\ar{r}{f}
+	& Y
+	\ar{r}
+	& 0.
+\end{tikzcd}
+\] 
+As $0 \circ \id_Y = 0$, $\id_Y$ factors through $\ker 0 = f$ via some $g : Y
+\to X$ and we have a right-inverse $fg = \id_Y$. Moreover, this is also a
+left-inverse since $fgf = (fg)f = f$ and as $f$ is monic, $gf = \id_X$.
+
+\subsection*{Exercise 6}
+
+We prove this our own way. First we'll state and prove some lemmas that help
+us in being explicit.
+
+\begin{lemma}
+	Let $F, G : \mathcal{C} \to \mathcal{D}$ be functors, $\eta : F \Rightarrow
+	G$ be a natural transformation, and $H : \mathcal{B} \to \mathcal{C}$ be a
+	functor. Then we have a natural transformation
+	\[
+		\xi : F \circ H \Rightarrow
+		G \circ H
+	\]
+	where
+	\[
+		\xi_{X} = \eta_{H(X)}.
+	\]
+	Similarly, if $L : \mathcal{D} \to \mathcal{E}$ is a functor, then we have
+	a natural transformation
+	\[
+		\chi : L \circ F \Rightarrow L \circ G
+	\]
+	where
+	\[
+		\chi_{X} = L(\eta_X).
+	\]
+\end{lemma}
+\begin{proof}
+	For the first statement, let $f : X \to Y$ in $\mathcal{B}$. Then $H(f) : H(X) \to H(Y)$ in
+	$\mathcal{C}$ and we have $\eta_{H(X)}, \eta_{H(Y)}$ such that the following square
+	commutes,
+	\[
+	\begin{tikzcd}
+		& F \circ H (X)
+		\arrow{r}{\eta_{H(X)}}
+		\arrow{d}{F \circ H (f)}
+		& G \circ H (X)
+		\arrow{d}{G \circ H (f)} \\
+		& F \circ H (Y)
+		\arrow{r}{\eta_{H(Y)}}
+		& G \circ H(Y)
+	\end{tikzcd}.
+	\] 
+	For the second statement, let $f : X \to Y$ be in $\mathcal{C}$. Then we have morphisms 
+	$\eta_X, \eta_Y$ making the following square commute
+	\[
+	\begin{tikzcd}
+		& F(X)
+		\arrow{r}{\eta_{X}}
+		\arrow{d}{F(f)}
+		& G(X)
+		\arrow{d}{G(f)} \\
+		& F(Y)
+		\arrow{r}{\eta_{Y}}
+		& G(Y),
+	\end{tikzcd}
+	\]
+	and as functors preserve commutative diagrams, we get
+	\[
+	\begin{tikzcd}
+		& L \circ F(X)
+		\arrow{r}{L(\eta_{X})}
+		\arrow{d}{L \circ F(f)}
+		& L \circ G(X)
+		\arrow{d}{L \circ G(f)} \\
+		& L \circ F(Y)
+		\arrow{r}{L(\eta_{Y})}
+		& L \circ G(Y).
+	\end{tikzcd}
+	\]
+\end{proof}
+
+\begin{lemma}
+	Let $X \in \mathcal{C}$ and $F : \mathcal{C} \to \mathcal{D}$ be a functor.
+	Then
+	\[
+		F \circ \Delta_{X} = \Delta_{F(X)}.
+	\]
+\end{lemma}
+\begin{proof}
+	$\Delta_X$ sends all objects to $X$ and all morphisms to $\id_X$. $F \circ
+	\Delta_X$ sends all objects to $F(X)$ and all morphisms to $\id_{F(X)}$.
+	The same is true of $\Delta_{F(X)}$.
+\end{proof}
+
+\begin{lemma}
+	Let $I, \mathcal{C}$ and $\mathcal{D}$ be categories.
+	Furthermore, let
+	\[
+		F : I \to \mathcal{C}, \,
+		G : I \to \mathcal{D}
+	\]
+	be functors and 
+	\[
+		L : \mathcal{C} \to \mathcal{D}, \,
+		R : \mathcal{D} \to \mathcal{C}, \,
+	\] 
+	be left and right adjoint functors via the adjugant $\Phi$. Suppose there
+	is a natural transformation
+	\[
+		\eta : L \circ F \to G.
+	\] 
+	Then there is a natural transformation 
+	\[
+		\xi : F \to R \circ G
+	\] 
+	given by
+	\[
+		\xi_X = \Phi_{F(X), G(X)}(\eta_X).
+	\] 
+	Similarly, if such $\xi$ exists it implies existence of $\eta$ where
+	\[
+		\eta_X = \Phi^{-1}_{F(X), G(X)}(\chi_X).
+	\] 
+\end{lemma}
+\begin{proof}
+	Let $f : X \to Y$ in $I$. Then we have a commutative diagram 
+	\[
+	\begin{tikzcd}
+		& L \circ F(X)
+		\arrow{r}{\eta_{X}}
+		\arrow{d}{L \circ F(f)}
+		& G(X)
+		\arrow{d}{G(f)} \\
+		& L \circ F(Y)
+		\arrow{r}{\eta_{Y}}
+		& G(Y).
+	\end{tikzcd}
+	\] 
+	Let $\Phi_{X, Y}$ denote the adjugant. Then we get morphisms
+	\[
+	\begin{tikzcd}[column sep = huge]
+		& F(X)
+		\arrow{r}{\Phi_{F(X), G(X)}(\eta_{X})}
+		\arrow{d}{F(f)}
+		& R \circ G(X)
+		\arrow{d}{R \circ G(f)} \\
+		& F(Y)
+		\arrow{r}{\Phi_{F(Y), G(Y)}(\eta_{Y})}
+		& R \circ G(Y),
+	\end{tikzcd}
+	\]
+	and naturality of adjunction tells us that the square commutes. The other
+	direction follows in the same way.
+\end{proof}
+
+Now let's state and prove the theorem.
+
+\begin{theorem}
+	Let $F : I \to \mathcal{C}$ be a functor, and $L : \mathcal{C} \to
+	\mathcal{D}$, $R : \mathcal{D} \to \mathcal{C}$ be a left/right-adjoint
+	functor pair. Then $L(\colim(F)) = \colim(L \circ F)$.
+\end{theorem}
+\begin{proof}
+	By the definition of colimits, we have a natural transformation $\tau : F
+	\Rightarrow \Delta_{\colim(F)}$, and it follows that we have a natural
+	transformation $L \circ F \Rightarrow L \circ \Delta_{\colim(F)} =
+	\Delta_{L(\colim(F))}$. This is true whether $L$ is a left adjoint or not.
+	What remains to be shown is that $L(\colim(F))$ is initial among all objects
+	$K \in \mathcal{D}$ with natural transformations $L \circ F \Rightarrow
+	\Delta_K$. \\
+
+	Suppose that $K \in \mathcal{D}$ is an object such that there is a natural
+	transformation $\eta : L \circ F \Rightarrow \Delta_K$. Then we have a
+	natural transformation
+	\[
+		\xi : F \rightarrow \Delta_{R(K)}
+	\]
+	given by 
+	\[
+		\xi_X = \Phi_{F(X), K}(\eta_X).
+	\] 
+	As $\colim(F)$ is the initial object in $\mathcal{C}$ with respect to this
+	property, it follows that we have a unique morphism $h : \colim(F) \to
+	R(K)$ such that for any $X \in I$ we have the following commutative diagram
+	\[
+	\begin{tikzcd}
+		& F(X)
+		\ar{rr}{\tau_X}
+		\ar{dr}{\xi_X}
+		& & \colim(F)
+		\ar{dl}{h}
+		\\
+		& & R(K).
+	\end{tikzcd}
+	\] 
+	By naturality of adjoints we get the following commutative diagram
+	\[
+	\begin{tikzcd}
+		& L \circ F(X)
+		\ar{rr}{L(\tau_X)}
+		\ar{dr}{\Phi_{F(X), K}^{-1}(\xi_X)}
+		& & L(\colim(F))
+		\ar{dl}{\Phi_{F(X), K}^{-1}(h)}
+		\\
+		& & K
+	\end{tikzcd}
+	\]
+	and as
+	\[
+		\xi_X = \Phi_{F(X), K}(\eta_X),
+	\] 
+	we have
+	\[
+		\Phi_{F(X), K}^{-1}(\xi_X) = \eta_X,
+	\] 
+	and the previous diagram can be simplified to
+	\[
+	\begin{tikzcd}
+		& L \circ F(X)
+		\ar{rr}{L(\tau_X)}
+		\ar{dr}{\eta_X}
+		& & L(\colim(F))
+		\ar{dl}{\Phi_{F(X), K}^{-1}(h)}
+		\\
+		& & K
+	\end{tikzcd}
+	\] 
+	whence we see that $L(\tau) : L \circ F \Rightarrow \Delta_{L(\colim(F))}$
+	is initial among all constant functors with natural transformations from $L \circ F$,
+	so $L(\colim(F))$ is the colimit of $L \circ F$.
+\end{proof}
+
+
+
+\subsection*{Exercise 8}
+
+$\Z$ is a PID, so flat $\Z$-modules are the same thing as torsionfree
+$\Z$-modules. $\Q$ is a torsionfree $\Z$-module whilst $\Q/\Z$ isn't. 
+
+\subsection*{Exercise 9}
+
+\subsubsection*{(1)}
+Let $f : A \to B$ be an injective $R$-module morphism. Then as $M$ is flat $f
+\otimes \id_M$ is injective, and as $N$ is flat
+\[
+	(f \otimes \id_M) \otimes \id_N = f \otimes (\id_M \otimes \id_N) = f \otimes \id_{M \otimes N}
+\]
+is injective, so $M \otimes N$ is flat. 
+
+\subsubsection*{(2)}
+
+We begin with a lemma.
+\begin{lemma}
+	Let $A, M, N$ be $\R$-modules, and $a \in A, \phi \in \Hom(M, N)$. Then
+	\[
+		a \otimes \phi = 0
+	\]
+	if and only if
+	\[
+		a \otimes \phi(m) = 0
+	\]
+	for all $m \in M$.
+\end{lemma}
+\begin{proof}
+	An element $a \otimes \phi$ in $A \otimes \Hom(M, N)$ is $0$ if and only if
+	every bilinear map out of $A \times \Hom(M, N)$ vanishes at $(a, \phi)$, so
+	let's define some bilinear maps out of $A \times \Hom(M, N)$. For any $m
+	\in M$, define the map 
+	\[
+		f_m : A \times \Hom(M, N) \to A \otimes N
+	\] 
+	by
+	\[
+		f_m : a \times \phi \mapsto a \otimes \phi(m).
+	\] 
+	This map is indeed bilinear as 
+	\[
+		f_m(a + ra', \phi) 
+		= 
+		(a + ra') \otimes \phi
+		=
+		a	\otimes \phi
+		+
+		r(a' \otimes \phi)
+	\] 
+	and
+	\[
+		f_m(a, \phi + r\phi')
+		=
+		a \otimes (\phi + r\phi')(m)
+		=
+		a \otimes (\phi(m) + r\phi'(m))
+		=
+		a \otimes \phi(m)
+		+
+		r(a \otimes \phi'(m)).
+	\] 
+	The first direction now follows,
+	\[
+		a \otimes \phi = 0 
+		\Rightarrow
+		0 = f_m(a, \phi) = a \otimes \phi(m).
+	\]
+	Can't prove the other direction for now.
+\end{proof}
+
+Let $f : A \to B$ be an injective $R$-module morphism, and $a \in A, \phi \in
+\Hom(M, N)$ be such that $f(a) \otimes \phi = 0$. Then $f(a) \otimes \phi(m) = 0$
+for all $m \in M$, and in particular 
+\[
+	(f \otimes \id_N) : a \otimes \phi(m)
+	\mapsto 
+	f(a) \otimes \phi(m) = 0
+\] 
+and flatness of $N$ implies that $a \otimes \phi(m) = 0$ for all $m \in M$,
+whence $a \otimes \phi = 0$, and $f \otimes \id_{\Hom(M, N)}$ is injective.
+
+\section*{List 6}
+
+\subsection*{Exercise 2}
+
+A submodule of a torsionfree module must be torsionfree.
+
+\subsection*{Exercise 3}
+
+Let $f : \Z/2\Z \to \Z/4\Z$ be given by $f(1) = 2$. Then $f$ is injective
+whilst
+\[
+	(f \otimes \id_{(2)})
+	(1 \otimes 2)
+	=
+	(2 \otimes 2)
+	=
+	(1 \otimes 4)
+	=
+	0.
+\] 
+Note that here the fact that we're tensoring by the submodule $(2)$ instead of
+the full module $\Z/4\Z$ means that $(1 \otimes 2)$ is non-zero since we can't
+shift the $2$ to the left.
+
+\subsection*{Exercise 6}
+\subsubsection*{(1)}
+
+No, there is no way to factor $\id$ through $2$ in the diagram
+\[
+\begin{tikzcd}
+	(2) \ar[hook]{r}{2}\ar{d}{\id} & \Z/4\Z \\
+	(2)
+\end{tikzcd}
+\] 
+
+\subsubsection*{(2)}
+
+There is no way to factor the inclusion through multiplication by $x$
+in the following diagram,
+\[
+\begin{tikzcd}
+	\Z[x] \ar[hook]{r}{\cdot x}\ar[hook]{d}{i} & \Z[x] \\
+	\Q[x].
+\end{tikzcd}
+\]
+
+\subsubsection*{(3)}
+
+Yes, $R$ is a PID since $\Q$ is a field, and $\Q(x)$ is divisible.
+
+\subsection*{Exercise 8}
+
+Suppose that $f_{\bullet} : C_{\bullet} \to D_{\bullet}$ is an epimorphism in
+$\Ch(\mathcal{A})$. Then let $g, g' : D_n \to X$ be two morphisms in
+$\mathcal{A}$ such that $gf_n = g'f_n$. These $g, g'$ can be turned into chain
+maps $g_{\bullet}, g'_{\bullet} : D_{\bullet} \to X$ via 
+\[
+\begin{tikzcd}
+	\ldots 
+	\ar{r}
+	& D_{n + 1}
+	\ar{r}
+	\ar{d}{0}
+	& D_{n}
+	\ar{r}
+	\ar{d}{g}
+	& D_{n - 1}
+	\ar{r}
+	\ar{d}{0}
+	& \ldots \\
+	\ldots 
+	\ar{r}
+	& 0
+	\ar{r}
+	& X
+	\ar{r}
+	& 0
+	\ar{r}
+	& \ldots
+\end{tikzcd}
+\] 
+As $gf_n = g'f_n$ it immediately follows that $g_{\bullet} f_{\bullet} =
+g'_{\bullet} f_{\bullet}$, and since $f_{\bullet}$ is an epimorphism, it
+follows that $g_{\bullet} = g'_{\bullet}$ whence $g = g'$ and $f_n$ is an
+epimorphism. \\
+
+Now suppose instead that $f_{\bullet} : C_{\bullet} \to D_{\bullet}$ is a chain
+map such that each $f_n$ is an epimorphism. Then let $g_{\bullet}, g'_{\bullet}
+: D_{\bullet} \to X_{\bullet}$ be maps such that $g_{\bullet}f_{\bullet} =
+g'_{\bullet}f_{\bullet}$. Two chain maps are equal if and only if they are
+equal componentwise, and so for each $n$, we have $g_nf_n = g'_n f_n$.
+As $f_n$ is an epimorphism, $g_n = g'_n$ and as this holds for every $n$,
+$g_{\bullet} = g'_{\bullet}$ and $f_{\bullet}$ is an epimorphism.
+
+\subsection*{Exercise 9}
+The long exact sequence becomes 
+\[
+\begin{tikzcd}
+	\ldots
+	\ar{r}
+	& 0
+	\ar{r}
+	& H_{n}(C_{\bullet})
+	\ar{r}
+	& 0
+	\ar{r}
+	& \ldots
+\end{tikzcd}
+\] 
+whence $H_n(C_{\bullet}) = 0$.
+
+
+\subsection*{Exercise 11}
+
+First we prove exactness at $C'_n$. An element $c' \in C'_n$ is in the kernel
+of $(f'_n, i_n)$ if and only if it's in $\ker(f'_n) \cap \ker(i_n)$. Suppose
+$c'$ is such an element. By exactness of the top row, there is a $c'' \in
+C''_{n + 1}$ which maps to $c'$. As $f'_n(c') = 0$, commutativity yields that
+$\delta'_{n + 1} f''_{n + 1} (c'' ) = 0$, and so exactness tells us that there
+is an element $d \in D_{n + 1}$ which maps to $f''_{n + 1}(c'') \in D''_{n +
+1}$. We now have that $c' = \partial_n (f''_{n + 1})^{-1} q_{n+1}(d)$ and so 
+\[
+	\ker(c') \subseteq \im(\partial_n (f''_{n + 1})^{-1} q_{n+1}).
+\] 
+The other inclusion is immediate by exactness and commutativity. \\
+
+For exactness at $D_n$, let $d \in \ker(\partial_n (f''_{n + 1})^{-1}
+q_{n+1})$. Then by exactness, there is $c \in C_n$ such that
+\[
+	p_n(c) 
+	=
+	(f''_{n + 1})q_{n + 1}(d).
+\]
+It follows that $f_n(c) - d \in \ker(q_n + 1) = \im(j_{n})$, and so there is
+$d' \in D'_{n}$ such that $j_{n}(d') = f_n(c) - d$, hence $d = j_n(-d') -
+f_n(-c)$ and the kernel lies in the image. The other direction is immediate by
+commutativity and exactness. \\
+
+Finally, let's show exactness at $D'_n \oplus C_n$. Let $(d', c) \in D'_n
+\oplus C_n$ be such that $j_n(d') = f_n(c)$. Then
+\[
+	p_{n}(c)
+	=
+	(f'')^{-1}_n q_n j_n(d'_n)
+	=
+	0
+\]
+and  there is $c' \in C'_n$ which maps to $c$. Commutativity then yields
+that $f'_n(c') - d' \in \ker(j_n) = \im(\delta_{n + 1})$, and so we
+have $d'' \in D''_{n + 1}$ which maps to $f'_n(c') - d'$.
+But then if we let $\widetilde{c'} = \partial_{n+1}(f''_{n+1})^{-1}(d'')$
+we have
+\[
+	f'_n(c' - \widetilde{c'}) 
+	=
+	f'_n(c) - f'_n(\partial_{n+1}(f''_{n+1})^{-1}(d''))
+	=
+	\delta_{n + 1}(d'') + d'
+	f'_n(\partial_{n+1}(f''_{n+1})^{-1}(d''))
+	=
+	d'
+\]
+and we are done (as the other inclusion is trivial).
+
+
+\subsection*{Exercise 12}
+
+First of, we have long exact sequences 
+\[
+\begin{tikzcd}
+	\ldots
+	\ar{r}
+	& H_{n+1}(C)
+	\ar{r}
+	& H_{n+1}(C'')
+	\ar{r}{\delta^{C}_{n + 1}}
+	& H_{n}(C')
+	\ar{r}
+	& H_{n}(C)
+	\ar{r}
+	& \ldots \\
+	\ldots
+	\ar{r}
+	& H_{n+1}(D)
+	\ar{r}
+	& H_{n+1}(D'')
+	\ar{r}{\delta^{D}_{n + 1}}
+	& H_{n}(D')
+	\ar{r}
+	& H_{n}(D)
+	\ar{r}
+	& \ldots,
+\end{tikzcd}
+\] 
+and by a remark in Section 4.1 of the lecture notes, the passage to long exact sequences 
+is natural in the sense that we have a chain map
+\[
+\begin{tikzcd}
+	\ldots
+	\ar{r}
+	& H_{n+1}(C)
+	\ar{d}{H_{n+1}(f)}
+	\ar{r}
+	& H_{n+1}(C'')
+	\ar{r}{\delta^{C}_{n + 1}}
+	\ar{d}{H_{n+1}(f'')}
+	& H_{n}(C')
+	\ar{r}
+	\ar{d}{H_{n}(f')}
+	& H_{n}(C)
+	\ar{r}
+	\ar{d}{H_{n}(f)}
+	& \ldots \\
+	\ldots
+	\ar{r}
+	& H_{n+1}(D)
+	\ar{r}
+	& H_{n+1}(D'')
+	\ar{r}{\delta^{D}_{n + 1}}
+	& H_{n}(D')
+	\ar{r}
+	& H_{n}(D)
+	\ar{r}
+	& \ldots,
+\end{tikzcd}
+\]
+and as it is assumed that $H_n(f'')$ is an isomorphism for every $n$, we can
+apply our results from Exercise 11 from which the desired statement follows
+immediately.
+
+\subsection*{Exercise 13}
+
+\section*{List 7}
+\subsection*{Exercise 1}
+We have Let $P_{\bullet} \to N$ be a projective resolution of $N$. Then
+\begin{align*}
+	\Tor_{n}^{R}(M, N)
+	&=
+	H(M \otimes_{R} P_{n}) \\
+	&=
+	H(P_{n} \otimes_{R} M) \\
+	&=
+	\Tor_{n}^{R}(N, M)
+\end{align*}
+where we used balancing of $\Tor$ for the last equality.
+
+\subsection*{Exercise 4}
+
+As $R$ is a domain, a projective resolution of $R/(a)$ is given by
+\[
+\begin{tikzcd}
+	0
+	\ar{r}
+	& R
+	\ar{r}{\_ \cdot a}
+	& R
+	\ar{r}{\pi}
+	& R/(a)
+	\ar{r}
+	& 0.
+\end{tikzcd}
+\]
+Applying $\Hom_{\RMod}(\_, M)$ to the deleted resolution yields
+\[
+\begin{tikzcd}
+	0
+	\ar{r}
+	& \Hom_{\RMod}(R, M)
+	\ar{r}{(\_ \cdot a)^{*}}
+	\ar{d}{\cong}
+	& \Hom_{\RMod}(R, M)
+	\ar{r}
+	\ar{d}{\cong}
+	& 0 \\
+	& M
+	\ar{r}{\_ \cdot a}
+	& M
+\end{tikzcd}
+\]
+So we have 
+\begin{align*}
+	\Ext_{R}^{0}(R, M)
+	&=
+	\{m \in M : am = 0\} \\
+	\Ext_{R}^{1}(R, M)
+	&=
+	M / aM	
+\end{align*}
+and $\Ext_{R}^{n}(R, M) = 0$ for $n > 1$.
+
+
+\subsection*{Exercise 5}
+
+If $M$ is flat, then $\_ \otimes_{R} M$ is an exact functor and it's $n$-th
+derived functor (I.e $\Tor_{n}^{R}(M, \_)$) is $0$ for all $n > 0$. \\
+
+Now suppose that $\Tor_{n}^{R}(M, \_) = 0$ for all $n > 0$. Let $f : A \to B$
+be an injective morphism of $R$-modules. Then we have an short exact sequence 
+\[
+\begin{tikzcd}
+	0
+	\ar{r}
+	& A 
+	\ar{r}{f}
+	& B 
+	\ar{r}
+	& \coker(f)
+	\ar{r}
+	& 0,
+\end{tikzcd}
+\] 
+and a long exact sequence 
+\[
+\begin{tikzcd}[column sep=small]
+	\ldots 
+	\ar{r}
+	& \Tor_{1}^{R}(M, \coker(f)) = 0
+	\ar{r}
+	& \Tor_{0}^{R}(M, A) 
+	\ar{r}
+	& \Tor_{0}^{R}(M, B) 
+	\ar{r}
+	& \Tor_{0}^{R}(M, \coker(f)) 
+	\ar{r}
+	& 0,
+\end{tikzcd}
+\] 
+hence an injection
+\[
+	M \otimes_R A
+	=
+	\Tor^{R}_{0}(M, A) 
+	\xrightarrow{\Tor^{R}_{0}(M)(f)}
+	\Tor^{R}_{0}(M, B) 
+	=
+	M \otimes_R B.
+\]
+Now, choosing projective resolutions $P_{\bullet} \to A, Q_{\bullet} \to B$
+yields the following commutative diagram
+\[
+\begin{tikzcd}
+	M \otimes_{R} P_1
+	\ar{r}
+	\ar{d}{\id_M \otimes \phi_1}
+	& M \otimes_{R} P_0
+	\ar{r}
+	\ar{d}{\id_M \otimes \phi_0}
+	& M \otimes_R A
+	\ar{d}{\id_M \otimes f}
+	\ar{r}
+	& 0
+	\\
+	M \otimes_{R} Q_1
+	\ar{r}
+	& M \otimes_{R} Q_0
+	\ar{r}
+	& M \otimes_R B
+	\ar{r}
+	& 0,
+\end{tikzcd}
+\] 
+where $\phi_0, \phi_1$ are the maps granted by the comparison theorem. 
+As $M \otimes_R$ is right exact, the rows are exact and we may insert cokernels 
+as follows
+\[
+\begin{tikzcd}
+	M \otimes_{R} P_1
+	\ar{r}
+	\ar{d}{\id_M \otimes \phi_1}
+	& M \otimes_{R} P_0
+	\ar{r}
+	\ar{d}{\id_M \otimes \phi_0}
+	& \coker(\id_{M} \otimes d^{P}_{1})
+	\ar{r}{\cong}
+	& M \otimes_R A
+	\ar{d}{\id_M \otimes f}
+	\\
+	M \otimes_{R} Q_1
+	\ar{r}
+	& M \otimes_{R} Q_0
+	\ar{r}
+	& \coker(\id_{M} \otimes d^{Q}_{1})
+	\ar{r}{\cong}
+	& M \otimes_R B.
+\end{tikzcd}
+\]
+But $\coker(\id_{M} \otimes d^{P}_{1})$ is exactly $\Tor_0^{R}(M, A)$, and the same for $B$.
+Moreover, $\Tor^{R}_{0}(M)(f)$ is the map induced by $\id_{M} \otimes \phi_0$ on the cokernels,
+and so we have the following two commutative diagrams
+\[
+\begin{tikzcd}
+	M \otimes_{R} P_0
+	\ar{r}
+	\ar{d}{\id_M \otimes \phi_0}
+	& \coker(\id_{M} \otimes d^{P}_{1})
+	\ar{d}{\Tor^{R}_{0}(M)(f)}
+	\ar{r}{\cong}
+	& M \otimes_R A
+	\\
+	M \otimes_{R} Q_0
+	\ar{r}
+	& \coker(\id_{M} \otimes d^{Q}_{1}),
+	\ar{r}{\cong}
+	& M \otimes_R B.
+\end{tikzcd}
+\]
+and
+\[
+\begin{tikzcd}
+	M \otimes_{R} P_0
+	\ar{r}
+	\ar{d}{\id_M \otimes \phi_0}
+	& \coker(\id_{M} \otimes d^{P}_{1})
+	\ar{r}{\cong}
+	& M \otimes_R A
+	\ar{d}{\id_M \otimes f}
+	\\
+	M \otimes_{R} Q_0
+	\ar{r}
+	& \coker(\id_{M} \otimes d^{Q}_{1})
+	\ar{r}{\cong} 
+	& M \otimes_R B,
+\end{tikzcd}
+\]
+whence surjectivity onto the cokernels yields the following commutative diagram
+\[
+\begin{tikzcd}
+	\coker(\id_{M} \otimes d^{P}_{1})
+	\ar{d}{\Tor^{R}_{0}(M)(f)}
+	\ar{r}{\cong}
+	& M \otimes_R A
+	\ar{d}{\id_M \otimes f}
+	\\
+	\coker(\id_{M} \otimes d^{Q}_{1})
+	\ar{r}{\cong}
+	& M \otimes_R B.
+\end{tikzcd}
+\]
+Finally, injectivity of $\Tor^{R}_0(M)(f)$ now yields injectivity of $\id_M
+\otimes f$ whence $f$ is flat.
+
+
+\subsection*{Exercise 6}
+
+If $M$ is projective, then $\Hom(M, \_)$ is an exact functor, and so all $n$-th
+derived functors (I.e $\Ext^{n}_{R}(M, \_)$) for $n > 0$ are $0$. \\
+
+Now suppose that $\Ext^{n}_{R}(M, \_) = 0$ for all $n > 0$, and let 
+\[
+\begin{tikzcd}
+0
+\ar{r}
+& A
+\ar{r}{f}
+& B
+\ar{r}{g}
+& C
+\ar{r}
+& 0
+\end{tikzcd}
+\] 
+be a short exact sequence. As $\Ext^{n}(M, \_)$ vanishes for non-zero 
+indices, the long exact sequence becomes 
+\[
+\begin{tikzcd}[column sep = huge]
+0
+\ar{r}
+& \Ext^{0}_{R}(M, A)
+\ar{r}{\Ext^{0}_R(M, f)}
+& \Ext^{0}_{R}(M, B)
+\ar{r}{\Ext^{0}_R(M, g)}
+& \Ext^{0}_{R}(M, C)
+\ar{r}
+& 0
+\end{tikzcd}
+\] 
+and $\Ext^{0}_{R}(M, \_)$ is an exact functor. As $\Hom_{\RMod}(M, \_)$ is
+left exact, $\Ext^{0}_{R}(M, \_)$ is naturally isomorphic to $\Hom_{\RMod}(M,
+\_)$, and $\Hom_{\RMod}(M, \_)$ is then also exact, whence $M$ is projective.
+
+
+\subsection*{Exercise 7}
+
+Three steps
+\begin{enumerate}
+	\item Every element of $\colim M_i$ comes from some $M_i$. In other words
+		there is a surjection $\bigoplus M_i \to \colim M_i$: We have maps
+		$\phi_j : M_j \to \colim M_i$ for all $j \in I$, hence there is a
+		unique map $\phi : \bigoplus M_i \to \colim M_i$ that factors all these
+		$\phi_j$. Suppose now that $X \in \RMod$ and $f, g : \colim M_i \to X$
+		are such that $f\phi = g \phi$. Then $f\phi, g\phi$ are two cocones of
+		$i \mapsto M_i$, and as they are the same, there is a unique map
+		$\colim M_i \to X$ which they factor through. Hence both $f$ and $g$
+		must be equal to this unique map, and in particular they are equal to
+		each other.
+	\item Show that $\colim$ is left exact, in other words preserves preserves
+		kernels and 
+	\item Show that $\colim$ is surjective. Automatic since colimits commute
+		with colimits (?), and $\coker$ is a colimit.
+\end{enumerate}
+
+\subsection*{Exercise 8}
+
+We begin with a lemma.
+\begin{lemma}
+	Let $\mathcal{A} \xrightarrow{F} \mathcal{B} \xrightarrow{U} \mathcal{C}$
+	be additive functors of abelian categories, and suppose that $U$ is exact.
+	Then
+	\[
+		L_n(U \circ F)
+		\cong
+		U(L_n(F)).
+	\] 
+\end{lemma}
+\begin{proof}
+		
+\end{proof}
+
+Let $M$ be an $\R$-module, $I$ be a filtered category and $A : I \to \RMod$ be
+an $I$-shaped diagram. We are asked to show that 
+\[
+	\Tor^{R}_{n}(M, \colim(A))
+	\cong
+	\colim(\Tor^{R}_{n}(M, \_) \circ A).
+\] 
+Breaking the left hand side into factors we get
+\begin{align*}
+	L_{n}(M \otimes_{R} \_)(\colim(A))
+	&= 
+	L_{n}(M \otimes_{R} \_) \circ \colim(A) \\
+	&=
+	H_n \circ \HK(M \otimes_{R} \_) \circ P \circ \colim(A).
+\end{align*}
+We begin by showing that $P \circ \colim(A) \cong \colim(P \circ A)$ where $P :
+\RMod \to \HK(\RMod)$ takes modules to (deleted) projective resolutions in the
+homotopy category, and $\colim : \RMod^{I} \to \RMod$ takes $I$-shaped diagrams
+in $\RMod$ to their colimit.
+
+\subsection*{Exercise 10}
+\subsubsection*{(1)}
+
+We will show that the localization
+\[
+	\phi : M \times K \to S^{-1}M,
+\]
+with $S = R^{*}$ and 
+\[
+	\phi : (m, a/b) \to am/b
+\] 
+satisfies the universal property of the tensor product of $M$ and $K$. \\
+
+$\phi$ is $R$-bilinear and so factors through the tensor product $\phi(m, a/b)
+= h(m \otimes_{R} a/b)$. We claim that $h$ is an isomorphism. For surjectivity,
+we have $m/s = h(m \otimes_R 1/s)$. For injectivity, $am/b = 0$ if and only if
+$sam - 0b = 0$ for some $s \in S = R^{*}$. But if $sam = 0$ then $m \otimes_r
+a/b = sam \otimes_r 1/sb = 0$, so $h$ is injective, hence an isomorphism. \\
+
+As shown above, an element $m/s \in M$ is zero if and only if there is some $s'
+\in S$ such that $m$ is $s'$ torsion. Hence $M \otimes_R K = S^{-1}M$ is $0$ if
+and only if $M$ is $S = R^{*}$-torsion.
+
+\subsubsection*{(2)}
+
+Let $P_{\bullet} \to M$ be a projective resolution of $M$. Then
+\begin{align*}
+	\Tor_{i}^{R}(M, N) \otimes K
+	&=
+	H_{i}(P_{\bullet} \otimes N) \otimes K \\
+	&= 
+	\frac{\ker(d^{P}_i \otimes \id_N)}{\im(d^{P}_{i + 1} \otimes \id_N)} \otimes K,
+\end{align*} 
+and as $K$ is torsionfree, $K$ is flat, and the short exact sequence 
+\[
+	\begin{tikzcd}[column sep = small]
+	0
+	\ar{r}
+	& \im(d^{P}_{i+1} \otimes \id_N)
+	\ar{r}
+	& \ker(d^{P}_{i} \otimes \id_N)
+	\ar{r}
+	& \frac{\ker(d^{P}_i \otimes \id_N)}{\im(d^{P}_{i + 1} \otimes \id_N)}
+	\ar{r}
+	& 0
+	\end{tikzcd}
+\] 
+remains eact after being tensored with $K$ so
+\[
+	\begin{tikzcd}[column sep = small]
+	0
+	\ar{r}
+	& \im(d^{P}_{i+1} \otimes \id_N) \otimes K
+	\ar{r}
+	& \ker(d^{P}_{i} \otimes \id_N) \otimes K
+	\ar{r}
+	& \frac{\ker(d^{P}_i \otimes \id_N)}{\im(d^{P}_{i + 1} \otimes \id_N)} \otimes K
+	\ar{r}
+	& 0
+	\end{tikzcd}
+\]
+from which it follows that
+\begin{align*}
+	\frac{\ker(d^{P}_i \otimes \id_N)}{\im(d^{P}_{i + 1} \otimes \id_N)} \otimes K
+	\cong
+	\frac{\ker(d^{P}_i \otimes \id_N) \otimes K}{\im(d^{P}_{i + 1} \otimes \id_N) \otimes K}.
+\end{align*}
+Finally, again as $K$ is flat it $\_ \otimes_R K$ is exact and commutes with kernels and cokernels,
+whence 
+\begin{align*}
+	\frac{\ker(d^{P}_i \otimes \id_N) \otimes K}{\im(d^{P}_{i + 1} \otimes \id_N) \otimes K}
+	\cong
+	\frac{\ker(d^{P}_i \otimes \id_N \otimes \id_K)}{\im(d^{P}_{i + 1} \otimes \id_N \otimes \id_K)}.
+\end{align*}
+From our calculations, it follows that 
+\[
+	\Tor_{i}^{R}(M, N) \otimes K
+	\cong
+	\Tor_{i}^{R}(M, N \otimes K),
+\] 
+but $N \otimes K$ is torsionfree, hence 
+\[
+	\Tor_{i}^{R}(M, N) \otimes K
+	\cong
+	\Tor_{i}^{R}(M, N \otimes K)
+	=
+	0,
+\] 
+and $\Tor_{i}^{R}(M, N)$ is torsion. 
+
+
+\section*{List 8}
+\subsection*{Exercise 1}
+\end{document}

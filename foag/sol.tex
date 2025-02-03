@@ -3615,8 +3615,87 @@ k$. Then
 	=
 	\sum_{i = 1}^{m} a k_i (1 \otimes b_i),
 \] 
-and so the $1 \otimes b_i$ generate $A \otimes_{k} l$ as an $A$-module. Now
-suppose that we have some $A$-linear dependence
+and so the $1 \otimes b_i$ generate $A \otimes_{k} l$ as an $A$-module. For linear 
+independence we shall make use of the following lemma.
+
+\begin{lemma}
+	Let $V, W$ be $k$-spaces with bases $v_i, i \in I$ and $w_j, j \in J$
+	respectively. Then $v_i \otimes w_j, (i, j) \in I \times J$ is a basis for
+	$V \otimes W$.
+\end{lemma}
+\begin{proof}
+	Let $v \otimes w$ be a pure tensor in $V \otimes W$. We can decompose $v,
+	w$ according to $v = \sum_{i \in I'} a_i v_i, w = \sum_{j \in J'} b_j w_j$
+	with $I', J'$ finite. We then have 
+	\[
+		v \otimes w 
+		=
+		\left(
+			\sum_{i \in I'} a_i v_i
+		\right)
+		\otimes
+		\left(
+			\sum_{j \in J'} b_j w_j
+		\right)
+		=
+		\sum_{(i, j) \in I' \times J'}
+		a_i b_j 
+		(v_i \otimes w_j).
+	\] 
+	As $V \otimes W$ is the span of all pure tensors, it follows that $v_i
+	\otimes w_j, (i, j) \in I \times J$ generates $V \otimes W$. \\
+
+	For linear independence, consider the projection $\pi_r : V \otimes W \to V
+	\otimes w_r$ defined on pure tensors as $\pi_r : v \otimes w \mapsto b_r v$
+	where $b_rw_r$ is the $w_r$ component of $w$. Then $\pi_r$ is clearly linear
+	in the first coordinate. Moreover,
+	\[
+		\pi_r(v, w + w')
+		=
+		(b_r + b_r') v
+		=
+		b_r v + b_r' v
+		=
+		\pi_r(v, w)
+		=
+		\pi_r(v, w')
+	\] 
+	and
+	\[
+		\pi_r(v, B w)
+		=
+		B b_r v
+		=
+		B \pi_r(v, w),
+	\] 
+	so $\pi_r$ is bilinear, hence factors through $\otimes$.
+	Suppose now that 
+	\[
+		0 = \sum_{i, j \in I \times J} c_{i, j} (v_i \otimes w_j)
+	\] 
+	is some linear dependence (finitely many $c_{i, j} \not = 0$). Then let $\phi$
+	be the unique map such that $\pi_{r}(v, w) = \phi(v \otimes w)$. Then 
+	we get 
+	\begin{align*}
+		0
+		&=
+		\phi(0) \\
+		&=
+		\phi\left(\sum_{i, j \in I \times J} c_{i, j} (v_i \otimes w_j)\right) \\
+		&=
+		\phi\left(\sum_{i \in I} c_{i, r} (v_i \otimes w_r)\right) \\
+		&=
+		\sum_{i \in I} c_{i, r} v_i,
+	\end{align*} 
+	and so all $c_{i, r}, i \in I$ are $0$. The same procedure can be repeated
+	for every coordinate $r \in J$ to show that $c_{i, j} = 0$ for all $i, j
+	\in I, J$. Hence the $v_i \otimes w_j$ form a basis.
+\end{proof}
+
+
+Moreover, as the $1 \otimes b_i$ are linearly independent over $k$,
+
+Now suppose that we have some $A$-linear dependence
 \[
 	0 
 	= 

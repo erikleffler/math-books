@@ -1,0 +1,649 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{rotating}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec\left(#1\right)}}
+\newcommand{\rospu}[2]{\restr{\osp{#1}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+\newcommand{\ox}{\mathcal{O}_X}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Proj}{\text{Proj}}
+\newcommand{\proj}{\Proj}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{Ch 2.10}
+\subsection*{Ex 3}
+
+\subsubsection*{(a)}
+
+Let 
+\[
+	M =
+	\begin{bmatrix}
+		z & -y & x \\
+		y & -x & 1
+	\end{bmatrix}.
+\] 
+Then the determinants of the $2 \times 2$ minors of $M$ are given by $y^2 - z,
+xy - z, x^2 - y$.
+
+\subsubsection*{(b)}
+
+We have $[x, -y, z] \in \im(M)$, and indeed, $(y, -x, 1)$ is another syzygy on
+$(x^2 - y, xy - z, y^2 - xz)$. This is a general phenomena, as seen in the
+theorem below.
+
+\subsubsection*{(c)}
+
+\begin{theorem}
+	Let $A$ be an $m$ by $m + 1$ matrix over $k[x_1, \ldots, x_n]$. Then let
+	$f_i$ be the determinant of the $m$ by $m$ minor obtained from deleting the
+	$i$-th column from $A$, and suppose that $A$ is such that some $f_i \not =
+	0$. Then $\im(A) = S(F)$ where $S(F)$ is the module of syzygies on $F =
+	(f_1, \ldots, f_{m + 1})$.
+\end{theorem}
+\begin{proof}
+	Let $G = (g_1, \ldots, g_{m + 1}) \in (k[x_1, \ldots, x_n])^{m + 1}$. Then let
+	\[
+		A' =
+		\begin{bmatrix}
+			G \\
+			M
+		\end{bmatrix}.
+	\]
+	The determinant of $A'$ is then given as the sum over $i$ of $g_i$ times
+	the determinant of the minor of $A$ obtained by deleting the $i$-th column.
+	I.e $\det(A') = \sum_{i = 1}^{m + 1} g_i f_i$ and we see that $G$ is a
+	syzygy on $F$ if and only if $\det(A') = 0$. This happens if and only if
+	either $A$ has full rank and $G$ is in the image of $A$, or if $A$ doesn't
+	have full rank, in which case all $m$ by $m$ minors of $A$ have vanishing
+	determinants, and $f_i = 0$ for all $i$.
+\end{proof}
+
+
+\section*{Ch 3.1}
+\subsection*{Ex 2}
+\subsubsection*{(a)}
+
+Using the lexicographical order $x > y$ a Groebner basis for $I$
+is given by
+\[
+	y^{3} - y,
+	xy - y^{2},
+	x^{2} + 2y^{2} - 3.
+\] 
+It follows from the elimination theorem that $I_y \cap k[y] = (y^3 - y)$. \\
+
+Using the lexicographical order $y > x$ a Groebner basis for $I$
+is given by
+\[
+	x^{4}-4x^{2}+3,\, 
+	2y+x^{3}-3x
+\] 
+It follows that $I_x \cap k[x] = (x^4 - 4x^2 + 3) = (x^2 - 3)(x^2 - 1)$.
+
+\subsubsection*{(b)}
+
+Using the ideal eliminating $y$, we see that 
+\[
+	V(I_x) = \{
+		\sqrt{3}, -\sqrt{3},
+		1, -1
+	\},
+\] 
+and plugging these values into $2y + x^3 - 3x = 2y + x(x^2 - 3)$ yields 
+\[
+	V(I) = \{
+		(\sqrt{3}, 0),
+		(\sqrt{-3}, 0),
+		(1, 1),
+		(-1, -1)
+	\}.
+\] 
+
+\subsubsection*{(c)}
+\[
+	V(I) \cap \Q^2 = \{
+		(1, -1),
+		(-1, 2)
+	\}.
+\] 
+
+\subsubsection*{(d)}
+$\Q(\sqrt{3})$.
+
+\subsection*{Ex 3}
+
+Using the lexicographical order $y > x$ a Groebner basis for $I$ is given by
+\[
+	3x^{4}-8x^{2}+4, \,
+	4y+3x^{3}-6x
+\] 
+It follows from the Elimination Theorem that $I_x \cap k[x] = (3x^2 - 8x^2 + 4) =
+(x^2 - 2)(3x^2 - 2)$, whence
+\[
+	V(I_x) = \left\{
+		\sqrt{2},
+		-\sqrt{2},
+		\sqrt{\frac{2}{3}},
+		-\sqrt{\frac{2}{3}}
+	\right\}.
+\]
+Plugging these values into $4y + 3x(x^2 - 2)$, we see that 
+\[
+	V(I) = \left\{
+		(\sqrt{2}, 0),
+		(-\sqrt{2}, 0),
+		\left(\sqrt{\frac{2}{3}}, \sqrt{\frac{2}{3}}\right),
+		\left(-\sqrt{\frac{2}{3}}, -\sqrt{\frac{2}{3}}\right),
+	\right\}.
+\] 
+None of the solutions are rational.
+
+
+\subsection*{Ex 4}
+
+Using the lexicographical order $x > y > z$ a Groebner basis for $I$ is given by
+\begin{align*}
+	& 2z^{4}-3z^{2}+1, \\
+	& y^{2}-z^{2}-1, \\
+	& x+2z^{3}-3z
+\end{align*} 
+It follows from the Elimination Theorem that $I_2 \cap k[z] = (2z^4 - 3z^2 + 1) =
+(2z^2 - 1)(z^2 - 1)$, whence
+\[
+	V(I_2) = \left\{
+		1,
+		-1,
+		\sqrt{\frac{1}{2}},
+		-\sqrt{\frac{1}{2}}
+	\right\}.
+\]
+Plugging these values into the remaining generator of the elimination ideal
+$I_1 = I \cap k[y, z]$ yields
+\begin{align*}
+	V(I_1) = \Bigg\{
+	  & \left(\sqrt{2}, 1\right),
+		\left(-\sqrt{2}, 1\right),
+		\left(\sqrt{2}, -1\right),
+		\left(-\sqrt{2}, -1\right), \\
+	  & \left(\sqrt{\frac{3}{2}}, \sqrt{\frac{1}{2}}\right),
+		\left(\sqrt{\frac{3}{2}}, -\sqrt{\frac{1}{2}}\right),
+		\left(-\sqrt{\frac{3}{2}}, \sqrt{\frac{1}{2}}\right),
+		\left(-\sqrt{\frac{3}{2}}, -\sqrt{\frac{1}{2}}\right),
+		\Bigg\}.
+\end{align*} 
+Finally, plugging these values into $x+z(2z^2 - 3)$ yields,
+\begin{align*}
+	V(I_1) = \Bigg\{
+	& \left(1, \sqrt{2}, 1\right),
+	 \left(1, -\sqrt{2}, 1\right), 
+	 \left(-1, \sqrt{2}, -1\right),
+	 \left(-1, -\sqrt{2}, -1\right), \\
+	& \left(\sqrt{2}, \sqrt{\frac{3}{2}}, \sqrt{\frac{1}{2}}\right),
+	 \left(-\sqrt{2}, \sqrt{\frac{3}{2}}, -\sqrt{\frac{1}{2}}\right),
+	 \left(\sqrt{2}, -\sqrt{\frac{3}{2}}, \sqrt{\frac{1}{2}}\right),
+	 \left(-\sqrt{2}, -\sqrt{\frac{3}{2}}, -\sqrt{\frac{1}{2}}\right)
+	\Bigg\}.
+\end{align*} 
+
+\subsection*{Ex 6}
+\subsubsection*{(a)}
+
+This is well-ordering as every monomial is ordered as greater than $1$. To show
+that it is monomial ordering, let $\alpha, \beta, \gamma \in \Z_{\geq 0}^{n}$
+be such that $\alpha > \beta$. Then if
+\[
+	\alpha_1 + \ldots + \alpha_l
+	>
+	\beta_1 + \ldots + \beta_l
+\]
+we have 
+\[
+	\gamma_1 + \ldots + \gamma_l
+	+
+	\alpha_1 + \ldots + \alpha_l
+	>
+	\gamma_1 + \ldots + \gamma_l
+	+
+	\beta_1 + \ldots + \beta_l
+\]
+and so $\gamma + \alpha > \gamma + \beta$. If instead 
+\[
+	\alpha_1 + \ldots + \alpha_l
+	=
+	\beta_1 + \ldots + \beta_l,
+\]
+and
+\[
+	\alpha >_{\text{grlex}} \beta,
+\] 
+we get
+\[
+	\gamma_1 + \ldots + \gamma_l
+	+
+	\alpha_1 + \ldots + \alpha_l
+	=
+	\gamma_1 + \ldots + \gamma_l
+	+
+	\beta_1 + \ldots + \beta_l
+\]
+and 
+\[
+	\alpha + \gamma >_{\text{grlex}} \beta + \gamma
+\] 
+since grlex is a monomial order.
+
+\subsection*{Ex 8}
+
+Using $g_1 = z^2y^4 + z^4y^2 - z^2y^2 + 1$, we get an equation of $y$ in terms
+of $z$ by
+\[
+	y^2 
+	= 
+	\frac{-z^2 + 1}{2} \pm
+	\sqrt{
+		\left(\frac{z^2 - 1}{2}\right)^2
+		-
+		\frac{1}{z^2}
+	}
+\] 
+
+\section*{Ch 3.2}
+\subsection*{Ex 3}
+\subsubsection*{(a)}
+In lex term order with $x > y$, a Groebner basis for $I$ is given 
+by $x^2, y^2$, and in particular $I_1 = (y^2)$.
+\subsubsection*{(b)}
+We have $V(c_1,c_2,c_3) = V(y, y^3, y^2) = V(y)$, and in particular, $V(y) \cap
+V(I_1) = V(I_1)$, hence we don't have strict inequality $W \subsetneq V(I_1)$
+which is promised by part (ii) of the closure theorem.
+
+\subsubsection*{(c), (d) \ (e) - ish}
+As $V(c_i) \cap V(I_1) = V(I_1)$, we have $V(c_i) \supseteq V(I_1)$, but
+$V(I_1) \supseteq V(I)$ so
+\[
+	V(I) = V(c_i) \cap V(I) = V(c_i, I).
+\] 
+Thus whenever we don't have a strict equality and $V(c_i) \cap V(I_1) =
+V(I_1)$, we can let $\widetilde{I} = I \cup (c_i)$ and have $V(I) =
+V(\widetilde{I})$. \\
+
+We can then cancel the leading $x_1$ terms from the generators of $I$, and
+repeat the procedure. As the degrees of the generators decrease at each
+iteration, this process terminates after finitely many steps, and in the end we
+are left with some $\widetilde{I}, \widetilde{c}_i$ such that
+$V(\widetilde{c}_i) \not \supseteq V(\widetilde{I}_1)$, whence we have a
+variety $W = V(\widetilde{c}_i) \cap V(\widetilde{I}_1)$ strictly smaller than
+$V(\widetilde{I}_1)$ such that $\pi_1(V(\widetilde{I})) \supseteq
+V(\widetilde{I}_1) \setminus W$.
+
+\subsection*{Ex 6}
+
+By the closure theorem, $V(I_1)$ is the Zariski closure of $\pi_1(V)$. If $I_1
+\not = (0)$, then $V(I_1) \not = \C$ by the Nullstellensatz, and so $V(I_1)$ is
+finite. Thus $\pi_1(V)$ is finite as well, hence closed, and $\pi_1(V) =
+V(I_1)$.
+
+
+\section*{Ch 3.3}
+
+\subsection*{Ex 2}
+
+We know from equation (4) that $F(\C^{m}) = \pi_{l}(V(I))$ with $I = (x_1 -
+f_1, x_2 - f_2, \ldots, x_n - f_n)$. The closure theorem tells us that
+$V(I_{l})$ is the smallest variety containing $\pi_{l}(V(I))$ and that there
+exist some variety $W \subsetneq V(I_{l})$ such that $V(I_{l}) \setminus W
+\subseteq \pi_l(V)$.
+
+\subsection*{Ex 3}
+
+We will use the fact that any variety in $\R$ is either finite or all of $\R$,
+which follows from the fact that polynomials in $\R$ can be factored into
+linear and quadratic factors, where the quadratic factors have no solutions in
+$\R$. \\
+
+Now, consider the parameterisation $f(t) = t^2$. The image of $f$ is all
+non-negative real numbers $\R_{\geq 0}$. As this is an infinite set, the
+smallest variety $V$ containing $\R_{\geq 0}$ is all of $\R$. But the
+complement $V \setminus R_{\geq 0} = \R_{< 0}$ is also infinite, thus any
+subset $W \subset V$ such that $V \setminus W \subset R_{\geq 0}$ would have to
+be infinite, and if $W$ is a variety, we then have $W = \R$, whence there is no
+strict inclusion $W$ in $V$ as $W = V = \R$.
+
+\subsection*{Ex 6}
+\subsubsection*{(a)}
+
+Let $J = (s_0 - uv, s_1 - u^2, s_2 - v^2)$. A Groebner basis of $J$ using Lex
+order $u > v > s_0 > s_1 > s_2$ is given by 
+\begin{align*}
+	&s_{0}^{2}-s_{1}s_{2}, \\
+	&v^{2}-s_{2}, \\
+	&us_{2}-vs_{0}, \\
+	&us_{0}-vs_{1}, \\
+	&uv-s_{0}, \\
+	&u^{2}-s_{1}.
+\end{align*}
+Hence we see that the variety $V(J_2) = V(s_0^{2} - s_1s_2)$ is the smallest
+variety containing the paramterized surface $S$.
+
+\subsubsection*{(b)}
+
+Using the extension theorem, we see that every point of $V(J_2)$ extends to
+$V(J_1)$, as there is a polynomial $v^{2} - s_2$ in the basis above in $J \cap
+\C[v,s_0,s_1,s_2]$ which has constant coefficient. We again see that all points
+in $V(J_1)$ extend to $V(J)$ since $u^{2} - s_1$ has a constant coefficient. \\
+
+As all points of $V(J_2)$ extend, it follows every point in $V(J_2)$ has
+non-empty preimage under $\pi_2$ and
+\[
+	S = \pi_2(V(J)) = V(J_2) = V.
+\]
+
+\subsection*{Ex 7}
+\subsubsection*{(a)}
+
+Let $J = (s_0 - uv, s_1 - uv^2, s_2 - u^2)$. A Groebner basis of $J$ using Lex
+order $u > v > s_0 > s_1 > s_2$ is given by 
+\begin{align*}
+	&s_{0}^{4}-s_{1}^{2}s_{2}, \\
+	&vs_{1}s_{2}-s_{0}^{3}, \\
+	&vs_{0}-s_{1}, \\
+	&v^{2}s_{2}-s_{0}^{2}, \\
+	&us_{1}-s_{0}^{2}, \\
+	&us_{0}-vs_{2}, \\
+	&uv-s_{0}, \\
+	&u^{2}-s_{2}.
+\end{align*}
+Hence we see that the variety $V(J_2) = V(s_0^{4} - s_1^2s_2)$ is the smallest
+variety containing the paramterized surface $S$.
+
+\subsubsection*{(b)}
+
+We have that
+\begin{align*}
+	J_1 = \Big(&s_{0}^{4}-s_{1}^{2}s_{2}, \\
+			   &vs_{1}s_{2}-s_{0}^{3}, \\
+			   &vs_{0}-s_{1}, \\
+			   &v^{2}s_{2}-s_{0}^{2} \Big).
+\end{align*}
+We see by the extension theorem, that every point in $V(J_2)$ not on $V(s_1s_2,
+s_0, s_2) = V(s_2, s_0)$ extends to $V(J_1)$. Moreover, it's easy to see that
+the only point on $V(s_2, s_0) \cap V(J_2)$ which does extend is $(0, 0, 0)$,
+since any point $(0, a, 0)$ with $a \not = 0$ doesn't lie in $V(vs_0 - s_1)$. \\
+
+As our Groebner basis for $J$ contains a polynomial $u^{2} - s_2$, it follows
+that every point on $V(J_1)$ extends to $V(J)$. Thus
+\[
+	S 
+	= 
+	V(s_0^{4} - s_1^{2}s_2) \setminus \{(0, a, 0) : a \in \C\}.
+\]
+
+
+\subsection*{Ex 8}
+\subsubsection*{(a)}
+
+Let $J$ be the elimination ideal of the parametric surface. A Groebner basis of
+$J$ using Lex order $u > v > s_0 > s_1 > s_2$ is given by 
+\begin{align*}
+	&19683s_{0}^{6} - 59049s_{0}^{4}s_{1}^{2} + 10935s_{0}^{4}s_{2}^{3} +
+	118098s_{0}^{4}s_{2}^{2} - 59049s _{0}^{4}s_{2} + 59049s_{0}^{2}s_{1}^{4} +
+	56862s_{0}^{2}s_{1}^{2}s_{2}^{3} + 118098s_{0}^{2}s_{1}^{2}s_{2} + 1
+	296s_{0}^{2}s_{2}^{6} + 34992s_{0}^{2}s_{2}^{5} + 174960s_{0}^{2}s_{2}^{4}
+	- 314928s_{0}^{2}s_{2}^{3} - 19 683s_{1}^{6} + 10935s_{1}^{4}s_{2}^{3} -
+	118098s_{1}^{4}s_{2}^{2} - 59049s_{1}^{4}s_{2} - 1296s_{1}^{2}s_ {2}^{6} +
+	34992s_{1}^{2}s_{2}^{5} - 174960s_{1}^{2}s_{2}^{4} -
+	314928s_{1}^{2}s_{2}^{3} - 64s_{2}^{9} + 10368 s_{2}^{7} - 419904s_{2}^{5}, \\ 
+	&8748vs_{1}^{3}s_{2}^{2} + 648vs_{1}s_{2}^{5} + 5832vs_{1}s_{2}^{4} +
+	17496vs_{1}s_{2}^{3} + 17496 vs_{1}s_{2}^{2} - 729s_{0}^{4}s_{2} -
+	2187s_{0}^{4} + 5832s_{0}^{2}s_{1}^{2}s_{2} + 4374s_{0}^{2}s_{1}^{2} -
+	189s_{0}^{2}s_{2}^{4} - 2997s_{0}^{2}s_{2}^{3} - 5103s_{0}^{2}s_{2}^{2} +
+	6561s_{0}^{2}s_{2} - 5103s_{1} ^{4}s_{2} - 2187s_{1}^{4} -
+	945s_{1}^{2}s_{2}^{4} + 81s_{1}^{2}s_{2}^{3} - 16767s_{1}^{2}s_{2}^{2} -
+	6561s_{1 }^{2}s_{2} + 8s_{2}^{7} - 48s_{2}^{6} - 864s_{2}^{5} +
+	3888s_{2}^{4} + 17496s_{2}^{3}, \\ 
+	&27vs_{0}^{2}s_{2} + 81vs_{0}^{2} + 135vs_{1}^{2}s_{2} - 81vs_{1}^{2} +
+	8vs_{2}^{4} + 96vs_{2}^{3} + 21 6vs_{2}^{2} + 81s_{0}^{2}s_{1} -
+	81s_{1}^{3} - 12s_{1}s_{2}^{3} - 324s_{1}s_{2}, \\
+	&4374vs_{0}^{2}s_{1} + 8748vs_{1}^{3}s_{2} - 4374vs_{1}^{3} +
+	648vs_{1}s_{2}^{4} + 5184vs_{1}s_ {2}^{3} + 17496vs_{1}s_{2}^{2} -
+	729s_{0}^{4} + 5832s_{0}^{2}s_{1}^{2} - 189s_{0}^{2}s_{2}^{3} - 2430s_{0}^
+	{2}s_{2}^{2} + 2187s_{0}^{2}s_{2} - 5103s_{1}^{4} - 945s_{1}^{2}s_{2}^{3} +
+	972s_{1}^{2}s_{2}^{2} - 19683s_{1 }^{2}s_{2} + 8s_{2}^{6} - 72s_{2}^{5} -
+	648s_{2}^{4} + 5832s_{2}^{3}, \\
+	&2187vs_{0}^{4} + 69984vs_{0}^{2} + 8748vs_{1}^{4}s_{2} - 2187vs_{1}^{4} +
+	648vs_{1}^{2}s_{2}^{ 4} + 3240vs_{1}^{2}s_{2}^{3} -
+	11664vs_{1}^{2}s_{2}^{2} + 139968vs_{1}^{2}s_{2} - 69984vs_{1}^{2} - 1
+	92vs_{2}^{6} - 3456vs_{2}^{5} - 15552vs_{2}^{4} + 20736vs_{2}^{3} +
+	186624vs_{2}^{2} - 729s_{0} ^{4}s_{1} + 5832s_{0}^{2}s_{1}^{3} -
+	189s_{0}^{2}s_{1}s_{2}^{3} - 7047s_{0}^{2}s_{1}s_{2}^{2} - 23328s_{0}^{2
+	}s_{1}s_{2} + 69984s_{0}^{2}s_{1} - 5103s_{1}^{5} - 945s_{1}^{3}s_{2}^{3} +
+	1215s_{1}^{3}s_{2}^{2} + 5832s_ {1}^{3}s_{2} - 69984s_{1}^{3} +
+	8s_{1}s_{2}^{6} + 288s_{1}s_{2}^{5} + 216s_{1}s_{2}^{4} +
+	5184s_{1}s_{2}^{3} + 93 312s_{1}s_{2}^{2} - 279936s_{1}s_{2}, \\
+	&18v^{2}s_{2}^{2} + 54v^{2}s_{2} - 54vs_{1}s_{2} - 27s_{0}^{2} +
+	27s_{1}^{2} + s_{2}^{3} - 18s_{2}^{2} + 81s_{2}, \\
+	&54v^{2}s_{1}s_{2} + 27vs_{0}^{2} - 27vs_{1}^{2} + 8vs_{2}^{3} +
+	72vs_{2}^{2} - 9s_{1}s_{2}^{2} - 27s_{1} s_{2}, \\ 
+	&243v^{2}s_{0}^{2} - 243v^{2}s_{1}^{2} - 1296v^{2}s_{2} -
+	108vs_{1}s_{2}^{2} + 324vs_{1}s_{2} + 108s_{0}^{2 }s_{2} + 648s_{0}^{2} +
+	135s_{1}^{2}s_{2} - 648s_{1}^{2} - 4s_{2}^{4} + 48s_{2}^{3} + 108s_{2}^{2}
+	- 1944s_{2}, \\ 
+	&2v^{3} + vs_{2} + 3v - s_{1}, \\ 
+	&27us_{1}^{2} - 8us_{2}^{3} + 72us_{2}^{2} - 36v^{2}s_{0}s_{2} -
+	27vs_{0}s_{1} - 24s_{0}s_{2}^{2}, \\
+	&9us_{0} + 6v^{2}s_{2} - 9vs_{1} + s_{2}^{2} - 9s_{2}, \\
+	&4uvs_{2} - 3us_{1} + 3vs_{0}, \\ 
+	&9uvs_{1} - 2us_{2}^{2} + 18us_{2} - 9v^{2}s_{0} - 6s_{0}s_{2}, \\ 
+	&6uv^{2} - us_{2} + 9u - 3s_{0}, \\
+	&3u^{2} - 3v^{2} - s_{2}, \\
+\end{align*}
+Only the first polynomial lies in $\C[s_0, s_1, s_2]$, and so
+\begin{align*}
+	V(J_2)
+	=
+	V(
+	&19683s_{0}^{6} - 59049s_{0}^{4}s_{1}^{2} + 10935s_{0}^{4}s_{2}^{3} + \\
+	&118098s_{0}^{4}s_{2}^{2} - 59049s _{0}^{4}s_{2} + 59049s_{0}^{2}s_{1}^{4} + \\
+	&56862s_{0}^{2}s_{1}^{2}s_{2}^{3} + 118098s_{0}^{2}s_{1}^{2}s_{2} + 1 \\
+	&296s_{0}^{2}s_{2}^{6} + 34992s_{0}^{2}s_{2}^{5} + 174960s_{0}^{2}s_{2}^{4} - \\
+	&314928s_{0}^{2}s_{2}^{3} - 19 683s_{1}^{6} + 10935s_{1}^{4}s_{2}^{3} - \\
+	&118098s_{1}^{4}s_{2}^{2} - 59049s_{1}^{4}s_{2} - 1296s_{1}^{2}s_ {2}^{6} + \\
+	&34992s_{1}^{2}s_{2}^{5} - 174960s_{1}^{2}s_{2}^{4} - 314928s_{1}^{2}s_{2}^{3} - \\
+	&64s_{2}^{9} + 10368 s_{2}^{7} - 419904s_{2}^{5}).
+\end{align*}
+Hence we see that the variety $V(J_2) = V(s_0^{2} - s_1s_2)$ is the smallest
+variety containing the paramterized surface $S$.
+
+\subsubsection*{(b)}
+
+The leading coefficients of the generators of $J_1 \setminus J_2$ interpreted
+as elements of $\C[s_0,s_1,s_2][v]$ are given by
+\begin{align*}
+	&648s_{1}s_{2}^{5} + 8748s_{1}^{3}s_{2}^{2} + 5832s_{1}s_{2}^{4} +
+	17496s_{1}s_{2}^{3} + 17496s_{1}s_{2} ^{2}, \\
+	&8s_{2}^{4} + 27s_{0}^{2}s_{2} + 135s_{1}^{2}s_{2} + 96s_{2}^{3} +
+	81s_{0}^{2} - 81s_{1}^{2} + 216s_{2}^{2}, \\
+	&648s_{1}s_{2}^{4} + 8748s_{1}^{3}s_{2} + 5184s_{1}s_{2}^{3} +
+	4374s_{0}^{2}s_{1} - 4374s_{1}^{3} + 1749
+6s_{1}s_{2}^{2}, \\
+	&648s_{1}^{2}s_{2}^{4} - 192s_{2}^{6} + 8748s_{1}^{4}s_{2} +
+	3240s_{1}^{2}s_{2}^{3} - 3456s_{2}^{5} + 2187 s_{0}^{4} - 2187s_{1}^{4} -
+	11664s_{1}^{2}s_{2}^{2} - 15552s_{2}^{4} + 139968s_{1}^{2}s_{2} + 20736s_{
+	2}^{3} + 69984s_{0}^{2} - 69984s_{1}^{2} + 186624s_{2}^{2}, \\
+	&18s_{2}^{2} + 54s_{2}, \\
+	&54s_{1}s_{2}, \\
+	&243s_{0}^{2} - 243s_{1}^{2} - 1296s_{2}, \\
+	&2, 
+\end{align*}
+and in particular, we see that one of them is $2$. Hence all points of $V(J_2)$
+extend to $V(J_1)$ by the extension theorem. \\
+
+Similarly, the leading coefficients of the generators of $J \setminus J_1$
+interpreted as elements of $\C[s_0,s_1,s_2,v][u]$ are given by
+\begin{align*}
+	& - 8s_{2}^{3} + 27s_{1}^{2} + 72s_{2}^{2}, \\
+	&3, \\
+	& - 2s_{2}^{2} + 9s_{1}v + 18s_{2}, \\
+	&4s_{2}v - 3s_{1}, \\
+	&6v^{2} - s_{2} + 9, \\
+\end{align*}
+which contains $3$, and so all points of $V(J_2)$ extends to $V(J)$, whence we
+see that $V(J_2) = \pi_2(V(J)) = S$.
+
+\subsection*{Ex 10}
+\subsubsection*{(a)}
+
+Let the curve be given by $S = F(t) = (f_1(t), \ldots, f_n(t))$, and let $J =
+(x_1 - f_1(t), \ldots, x_n - f_n(t))$. Using some elimination order where $t >
+x_i$ for all $i$, we see that $J$ contains polynomials with leading terms that
+are pure powers of $t$ (unless each $f_i$ is constant and $S$ is a point,
+whence the exercise solves trivially). It follows that a Groebner basis $G$ for
+$J$ must contain some polynomial $g \in G$ with a leading term that is a pure
+power of $t$. Thus the Extension Theorem, and more specifically Corollary 4 of
+§3.2 tells us that all $V(J_1) = \pi_1(V(J)) = S$.
+
+\subsubsection*{(b)}
+
+The rational parameterization of the circle given in Chapter 1.§3 is given by 
+\[
+	\frac{1 - t^2}{1 + t^2}, \,
+	\frac{2t}{1 + t^2},
+\] 
+and it never meets the point $(-1, 0)$. \\ 
+
+The problem is that the ideal
+$J = (g_1(t)x_1 - f_1(t), \ldots, x_n - g_n(t)f_n(t), 1 - g(t)y)$
+may not contain any polynomials that have a pure $t$-power as leading term.
+For example, using the parameterization above we get 
+\[
+	J = (
+		(1 + t^2)x_1 - 1 + t^2,
+		(1 + t^2)x_2 - 2t,
+		1 - (1 + t^2)y
+	)
+\] 
+and if we compute it's Groebner basis we will find that no polynomial has a
+pure $t$-power leading term.
+
+\subsubsection*{(c)}
+
+The image of the parameterization $t \mapsto t^2$ is all of the positive real
+numbers, the closure of which is all of $\R$.
+
+
+
+
+\end{document}

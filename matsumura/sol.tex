@@ -1,0 +1,258 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{rotating}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec\left(#1\right)}}
+\newcommand{\rospu}[2]{\restr{\osp{#1}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+\newcommand{\ox}{\mathcal{O}_X}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+\newcommand{\Mor}{\text{Mor}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Proj}{\text{Proj}}
+\newcommand{\proj}{\Proj}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+\newcommand{\rad}{\text{rad}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\op}{\catname{op}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{Ch 1}
+
+\subsection*{1.1}
+
+Suppose that $ab$ maps to $1$ in $A/I$. Then there is some nilpotent element
+$r$ with $r^n = 0$ such that $ab = 1 - r$. It follows that 
+\[
+	ab(1 + r + r^{2} + \ldots + r^{n - 1})
+	=
+	(1 - r)(1 + r + r^{2} + \ldots + r^{n - 1})
+	=
+	1 - r^{n}
+	=
+	1
+\] 
+hence $a$ has inverse $b(1 + r + \ldots + r^{n - 1})$.
+
+\subsection*{1.2}
+
+Suppose that $I_1 \times \ldots \times I_n$ is a prime ideal of $A_1 \times
+\ldots \times A_n$. Then
+\[
+	(A_1 \times \ldots \times A_n) / (I_1 \times \ldots \times I_n)
+	\cong 
+	A_1/I_1 \times \ldots \times A_n / I_n
+\]
+is a domain, and as non-trivial cartesian products always have zero divisors,
+we must have $A_i = I_i$ for all but one $i = j$. It follows that 
+\[
+	(A_1 \times \ldots \times A_n) / (I_1 \times \ldots \times I_n)
+	\cong 
+	A_j / I_j
+\]
+is a domain and so $I_j$ is prime as well. \\
+
+The other direction is imediate.
+
+\subsection*{1.3}
+\subsubsection*{(a)}
+
+Let $\mathfrak{m}$ be maximal in $B$. Then 
+\[
+	A/f^{-1}(\mathfrak{m})
+	\cong 
+	B/\mathfrak{m}
+\] 
+is a field so $\mathfrak{m}$ is maximal in $A$. Hence if $a \in \rad(A) \subset
+f^{-1}(\mathfrak{m})$ then $f(a) \in \mathfrak{m}$, and as $\mathfrak{m}$ is an
+arbitrary maximal ideal of $B$, $f(a) \in \rad(B)$. \\
+
+An example where the inclusion is strict is given by $\Z \to \Z / p^2$, as
+$\rad(\Z) = \emptyset$ whilst $\rad(\Z / p^{2}) = (p)$.
+
+\subsubsection*{(b)}
+
+Suppose $A$ is semi-local and $b \in \rad(B)$ and $a = f^{-1}(b)$. Then $a$ is
+in all maximal ideals of $A$ which contain $\ker(f)$. Now let $\mathfrak{m}'$
+be a maximal ideal of $A'$ which does not contain $\ker(f)$. Then $\ker(f) +
+\mathfrak{m}' = (1)$ and so there is some $m' \in \mathfrak{m}'$ such that $m'
+= 1 + c$ with $c \in \ker(f)$. Let $M$ be the set of maximal ideals of $A$
+containing $\ker(f)$ and $M'$ be the set of maximal ideals of $A$ not
+containing $M$. It follows by the proof of Theorem 1.3 that
+\[
+	\rad(A)
+	=
+	\left(
+		\bigcap_{\mathfrak{m} \in M} \mathfrak{m}
+	\right)	
+	\left(
+		\prod{\mathfrak{m}' \in M'} \mathfrak{m}'
+	\right)
+\] 
+hence 
+\[
+	a' = a(1 + c_1)(1 + c_2) \ldots (1 + c_k) \in \rad(A)
+\] 
+for some $c_i \in \ker(f)$ and $f(a') = b$.
+
+\subsection*{1.4}
+
+Suppose $A$ is a UFD and $a \in A$ is irreducible. Then $a$ must have only one
+prime factor by irreducibility, and so $a$ is prime thus $(a)$ is prime. Now 
+suppose towards a contradiction
+\[
+	(a_0) \subseteq (a_1) \subset \ldots
+\] 
+is an infinite ascending chain of ideals of $A$. Suppose $a_0 = p_0p_1\ldots
+p_k$ is a factorisation of $a_0$ into prime elements with repetitions allowed.
+Then as $a_0 \in (a_1)$, every prime which divides $a_1$ divides $a_0$, and so
+the prime factors of $a_1$ is some subset of the $p_i$. Strict inclusions
+correspond to omision of prime factors, which clearly can only happen finitely
+many times. \\
+
+For the other direction, suppose that $A$ is a domain where irreducible
+elements are prime, and where principal ideals satisfy the ascending chain
+condition. Let $a \in A$, and $S$ be the set of prinicipal ideals containing
+$A$. By hypothesis, $S$ contain a maximal element (it is non-empty as it
+contains $(a)$), and so let $M \subset S$ be the set of maximal elements of
+$S$. Let $(m) \in M$. Any principal ideal containing $(m)$ also must contain
+$a$, thus $(m)$ is maximal among all principal ideals whence $m$ is
+irreducible, and also prime by hypothesis. Let $a_0 = a$, and $(m_0) \in M$
+and let $a_1 = m_0/a_0$ if $a_1$ isn't a unit, let $(m_1) \in M \setminus (m_0)$.
+Then as $m_0 a_1 = c m_1$, and $m_1 \not | m_0$ since $(m_0) \not (m_1)$,
+we have $m_1 | a_1$, and we can write $a_2 = a_1/m_1$. Continuing this way
+yields an ascending chain
+\[
+	(a_0) \subsetneq (a_1) \subsetneq (a_2) \subsetneq \ldots
+\] 
+which must terminate at some $a_k$ by hypothesis. It follows that 
+\[
+	a = m_0 m_1 \ldots m_k
+\] 
+is a prime factorisation of $a$.
+
+\subsection*{1.5}
+
+Let $P = \bigcap_{\lambda \in \Lambda} P_{\lambda}$. Then $P$ is an ideal, and
+if $x \not \in P, y \not \in P$, then there is some $P_x, P_y$ such that $x
+\not \in P_x, y \not \in P_y$. As the family is totally ordered, we have either
+$P_x \subset P_y$ or $P_y \subset P_x$, and we can assume the former. Then $y
+\not \in P_x$, hence $xy \not \in P_x$ by primality, whence $xy \not \in P$. \\
+
+Minimal primes of $A$ containing $I$ are precisely minimal primes of $A/I$
+subject to no restrictions. We showed above that chains of prime ideals in any
+ring have lower bounds. Hence $A/I$ has minimal primes by Zorn's Lemma.
+
+\subsection*{1.6}
+
+For each $i \in [1..r]$, let $x_i \in I \setminus P_i$. Then let $x =
+x_1x_2\ldots x_r$.
+
+
+\end{document}

@@ -1,0 +1,560 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{rotating}
+\usepackage{mathtools}
+\usepackage{algpseudocode}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+\usepackage{tikz-cd}
+
+\hbadness = 10000
+\vbadness = 10000
+
+\newcommand\restr[2]{{% we make the whole thing an ordinary symbol
+  \left.\kern-\nulldelimiterspace % automatically resize the bar with \right
+  #1 % the function
+  \vphantom{\big|} % pretend it's a little taller at normal size
+  \right|_{#2} % this is the delimiter
+  }}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+% Custom colors
+
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+morekeywords={self},              % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false
+}}
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+\theoremstyle{definition}
+
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\A}{\mathbb{A}}
+
+\newcommand{\x}{\bm{x}}
+\newcommand{\Kx}{\K[\bm{x}]}
+\newcommand{\KP}[2]{\K[#1_1, #1_2, \ldots, #1_{#2}]}
+
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec\left(#1\right)}}
+\newcommand{\rospu}[2]{\restr{\osp{#1}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+\newcommand{\ox}{\mathcal{O}_X}
+
+\renewcommand{\AA}[1]{\A^{#1}}
+\newcommand{\An}{\A^n}
+\newcommand{\Am}{\A^m}
+
+\newcommand{\PP}[1]{\P^{#1}}
+\newcommand{\Pn}{\P^n}
+\newcommand{\Pm}{\P^m}
+
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\End}{\text{End}}
+\newcommand{\Iso}{\text{Iso}}
+
+\newcommand{\lm}{\text{lm}}
+\newcommand{\nr}{\text{nilrad}}
+\newcommand{\Spec}{\text{Spec}}
+\newcommand{\Proj}{\text{Proj}}
+\newcommand{\proj}{\Proj}
+\newcommand{\spec}{\Spec}
+\newcommand{\codim}{\text{codim}}
+\newcommand{\coker}{\text{coker}}
+\newcommand{\colim}{\text{colim}}
+\newcommand{\ann}{\text{ann}}
+\newcommand{\im}{\text{im}}
+\newcommand{\id}{\text{id}}
+\newcommand{\height}{\text{height}}
+
+\newcommand{\Tor}{\text{Tor}}
+\newcommand{\Ext}{\text{Ext}}
+\newcommand{\HK}{\mathbf{K}}
+
+\newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\CRing}{\catname{CRing}}
+\newcommand{\Ch}{\catname{Ch}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\Rep}{\catname{Rep}}
+\newcommand{\rep}{\catname{rep}}
+\newcommand{\Mod}{\catname{Mod}}
+\newcommand{\RMod}{\,_{R}\catname{Mod}}
+\newcommand{\ModR}{\catname{Mod}_{R}}
+\newcommand{\op}{\catname{op}}
+\newcommand{\Ab}{\catname{Ab}}
+
+\setlength{\parindent}{0pt}
+
+
+
+
+\begin{document}
+
+\section*{Problem 1}
+
+If $I$ is an injective ideal, the S.E.S
+\[
+\begin{tikzcd}
+	0
+	\ar{r}
+	& I
+	\ar{r}
+	& R
+	\ar{r}
+	& R/I
+	\ar{r}
+	& 0
+\end{tikzcd}
+\] 
+splits, and $R = I \oplus R/I$.
+
+\subsection*{(1)}
+By the splitting above, $I$ is a direct summand of the free $R$-module $R$,
+hence projective
+
+\subsection*{(2)}
+By the splitting above, $R/I$ is a direct summand of the free $R$-module $R$,
+hence projective and in particular, flat.
+
+\section*{Problem 2}
+
+Let $\pi^{*}M, \pi^{*}N$ be the $R$-modules obtained from $M, N$ via
+restriction of scalars along $\pi : R \to R/I$. We are asked to show that the
+functor is an isomorphism on hom sets,
+\[
+	\pi^{*} : \Hom_{R/I}(M, N) \xrightarrow{\cong} \Hom_{R}(\pi^{*}M, \pi^{*}N).
+\] 
+
+Let $\phi : \pi^{*}M \to \pi^{*}N$ be an $R$-module morphism. As $\pi^{*}M,
+\pi^{*}N$ are equal to $M, N$ as sets, we have that $\phi$ induces a funtion of
+sets $\overline{\phi} : M \to N$ via 
+\[
+	\overline{\phi} : m \to \phi(m).
+\] 
+Furthermore, $\overline{\phi}$ is $R/I$-linear as 
+\[
+	\overline{\phi}([r]m)
+	=
+	\phi(\pi(r)m)
+	=
+	\pi(r)\phi(m)
+	=
+	[r]\overline{\phi}(m).
+\] 
+As both $\overline{\cdot}$ and $\pi^{*}$ do nothing to change the underlying
+functions, they just change categories, it's immediate that they are mutually
+inverse isomorphisms of abelian groups.
+
+\section*{Problem 3}
+
+The middle sequence is exact so it's homologies are $0$, and as the outer two
+sequences have $d = 0$, taking homologies doesn't change the underlying
+modules. The only thing that remains to calculate is the connecting morphism.
+But we don't even need to calculate it as the long exact sequence looks like
+\[
+\begin{tikzcd}
+	\ldots
+	\ar{r}
+	& 0
+	\ar{r}
+	& \Z/2
+	\ar{r}{\partial_{n}}
+	& \Z/2
+	\ar{r}
+	& 0
+	\ar{r}
+	& \ldots,
+\end{tikzcd}
+\] 
+hence $\partial_{n}$ is an isomorphism $\Z/2 \to \Z/2$, and there is only one
+such isomorphism, the identity morphism.
+
+\section*{Problem 4}
+
+Both $\Hom$ and $\otimes$ are addititive funtors in either argument and so the
+derived functors $\Tor$ and $\Ext$ are as well.
+
+\subsection*{(1)}
+We have, 
+\[
+	\Ext^{n}_{\Z/3\Z}(\Z/3\Z, \Z/3\Z \oplus \Z/3\Z)
+	\cong
+	\Ext^{n}_{\Z/3\Z}(\Z/3\Z, \Z/3\Z)
+	\oplus
+	\Ext^{n}_{\Z/3\Z}(\Z/3\Z, \Z/3\Z),
+\] 
+but $\Z/3\Z$ is free hence projective, and so $\Ext^{n}_{\Z/3\Z}(\Z/3\Z, M) =
+0$ for all $n > 0$ and any $\Z/3\Z$-module $M$. As $\Ext^{0}_{R}(M, N) \cong \Hom_{R}(M, N)$
+we have that 
+\[
+	\Ext^{0}_{\Z/3\Z}(\Z/3\Z, \Z/3\Z)
+	\cong
+	\Hom_{\Z/3\Z}(\Z/3\Z, \Z/3\Z)
+	\cong
+	\Z/3\Z
+\]
+hence
+\[
+	\Ext^{n}_{\Z/3\Z}(\Z/3\Z, \Z/3\Z \oplus \Z/3\Z)
+	=
+	\begin{cases}
+		\Z/3\Z \oplus \Z/3\Z \text{ if } n = 0, \\	
+		0 \text{ else.}
+	\end{cases}
+\] 
+
+\subsection*{(2)}
+
+We have
+\[
+	\Tor_{n}^{\Z}(\Z \oplus (\Z/4), \Q)
+	\cong
+	\Tor_{n}^{\Z}(\Z, \Q)
+	\oplus
+	\Tor_{n}^{\Z}(\Z/4, \Q).
+\] 
+As $\Z$ is projective,
+\[
+	\Tor_{n}^{\Z}(\Z, \Q)
+	\cong
+	\begin{cases}
+		\Z \otimes_{\Z} \Q \cong \Q \text{ if } n = 0, \\	
+		0 \text{ else.}
+	\end{cases}
+\] 
+Meanwhile, a (deleted) projective resolution $P_{\bullet} \to \Z/4$
+is given by
+\[
+\begin{tikzcd}
+	\ldots
+	\ar{r}
+	& 0
+	\ar{r}
+	& \Z
+	\ar{r}{4}
+	& \Z
+	\ar{r}
+	& 0,
+\end{tikzcd}
+\] 
+and tensoring with $\Q$ we get
+\[
+\begin{tikzcd}
+	\ldots
+	\ar{r}
+	& 0
+	\ar{r}
+	& \Z \otimes_{\Z} \Q/\Z \cong \Q/\Z
+	\ar{r}{4}
+	& \Z \otimes_{\Z} \Q\Z \cong \Q/\Z
+	\ar{r}
+	& 0.
+\end{tikzcd}
+\]
+Now, if $a/b \in \Q/\Z$, then $a/4b \in \Q/\Z$ whence multplication by $4 :
+\Q/\Z \to \Q/\Z$ is surjective. It's not injective however as $4a/b \in \Z
+\Leftrightarrow b | 4$, hence it has kernel generated by $1/4\Q/\Z$. We get
+\[
+	\Tor_{0}^{\Z}(\Z/4, \Q/\Z) \cong \frac{\ker(0_{\Q/\Z})}{\im(4_{\Q/\Z})} = 0,
+\] 
+and
+\[
+	\Tor_{1}^{\Z}(\Z/4, \Q/\Z) \cong \frac{\ker(4_{\Q/\Z})}{\im(0_{\Q/\Z})} = 1/4\Q/\Z,
+\]
+Thus
+\[
+	\Tor_{n}^{\Z}(\Z \oplus (\Z/4), \Q)
+	\cong
+	\begin{cases}
+		\Q \text{ if } n = 0, \\
+		1/4\Q/\Z \text{ if } n = 1, \\
+		0 \text{ else.}
+	\end{cases}
+\] 
+
+\subsection*{(3)}
+
+A (deleted) projective resolution of $\Q[x, y]/(x)$ is given by
+\[
+\begin{tikzcd}
+	\ldots
+	\ar{r}
+	& 0
+	\ar{r}
+	& \Q[x, y]
+	\ar{r}{x}
+	& \Q[x, y]
+	\ar{r}{0}
+	& 0
+\end{tikzcd}
+\] 
+afterwhich applying $\Hom(\_, \Q[x, y]/(y))$ yields
+\[
+\begin{tikzcd}
+	0
+	\ar{r}
+	& \Hom_{\Q[x, y]}(\Q[x, y], \Q[x, y]/(y))
+	\ar{r}{x^{*}}
+	& \Hom_{\Q[x, y]}(\Q[x, y], \Q[x, y]/(y))
+	\ar{r}{0}
+	& 0
+	\ar{r}
+	& \ldots
+\end{tikzcd}
+\]
+Now, for any ring $R$ and $R$-module $M$ we have that the functor $\Hom_{R}(R, \_)$
+naturaly isomorphic to the identity functor via
+\[
+	\Hom_{R}(R, M) \ni \phi \mapsto \phi(1) \in M,
+\]
+and
+\[
+	\Hom(\Hom_{R}(R, M), \Hom_{R}(R, N)) \ni f \mapsto (m \mapsto (f(1 \mapsto m))(1) \in \Hom(M, N).
+\] 
+Applying this to our resolution yields
+\[
+\begin{tikzcd}
+	0
+	\ar{r}
+	& \Q[x, y]/(y)
+	\ar{r}{x}
+	& \Q[x, y]/(y)
+	\ar{r}{0}
+	& 0
+	\ar{r}
+	& \ldots,
+\end{tikzcd}
+\]
+afterwhich we can read homology groups according to
+\[
+	\Ext_{\Q[x, y]}(\Q[x, y]/(x), \Q[x, y]/(y))
+	\cong
+	\begin{cases}
+		0 \text{ if } i = 1, \\
+		(\Q[x, y]/(y))/(x\Q[x, y]/(y)) \cong \Q \text{ if } i = 1, \\
+		0 \text{ else.}
+	\end{cases}
+\] 
+
+\section*{Problem 5}
+
+The short exact sequence 
+\[
+\begin{tikzcd}
+	0
+	\ar{r}
+	& I
+	\ar{r}
+	& R
+	\ar{r}
+	& R/I
+	\ar{r}
+	& 0,
+\end{tikzcd}
+\] 
+induces a long exact sequence 
+\[
+\begin{tikzcd}[column sep = small]
+	0
+	\ar{r}
+	& \Hom_{R}(R/I, N)
+	\ar{r}
+	& \Hom_{R}(R, N)
+	\ar{r}
+	& \Hom_{R}(I, N)
+	\ar{r}
+	& \Ext^{1}_{R}(R/I, N) \cong 0
+	\ar{r}
+	& \ldots,
+\end{tikzcd}
+\]	
+and in particular the restriction map $\Hom_{R}(R, N) \to \Hom_{R}(I, N)$ is
+surjective. As this is true for all left ideals $I$, it follows from Baer's
+Criterion that $N$ is injective.
+
+\section*{Problem 6}
+\subsection*{(1)}
+
+If $Q_{\bullet} \xrightarrow{g_0} M$ is a projective resolution of $M$,
+it follows that
+\[
+	\begin{tikzcd}
+		Q_1
+		\ar{r}
+		& Q_0
+		\ar{r}{f_n g_0}
+		& P_n
+		\ar{r}
+		& \ldots
+		\ar{r}
+		& P_0
+	\end{tikzcd}
+\] 
+is a projective resolution of $N$, afterwhich the desired result is immediate.
+
+\subsection*{(2)}
+
+Let $M$ be an arbitrary $R$-module and $P_{\bullet} \to M$ a projective
+resolution. Then by part (1), $L_{k + n}(M) = L_{k}(P_n) = 0$ for all $n > 0$.
+
+\section*{Problem 7}
+
+\subsection*{(1)}
+
+As we're in a PID, multiplication by $r$ is injective, and so the 
+only non zero homology is given by
+\begin{align*}
+	H_0(K(r)) &= R/rR.
+\end{align*} 
+
+\subsection*{(2)}
+
+By the Kunneth formula, we have a split exact sequence 
+\[
+\begin{tikzcd}[column sep = small]
+	0
+	\ar{r}
+	& \bigoplus_{i + j = n} H_i(K(r)) \otimes H_j(C)
+	\ar{r}
+	& H_n(K(r) \otimes C)
+	\ar{r}
+	& \bigoplus_{i + j = n - 1} \Tor_{1}(H_i(K(r), H_j(C))
+	\ar{r}
+	& 0
+\end{tikzcd}
+\] 
+Furthermore, as $H_i(K(r)) = 0$ for $i \not = 0$, the sequence becomes
+\[
+\begin{tikzcd}[column sep = small]
+	0
+	\ar{r}
+	& 
+	R/rR \otimes H_n(C)
+	\ar{r}
+	& H_n(K(r) \otimes C)
+	\ar{r}
+	& 
+	\Tor_{1}(R/rR, H_n(C))
+	\ar{r}
+	& 0
+\end{tikzcd}
+\]
+Now whenever $R$ is a pid and $M$ is an $R$-module,
+\[
+	\Tor_1^{R}(R/rR, M)
+	=
+	M_r
+	=
+	\{m \in M : rm = 0\},
+\] 
+and as $r$ is injective on $H_n(C)$ by hypothesis, $\Tor_1^{R}(R/rR, M = 0)$.
+Finally our desired result now follows from
+\[
+	R/rR \otimes H_n(C)
+	\cong
+	H_n(C)/rH_n(C).
+\] 
+
+\section*{Problem 8}
+
+\subsection*{(1)}
+We can show something even stronger, that 
+if 
+\[
+	\begin{tikzcd}
+	& \Hom(C, D)
+	\ar{r}{g^{*}}
+	& \Hom(B, D)
+	\ar{r}{f^{*}}
+	& \Hom(A, D)
+	\end{tikzcd}
+\]
+is exact for every $R$-module $D$ (a weaker hypothesis as we do not require
+$g^{*}$ injective), then
+\[
+	\begin{tikzcd}
+	& A
+	\ar{r}{f}
+	& B
+	\ar{r}{g}
+	& C
+	\end{tikzcd}
+\] 
+is exact. To see this, let $\pi : B \to \coker(f)$ be the cokernel of $f$
+and set $D = \coker(f)$. Then $f^{*}(\pi) = \pi f = 0$ so there is $\sigma$...
+yada yada did already.
+
+\subsection*{(2)}
+
+As $F$ is a left-adjoint, $F$ preserves colimits, and in particular 
+cokernels. The desired result now follows from the followin lemma.
+
+\begin{lemma}
+	Let $F$ be an additve functor which preserves cokernels. Then $F$ is right
+	exact.
+\end{lemma}
+\begin{proof}
+	Let 
+	\[
+	\begin{tikzcd}
+	A
+	\ar{r}{f}
+	& B
+	\ar{r}{g}
+	& C
+	\ar{r}
+	& 0
+	\end{tikzcd}
+	\] 
+	be an exact sequence. Then $\coker(g) = 0$ and so $\coker(F(g)) =
+	F(\coker(g)) = 0$ whence $F(g)$ is surjective. Moreover, $F(f) F(g) = F(fg)
+	=F(0) = 0$. It remains to show that $\ker(F(g)) \subseteq \im(F(f)) =
+	\ker(\coker(F(f))$. But $\coker(F(f)) = F(\coker(f)) = F(g)$ and the the
+	lemma statement follows.
+\end{proof}
+
+
+\end{document}
+

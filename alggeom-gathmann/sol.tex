@@ -121,6 +121,8 @@ showstringspaces=false
 \newcommand{\height}{\text{height}}
 \newcommand{\ini}{\text{in}}
 
+\newcommand{\Spec}{\text{Spec}}
+
 \newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
 \newcommand{\Set}{\catname{Set}}
 \newcommand{\CRing}{\catname{CRing}}
@@ -2819,7 +2821,7 @@ where $A$ is a symmetric matrix with $A_{i,j} = A_{j, i} = c_{i,j}/2$ for $i
 \not = j$ and $A_{i, i} = c_{i, i}$. We can perform a change of coordinates
 which diagonalises this matrix, and then by rescaling the coordinates, we can
 do so in such a way that the first two elements on the diagonal are $1/2$, and
-the remaining are either $1$ or $0$ ($f$ is irreducible so the first to
+the remaining are either $1$ or $0$ ($f$ is irreducible so the first two
 diagonal entries must be non-zero). After we've diagonalised it we can perform
 a row swap to obtain a matrix of the form
 \[
@@ -3651,4 +3653,229 @@ spaces determined by an implicit equation of the form $Ax_0 + Bx_1 + C x_2 =
 0$. I.e there is no non-zero "$m$" value in the equation as $Ax_0 + Bx_1 + C
 x_2 = m$. Maybe this is obvious, I just needed to write it out for myself. 
 
+
+\subsection*{Ex 12.14}
+
+\subsubsection*{(a)}
+
+For this, note that if $\Spec(R)$ is an irreducible scheme, then any two
+distinct distinguished open sets $D(f) \cap D(g) \not = \emptyset$ intersect,
+and so for every $f \not = g \in R$, there is a prime ideal that does not
+contain $f$ or $g$, whence it does not contain $fg$. In particular, we have $fg
+\not = 0$ for $f, g \in R$ with $f, g$ distinct since every prime ideal
+contains $0$. \\
+
+Thus for $\Spec(R)$ to be irreducible whilst $R$ is not an integral domain, we
+need nilpotency. Let's try $R = k[x]/x^2$. Then $\Spec(R) = \{(x)\}$ is
+irreducible whilst $R$ is not a ring.
+
+\subsubsection*{(b)}
+
+Let $R = \Z, S = \Q$. Then $\Q$ is a field and so $\dim \Q = 0$, whilst $\dim
+\Z = 1$. \\
+
+\subsubsection*{(c)}
+
+The maximal ideal $(x_1, x_2 - 1)$ contains 
+\[
+	(x_2 - 1)^{2} + 2(x_2 - 1) + x_1^2
+	=
+	x_2^2 - 2x_2 + 1 + 2x_2 - 2 + x_1^2
+	=
+	x_2^2 + x_1^2 - 1
+\] 
+and so $(x_1, x_2 - 1) \in \Spec(R)$ whilst $R/(x_1, x_2 - 1) = \R$, and so the
+residue field is $\R$ as well.
+
+\subsubsection*{(d)}
+
+We're asked to find a ring with exactly two prime ideals where one is contained
+in the other. Let $R = k[x]_{(x)}$. Then $\Spec(R) = \{(0), (x)\}$ and so $R$
+will do.
+
+\subsection*{Ex 12.15}
+
+\subsubsection*{(a)}
+
+Every open set of the spectrum of any ring is a union of distinguished open
+sets, so it will suffice to show that $D(f)$ contains a closed point for every
+$f \in A(X)$ whenever $D(f) \not = \emptyset$. In other words, that $f$ is not
+contained in every maximal ideal whenever $f$ is not contained in every prime
+ideal. So, let $f \in R$ be such that $f$ is contained in every maximal ideal
+of $A(X)$. Then by remark 1.14.(b), we have $f \in \sqrt{0}$ and so $f$ is
+contained in every prime ideal. \\
+
+\subsubsection*{(b)}
+
+For a counterexample, let $R = k[x]_{(x)}$. Then $\Spec(R) = \{(0), (x)\}$ and
+$(x)$ is the only closed point, the closure of which is not all of the
+spectrum, hence not dense. 
+
+\subsection*{Ex 12.21}
+First, a lemma.
+
+\begin{lemma}
+	Let $R$ be a ring. Then $R$ is the product of two rings $R \cong R_1 \times
+	R_2$ if and only if there are two nilpotent elements $e_1, e_2 \in R$ which
+	sum to $e_1 + e_2 = 1$ and multiply to $0$ $e_1e_2 = 0$. If this is the
+	case, these nilpotents can be picked as $e_1 = (1, 0)$ and $e_2 = (0, 1)$.
+\end{lemma}
+\begin{proof}
+	Suppose first that $R = R_1 \times R_2$. Then clearly $(1, 0)$ and $(0, 1)$
+	are nilpotent elements of $R$ which satisfy the imposed conditions. \\
+
+	Suppose now that $e_1, e_2 \in R$ are nilpotent and that $e_1 + e_2 = 1$.
+	Then $e_1R$ is a ring with identity $e_1$, since $e_1(e_1f) = e_1f$, $e_1(f
+	+ g) = e_1f + e_1g$ and $e_1(f)e_1(g) = e_1(fg)$. The same is true of
+	$e_2R$. Now consider the ring morphism $\phi : e_1R \times e_2R \to R$
+	which sends $\phi : (e_1f, e_2g) \mapsto e_1f + e_2g$. It is indeed 
+	a ring homomorphism as $\phi(e_1, e_2) = e_1 + e_2 = 1$, 
+	\begin{align*}
+		\phi((e_1f_1, e_2g_1) + (e_1f_2, e_2g_2))
+		&=
+		e_1f_1 + e_2g_1 + e_1f_2 + e_2g_2 \\
+		&=
+		\phi((e_1f_1, e_2g_1) + \phi((e_1f_2, e_2g_2)),
+	\end{align*} 
+	and
+	\begin{align*}
+		\phi(e_1f_1, e_2g_1)\phi(e_1f_2, e_2g_2)
+		&=
+		(e_1f_1 + e_2g_1)(e_1f_2 + e_2g_2) \\
+		&=
+		(e_1f_1f_2 + e_2g_1g_2) \\
+		&=
+		\phi((e_1f_1, e_2g_1)e_1f_2, e_2g_2)).
+	\end{align*}
+	Moreover, it's surjective as all $f \in R$ can be written as $f = e_1f +
+	e_2f$, and it's injective since $e_1f + e_2g = 0$ implies that $0 = e_1e_1f
+	+ e_1e_2g = e_1f$ and the same for $e_2g = 0$. Hence $R \cong e_1R \times
+	e_2R$.
+\end{proof}
+
+We will show that $\Spec(R)$ is disconnected if and only if $R$ contains two nilpotents 
+$e_1, e_2 \in R$ as in the lemma above. \\
+
+Suppose that $R$ contains two such nilpotents $e_1, e_2$, and let $\mathfrak{p}
+\in \Spec(R)$. If $e_1 \not \in \mathfrak{p}$, then $e_2 \in \mathfrak{p}$ as
+$e_1e_2 = 0$ and $\mathfrak{p}$ is prime. Moreover, no prime ideal
+$\mathfrak{p} \in \Spec(R)$ can contain both $e_1$ and $e_2$ as $e_1 + e_2 =
+1$. We've shown that every prime ideal of $R$ contains either $e_1$ or $e_2$
+but never both, which translates to $D(e_1) \cap D(e_2) = \emptyset$ and
+$D(e_1) \cup D(e_2) = \Spec(R)$. Thus $\Spec(R)$ is disconnected. \\
+
+Now suppose that $\Spec(R)$ is disconnected. We can suppose that $R$ is
+reduced, as the topology of the spectrum remains unchanged when we quotient out
+by the nilradical. Let $U_1 \cup U_2 = \Spec(R)$ be two open sets which cover
+$\Spec(R)$. Then $U_1, U_2$ are both open and closed, and so $U_i = V(J_i)$ for
+radical ideals $J_1, J_2 \subset R$. Then every prime ideal contains either
+$J_1$ or $J_2$ but never both. Hence $J_1J_2 \subset \sqrt{0} = 0$, and $1 \in
+J_1 + J_2$. Let $e_1 \in J_1, e_2 \in J_2$ be such that $e_1 + e_2 = 1$. Then
+$e_1e_2 \in \sqrt{0} = 0$ and so $e_1e_2 = 0$. It follows that $e_1, e_2$ are
+nilpotent as $e_1e_1 = e_1e_1 + e_1e_2 = e_1(e_1 + e_2) = e_1$.
+
+
+\subsection*{Ex 12.42}
+
+If $R$ is a ring with only one prime ideal $\mathfrak{m}$, then this must be a
+maximal ideal and $\mathfrak{m} = \sqrt{0}$. Hence every element in $R$ is
+either nilpotent or a unit.
+
+\subsubsection*{(a)}
+Suppose that $\Spec(R)$ is a fat double point. Then $R$ has a $K$-basis $1, x$,
+and every element in $R$ can be written as $a + bx$ with $a, b \in \K$. As $\K$
+is algebraically closed, $R$ is not a field since it would have finite degree
+over $\K$, and so $x$ is not a unit. Hence $x$ is nilpotent and $x^2 = 0$. It
+follows that $R \cong K[x]/x^2$.
+
+\subsubsection*{(b)}
+
+Consider the two rings $R_1 = K[x, y]/(x^2, xy, y^2)$ and $R_2 = K[x,
+y]/(x^3)$. As vector spaces we have 
+\[
+	R_1 = \text{Span}(1, x, y), \,
+	R_2 = \text{Span}(1, x, x^2).
+\] 
+Moreover, the prime ideals of $R_1$ are the prime ideals containing $(x^2, xy,
+y^2)$ which necessarily contain both $x$ and $y$, so $\Spec(R_1) = \{(x, y)\}$,
+whilst similarly $\Spec(R_2) = \{(x)\}$. It follows that both $\Spec(R_1)$ and
+$\Spec(R_2)$ are triple points, but they are not isomorphic since $R_2$ has
+nilpotent elements of order $3$, whilst $R_1$ does not. 
+
+\subsection*{Ex 12.43}
+
+By picking some affine open neighbourhood of $P$, we can assume that $X =
+\Spec(k[x_1, \ldots, x_n]/I) = \Spec(A)$, and after translating, we can assume
+that $P = (x_1, \ldots, x_n)$. Any morphism $D \to X$ which sends $(x)$ to
+$(x_1, \ldots, x_n)$ is equivalent to a $\K$-algebra morphism $\phi : A \to
+k[x]/(x^2)$ such that $\phi^{-1}((x)) = (x_1, \ldots, x_n)$. \\
+
+So, suppose we have such a morphism $\phi : \Kx/I \to \K[x]/(x^2)$. Then 
+let $f = \phi^{-1}(x)$. Then $\phi(f^2) = x^2 = 0$ so $f$
+
+is determined by where it sends generators, and $\Kx/I$ $\phi(x_i - p_i)$. \\
+
+Now, let $a_1x_1 + \ldots a_n x_n \in $. Then each 
+
+, and any choice 
+$\phi(x_i) = $
+
+, and after a linear transformation that $P$ is
+given by the origin. The tangent space of $X$ at $P$ is given by 
+\[
+	T_{P}X \cong I_{X}(0)/I_X^{2}(0).
+\] 
+
+
+Assume with out loss of generality that $P$ is the origin, and let 
+$X = \Spec(R/I)$. Then $T_{P}X \cong $
+
+
+
+
+
+
+% END HERE 
 \end{document}
+
+\begin{lemma}
+	Let $\mathfrak{p} \in V(S)$ and suppose that $\mathfrak{q} \supseteq \mathfrak{p}$.
+	Then $\mathfrak{q} \in V(S)$.
+\end{lemma}
+\begin{proof}
+	$\mathfrak{p} \in V(S)$ if and only if $S \subseteq \mathfrak{p}$ so $S
+	\subseteq \mathfrak{q}$ whence $\mathfrak{q} \in V(S)$.
+\end{proof}
+
+\begin{lemma}
+	Irreducible subsets of $\Spec(R)$ are in one to one correspondence 
+	with points via $\mathfrak{p} \mapsto V(\mathfrak{p})$.
+\end{lemma}
+\begin{proof}
+	First, if $\mathfrak{p} \in \Spec(R)$ is a prime ideal, then
+	$V(\mathfrak{p})$ is an irreducible subset of $\Spec(R)$ since if $V(S_1)
+	\cup V(S_2) \supseteq V(\mathfrak{p})$ are two closed subsets covering
+	$V(\mathfrak{p})$, one of $V(S_i)$ must contain the point $\mathfrak{p} \in
+	V(\mathfrak{p})$, whence $V(S_i)$ contains any prime ideal containing
+	$\mathfrak{p}$, I.e all of $V(\mathfrak{p})$. \\
+
+	Now suppose that $V(S) \subset \Spec(R)$ is an irreducible subset. Let $J =
+	\sqrt{(S)}$ be the radical ideal generated by $S$. Then $V(S) = V(J)$. Let
+	$fg \in J$ with $f \not \in J$. $V(J)$ being irreducible means that either
+	$D(f)$ or $D(g)$ intersects $V(J)$ trivially, whence $f$ or $g$ is in $J$,
+	or they are two non-trivial open subsets of $V(J)$, whence they intersect
+	non-trivially and we have some $\mathfrak{p} \in D(f) \cap D(g)$ such that
+	$\mathfrak{p} \supseteq J$. But then $fg \in \mathfrak{p}$ whilst $f, g
+	\not \in \mathfrak{p}$, a contradiction! Thus $J$ is prime and $V(S) =
+	V(J)$.
+\end{proof}
+
+We get the following corollary.
+
+\begin{corollary}
+	Let 
+\end{corollary}
+
+Now, if $R \subseteq S$ and $\mathfrak{p} \subset S$ is a prime ideal,
+we have $\mathfrak{p} \cap R$ a prime ideal. Hence every irredu
+

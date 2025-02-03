@@ -71,6 +71,7 @@ showstringspaces=false
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\A}{\mathbb{A}}
+\newcommand{\D}{\mathbb{D}}
 
 
 \newcommand{\x}{\bm{x}}
@@ -125,6 +126,354 @@ showstringspaces=false
 \section*{Ch 1}
 
 \subsection*{Ex 1.1.1}
+
+We plan to use Proposition B.19. Let $g_{r}(\zeta) = f(\zeta, re^{i\theta})$ for
+$r \in [0, 1)$. Then let $r_j \in [0, 1)$ be some sequence which converges to
+$1$. Each $g_{r_j}$ is holomorphic on $\D$, as $f$ is holomorphic on $\D^{2}$
+and $r_j e^{i \theta} \in \D$. The $g_{r_j}$ converge towards $g_1$, and we
+need to show that the $g_{r_j}$ (or some subsequence) converge uniformly on
+compact subsets of $\D$, after which an application of Proposition B.19 tells
+us that $g_1$ is holomorphic. \\
+
+We will use Theorem B.20 for this. As $f$ is continuous on the compact set
+$\overline{\D^{2}}$, it is bounded, and attains some maximal modulus $M$. It
+follows that the $g_{r_j}$ are uniformly bounded on compact subsets of $\D$,
+and Theorem B.20 gives us some some subsequence of $g_{r_j}$ which converges
+uniformly on compact subsets of $\D$. By the previous paragraph, it follows
+that $g_1$ is holomorphic, and $g_2$ as well by analogous arguments.
+
+\subsection*{Ex 1.1.2}
+
+As $f$ is holomorphic in the first variable on $\Delta_1$, and continuous in
+the first variable on $\overline{\Delta}_1$, it follows from the univariate
+Cauchy integral formula that
+\[
+	f(z)
+	=
+	\frac{1}{2\pi i}
+	\int_{\partial \Delta_1}
+	\frac{f(\zeta_1, z_2, z_3, \ldots, z_n)}{z_1 - \zeta_1} d\zeta_1.
+\] 
+But then for a fix $\zeta_1 \in \partial \Delta_1$, we showed above that
+$f(\zeta_1, z_2, z_3, \ldots, z_n)$ is holomorphic in the second variable by
+Exercise 1.1.1. We can apply Cauchy's integral formula again, and get
+\[
+	f(z)
+	=
+	\frac{1}{(2\pi i)^2}
+	\int_{\partial \Delta_1}
+	\int_{\partial \Delta_2}
+	\frac{f(\zeta_1, \zeta_2, z_3, \ldots, z_n)}{(\zeta_1 - z_1)(\zeta_2 - z_2)} d\zeta_1 d\zeta_2.
+\]
+Continuing this way, we see that we eventually get 
+\[
+	f(z)
+	=
+	\frac{1}{(2\pi i)^n}
+	\int_{\Gamma}
+	\frac{f(\zeta_1, \zeta_2, \ldots, \zeta_n)}{(\zeta_1 - z_1)(\zeta_2 - z_2) \ldots (\zeta_n - z_n)}
+	d\zeta_1 \wedge d\zeta_2 \wedge \ldots \wedge d\zeta_n.
+\]
+
+\subsection*{Ex 1.1.3}
+
+As $\Gamma$ is compact and $f$ is continuous on $\Gamma$, $f$ attains its
+maximal modulus $M$ for some $z_m \in \Gamma$. It now follows from the Cauchy
+integral formula that
+\begin{align*}
+	f(z)
+	&=
+	\frac{1}{(2\pi i)^n}
+	\int_{\Gamma}
+	\frac{f(\zeta_1, \zeta_2, \ldots, \zeta_n)}{(\zeta_1 - z_1)(\zeta_2 - z_2) \ldots (\zeta_n - z_n)}
+	d\zeta_1 \wedge d\zeta_2 \wedge \ldots \wedge d\zeta_n \\
+	& \leq
+	\frac{1}{(2\pi i)^n}
+	\int_{\Gamma}
+	\frac{|f(\zeta_1, \zeta_2, \ldots, \zeta_n)|}{(\zeta_1 - z_1)(\zeta_2 - z_2) \ldots (\zeta_n - z_n)}
+	d\zeta_1 \wedge d\zeta_2 \wedge \ldots \wedge d\zeta_n \\
+	& \leq
+	\frac{1}{(2\pi i)^n}
+	\int_{\Gamma}
+	\frac{M}{(\zeta_1 - z_1)(\zeta_2 - z_2) \ldots (\zeta_n - z_n)}
+	d\zeta_1 \wedge d\zeta_2 \wedge \ldots \wedge d\zeta_n \\
+	&=
+	M
+	\frac{1}{(2\pi i)^n}
+	\int_{\Gamma}
+	\frac{1}{(\zeta_1 - z_1)(\zeta_2 - z_2) \ldots (\zeta_n - z_n)}
+	d\zeta_1 \wedge d\zeta_2 \wedge \ldots \wedge d\zeta_n \\
+	&=
+	M,
+\end{align*}
+where
+\[
+	1
+	=
+	\frac{1}{(2\pi i)^n}
+	\int_{\Gamma}
+	\frac{1}{(\zeta_1 - z_1)(\zeta_2 - z_2) \ldots (\zeta_n - z_n)}
+	d\zeta_1 \wedge d\zeta_2 \wedge \ldots \wedge d\zeta_n \\
+\] 
+since the RHS is the expansion of the constant function $(z_1, \ldots, z_n)
+\mapsto 1$ via the Cauchy integral formula.
+
+\subsection*{Ex 1.1.4}
+
+Let $f_p(\bm{z}) =  \bm{z} + p$. Then $f_p$ is holomorphic everywhere. By
+considering the $f_p$ as a function on real space $\R^{2n} \to \R^2$, we see
+that the image of $f_p$ is a $2n$ sphere centered about $p$, which has a
+strictly furtherest point $2p$ from the origin. Hence the function attains a
+strict maximum at $p$ for values in the unit ball.
+
+
+\subsection*{Ex 1.1.5}
+
+Fix $y$ and let $f_a(x) = \frac{ax}{x^2 + a^2}$. Then if $a \not = 0$, we have
+$f_a$ differentiable everywhere with derivative
+\[
+	f_a'(x) 
+	= 
+	\frac{a(x^2 + a^2) - 2ax^2}{(x^2 + a^2)^2}
+	= 
+	\frac{a^3 - ax^2}{(x^2 + a^2)^2}.
+\]
+If $a = 0$, then $f_a = 0$, and is infinitely smooth everywhere on $\R$. The
+same story holds when we fix $x$ and partial derivatives in $y$. Thus we've
+shown that partial derivatives of $f$ exist everywhere. Moreover, $f$ is
+locally bounded as $|xy| < |x^2 + y^2|$ for all $x, y \in \R^2$, hence $|f|
+\leq 1$.
+
+\subsection*{Ex 1.1.6}
+
+First suppose that $f$ is locally bounded and that $\zeta \mapsto f(\zeta a +
+b)$ is holomorphic for every $a,b \in \C^n$ on the set $W$ such that $\zeta \in
+W$ whenever $\zeta a + b \in U$. Then picking $a = e_k^{c} = (c_1, c_2, \ldots,
+c_{k - 1}, 1, c_{k + 2}, \ldots, c_n)$ and $b = 0$ yields that $f$ is
+holomorphic in the $k$-th coordinate when we fix the remaining coordinates to
+some $c \in \pi_{k^*}(U)$ (where $\pi_{k^{*}}$ is the projection onto all but
+the $k$-th coordinate). Running over all possible choices of $c$ shows that
+$f$ is holomorphic in the $k$-th variable on all points of $U$, then running
+through all $k$s, shows that $f$ is holomorphic in every variable on $U$.
+Combining this with the fact that $f$ is locally bounded yields that $f$ is
+holomorphic on $U$. \\
+
+Now suppose that $f$ is holomorphic. Then $f$ is locally bounded by definition.
+Moreover, $f \circ (\zeta \mapsto a\zeta + b)$ is clearly continuous and differentiable
+as it is a composition of such functions, and the Wirtinger equation is given by
+\begin{align*}
+	\frac{\partial}{\partial \overline{z}} f (a\zeta + b)
+	&=
+	\frac{\partial}{\partial x} 
+	f (a\zeta + b) 
+	+
+	i
+	\frac{\partial}{\partial x} 
+	f (a\zeta + b) \\
+	&=
+	\sum_{k = 1}^{n}
+	f_{x_k} (a\zeta + b) 
+	a
+	+
+	i f_{y_k} (a\zeta + b)
+	a \\
+	&=
+	\sum_{k = 1}^{n}
+	\restr{a_k \frac{\partial}{\partial \overline{z}} f}{a\zeta + b} \\
+	&=
+	0.
+\end{align*}
+
+
+\subsection*{Ex 1.2.5}
+
+First, let's prove the following lemma which allows us to restrct checking normal convergence 
+to checking uniform convergence on polydiscs.
+
+\begin{lemma}
+	Let $D$ be a domain. Then a sequence of functions $f_n$ is normally
+	convergent on $D$ if it converges uniformly on all closed polydiscs
+	$\overline{\Delta} \subset D$.
+\end{lemma}
+\begin{proof}
+	Let $K \subset D$ be a compact subset. Then there is some neighbourhood $U
+	\subset D$ containing $D$. Write $D$ as a union of open polydiscs. Now pick
+	a finite subset of the polydiscs which cover $K$. As $K$ is closed, we may
+	pick these polydiscs to be closed as well (either by adding the boundary,
+	or by shrinking them). Denote this cover of $K$ by closed polydiscs as
+	$\overline{\Delta}_n, n \in [1..N]$\\
+
+	Now, let $\epsilon > 0$. As the $f_n$ converge uniformly on each
+	$\overline{\Delta}_n, n \in [1..N]$, to say $g_n$, we can pick $N_n$ for
+	each $n \in N$ such that $f_{n} - g_n < \epsilon$ for all $n > N_n$. Let $M
+	= \max_{N_n}$. Then $f_n - g < \epsilon$ for all $n > M$ where $g = g_n$ on
+	each $\overline{\Delta}_n$, and so $f_n$ converges uniformly on $K$.
+\end{proof}
+
+We are now ready to prove the theorem.
+
+\begin{proof}
+	Let $\overline{\Delta}$ be a polydisc in $K$. Then 
+	\[
+		\left|\frac{d f}{d z_k}(z)\right|
+		\leq
+		\frac{1}{\rho_k} \|f\|_{\Gamma}
+	\]
+	for all $z \in \overline{\Delta}$. Uniform convergence is equivalent to
+	uniform cauchy convergense, and so if we let $F_n = f_{n + 1} - f_n$, we
+	see that uniform cauchy convergence of the $f_n$ imply that $F_n
+	\rightarrow 0$ uniformly. It follows that 
+	\[
+		\left|\frac{d f_{n + 1}}{d z_k}(z)
+		-
+		\frac{d f_n}{d z_k}(z)\right|
+		\leq
+		\frac{1}{\rho_k} \|f_{n + 1} - f_n\|_{\Gamma}
+		\rightarrow
+		0
+	\]
+	uniformly, hence the derivatives are uniformly cauchy convergent,
+	and so uniformly convergent. \\
+
+	It now follows that the derivatives of the $f_n$ converge to the 
+	derivative of $f$, as in Exercise 1.2.3, and so $f$ is holomorphic
+	just as in Exercise 1.2.3. \\
+
+	We may now repeat the procedure, taking derivatives of the sequence of
+	derivatives, as many times as we need, to obtain the desired result.
+\end{proof}
+
+\subsection*{Ex 1.2.13}
+
+\begin{proof}
+	Pick two points, $a, b \in \C^{n}$ and let $c = f(a)$. Consider the
+	function which fixes the last $n$ coordinates of $f$ to $a$, namely $z_1
+	\mapsto f(z_1, a_2, \ldots, a_n)$. This is a bounded holomorphic function
+	$\C \to \C$, hence constant by Liouville's Theorem in one variable, and so
+	$f(b_1, a_2, \ldots, a_n) = c$. Now consider the function, $z_2 \mapsto
+	f(b_1, z_2, a_3, \ldots, a_n)$. Again, this is a constant function and so
+	$f(b_1,b_2,a_3,\ldots,a_n) = c$. Continuing this way we see that $f(a) =
+	f(b)$. We've shown that $f$ is constant on two arbitrary points in
+	$\C^{n}$, whence $f$ is constant.
+\end{proof}
+
+\subsection*{Ex 1.2.15}
+
+\begin{proof}
+	First of, it's enough to prove uniform convergence on polydiscs, since any
+	compact set can be covered by finitely many polydiscs. \\
+
+	$\C^{n}$ is separable as it's homeomorphic to a countable product of $\R$.
+	Thus, by Arzela-Ascoli, it will suffice to show that the sequence is
+	equicontinuous. \\
+
+	Let $M$ be a bound on the $f_j$. Then for any $f = f_j$ and $a, b$ in some
+	polydisc $\Delta \subset U$, we have
+	\begin{align*}
+		\left|
+		f(a) - f(b)
+		\right|
+		&=
+		\left|
+		\frac{1}{(2\pi i)^{n}}
+		\int_{\Gamma}
+		\frac{f(\zeta)}{\zeta - a}
+		d\zeta
+		-
+		\frac{1}{(2\pi i)^{n}}
+		\int_{\Gamma}
+		\frac{f(\zeta)}{\zeta - b}
+		d\zeta
+		\right| \\
+		&=
+		\left|
+		\frac{1}{(2\pi i)^{n}}
+		\int_{\Gamma}
+		\frac{f(\zeta)(\zeta - b) + f(\zeta)(\zeta - a)}{(\zeta - a)(\zeta - b)}
+		d\zeta
+		\right| \\
+		&=
+		\left|
+		\frac{1}{(2\pi i)^{n}}
+		\int_{\Gamma}
+		\frac{f(\zeta)(b - a)}{(\zeta - a)(\zeta - b)}
+		d\zeta
+		\right| \\
+		&\leq
+		\left|
+		\frac{M(b - a)}{(2\pi i)^{n}}
+		\int_{\Gamma}
+		\frac{1}{(\zeta - a)(\zeta - b)}
+		d\zeta
+		\right| \\
+		&\leq
+		\left|
+		\frac{M(b - a)}{\rho_1\rho_2\ldots \rho_n}
+		\right|.
+	\end{align*} 
+	We can pick a neighbourhood $U$ about $a$ which is small enough such that
+	for all $b \in U$, we have
+	\[
+		\left|
+		\frac{M(b - a)}{\rho_1\rho_2\ldots \rho_n}
+		\right|
+		\leq \epsilon
+	\] 
+	for any $\epsilon > 0$, and so the sequence is equicontinuous.
+\end{proof}
+
+\subsection*{Ex 1.2.15}
+
+Suppose that $U$ is disconnected, and that $V$ is a connected component of $U$.
+Then we can pick two holomorphic non-zero functions, one which is non-zero on
+$V$, and zero on $U \setminus V$, and one which is zero on $V$ and non-zero on
+$U \setminus V$, and their product is the zero function. \\
+
+Now suppose that $U$ is connected, and that $f,g \in \mathcal{O}(U)$ are such
+that $fg = 0$, or in other words, $V(f) \cup V(g) = U$. If $f \not = 0$, then
+the vanishing set of $f$, $V(f) = \{p \in U : f(p) = 0\}$ does not contain any
+open set by the uniqueness theorem. It follows that every single open subset of
+$U$ intersects $V(g)$, since otherwise it would be contained in $V(f)$ per
+$V(f) \cup V(g) = U$. Thus $V(g)$ is dense in $U$. But $V(g)$ is also closed as
+$g$ is continuous, hence $V(g) = U$ and $g = 0$.
+
+\subsection*{Ex 1.4.3}
+
+Suppose that $f(\partial U) \subset \partial V$. Then let $\{p_k\}$ be a
+sequence of points in $U$ converging to $p \in \partial U$. As $f$ is
+continuous, the points $g(p_k) = f(p_k)$ converge to $f(p)$ which lies in
+$\partial V$ by hypothesis. Hence $g$ is proper by Lemma 1.4.7. \\
+
+Suppose now that $g$ is proper, and let $p \in \partial U$. Let $\{p_k\}$ be a
+sequence of points in $U$ converging to $p$. As $f$ is continuous, the points
+$g(p_k) = f(p_k)$ converge to $f(p)$, and as $g$ is proper, $f(p) \in \partial
+V$. As $p$ was an arbitrary point in $\partial U$, it follows that $f(\partial
+U) \subset \partial V$
+
+\subsection*{Ex 1.4.7}
+
+Suppose that $f : U \to \D$ is proper. We can assume that $f$ has a zero in
+$U$, as otherwise we just subtract $f$ by some constant. As $\{0\}$ is a
+compact set in $\D$, we have $f^{-1}(0)$ compact. Thus, the following theorem
+will allow us to conclude that $n = 1$ is compact.
+
+\begin{theorem}
+	Let $f : U \to \C$ be a holomorphic map, $U \subset \C^{n}$ with $n > 1$.
+	Then $f^{-1}(0)$ is either empty or non-compact.
+\end{theorem}
+\begin{proof}
+	Suppose that $a \in f^{-1}(0)$. Suppose towards a contradiction that
+	$f^{-1}(0)$ non-empty and bounded by $M \in \R$. Let 
+	$F : \R^{2n} \to \R$ be given by $|f|$. Then $F$ i
+
+	We will show that $f^{-1}(0)$ is unbounded.
+	Suppose that $$	
+\end{proof}
+
+\subsection*{Ex 1.4.8}
+
+
+
 
 
 \end{document}
