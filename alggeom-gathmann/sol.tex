@@ -98,6 +98,7 @@ showstringspaces=false
 
 \renewcommand{\AA}[1]{\A^{#1}}
 \newcommand{\An}{\A^n}
+\newcommand{\Ano}{\A^{n + 1}}
 \newcommand{\Am}{\A^m}
 
 \newcommand{\PP}[1]{\P^{#1}}
@@ -122,6 +123,11 @@ showstringspaces=false
 \newcommand{\ini}{\text{in}}
 
 \newcommand{\Spec}{\text{Spec}}
+\newcommand{\oo}{\mathcal{O}}
+\newcommand{\osp}[1]{\oo_{\Spec\left(#1\right)}}
+\newcommand{\rospu}[2]{\restr{\osp{#1}}{#2}}
+\newcommand{\oop}[2]{\oo_{\P^{#1}_{#2}}}
+\newcommand{\ox}{\mathcal{O}_X}
 
 \newcommand{\catname}[1]{{\normalfont\textbf{#1}}}
 \newcommand{\Set}{\catname{Set}}
@@ -3808,74 +3814,698 @@ By picking some affine open neighbourhood of $P$, we can assume that $X =
 \Spec(k[x_1, \ldots, x_n]/I) = \Spec(A)$, and after translating, we can assume
 that $P = (x_1, \ldots, x_n)$. Any morphism $D \to X$ which sends $(x)$ to
 $(x_1, \ldots, x_n)$ is equivalent to a $\K$-algebra morphism $\phi : A \to
-k[x]/(x^2)$ such that $\phi^{-1}((x)) = (x_1, \ldots, x_n)$. \\
+k[x]/(x^2)$ such that $\phi^{-1}((x)) = (x_1, \ldots, x_n)$. In other words,
+$\phi(x_i)$ must lie in $(x)$ and so there are scalars $c_i \in k$ such that
+$\phi(x_i) = c_ix$. \\
 
-So, suppose we have such a morphism $\phi : \Kx/I \to \K[x]/(x^2)$. Then 
-let $f = \phi^{-1}(x)$. Then $\phi(f^2) = x^2 = 0$ so $f$
+We now claim that an assignment of scalars $c_i$ such that the induced morphism
+is well-defined, is exactly equivalent to an element of $T_P X$. To see this,
+note that we need $\phi(f) = 0$ for all $f \in I$, and as $\phi(x_i^r) =
+\phi(x_i)^r \in (x)^{r} = 0$ for $r > 1$, we have that $\phi(f) = f_1(c_1,
+\ldots, c_n)$ where $f_1$ is the linear part of $f$. Hence, an assignment of
+scalars $c_i$ induces a well-defined morphism if and only if $(c_1, \ldots,
+c_n) \in V(f_1 : f \in I) = T_P X$.
 
-is determined by where it sends generators, and $\Kx/I$ $\phi(x_i - p_i)$. \\
 
-Now, let $a_1x_1 + \ldots a_n x_n \in $. Then each 
+\subsection*{Ex 13.6}
 
-, and any choice 
-$\phi(x_i) = $
+Let us first recall what a morphism $\phi : U \to \K^{n + 1}$ is.
 
-, and after a linear transformation that $P$ is
-given by the origin. The tangent space of $X$ at $P$ is given by 
+\begin{lemma}
+	Let $U \subset \Pn$ be an open subset and $\phi : U \to \K^{n + 1}$ be a
+	morphism of varieties. Then $\phi$ is of the form $\phi = (\phi_1, \ldots,
+	\phi_n)$ with $\phi_i \in \mathcal{O}_{\Pn}(U)$, and any function which can 
+	be written as this is a morphism $U \to \K^{n + 1}$.
+\end{lemma}
+\begin{proof}
+	First let $\phi : U \to \K^{n + 1} = \Ano$ be a morphism. By definition,
+	$\phi$ induces a $\K$-algebra morphism
+	\[
+		\phi^{*} : 
+		\mathcal{O}_{\Ano}(V)
+		\to 
+		\mathcal{O}_{\Pn}(\phi^{-1}(V))
+	\]
+	for any open set $V \subset \Ano$. In particular,
+	\[
+		\phi^{*}(x_i) \in \mathcal{O}_{\Pn}(\phi^{-1}(\Ano)) = \mathcal{O}_{\Pn}(U),
+	\]
+	is regular. But $\phi^{*}(x_i)$ is just the $i$-th coordinate of $\phi$,
+	and so $\phi$ can be written in the desired way with $\phi_i =
+	\phi^{*}(x_i)$. \\
+
+	Now suppose that $\phi_i \in \mathcal{O}_{\Pn}(U)$ for $i \in [0..n]$ and
+	let $\phi = (\phi_0, \ldots, \phi_{n})$. Then let $V$ be open in $\An$ and
+	$f \in \mathcal{O}_{\Ano}(V)$. Then let $a \in \phi^{-1}(V)$, and
+	$V_{\phi(a)} \subset V$ be an open neighbourhood about $a$ such that $f =
+	g/h$ on $\phi(a)$ with $g, h \in \Kx$. Then on $U_a = \phi^{-1}(V_\phi(a))$,
+	we have that 
+	\[
+		\phi^{*}(f) = g(\phi)/h(\phi).
+	\] 
+	Now, as $\mathcal{O}_{\Pn}(U_{a})$ is closed a ring, polynomials in regular
+	function are regular functions whence $g(\phi), h(\phi) \in
+	\mathcal{O}_{\Pn}(U_{a})$. Moreover, as $h$ doesn't vanish on $V_{\phi(a)}
+	= \phi(U_{a})$, whence $h \circ \phi$ doesn't vanish on $U_a$, and so
+	$1/h(\phi) \in \mathcal{O}_{\Pn}(U_a)$. We've shown that $\phi^{*}(f)$ is a
+	regular function, and that $\phi$ induces a $\K$-algebra morphism
+	\[
+		\phi^{*} : 
+		\mathcal{O}_{\Ano}(V)
+		\to 
+		\mathcal{O}_{\Pn}(\phi^{-1}(V)).
+	\]
+\end{proof}
+
+Now let $f/g \in \mathcal{O}_{\Pn}(-1)(U)$ with $f, g \in \Kx$ and $\deg(f) =
+d, \deg(g) = d + 1$. Then let $\phi_i = x_i f/g$ and $\phi = (\phi_0, \ldots,
+\phi_n)$. Then each $\phi_i$ is a quotient of degree $d + 1$ homogeneous
+polynomials and $\phi$ is a morphism $U \to \K^{n + 1}$. Moreover, given any
+point point $a = [a_0 : \ldots : a_n] \in U$ we have 
 \[
-	T_{P}X \cong I_{X}(0)/I_X^{2}(0).
+	\phi(a)
+	=
+	(a_0 f(a)/g(a), \ldots, a_n f(a)/g(a))
+	=
+	f(a)/g(a)(a_0, \ldots, a_n)
+\] 
+which lies in the cone of $a$, so $\phi : \mathcal{F}(U)$. \\
+
+Denote this mapping $f/g \to \phi$ by $\Theta : \mathcal{O}_{\Pn}(-1)(U) \to
+\mathcal{F}(U)$. Then $\Theta$ is a $\mathcal{O}_{\Pn}(U)$-module morphism, as
+if $\psi, \in \mathcal{O}_{\Pn}(U)$, we have 
+\begin{align*}
+	\Theta(\psi f/g)
+	&=
+	(x_0 \psi f/g, \ldots, x_n \psi f/g) \\
+	&=
+	\psi \cdot (x_0 f/g, \ldots, x_n f/g) \\
+	&=
+	\psi \Theta(f/g)
+\end{align*}
+and 
+\begin{align*}
+	\Theta(f/g + F/G)
+	&=
+	(x_0 (f/g + F/G), \ldots, x_n (f/g + F/G)) \\
+	&=
+	(x_0 f/g + x_0 F/G, \ldots, x_n f/g + x_n F/G) \\
+	&=
+	(x_0 f/g, \ldots, x_n f/g)
+	+
+	(x_0 f/g, \ldots, x_n F/G) \\
+	&=
+	\Theta(f/g)
+	+
+	\Theta(F/G).
+\end{align*}
+It's easy to see that $\Theta$ is injective, since all $x_i$ never
+simultaneously vanish on $\Pn$. Moreover, as $\Theta$ doesn't depend on $U$,
+it's clear that $\Theta$ commutes with restriction and thus defines a morphism
+of $\o_{\Pn}$-modules $\o_{\Pn}(-1) \to \mathcal{F}$. \\
+
+To see that $\Theta$ is surjective, let $\phi = (\phi_0, \ldots, \phi_n) \in
+\mathcal{F}(U)$. Then for every $a = [a_0 : \ldots : a_n] \in U$ we have 
+\[
+	\phi(a) = h(a)(a_0, \ldots, a_n) \in \Ano
+\] 
+for some function $h : U \to \K$. It follows that we can write 
+\[
+	\phi = h \cdot (x_0, \ldots, x_1)
+\] 
+and $\phi_i = h \cdot x_i$ on $U$. It follows that $h = \phi_i / x_i$ on every
+affine patch $x_i \not = 0$, hence lies in $\mathcal{O}_{\Pn}(-1)(U \cap x_i
+\not = 0)$, and gluability yields  $h \in \mathcal{O}_{\Pn}(-1)$, whence 
+$\phi = \Theta(h)$.
+
+
+\subsection*{Ex 13.8}
+
+Suppose that $f : \mathcal{F} \to \mathcal{G}$ has inverse $g : \mathcal{G} \to
+\mathcal{F}$, and let $P \in X$. We claim that the inverse to $f_P$ is given by
+$g_P$. Indeed,
+\[
+	f_P(g_P(\overline{(U, \phi)}))
+	=
+	f_P(\overline{(U, g_U(\phi))})
+	=
+	\overline{(U, f_U(g_U(\phi)))}
+	=
+	\overline{(U, \phi)},
+\] 
+shows that $g_P$ is a right inverse, and the proof that it is a left inverse is
+identical. \\
+
+Now suppose that $f : \mathcal{F} \to \mathcal{G}$ is a morphism of
+$\mathcal{O}_X$-modules such that for each $P \in X$, the stalk local morphism
+$f_P : \mathcal{F}_P \to \mathcal{G}_P$ has inverse $g_P : \mathcal{G}_P \to
+\mathcal{F}_P$. Our first objective is to show that the $g_P$ glue together to
+a morphism $g : \mathcal{G} \to \mathcal{F}$. To do this, we define the notion
+of compatible germs.
+
+\begin{definition}
+	Let $\mathcal{F}$ be a sheaf on $X$, and suppose that $\{s_P\}_{P \in U}$
+	be a set of germs for each point in some open set $U \subset X$. We say
+	that the germs form a compatible set of germs if there for all $P \in U$,
+	exist a representative 
+	\[
+		(\psi_P, U_P)
+		\in 
+		s_P
+	\]
+	such that the germ of $\psi_P$ at all points $Q \in U_P$ is equal to $s_Q$. 
+\end{definition}
+
+\begin{lemma}
+	Let $\{s_P\}_{P \in U}$ be a set of germs of a sheaf $\mathcal{F}$ on an
+	open set $U \subset X$. Then they are compatible if and only if there exist
+	a cover $U_i$ of $U$ and sections $f_i \in \mathcal{F}(U_i)$ such that 
+	the germ of $f_i$ at any $Q \in U_i$ is equal to $s_Q$.
+\end{lemma}
+\begin{proof}
+	Suppose that the $s_P$ are compatible. Then there exist representatives
+	$(\psi_P, U_P)$ for each point such that the germ of $\psi_P$ at $Q \in
+	U_P$ is $s_Q$. As the $U_P$ cover $U$, and $\psi_P \in \mathcal{F}(U_P)$,
+	the conditions of the lemma are satisfied. \\
+
+	Now suppose that we have a cover $U_i$ of $U$ and sections $f_i \in
+	\mathcal{F}(U_i)$ such that the germ of $f_i$ at any $Q \in U_i$ is equal
+	to $s_Q$. Then for any $P \in U$, let $U_P$ be any open set $U_i$
+	containing $P$, and let $\psi_P = f_i$. Then the germ of $\psi_P$ at any $Q
+	\in U_P$ is again $s_Q$, hence the set of germs are compatible.
+\end{proof}
+
+\begin{lemma}
+	Let $\{s_P\}_{P \in U}$ be a set of germs. Then they are compatible if and
+	only if there exist some $f \in \mathcal{F}(U)$ such that the germ of $f$
+	at $p$ is $s_P$. Moreover, $f$ is uniquely determined by $\{s_P\}_{P \in
+	U}$ in this way.
+\end{lemma}
+\begin{proof}
+	It's clear that any $f \in \mathcal{F}(U)$ give rise to a compatible set of
+	germs since the conditions of the previous lemma are satisfied with the
+	cover $\{U\}$ of $U$. \\
+
+	Now suppose that the $s_P$ form a compatible set of germs. Then let $U_i, i
+	\in I$ be a cover of $U$ such that we have $f_i \in \mathcal{F}(U_i)$ for
+	all $i \in I$ that agree with the germs $s_P$. Then for any intersection
+	$U_{ij} = U_i \cap U_j$, the germs of $f_i$ and $f_j$ agree at all points
+	of $U_{ij}$. Thus for each point $P \in U_{ij}$, we have some neighbourhood
+	$U_{P}$ where $\restr{f_i}{U_P} = \restr{f_j}{U_P}$. As the $U_P$ cover
+	$U_{ij}$, it follows by the identity axiom that $\restr{f_i}{U_{ij}} =
+	\restr{f_j}{U_{ij}}$. Thus the $f_i$ may be glued to a single $f \in
+	\mathcal{F}(U)$ and we are done. \\
+
+	To see that $f$ must be unique, suppose that $f'$ is another element such
+	that the germ of $f'$ at $P \in X$ is $s_P$. Then for every point $P \in
+	U$, there is some open set $U_P \subset U$ containing $P$ where $f$ and
+	$f'$ agree. As the $U_P$ cover $U$, $f = f'$ on $U$ by the identity axiom.
+\end{proof}
+
+With the notion of compatible germs in hand, we proceed in constructing an
+inverse of $f$. \\
+
+Let $U \subset X$ be open and $\phi \in \mathcal{G}(U)$. We will show that
+$\psi_P = g_P(\phi_P)$ for $P \in U$ forms a compatible set of germs, and after
+this we will show that the map $g : \mathcal{G}(U) \to \mathcal{F}(U)$
+assigning $g(\phi) = \psi$ like this is a morphism inverse to $f$. \\
+
+Let $(\psi_{U_P}, U_P)$ be a representative of $\psi_P$. Then 
+as
+\[
+	\phi_P 
+	= 
+	f_P(\psi_P) 
+	= 
+	f_P(\overline{(\psi_{U_P}, U_P)}) 
+	= 
+	\overline{(f(\psi_{U_P}), U_P)},
+\]
+there is some neighbourhood $W_P$ of $P$ where $f(\psi_{U_P})$ and $\phi$
+agree. Now let $Q \in W_P$. Then
+\[
+	\phi_Q 
+	= 
+	(f(\psi_{U_P}))_Q 
+	=
+	f_Q((\psi_{U_P})_Q)
+\]
+and 
+\[
+	\psi_Q
+	=
+	g_Q(\phi_Q)
+	=
+	g_Q(f_Q((\psi_{U_P})_Q))
+	=
+	(\psi_{U_P})_Q.
+\] 
+Hence the $\psi_P$ form a compatible set of germs, since for all $P \in U$ we
+have an open neighbourhood $W_P$ and representative $\psi_{U_P}$ such that the
+germs of $\psi_{U_P}$ at points $Q \in W_P$ are equal to $\psi_Q$. \\
+
+Let $\psi$ be the unique element obtained from gluing together the compatible
+set of germs and define $g_U : \mathcal{G}(U) \to \mathcal{F}(U)$ such that
+$g_U(\phi) = \psi$. Then $f_U(g_U(\phi))$ is indeed equal to $\phi$ since their germs
+agree at all points
+\[
+	f_U(g_U(\phi))_P 
+	=
+	f_P(g_P(\phi_P))
+	=
+	\phi_P.
+\]
+Similarly, $g_U(f_U(\psi))_P = g_P(f_P(\psi_P)) = \psi_P$. Thus $g_U$ is an
+inverse function of $f_U$ for every open set $U \subset X$, and as the inverse
+of a module morphism is again a module morphism,, $f_U$ is an isomorphism for
+all open sets $U \subset X$.
+
+
+\subsection*{Ex 13.18}
+
+By Lemma 13.17 (b), we may identify $\mathcal{G}$ with its sheafification.
+After doing this, define $f_U : \mathcal{F}(U) \to \mathcal{G}(U)$ as follows,
+\[
+	f_U : (\phi_P)_{P \in U} 
+	\mapsto 
+	(f'_P(\phi_P))_{P \in U} 
+\] 
+These maps are $\ox(U)$-module maps as the $f'_P$ are all $\ox(U)$-module maps
+and addition/scalar multiplication in the sheafifications are defined point
+wise. Moreover, the $f_U$ clearly commute with restriction, hence they define a
+morphism of sheaves $\mathcal{F} \to \mathcal{G}$. Finally,
+\[
+	f \circ \theta (\phi)
+	=
+	(f'(\phi)_P)_{P \in U}
+	=
+	f'(\phi)
+\] 
+and so it provides the necessary factorization. \\
+
+To see that it is the only map which factors $f'$ in the desired way, we show
+that a morphism from a presheaf to a sheaf is determined on the level of
+stalks. Indeed, suppose that $U \subset X$ is open and $\phi \in
+\mathcal{F}'(U)$. Then we showed in the previous exercise that the
+$(f'(\phi))_P, P \in U$ uniquely glue to $f'(\phi)$, but $(f'(\phi))_P =
+f'_P(\phi_P)$, hence $f'$ is determined by the $f'_P$. So, suppose that $F :
+\mathcal{F} \to \mathcal{G}$ is another map factoring $f'$ through $\theta$.
+Then $(F - f) \circ \theta = 0$, hence $(F - f)_P \circ \theta_P = 0$ for all
+$P \in X$. But as $\theta_P$ is an isomorphism by Lemma 13.17, and in
+particular surjective, it follows that $(F - f)_P = 0$ for all $P \in X$. Now,
+since a morphism of sheaves is determined at the stalk-level, it follows that
+$F = f$.
+
+
+\subsection*{Ex 13.20}
+We identify $\mathcal{F}$ and $\mathcal{G}$ with their sheafifications. It's
+now obvious that $f$ commutes with taking the germ at a point $p$, in the sense
+that applying $f$ and the taking the germ at $p$ is the same as taking the germ
+at $p$ and then applying $f_p$,
+\[
+	\restr{f((s_q)_{q \in U})}{p}
+	=
+	\restr{(f_q(s_q))_{p \in U}}{p}
+	=
+	f_p(s_p)
+	=
+	f_p\left(\restr{(s_q)_{p \in U}}{p}\right).
+\] 
+
+\subsubsection*{(a)}
+
+The desired result follows immediately from the commutativity above, since
+$\restr{(s_q)_{q \in U}}{p} \in \ker(f)_p$ is equivalent to the LHS in the
+equality chain being $0$, and $\restr{(s_q)_{q \in U}}{p} \in \ker (f_p)$ is
+equivalent to the RHS being $0$.
+
+\subsubsection*{(b)}
+
+$\im'(f)$ is the set $(f(s))_{q \in U}$ for $s \in \mathcal{F}(U)$, and then
+definition of sheafification dictates that $\im(f)(U)$ is the set
+$((f(s))_q)_{q \in U} = (f_q(s_q))_{q \in U}$ for $s \in \mathcal{F}(U)$. Hence
+$\im(f)(U)_p$ is given by
+\[
+	\{\restr{(f_q(s_q))_{q \in U}}{p} : s \in \mathcal{F}(U)\} 
+	= 
+	\{f_p(s_p) : s \in \mathcal{F}(U)\} 
+	= 
+	\im(f_p)(U).
+\]
+
+\subsection*{Ex 13.24}
+
+Note that $\mathcal{O}_{\P^{1}} \cong \mathcal{O}_{\P^{1}}(0)$ by Construction
+13.4.(b), so any section over any open set is a quotient of homogeneous
+polynomials. Moreover, it follows by exercise 13.26 that it will suffice to
+show that the sequence is exact over some fixed open set $U \subset \P^{1}$. \\
+
+The only reasonable choice for $f$ is
+\[
+	f : \frac{a}{b} \mapsto \left(\frac{x_0 a}{b}, \frac{x_1 a}{b}\right),
+\]
+after which it makes sense to guess that $d = 2$ and 
+\[
+	g : \left(\frac{a}{b}, \frac{a'}{b'}\right) 
+	\mapsto 
+	\frac{x_0 a'}{b'} - \frac{x_1 a}{b}.
+\] 
+We verify that this induces an exact sequence. It's immediate that $g \circ f =
+0$, and that $f$ is injective. To see that $g$ is surjective, let $c/d \in
+\mathcal{O}_{\P^{1}}(2)$. Then as $c$ is homogeneous of positive degree, we can
+write $c = x_0c_0 - x_1c_1$, and we see that 
+\[
+	g\left(\frac{c_0}{d}, \frac{c_1}{d}\right)
+	=
+	\frac{c_0x_0}{d}
+	-
+	\frac{c_1x_1}{d}
+	=
+	c/d
+\] 
+so $g$ is surjective. Finally, $\left(\frac{a}{b}, \frac{a'}{b'}\right) \in \ker(g)$
+if and only if 
+\[
+	0
+	=
+	\frac{x_0 a'}{b'} - \frac{x_1 a}{b}
+	=
+	\frac{x_0 a'b - x_1 a b'}{b'b}
+\] 
+which since $x_0$ and $x_1$ are relatively prime, happens if and only $a'b =
+x_1 c_1$ and $a b ' = x_0 c_0$ for some homogeneous polynomials $c_1, c_0$. But then
+\[
+	x_0 x_1 c_1 = x_0 a'b = x_1 a b' = x_0 x_1 c_2
+\]
+so $c_1 = c_2$ and we denote both of them by $c$. Now we have
+\[
+	f\left(\frac{c}{b'b}\right)
+	=
+	\left(
+		\frac{x_0 c}{b'b},
+		\frac{x_1 c}{b'b}
+	\right)
+	=
+	\left(
+		\frac{ab'}{b'b},
+		\frac{a'b}{b'b}
+	\right)
+	=
+	\left(
+		\frac{a}{b},
+		\frac{a'}{b'}
+	\right)
+\] 
+and we see that $\ker(g) = \im(f)$.
+
+\subsection*{Ex 13.25}
+
+Let $V \subset U$ be open in $\Pn$ and define the maps
+\[
+	\phi_U 
+	: 
+	\oo_{\Pn}(-d)(U) 
+	\to
+	\Hom_{\restr{\oo_{\Pn}}{U}}\left(\restr{\oo_{\Pn}(d)}{U}, \restr{\oo_{\Pn}}{U}\right)
+\]
+to be
+given by 
+\[
+	\left(\phi_U\left(\frac{a}{b}\right)\right)_V : 
+	\frac{c}{d}
+	\mapsto
+	\frac{ac}{bd}
+\] 
+where
+\[
+	\deg(b) = \deg(a) + d,\,
+	\deg(c) = \deg(d) + d,
+\]
+and $b$ is non-zero on $U \supset V$, $d$ is non-zero on $V$. It's immediate
+that each $\phi_U(a/b)_V$ is a $\oo_{\Pn}(V)$-module morphism, and that they
+commute with restriction. Hence $\phi_U(a/b)$ is a well-defined morphism of
+sheaves $\restr{\oo_{\Pn}(d)}{U} \to \restr{\oo_{\Pn}}{U}$. We will now verify
+that $\phi$ is a morphism of sheaves
+\[
+	\phi 
+	: 
+	\oo_{\Pn}(-d)
+	\to
+	\left(U \mapsto \Hom_{\restr{\oo_{\Pn}}{U}}\left(\restr{\oo_{\Pn}(d)}{U}, \restr{\oo_{\Pn}}{U}\right)\right).
+\]
+It's easy to see that $\phi$ commutes with restriction, each $\phi_U$
+is an $\oo_{\Pn}(U)$-module morphism since 
+\begin{align*}
+	\left(\frac{e}{f}\phi_U\left(\frac{a}{b}\right) + \phi_U\left(\frac{g}{h}\right)\right)_V
+	\left(\frac{c}{d}\right)
+	&=
+	\frac{e}{f}
+	\frac{ac}{bd}
+	+
+	\frac{gc}{hd} \\
+	&=
+	\left(\frac{e}{f}
+	\frac{a}{b}
+	+
+	\frac{g}{h}\right)
+	\frac{c}{d} \\
+	&=
+	\left(\phi_U\left(\frac{e}{f}\frac{a}{b} + \frac{g}{h}\right)\right)_V\left(\frac{c}{d}\right).
+\end{align*} 
+
+Now we shall define a morphism
+\[
+	\psi_U 
+	: 
+	\Hom_{\restr{\oo_{\Pn}}{U}}\left(\restr{\oo_{\Pn}(d)}{U}, \restr{\oo_{\Pn}}{U}\right)
+	\to
+	\oo_{\Pn}(-d)(U) 
+\]
+by picking an element $f \in \K[x_0, \ldots, x_n]_d$ which is non-zero on $U$, and then defining
+\[
+	\psi_U : \rho \mapsto 
+	\frac{\rho(f)}{f}.
+\]
+To see that that $\psi_U$ doesn't depend on our choice of $f$, let $g \in
+\K[x_0, \ldots, x_n]_{d}$ be another element which is non-zero on $U$. Then,
+using the fact that $\rho$ is a $\oo_{\Pn}(U)$-module morphism we get
+\[
+	\frac{\rho(f)}{f}
+	=
+	\frac{g}{g}
+	\frac{\rho(f)}{f}
+	=
+	\frac{\rho(fg)}{fg}
+	=
+	\frac{f}{f}
+	\frac{\rho(g)}{g}
+	=
+	\frac{\rho(g)}{g},
+\] 
+and thus the $\psi_U$ are set theoretically well-defined. They clearly commute
+with restrictions, and to see that they are $\oo_{\Pn}(U)$-module morphisms,
+note that 
+\begin{align*}
+	\psi_{U}\left(\frac{a}{b}\rho + \eta\right)
+	&=
+	\frac{\frac{a}{b}\rho(f) + \eta(f)}{f}
+	&=
+	\frac{a\rho(f) + b\eta(f)}{bf}
+	&=
+	\frac{a\rho(f)}{bf} + \frac{\eta(f)}{f}
+	&=
+	\frac{a}{b}\psi_{U}\left(\rho\right) + \psi_U\left(\eta\right).
+\end{align*} 
+Finally, $\phi_U$ and $\psi_U$ are indeed inverse each other as 
+\begin{align*}
+	\left(\phi_U\left(\psi_U(\rho)\right)\right)\left(\frac{a}{b}\right)
+	&=
+	\left(\phi_U\left(\frac{\rho(f)}{f}\right)\right)\left(\frac{a}{b}\right) \\
+	&=
+	\frac{\rho(f)a}{fb} \\
+	&=
+	\rho\left(\frac{fa}{fb}\right) \\
+	&=
+	\rho\left(\frac{a}{b}\right)
+\end{align*} 
+where we used the fact that $\rho$ is an $\oo_{\Pn}(U)$-module morphism and
+$\deg(a) = \deg(b) + d = \deg(b) + \deg(f)$, hence we may move $\frac{a}{fb}$
+inside the function application. The other direction is given by 
+\[
+	\psi_U\left(\phi_U\left(\frac{a}{b}\right)\right)
+	=
+	\psi_U\left(\frac{c}{d} \mapsto \frac{ac}{bd}\right)
+	=
+	\frac{fa}{fb}
+	=
+	\frac{a}{b}.
 \] 
 
 
-Assume with out loss of generality that $P$ is the origin, and let 
-$X = \Spec(R/I)$. Then $T_{P}X \cong $
 
+\subsection*{Ex 13.26}
+\subsubsection*{(a)}
 
+If the sequence is exact on sections for all open $U \subset X$, we have that
+$\im'(f_i) \cong \ker(f_{i - 1})$ for all $i$, hence the $\im'(f_i)$ are
+sheaves and
+\[
+	\im'(f_i) = \im(f_i) \cong \ker(f_{i - 1}),
+\]
+whence the sequence of sheaves is exact.
 
+\subsubsection*{(b)}
 
+A morphism $f : \mathcal{F} \to \mathcal{G}$ of sheaves is exact if $\ker(f) =
+0$, and as $\ker(f)(U) = \ker(f_U)$, this happens if and only if every $f_U :
+\mathcal{F}(U) \to \mathcal{G}(U)$ is injective for all open $U \subset X$. It
+follows that $\im'(f)(U) \cong \mathcal{F}(U)$, hence $\im'(f)$ is a sheaf. \\
 
+As $\im'(\mathcal{F}_1 \to \mathcal{F}_2) = \im(\mathcal{F}_1 \to
+\mathcal{F}_2)$, it's immediate that the sequence is exact on sections over
+$U$.
 
-% END HERE 
+\subsection*{Ex 14.11}
+
+\subsubsection*{(a)}
+
+Let $f : \oo_{\P^{1}} \to \oo_{\P^{1}}(-1)$ be a morphism of
+$\oo_{\P^{1}}$-sheaves. Then as the global sections of $\oo_{\P^{1}}(-1)$ is
+$0$, it follows that $f$ maps all global sections of $\oo_{\P^{1}}$, I.e $k$,
+to $0$. \\
+
+On the affine open set $U_0$, a morphism of $\restr{\oo_{\P^{1}}}{U_0}$-sheaves 
+\[
+	\restr{\oo_{\P^{1}}}{U_0} 
+	\to \restr{\oo_{\P_1}(-1)}{U_0}
+	\cong
+	\restr{\oo_{\P^{1}}}{U_0}
+\]
+corresponds to a morphism of $k[x_1]$-modules $k[x_1] \to k[x_1]$, and such
+morphisms are precisely given by multiplication with with polynomials in
+$k[x_1]$. As $f$ vanishes on $k$, it follows that $f_{U_0} = 0$. The same
+argument on $U_1$ shows that $f = 0$.
+
+\subsubsection*{(b)}
+
+Let $p = [1 : 0]$ and $f : \oo_{\P^{1}}(-1) \to k_{p}$ be a morphism of
+$\oo_{\P^{1}}$-sheaves. As $[1 : 0] \not \in U_1$, we have that $k_p$, and then
+also $f$ is equal to $0$ on $U_1$. \\
+
+On $U_0$, multiplication by $x_0$ gives an isomorphism
+$\restr{\oo_{\P^{1}}(-1)}{U_0} \to \restr{\oo_{\P^{1}}}{U_0}$. From there, a
+morphism of $\restr{\oo_{\P^{1}}}{U_0}$-sheaves $\restr{\oo_{\P^{1}}}{U_0} \to
+k_p$ is equivalent to a morphism of $k[x_1]$-modules $k[x_1] \to k[x_1]/(x_1)$
+which are all given by multiplication by a polynomial $g \in k[x_1]$ followed
+by evaluation at $0$. Following all these morphisms, we see that 
+\[
+	f : \frac{a(x_0, x_1)}{b(x_0, x_1)}
+	\mapsto 
+	\frac{x_0 a(x_0, x_1)}{b(x_0, x_1)}
+	\mapsto 
+	\frac{x_0 g(x_0, x_1) a(x_0, x_1)}{x_0^{\deg(g)}b(x_0, x_1)}
+	\mapsto 
+	\frac{g(1, 0) a(1, 0)}{b(1, 0)},
+\] 
+and by letting $c = g(1, 0) \in k$, we see that $f$ is given by 
+\[
+	f : \frac{a(x_0, x_1)}{b(x_0, x_1)} \mapsto \frac{ca(p)}{b(p)}.
+\] 
+Now let $a(x_0, x_1)/x_0^{\deg(a) + 1} \in \oo_{\P^{1}}(-1)(U_0)$ for some
+arbitrary homogeneous polynomial $a(x_0, x_1)$. Then we know that
+\[
+	f_{U_0}\left(\frac{a(x_0, x_1)}{x_0^{\deg(a)} + 1}\right) = ca(1,0),
+\] 
+and this will hold after restricting to $U_0 \cap U_1$ as well,
+\[
+f_{U_0 \cap U_1}\left(\restr{\frac{a(x_0, x_1)}{x_0^{\deg(a)} + 1}}{U_0 \cap U_1}\right) = ca(1,0).
+\] 
+But $x_0^{\deg(a) + 1}/x_1^{\deg(a) + 1} \in \oo_{\P^{1}(U_0 \cap U_1)}$,
+hence 
+\begin{align*}
+	\frac{x_0^{\deg(a) + 1}}{x_1^{\deg(a) + 1}} ca(1, 0)
+	&=
+	\frac{x_0^{\deg(a) + 1}}{x_1^{\deg(a) + 1}} f_{U_0 \cap U_1}\left(
+		\restr{\frac{a(x_0,x_1)}{x_0^{\deg(a)} + 1}}{U_0 \cap U_2}
+	\right) \\
+	&=
+	f_{U_0 \cap U_1}\left(
+		\restr{\frac{a(x_0,x_1)}{x_1^{\deg(a)} + 1}}{U_0 \cap U_2}
+	\right),
+\end{align*}
+and as $\frac{a}{x_1^{\deg(a)} + 1} \in \oo_{\P^{1}}(-1)(U_1)$ we see that
+\[
+	f_{U_1}\left(\frac{a(x_0,x_1)}{x_1^{\deg(a)} + 1}\right) = 0,
+\] 
+whence
+\[
+	f_{U_0 \cap U_1}\left(
+		\restr{\frac{a(x_0,x_1)}{x_1^{\deg(a)} + 1}}{U_0 \cap U_2}
+	\right)
+	=
+	0.
+\] 
+We've shown that follows that $\frac{x_0^{\deg(a) + 1}}{x_1^{\deg(a) + 1}}
+ca(1, 0) = 0$, and as $a$ was an arbitrary homogeneous polynomial, $c = 0$
+whence $f = 0$.
+
+\subsubsection*{(c)}
+
+Let $f : k_p \to \oo_{\P^{1}}$ be a morphism of $\oo_{\P^{1}}$-sheaves. Any
+morphism of sheaves is determined on stalks, and as $(k_p)_{q} = 0$ whenever $p
+\not = q$, $f$ is determined on the stalk $p$. The only morphism here is the
+$0$-morphism since any $\oo_{\P^{1}, p}$-linear morphism would have to satisfy
+\[
+	\frac{a(x_0, x_1)}{b(x_0,x_1)} f_p(c)
+	=
+	f_p\left(\frac{a(x_0, x_1)}{b(x_0,x_1)} \cdot c\right)
+	=
+	f_p\left(\frac{a(1, 0)}{b(1, 0)} c\right)
+	=
+	\frac{a(1, 0)}{b(1,0)} f_p(c)
+\] 
+which implies that $f_p(c) = 0$.
+
+\subsection*{Ex 14.12}
+
+As $X \subset \Pn$ is irreducible, $I(X)$ is prime, and as $X$ has codimension
+$1$, $I(X)$ has height $1$, hence $I(X) = (f)$ for some homogeneous polynomial
+by the principal ideal theorem. We will now prove that the following sequence
+is exact,
+\[
+	\begin{tikzcd}
+	0
+	\ar{r}
+	& \oo_{\Pn}(-d)
+	\ar{r}{\cdot f}
+	& \oo_{\Pn}
+	\ar{r}
+	& X
+	\ar{r}
+	& 0
+	\end{tikzcd}.
+\] 
+By Lemma 13.21.(b), it's enough to see that the restrictions to an affine cover
+are exact, which by Remark 14.5.(a) and Lemma 14.7.(b) is equivalent to
+checking that the sequences of modules which are induced by the restriction to
+the affine patches are exact. On the patch $U_0$, we obtain the sequence of
+$\K\left[\frac{x_1}{x_0}, \ldots, \frac{x_n}{x_0}\right]$-modules
+\[
+	\begin{tikzcd}
+		0
+		\ar{r}
+		& \K\left[x_0, \ldots, x_n, \frac{1}{x_0}\right]_{-d}
+		\ar{r}{\cdot f}
+		& \K\left[\frac{x_1}{x_0}, \ldots, \frac{x_n}{x_0}\right]
+		\ar{r}
+		& \frac{\K\left[\frac{x_1}{x_0}, \ldots, \frac{x_n}{x_0}\right]}{\left( f/x_0^{d} \right)}
+		\ar{r}
+		& 
+		0
+	\end{tikzcd},
+\] 
+which is clearly exact.
+
 \end{document}
 
-\begin{lemma}
-	Let $\mathfrak{p} \in V(S)$ and suppose that $\mathfrak{q} \supseteq \mathfrak{p}$.
-	Then $\mathfrak{q} \in V(S)$.
-\end{lemma}
-\begin{proof}
-	$\mathfrak{p} \in V(S)$ if and only if $S \subseteq \mathfrak{p}$ so $S
-	\subseteq \mathfrak{q}$ whence $\mathfrak{q} \in V(S)$.
-\end{proof}
-
-\begin{lemma}
-	Irreducible subsets of $\Spec(R)$ are in one to one correspondence 
-	with points via $\mathfrak{p} \mapsto V(\mathfrak{p})$.
-\end{lemma}
-\begin{proof}
-	First, if $\mathfrak{p} \in \Spec(R)$ is a prime ideal, then
-	$V(\mathfrak{p})$ is an irreducible subset of $\Spec(R)$ since if $V(S_1)
-	\cup V(S_2) \supseteq V(\mathfrak{p})$ are two closed subsets covering
-	$V(\mathfrak{p})$, one of $V(S_i)$ must contain the point $\mathfrak{p} \in
-	V(\mathfrak{p})$, whence $V(S_i)$ contains any prime ideal containing
-	$\mathfrak{p}$, I.e all of $V(\mathfrak{p})$. \\
-
-	Now suppose that $V(S) \subset \Spec(R)$ is an irreducible subset. Let $J =
-	\sqrt{(S)}$ be the radical ideal generated by $S$. Then $V(S) = V(J)$. Let
-	$fg \in J$ with $f \not \in J$. $V(J)$ being irreducible means that either
-	$D(f)$ or $D(g)$ intersects $V(J)$ trivially, whence $f$ or $g$ is in $J$,
-	or they are two non-trivial open subsets of $V(J)$, whence they intersect
-	non-trivially and we have some $\mathfrak{p} \in D(f) \cap D(g)$ such that
-	$\mathfrak{p} \supseteq J$. But then $fg \in \mathfrak{p}$ whilst $f, g
-	\not \in \mathfrak{p}$, a contradiction! Thus $J$ is prime and $V(S) =
-	V(J)$.
-\end{proof}
-
-We get the following corollary.
-
-\begin{corollary}
-	Let 
-\end{corollary}
-
-Now, if $R \subseteq S$ and $\mathfrak{p} \subset S$ is a prime ideal,
-we have $\mathfrak{p} \cap R$ a prime ideal. Hence every irredu
 
